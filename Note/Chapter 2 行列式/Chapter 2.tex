@@ -246,7 +246,7 @@
     根据前面的定理易证.
 \end{proof}
 \begin{theorem}
-    将行列式的一行的倍数加到零一行上,行列式的值不变.
+    将行列式的一行的倍数加到另一行上,行列式的值不变.
 \end{theorem}
 \begin{proof}
     根据前面的定理易证.
@@ -470,6 +470,120 @@
 \end{proof}
 \subsection{Cramer法则}
 \begin{theorem}
-    数域$\F$上的有$n$个方程的$n$元线性方程组有唯一解,当且仅当其系数行列式(即系数矩阵$\mat{A}$的行列式$\det\mat{A}$)不等于$0$.
+    $\F$上有$n$个方程的$n$元线性方程组有唯一解,当且仅当其系数行列式(即系数矩阵$\mat{A}$的行列式$\det\mat{A}$)不等于$0$.
 \end{theorem}
+\begin{proof}
+    对于一个有$n$个方程的$n$元线性方程组,其无解当且仅当增广矩阵中出现主元在最后一列的情形.这样,其系数矩阵经初等行变换时出现全零行,这意味着系数行列式为零(初等行变换不会使得非零的行列式变为零).\\
+    现在考虑有解时的情形.我们已经知道,如果增广矩阵的非零行数目$r$小于未知量数目$n$,那么方程组有无穷多解.此时,系数矩阵经初等行变换时也会出现零行,从而系数行列式为零.\\
+    当且仅当增广矩阵的非零行数目$r$等于未知量数目$n$时,方程式有唯一解.由于方程式有$n$个主元,并且要求系数矩阵变换成的阶梯形矩阵中各主元不再同一列上,因此其必定形如
+    \[\begin{pmatrix}
+        c_{11}&c_{12}&\cdots&c_{1n}\\
+        0&c_{22}&\cdots&c_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&c_{nn}
+    \end{pmatrix}\]
+    这是一个上三角矩阵,并且各$c_{ii}\neq0$,于是系数行列式不为零.\\
+    这样就证明了前述定理.
+\end{proof}
+把上述定理应用到有$n$个方程的$n$元齐次线性方程组上可以得到下面的推论.
+\begin{lemma}
+    $\F$上有$n$个方程的$n$元齐次方程线性组只有零解,当且仅当其系数行列式不等于$0$,从而有非零解当且仅当其系数行列式等于$0$.
+\end{lemma}
+\begin{theorem}[$n$个方程的$n$元线性方程组的解]
+    将$n$个方程的$n$元线性方程组的系数矩阵$\mat{A}$的第$j$列换成常数项对应的列后形成的矩阵记作$\mat{B}_j$,即
+    \[\mat{B}_j=\begin{pmatrix}
+        a_{11}&\cdots&a_{1(j-1)}&b_1&a_{1(j+1)}&\cdots&a_{1n}\\
+        \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+        a_{n1}&\cdots&a_{n(j-1)}&b_n&a_{n(j+1)}&\cdots&a_{nn}
+    \end{pmatrix}\]
+    当该方程组的系数行列式$\det\mat{A}\neq0$时,其唯一解为
+    \[x_j=\dfrac{\det\mat{B}_j}{\det\mat{A}},\forall 1\leqslant j\leqslant n\]
+\end{theorem}
+\begin{proof}
+    我们只需验证上述解满足每一个方程即可.为此,考虑第$i$行方程
+    \[\sum_{j=1}^{n}a_{ij}x_i=b_i\]
+    将解代入可得
+    \[\begin{aligned}
+        LHS
+        &= \sum_{j=1}^{n}a_{ij}x_j = \sum_{j=1}^{n}a_{ij}\dfrac{\det\mat{B}_j}{\det\mat{A}} = \dfrac{1}{\det\mat{A}}\sum_{j=1}^{n}a_{ij}\det\mat{B}_j \\
+        &= \dfrac{1}{\det\mat{A}}\sum_{j=1}^{n}a_{ij}\left(\sum_{k=1}^{n}b_kA_{kj}\right) = \dfrac{1}{\det\mat{A}}\sum_{k=1}^{n}b_k\left(\sum_{j=1}^{n}a_{ij}A_{kj}\right)
+    \end{aligned}\]
+    根据前面的推论,当且仅当$k=i$时
+    \[\sum_{j=1}^{n}a_{ij}A_{kj}=\det\mat{A}\]
+    否则
+    \[\sum_{j=1}^{n}a_{ij}A_{kj}=0\]
+    于是
+    \[LHS=\dfrac{1}{\det\mat{A}}\sum_{k=1}^{n}b_k\left(\sum_{j=1}^{n}a_{ij}A_{kj}\right)=\dfrac{1}{\det\mat{A}}b_i\det\mat{A}=b_i=RHS\]
+\end{proof}
+\begin{theorem}[Cramer法则]
+    $\F$上有$n$个方程的$n$元线性方程组有唯一解,则其系数行列式不等于$0$,并且解为
+    \[x_j=\dfrac{\det\mat{B}_j}{\det\mat{A}},\forall 1\leqslant j\leqslant n\]
+\end{theorem}
+\subsection{行列式按$k$行(列展开)}
+\begin{definition}[$k$阶子式]
+    $n$级方阵$\mat{A}$中任意取定$k$行$k$列($1\leqslant k<n$),位于这些行和列交叉处的元素按原来的顺序排成的$k$级方阵称为$\mat{A}$的一个\tbf{$k$阶子式}.
+\end{definition}
+\begin{definition}[$k$阶子式的余子式和代数余子式]
+    取定$n$级方阵$\mat{A}$的第$\li i,k$行和第$\li j,k$列形成的$k$阶子式记作
+    \[\mat{A}\begin{pmatrix}
+        \li i,k\\\li j,k
+    \end{pmatrix}\]
+    划去这些行和列形成的$n-k$阶子式称作上述方阵的\tbf{余子式}.余子式前乘以系数
+    \[(-1)^{\li i+k+\li j+k}\]
+    称作上述方阵的\tbf{代数余子式}.\\
+    令
+    \[\left\{i_1',\cdots,i_{n-k}'\right\}=\{1,\cdots,n\}\backslash\left\{\li i,k\right\}\]
+    \[\left\{j_1',\cdots,j_{n-k}'\right\}=\{1,\cdots,n\}\backslash\left\{\li j,k\right\}\]
+    并且$i_1'<\cdots<i_{n-k}'$,$j_1'<\cdots<j_{n-k}'$,那么前述$k$阶子式的代数余子式可以记作
+    \[\mat{A}\begin{pmatrix}
+        i_1',\cdots,i_{n-k}'\\j_1',\cdots,j_{n-k}'
+    \end{pmatrix}\]
+\end{definition}
+\begin{theorem}[Laplace定理按$k$行展开的版本]
+    在$n$阶方阵$\mat{A}$中取定$\li i,k$行,这$k$行形成的所有$k$阶子式与它们的代数余子式的乘积之和等于$\det\mat{A}$,即
+    \[\det\mat{A}=\sum_{1\leqslant\li j\leqslant k\leqslant n}\mat{A}\begin{pmatrix}
+        \li i,k\\\li j,k
+    \end{pmatrix}(-1)^{\li i+k+\li j+k}\mat{A}\begin{pmatrix}
+        i_1',\cdots,i_{n-k}'\\j_1',\cdots,j_{n-k}'
+    \end{pmatrix}\]
+\end{theorem}
+\begin{proof}
+    给定行指标的排列$i_1\cdots i_ki_1'\cdots i_{n-k}'$,则$\det\mat{A}$可以展写如下
+    \[\det\mat{A}=\sum_{\alpha_1\cdots\alpha_k\beta_1\cdots\beta_{n-k}}(-1)^{\tau\left(i_1\cdots i_ki_1'\cdots i_{n-k}'\right)+\tau\left(\alpha_1\cdots\alpha_k\beta_1\cdots\beta_{n-k}\right)}a_{i_1\alpha_1}\cdots a_{i_k\alpha_k}a_{i_1'\beta_1}\cdots a_{i_{n-k}'\beta_{n-k}}\]
+    现在将上述$n!$项按照下面的方式分成$C_n^k$组:任意取定$\li j,k$列,将$n$的全排列$\alpha_1\cdots\alpha_k\beta_1\cdots\beta_{n-k}$对应于
+    \[j_1\cdots j_kj_1'\cdots j_{n-k}'\]
+    在研究排列的性质时,我们已经知道
+    \[(-1)^{\tau\left(i_1\cdots i_ki_1'\cdots i_{n-k}\right)}=(-1)^{\tau\left(i_1\cdots i_k\right)+\tau\left(i_1'\cdots i_{n-k}'\right)}\cdot(-1)^{\li i+k}\cdot(-1)^{\frac{n(n+1)}{2}}\]
+    \[(-1)^{\tau\left(j_1\cdots j_kj_1'\cdots j_{n-k}\right)}=(-1)^{\tau\left(j_1\cdots j_k\right)+\tau\left(j_1'\cdots j_{n-k}'\right)}\cdot(-1)^{\li j+k}\cdot(-1)^{\frac{n(n+1)}{2}}\]
+    于是
+    \[\begin{aligned}
+        \det\mat{A}
+        &=\sum_{1\leqslant\li j\leqslant k\leqslant n}\begin{array}{l}
+            (-1)^{\tau\left(i_1\cdots i_k\right)+\tau\left(j_1\cdots j_k\right)}\cdot(-1)^{\tau\left(i_1'\cdots i_{n-k}'\right)+\tau\left(j_1'\cdots j_{n-k}'\right)}\cdot(-1)^{n(n+1)}\\
+            \displaystyle\cdot(-1)^{\li i+k+\li j+k}\prod_{p=1}^{k}a_{i_pj_p}\prod_{q=1}^{n-k}a_{i_q'j_q'}
+        \end{array}\\
+        &= \sum_{1\leqslant\li j\leqslant k\leqslant n}\begin{array}{l}
+            \displaystyle(-1)^{\tau\left(i_1\cdots i_k\right)+\tau\left(j_1\cdots j_k\right)}\prod_{p=1}^{k}a_{i_pj_p}\\
+            \cdot(-1)^{\li i+k+\li j+k}\\
+            \displaystyle\cdot(-1)^{\tau\left(i_1'\cdots i_{n-k}'\right)+\tau\left(j_1'\cdots j_{n-k}'\right)}\prod_{q=1}^{n-k}a_{i_q'j_q'}
+        \end{array} \\
+        &= \sum_{1\leqslant\li j\leqslant k\leqslant n}\mat{A}\begin{pmatrix}
+            \li i,k\\\li j,k
+        \end{pmatrix}(-1)^{\li i+k+\li j+k}\mat{A}\begin{pmatrix}
+            i_1',\cdots,i_{n-k}'\\j_1',\cdots,j_{n-k}'
+        \end{pmatrix}
+    \end{aligned}\]
+    于是命题得证.显然,当$k=1$时,就是我们前面所述的Laplace定理.
+\end{proof}
+\begin{lemma}
+    我们有
+    \[\begin{pmatrix}
+        \mat{A}&\tbf{0}\\
+        \mat{C}&\mat{B}
+    \end{pmatrix}=\det\mat{A}\cdot\det\mat{B}\]
+    其中$\mat{A}$和$\mat{B}$分别为$k$级和$n-k$级方阵,$\mat{C}$为$(n-k)\times k$级的任意矩阵,$\tbf{0}$为零矩阵.
+\end{lemma}
+\begin{proof}
+    将上述矩阵按前$k$行展开,仅有$\mat{A}$这一子式对应的求和项中不包含$0$,它对应的余子式恰为$\det\mat{B}$,并且指数项为$k(k+1)$,因此上述结论成立.
+\end{proof}
 \end{document}
