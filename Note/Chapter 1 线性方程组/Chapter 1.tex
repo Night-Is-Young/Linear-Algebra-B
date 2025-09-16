@@ -136,7 +136,7 @@
 \end{proof}
 \subsection{数域}
 \begin{definition}[数域]
-    如果集合$K\subseteq\mathbb{Z}$满足
+    如果集合$K\subseteq\mathbb{C}$满足
     \begin{enumerate}[label=\arabic*.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
         \item $0,1\in K$.
         \item $\forall a,b\in K,a\pm b\in K$且$ab\in K$.
@@ -144,7 +144,13 @@
     \end{enumerate}
     那么称$K$是一个\tbf{数域}.
 \end{definition}
-通俗而言,数域就是对四则运算封闭的集合.
+通俗而言,数域就是对四则运算封闭的集合.特别地,上面第二条和第三条的运算都是$\mathbb{C}$中的运算.下面是一个典型的反例.
+\begin{problem}
+    令$S=\{0,1\}$,并令$0+1=1+0=1,0+0=1+1=0,1\times1=1,0\times0=1\times1=0$.说明$S$不是数域.
+\end{problem}
+\begin{proof}
+    尽管$S\subset\mathbb{C}$,但上述定义的加法与$\mathbb{C}$上定义的不同,于是$S$不是数域.事实上,$S$是域的一种,称作\tbf{有限域}.
+\end{proof}
 \begin{problem}
     令
     \[F=\left\{\dfrac{a_0+a_1\e+\cdots+a_n\e^n}{b_0+b_1\e+\cdots+b_m\e^m}:n,m\in\N,a_i,b_j\in\mathbb{Z},\text{其中}0\leqslant i\leqslant n,0\leqslant j\leqslant m\right\}\]
