@@ -1,0 +1,437 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第二次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+\section*{习题2.1}
+\begin{homework}[1(1)]
+    求下面排列的逆序数,并指出其奇偶性:
+    \[315462\]
+\end{homework}
+\begin{solution}
+    逆序数对有:
+    \[(3,1),(3,2),(5,4),(5,2),(4,2),(6,2)\]
+    故逆序数为$6$,是偶排列.
+\end{solution}
+\begin{homework}[2(1)]
+    求下面$n$元排列的逆序数:
+    \[(n-1)(n-2)\cdots21n\]
+\end{homework}
+\begin{solution}
+    对于任意$1\leqslant i\leqslant n-1$,比它小的所有$i-1$个数都在它后面,故逆序数为
+    \[\sum_{i=1}^{n-1}(i-1)=\dfrac{n(n-1)}{2}-(n-1)=\dfrac{n^2-3n+2}{2}\]
+\end{solution}
+\begin{homework}[5]
+    如果$n$元排列$j_1j_2\cdots j_{n-1}j_n$的逆序数为$r$,求$n$元排列$j_nj_1j_2\cdots j_{n-1}$的逆序数.
+\end{homework}
+\begin{solution}
+    考虑到$n$个数一共能形成
+    \[\dfrac{n(n-1)}{2}\]
+    个数对.又因为在$j_1j_2\cdots j_{n-1}j_n$构成顺序的数对在$j_nj_1j_2\cdots j_{n-1}$中构成逆序,反之亦然,于是
+    \[\tau\left(j_nj_1j_2\cdots j_{n-1}\right)=\dfrac{n(n+1)}{2}-r\]
+\end{solution}
+\begin{homework}[7]
+    利用二阶行列式判断下面的方程组是否有唯一解.如果有唯一解,求出这个解.
+    \[\left\{\begin{array}{l}
+        2x_1-3x_2=7\\
+        5x_1+4x_2=6
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    该方程组的系数行列式
+    \[\begin{vmatrix}
+        2&-3\\5&4
+    \end{vmatrix}=8+15=23\neq0\]
+    于是该方程组有唯一解,解为
+    \[x_1=\dfrac{\begin{vmatrix}
+        7&-3\\6&4
+    \end{vmatrix}}{23}=2\ \ \ \ \ x_2=\dfrac{\begin{vmatrix}
+        2&7\\5&6
+    \end{vmatrix}}{23}=-1\]
+\end{solution}
+\section*{习题2.2}
+\begin{homework}[1(1)]
+    按定义计算下列行列式:
+    \[\begin{vmatrix}
+        0&0&0&a_{14}\\
+        0&0&a_{23}&a_{24}\\
+        0&a_{32}&a_{33}&a_{34}\\
+        a_{41}&a_{42}&a_{43}&a_{44}
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    依定义,只有第一行取$a_{14}$时求和项才可能不为$0$.在此基础上,只有第二行取$a_{23}$时求和项才可能不为$0$.依次类推可得只有取反对角线上的元素,求和项才可能不为$0$,于是
+    \[\begin{vmatrix}
+        0&0&0&a_{14}\\
+        0&0&a_{23}&a_{24}\\
+        0&a_{32}&a_{33}&a_{34}\\
+        a_{41}&a_{42}&a_{43}&a_{44}
+    \end{vmatrix}=(-1)^{\tau(4321)}a_{14}a_{23}a_{32}a_{41}=a_{14}a_{23}a_{32}a_{41}\]
+\end{solution}
+\begin{homework}[1(3)]
+    按定义计算下列行列式:
+    \[\begin{vmatrix}
+        0&b_1&0&\cdots&0\\
+        0&0&b_2&\cdots&0\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        0&0&0&\cdots&b_{n-1}\\
+        b_n&0&0&\cdots&0
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    同样依定义,只有第$1$行取$b_1$,第$2$行取$b_2$,$\cdots$,第$n$行取$b_n$时求和项才可能不为$0$.于是
+    \[\begin{vmatrix}
+        0&b_1&0&\cdots&0\\
+        0&0&b_2&\cdots&0\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        0&0&0&\cdots&b_{n-1}\\
+        b_n&0&0&\cdots&0
+    \end{vmatrix}=(-1)^{\tau(2\cdots n1)}\prod_{i=1}^{n}b_i=(-1)^{n-1}\prod_{i=1}^{n}b_i\]
+\end{solution}
+\begin{homework}[3]
+    按定义计算下列行列式:
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&a_4&a_5\\
+        b_1&b_2&b_3&b_4&b_5\\
+        c_1&c_2&0&0&0\\
+        d_1&d_2&0&0&0\\
+        e_1&e_2&0&0&0
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    依定义,需在最后三行中的不同列取三个元素,每行前列都是可能非零的元素,后三列都是$0$.根据抽屉原理,无论如何都将取到$0$,因此定义式中的每项都含有因子$0$,于是
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&a_4&a_5\\
+        b_1&b_2&b_3&b_4&b_5\\
+        c_1&c_2&0&0&0\\
+        d_1&d_2&0&0&0\\
+        e_1&e_2&0&0&0
+    \end{vmatrix}=0\]
+\end{solution}
+\begin{homework}[4]
+    $n$阶行列式中反对角线上$n$个元素的乘积这一项一定带负号吗?
+\end{homework}
+\begin{solution}
+    不一定.\\
+    考虑排列$n(n-1)\cdots1$,其逆序数为
+    \[\tau\left(n\cdots 1\right)=\dfrac{n(n-1)}{2}\]
+    当$n\equiv0,1\pmod{4}$时,$\tau\left(n\cdots 1\right)$为偶数,此时反对角线上的元素的乘积这一项带正号;当$n\equiv2,3\pmod{4}$时,$\tau\left(n\cdots 1\right)$为奇数,此时反对角线上的元素的乘积这一项带负号.
+\end{solution}
+\section*{习题2.3}
+\begin{homework}[1(2)]
+    计算行列式:
+    \[\begin{vmatrix}
+        -1&203&\frac13\\
+        3&298&\frac12\\
+        5&399&\frac23
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    有
+    \[\begin{aligned}
+        \begin{vmatrix}
+        -1&203&\frac13\\
+        3&298&\frac12\\
+        5&399&\frac23
+    \end{vmatrix}
+    &= \dfrac16\begin{vmatrix}
+            -1&203&2\\
+            3&298&3\\
+            5&399&4
+        \end{vmatrix}=\dfrac16\begin{vmatrix}
+            -1&2&2\\3&-2&3\\5&-1&4
+        \end{vmatrix}+\dfrac16\begin{vmatrix}
+            -1&200&2\\3&300&3\\5&400&4
+        \end{vmatrix}\\
+    &= \dfrac16\begin{vmatrix}
+        -1&2&2\\0&4&9\\0&9&14
+        \end{vmatrix}=\dfrac16\begin{vmatrix}
+            -1&2&2\\0&4&9\\0&0&-\frac{25}{4}
+        \end{vmatrix}\\
+    &= \dfrac{25}{6}
+    \end{aligned}\]
+\end{solution}
+\begin{homework}[1(4)]
+    计算行列式:
+    \[\begin{vmatrix}
+        1&2&3&4\\
+        2&3&4&1\\
+        3&4&1&2\\
+        4&1&2&3
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    注意到每行元素之和均为$10$,于是
+    \[\begin{aligned}
+        \begin{vmatrix}
+            1&2&3&4\\
+            2&3&4&1\\
+            3&4&1&2\\
+            4&1&2&3
+        \end{vmatrix}
+        &= \begin{vmatrix}
+                10&2&3&4\\
+                10&3&4&1\\
+                10&4&1&2\\
+                10&1&2&3
+            \end{vmatrix} = 
+            10\begin{vmatrix}
+                1&2&3&4\\
+                1&3&4&1\\
+                1&4&1&2\\
+                1&1&2&3
+            \end{vmatrix} =
+            10\begin{vmatrix}
+                1&2&3&4\\
+                0&1&1&-3\\
+                0&2&-2&-2\\
+                0&-1&-1&-1
+            \end{vmatrix} \\
+        &= -20\begin{vmatrix}
+                1&2&3&4\\
+                0&1&1&-3\\
+                0&1&-1&-1\\
+                0&1&1&1
+            \end{vmatrix} =
+            -20\begin{vmatrix}
+                1&2&3&4\\
+                0&1&1&-3\\
+                0&0&-2&2\\
+                0&0&0&4
+            \end{vmatrix}\\
+        &= 160
+    \end{aligned}\]
+\end{solution}
+\begin{homework}[2(2)]
+    计算$n$阶行列式:
+    \[\begin{vmatrix}
+        a_1-b&a_2&\cdots&a_n\\
+        a_1&a_2-b&\cdots&a_n\\
+        \vdots&\vdots& &\vdots\\
+        a_1&a_2&\cdots&a_n-b
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    注意到每行元素之和均为$\displaystyle\sum_{i=1}^{n}a_i-b$,于是有
+    \[\begin{aligned}
+        \begin{vmatrix}
+            a_1-b&a_2&\cdots&a_n\\
+            a_1&a_2-b&\cdots&a_n\\
+            \vdots&\vdots& &\vdots\\
+            a_1&a_2&\cdots&a_n-b
+        \end{vmatrix}
+        &= \begin{vmatrix}
+                \sum_{i=1}^{n}a_i-b&a_2&\cdots&a_n\\
+                \sum_{i=1}^{n}a_i-b&a_2-b&\cdots&a_n\\
+                \vdots&\vdots& &\vdots\\
+                \sum_{i=1}^{n}a_i-b&a_2&\cdots&a_n-b
+            \end{vmatrix} \\
+        &= \left(\sum_{i=1}^{n}a_i-b\right)\begin{vmatrix}
+                1&a_2&\cdots&a_n\\
+                1&a_2-b&\cdots&a_n\\
+                \vdots&\vdots& &\vdots\\
+                1&a_2&\cdots&a_n-b
+            \end{vmatrix} \\
+        &= \left(\sum_{i=1}^{n}a_i-b\right)(-b)^{n-1}\begin{vmatrix}
+                1&a_2&\cdots&a_n\\
+                0&-b&\cdots&0\\
+                \vdots&\vdots& &\vdots\\
+                0&0&\cdots&-b
+            \end{vmatrix}\\
+        &= \left(\sum_{i=1}^{n}a_i-b\right)(-b)^{n-1}\\
+    \end{aligned}\]
+\end{solution}
+\begin{homework}[3(1)]
+    证明:
+    \[\begin{vmatrix}
+        a_1-b_1&b_1-c_1&c_1-a_1\\
+        a_2-b_2&b_2-c_2&c_2-a_2\\
+        a_3-b_3&b_3-c_3&c_3-a_3
+    \end{vmatrix}=0\]
+\end{homework}
+\begin{proof}
+    注意到每行元素之和均为$0$,于是
+    \[\begin{vmatrix}
+        a_1-b_1&b_1-c_1&c_1-a_1\\
+        a_2-b_2&b_2-c_2&c_2-a_2\\
+        a_3-b_3&b_3-c_3&c_3-a_3
+    \end{vmatrix}=\begin{vmatrix}
+        0&b_1-c_1&c_1-a_1\\
+        0&b_2-c_2&c_2-a_2\\
+        0&b_3-c_3&c_3-a_3
+    \end{vmatrix}=0\]
+\end{proof}
+\begin{homework}[4(1)]
+    计算下列$n$阶行列式:
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_n\\
+        b_1&1&0&\cdots&0\\
+        b_2&0&1&\cdots&0\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        b_n&0&0&\cdots&1
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    从定义出发考虑.如果在第一行选择$a_i(i>1)$,那么在第$i$行只能选择$b_i$才能使得求和项不为零,这也意味着其它行只能选择$1$.这样,这一求和项对应的排列为
+    \[i23\cdots(i-1)1(i+1)\cdots n\]
+    这一排列经过$2i-1$次对换后变为$12\cdots n$,因此其为奇排列,于是有
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_n\\
+        b_1&1&0&\cdots&0\\
+        b_2&0&1&\cdots&0\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        b_n&0&0&\cdots&1
+    \end{vmatrix}=a_1-\sum_{i=2}^{n}a_ib_i\]
+\end{solution}
+\section*{习题2.4}
+\begin{homework}[1(3)]
+    计算下列行列式:
+    \[\begin{vmatrix}
+        \lambda-2&-2&2\\
+        -2&\lambda-5&4\\
+        2&4&\lambda-5
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    有
+    \[\begin{aligned}
+        \begin{vmatrix}
+            \lambda-2&-2&2\\
+            -2&\lambda-5&4\\
+            2&4&\lambda-5
+        \end{vmatrix}
+        &=  \begin{vmatrix}
+                \lambda-2&-2&2\\
+                -2&\lambda-5&4\\
+                0&\lambda-1&\lambda-1
+            \end{vmatrix} = 
+            \begin{vmatrix}
+                \lambda-2&-4&2\\
+                -2&\lambda-9&4\\
+                0&0&\lambda-1
+            \end{vmatrix} \\
+        &= (\lambda-1)(-1)^{3+3}\begin{vmatrix}
+                \lambda-2&-4\\
+                -2&\lambda-9
+            \end{vmatrix} = (\lambda-1)^2(\lambda-10)
+    \end{aligned}\]
+\end{solution}
+\begin{homework}[2]
+    计算$n(n\geqslant2)$阶行列式:
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_{n-1}&a_n\\
+        1&-1&0&\cdots&0&0\\
+        0&2&-2&\cdots&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots\\
+        0&0&0&\cdots&n-1&1-n
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    先提取公因式可得
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_{n-1}&a_n\\
+        1&-1&0&\cdots&0&0\\
+        0&2&-2&\cdots&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots\\
+        0&0&0&\cdots&n-1&1-n
+    \end{vmatrix}=(n-1)!\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_{n-1}&a_n\\
+        1&-1&0&\cdots&0&0\\
+        0&1&-1&\cdots&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots\\
+        0&0&0&\cdots&1&-1
+    \end{vmatrix}\]
+    将第$2$列到第$n$列加到第$1$列上可得
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_{n-1}&a_n\\
+        1&-1&0&\cdots&0&0\\
+        0&1&-1&\cdots&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots\\
+        0&0&0&\cdots&1&-1
+    \end{vmatrix}=\begin{vmatrix}
+        \sum_{i=1}^{n}a_i&a_2&a_3&\cdots&a_{n-1}&a_n\\
+        0&-1&0&\cdots&0&0\\
+        0&1&-1&\cdots&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots\\
+        0&0&0&\cdots&1&-1
+    \end{vmatrix}\]
+    将行列式按第一列展开,只有$(1,1)$元对应的余子式不为零,且该余子式是一个上三角行列式.于是可得
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_{n-1}&a_n\\
+        1&-1&0&\cdots&0&0\\
+        0&2&-2&\cdots&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots\\
+        0&0&0&\cdots&n-1&1-n
+    \end{vmatrix}=(-1)^{n-1}(n-1)!\sum_{i=1}^{n}a_i\]
+\end{solution}
+\begin{homework}[3]
+    计算$n(n\geqslant2)$阶行列式:
+    \[\begin{vmatrix}
+        1&a_1&a_1^2&\cdots&a_1^{n-1}\\
+        1&a_2&a_2^2&\cdots&a_2^{n-1}\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        1&a_n&a_n^2&\cdots&a_n^{n-1}
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    该行列式经转置后即为范德蒙行列式,又因为转置不改变行列式的值,于是
+    \[\begin{vmatrix}
+        1&a_1&a_1^2&\cdots&a_1^{n-1}\\
+        1&a_2&a_2^2&\cdots&a_2^{n-1}\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        1&a_n&a_n^2&\cdots&a_n^{n-1}
+    \end{vmatrix}=\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\]
+\end{solution}
+\begin{homework}[6]
+    计算$n$阶行列式:
+    \[\begin{vmatrix}
+        2a&a^2&0&0&\cdots&0&0&0\\
+        1&2a&a^2&0&\cdots&0&0&0\\
+        0&1&2a&a^2&\cdots&0&0&0\\
+        \vdots&\vdots&\vdots&\vdots& &\vdots&\vdots&\vdots\\
+        0&0&0&0&\cdots&1&2a&a^2\\
+        0&0&0&0&\cdots&0&1&2a
+    \end{vmatrix}\ (a\in\R)\]
+\end{homework}
+\begin{solution}
+    记上述行列式为$D_n$,则$D_n$是一个三对角线行列式,因此
+    \[D_n=(n+1)a^n\]
+    具体证明过程如下:将$D_n$按第一列展开可得
+    \[D_n=2aD_{n-1}+(-1)^{2+1}\begin{vmatrix}
+        a^2&0&0&\cdots&0&0&0\\
+        1&2a&a^2&\cdots&0&0&0\\
+        \vdots&\vdots&\vdots& &\vdots&\vdots&\vdots\\
+        0&0&0&\cdots&1&2a&a^2\\
+        0&0&0&\cdots&0&1&2a
+    \end{vmatrix}=2aD_{n-1}-a^2D_{n-2}\]
+    即
+    \[D_n-aD_{n-1}=a\left(D_{n-1}-aD_{n-2}\right)\]
+    又$D_1=2a,D_2=3a^2$,于是
+    \[D_n-aD_{n-1}=a^n\]
+    于是
+    \[\dfrac{D_n}{a^n}-\dfrac{D_{n-1}}{a^{n-1}}=1\]
+    从而
+    \[D_n=(n+1)a^n\]
+\end{solution}
+\begin{homework}[7]
+    解方程:
+    \[\begin{vmatrix}
+        1&1&\cdots&1\\
+        x&a_1&\cdots&a_{n-1}\\
+        x^2&a_1^2&\cdots&a_{n-1}^2\\
+        \vdots&\vdots& &\vdots\\
+        x^{n-1}&a_1^{n-1}&\cdots&a_{n-1}^{n-1}
+    \end{vmatrix}=0\]
+    其中$a_1,a_2,\cdots,a_{n-1}$互不相等.
+\end{homework}
+\begin{solution}
+    左边的行列式是范德蒙行列式,因此上述方程等价于
+    \[\prod_{1\leqslant i<j\leqslant n-1}\left(a_j-a_i\right)\cdot\prod_{k=1}^{n-1}\left(a_i-x\right)=0\]
+    既然$a_1,a_2,\cdots,a_{n-1}$互不相等,那么有
+    \[\prod_{k=1}^{n-1}\left(a_i-x\right)=0\]
+    于是上述方程有$n-1$个解,分别为
+    \[x=a_k(k=1,2,\cdots,n-1)\]
+\end{solution}
+\end{document}
