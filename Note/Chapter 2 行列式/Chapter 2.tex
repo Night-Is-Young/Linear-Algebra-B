@@ -468,6 +468,56 @@
     \[LHS=\left(a_2-a_1\right)\cdots\left(a_n-a_1\right)\prod_{2\leqslant i<j\leqslant n}\left(a_j-a_i\right)=\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\]
     于是归纳可得原命题成立.
 \end{proof}
+\begin{definition}[三对角线行列式]
+    形如
+    \[\begin{vmatrix}
+        a&b&0&\cdots&0&0&0\\
+        c&a&b&\cdots&0&0&0\\
+        0&c&a&\cdots&0&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+        0&0&0&\cdots&c&a&b\\
+        0&0&0&\cdots&0&c&a
+    \end{vmatrix}\]
+    的行列式称作三对角线行列式.
+\end{definition}
+\begin{theorem}
+    上述$n$阶三对角线行列式$D_n$的值为
+    \[D_n=\left\{\begin{array}{l}
+        (n+1)\left(\dfrac{a}{2}\right)^n,a^2=4bc\\
+        \dfrac{\lambda_1^{n+1}-\lambda_2^{n+1}}{\lambda_1-\lambda_2},a^2\neq4bc
+    \end{array}\right.\]
+    其中$\lambda_1,\lambda_2$是方程$\lambda^2-a\lambda+bc=0$的两根.
+\end{theorem}
+\begin{proof}
+    将$D_n$按第一列展开有
+    \[D_n=aD_{n-1}+(-1)^{1+2}c\begin{vmatrix}
+        b&0&\cdots&0&0&0\\
+        c&a&\cdots&0&0&0\\
+        0&c&\cdots&0&0&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+        0&0&\cdots&c&a&b\\
+        0&0&\cdots&0&c&a
+    \end{vmatrix}=aD_{n-1}-bcD_{n-2}\]
+    令
+    \[D_n-\lambda_1 D_{n-1}=\lambda_2\left(D_{n-1}-\lambda_1 D_{n-2}\right)\]
+    于是可得
+    \[\lambda_1+\lambda_2=a\ \ \ \ \ \lambda_1\lambda_2=bc\]
+    于是$\lambda_1,\lambda_2$是二元一次方程
+    \[\lambda^2-a\lambda+bc=0\]
+    的两个根.\\
+    \indent 当$a^2=4bc$时,$\lambda_1=\lambda_2=\dfrac{a}{2}$.此时
+    \[D_n-\dfrac{a}{2}D_{n-1}=\dfrac{a}{2}\left(D_{n-1}-\dfrac{a}{2}D_{n-2}\right)\]
+    又因为$D_1=a,D_2=a^2-bc=\dfrac{3a^2}{4}$,于是
+    \[D_{n}-\dfrac{a}{2}D_{n-1}=\left(\dfrac{a}{2}\right)^n\]
+    于是
+    \[D_n=(n+1)\left(\dfrac{a}{2}\right)^n\]
+    \indent 当$a^2\neq4bc$时,$\lambda_1\neq\lambda_2$.不妨设
+    \[D_n=C_1\lambda_1^n+C_2\lambda_2^n\]
+    由$D_1=a,D_2=a^2-bc$可解得
+    \[C_1=\dfrac{\lambda_1^2-(a^2-bc)}{\lambda_1^2-\lambda_2^2}=\dfrac{\lambda_1}{\lambda_1-\lambda_2}\ \ \ \ \ C_2=\dfrac{(a^2-bc)-\lambda_2^2}{\lambda_1^2-\lambda_2^2}=\dfrac{-\lambda_2}{\lambda_1-\lambda_2}\]
+    于是
+    \[D_n=\dfrac{\lambda_1^{n+1}-\lambda_2^{n+1}}{\lambda_1-\lambda_2}\]
+\end{proof}
 \subsection{Cramer法则}
 \begin{theorem}
     $\F$上有$n$个方程的$n$元线性方程组有唯一解,当且仅当其系数行列式(即系数矩阵$\mat{A}$的行列式$\det\mat{A}$)不等于$0$.
