@@ -141,16 +141,16 @@
             3&298&3\\
             5&399&4
         \end{vmatrix}=\dfrac16\begin{vmatrix}
-            -1&2&2\\3&-2&3\\5&-1&4
+            -1&3&2\\3&-2&3\\5&-1&4
         \end{vmatrix}+\dfrac16\begin{vmatrix}
             -1&200&2\\3&300&3\\5&400&4
         \end{vmatrix}\\
     &= \dfrac16\begin{vmatrix}
-        -1&2&2\\0&4&9\\0&9&14
-        \end{vmatrix}=\dfrac16\begin{vmatrix}
-            -1&2&2\\0&4&9\\0&0&-\frac{25}{4}
+        -1&3&2\\0&7&9\\0&14&14
+        \end{vmatrix}=\dfrac{7}{3}\begin{vmatrix}
+            -1&2&2\\0&0&2\\0&1&1
         \end{vmatrix}\\
-    &= \dfrac{25}{6}
+    &= \dfrac{14}{3}
     \end{aligned}\]
 \end{solution}
 \begin{homework}[1(4)]
@@ -376,7 +376,7 @@
     \end{vmatrix}\]
 \end{homework}
 \begin{solution}
-    该行列式经转置后即为范德蒙行列式,又因为转置不改变行列式的值,于是
+    该行列式经转置后即为范德蒙德行列式,又因为转置不改变行列式的值,于是
     \[\begin{vmatrix}
         1&a_1&a_1^2&\cdots&a_1^{n-1}\\
         1&a_2&a_2^2&\cdots&a_2^{n-1}\\
@@ -427,11 +427,245 @@
     其中$a_1,a_2,\cdots,a_{n-1}$互不相等.
 \end{homework}
 \begin{solution}
-    左边的行列式是范德蒙行列式,因此上述方程等价于
+    左边的行列式是范德蒙德行列式,因此上述方程等价于
     \[\prod_{1\leqslant i<j\leqslant n-1}\left(a_j-a_i\right)\cdot\prod_{k=1}^{n-1}\left(a_i-x\right)=0\]
     既然$a_1,a_2,\cdots,a_{n-1}$互不相等,那么有
     \[\prod_{k=1}^{n-1}\left(a_i-x\right)=0\]
     于是上述方程有$n-1$个解,分别为
     \[x=a_k(k=1,2,\cdots,n-1)\]
+\end{solution}
+\section*{习题2.5}
+\begin{homework}[2]
+    下述线性方程组有无解?若有解,有多少解>
+    \[\left\{\begin{array}{l}
+        a_1^2x_1+\cdots+a_n^2x_n=b_1\\
+        a_1^3x_1+\cdots+a_n^3x_n=b_2\\
+        \cdots\\
+        a_1^{n+1}x_1+\cdots+a_n^{n+1}x_n=b_n
+    \end{array}\right.\]
+    其中$a_1,\cdots,a_n$是两两不等的非零实数.
+\end{homework}
+\begin{solution}
+    该方程组有$n$个变量和$n$个方程.考虑其系数行列式:
+    \[\begin{vmatrix}
+        a_1^2&a_1^3&\cdots&a_1^{n+1}\\
+        a_2^2&a_2^3&\cdots&a_2^{n+1}\\
+        \vdots&\vdots& &\vdots\\
+        a_n^2&a_n^3&\cdots&a_n^{n+1}
+    \end{vmatrix}=\prod_{i=1}^{n}a_i^2\begin{vmatrix}
+        1&a_1&\cdots&a_1^{n-1}\\
+        1&a_2&\cdots&a_2^{n-1}\\
+        \vdots&\vdots& &\vdots\\
+        1&a_n&\cdots&a_n^{n-1}
+    \end{vmatrix}=\prod_{i=1}^{n}a_i^2\prod_{1\leqslant i<j\leqslant n}(a_j-a_i)\neq0\]
+    于是原方程组有唯一解.
+\end{solution}
+\begin{homework}[3]
+    求$\lambda$使得下面的齐次线性方程组有非零解:
+    \[\left\{\begin{array}{l}
+        (\lambda-2)x_1-3x_2-2x_3=0\\
+        -x_1+(\lambda-8)x_2-2x_3=0\\
+        2x_1+14x_2+(\lambda+3)x_3=0
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    该齐次方程组有非零解当且仅当系数行列式为零,即
+    \[\begin{vmatrix}
+        \lambda-2&-3&-2\\
+        -1&\lambda-8&-2\\
+        2&14&\lambda+3
+    \end{vmatrix}=0\]
+    而
+    \[\begin{aligned}
+        \begin{vmatrix}
+            \lambda-2&-3&-2\\
+            -1&\lambda-8&-2\\
+            2&14&\lambda+3
+        \end{vmatrix}
+        &= \begin{vmatrix}
+                \lambda-2&-3&-2\\
+                -1&\lambda-8&-2\\
+                0&2\lambda-2&\lambda-1
+            \end{vmatrix}=
+            \begin{vmatrix}
+                \lambda-2&-3&-2\\
+                -1&\lambda-8&-2\\
+                0&2\lambda-2&\lambda-1
+            \end{vmatrix} \\
+        &= \begin{vmatrix}
+                \lambda-2&1&-2\\
+                -1&\lambda-4&-2\\
+                0&0&\lambda-1
+            \end{vmatrix} = 
+            (\lambda-1)\begin{vmatrix}
+                \lambda-2&-3\\
+                -1&\lambda-8
+            \end{vmatrix} \\
+        &= (\lambda-1)(\lambda^2-10\lambda+13)
+    \end{aligned}\]
+    当且仅当$\lambda=1$时系数行列式为$0$,此时原方程有非零解.
+\end{solution}
+\begin{homework}[5]
+    求$a,b$使得下面的线性方程组有唯一解:
+    \[\left\{\begin{array}{l}
+        ax_1+x_2+x_3=2\\
+        x_1+bx_2+x_3=1\\
+        x_1+2bx_2+x_3=2
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    该方程组有唯一解当且仅当系数行列式不为零,即
+    \[\begin{vmatrix}
+        a&1&1\\
+        1&b&1\\
+        1&2b&1
+    \end{vmatrix}\neq0\]
+    而
+    \[\begin{vmatrix}
+            a&1&1\\
+            1&b&1\\
+            1&2b&1
+        \end{vmatrix}
+    =\begin{vmatrix}
+        a&1&1\\
+        1&b&1\\
+        0&b&0
+    \end{vmatrix}=-b\begin{vmatrix}
+        a&1\\
+        1&1
+    \end{vmatrix}=-b(a-1)\]
+    于是当且仅当$b\neq0$且$a\neq1$时原方程组有唯一解.
+\end{solution}
+\begin{homework}[6]
+    对于本节\tbf{5}中的方程,求$a,b$使得方程组无解/有无穷多解.
+\end{homework}
+\begin{solution}
+    我们只需讨论\tbf{5}结论以外的情形.当$b=0$时,方程组的增广矩阵可以变换如下:
+    \[\begin{bmatrix}
+        a&1&1&2\\
+        1&b&1&1\\
+        1&2b&1&2
+    \end{bmatrix}=\begin{bmatrix}
+        a&1&1&2\\
+        1&0&1&1\\
+        1&0&1&2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        a&1&1&2\\
+        0&1&0&1\\
+        0&0&0&1
+    \end{bmatrix}\]
+    出现$0=d$类型的行,因此原方程无解.\\当$a=1$时,对方程组的增广矩阵进行初等行变换可得:
+    \[\begin{bmatrix}
+        a&1&1&2\\
+        1&b&1&1\\
+        1&2b&1&2
+    \end{bmatrix}=\begin{bmatrix}
+        1&1&1&2\\
+        1&b&1&1\\
+        1&2b&1&2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&1&2\\
+        0&b-1&0&-1\\
+        0&2b-1&0&0
+    \end{bmatrix}\]
+    如果$b=\dfrac12$,那么非零行数目为$2$,小于变量数,原方程组有无穷多解.否则继续行变换:
+    \[\begin{bmatrix}
+        1&1&1&2\\
+        0&b-1&0&-1\\
+        0&2b-1&0&0
+    \end{bmatrix}\longrightarrow
+    \begin{vmatrix}
+        1&1&1&2\\
+        0&b-1&0&-1\\
+        0&0&0&\frac{2b-1}{b-1}
+    \end{vmatrix}\]
+    无论$b$是否为$1$,都会出现$0=d$的情形,因此此时方程无解.\\
+    综上所述,当$b=0$或$a=1,b\neq12$时原方程组无解;当$b\neq0$且$a=1$时原方程组有无穷多解
+\end{solution}
+\section*{习题2.6}
+\begin{homework}[1]
+    计算行列式:
+    \[\begin{vmatrix}
+        2&3&0&0&0\\
+        -1&4&0&0&0\\
+        37&85&1&2&0\\
+        29&73&0&3&4\\
+        19&67&1&0&2
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    将行列式按前两行展开,于是有
+    \[\begin{aligned}
+        \text{原行列式}
+        &= (-1)^{1+2+1+2}\begin{vmatrix}
+                2&3\\
+                -1&4
+            \end{vmatrix}\begin{vmatrix}
+                1&2&0\\
+                0&3&4\\
+                1&0&2
+            \end{vmatrix}=11\begin{vmatrix}
+                1&2&0\\
+                0&3&4\\
+                0&-2&2
+            \end{vmatrix}=11\begin{vmatrix}
+                3&4\\
+                -2&2
+            \end{vmatrix}=154
+    \end{aligned}\]
+\end{solution}
+\begin{homework}[3]
+    计算行列式:
+    \[\begin{vmatrix}
+        0&\cdots&0&a_{11}&\cdots&a_{1k}\\
+        \vdots& &\vdots&\vdots& &\vdots\\
+        0&\cdots&0&a_{k1}&\cdots&a_{kk}\\
+        b_{11}&\cdots&b_{1r}&c_{11}&\cdots&c_{1k}\\
+        \vdots& &\vdots&\vdots& &\vdots\\
+        b_{r1}&\cdots&b_{rr}&c_{r1}&\cdots&c_{rk}
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    将行列式按前$k$行展开,只有选取第$r+1$列到第$k$列时各列不为$0$,对应的子式不为$0$.于是
+    \[\begin{aligned}
+        \text{原行列式}
+        &= (-1)^{(1+\cdots+k)((r+1)+\cdots+(r+k))}\begin{vmatrix}
+                a_{11}&\cdots&a_{1k}\\
+                \vdots& &\vdots\\
+                a_{k1}&\cdots&a_{kk}
+            \end{vmatrix}\begin{vmatrix}
+                b_{11}&\cdots&b_{1r}\\
+                \vdots& &\vdots\\
+                b_{r1}&\cdots&b_{rr}
+            \end{vmatrix}\\
+        &= (-1)^{kr}\begin{vmatrix}
+                a_{11}&\cdots&a_{1k}\\
+                \vdots& &\vdots\\
+                a_{k1}&\cdots&a_{kk}
+            \end{vmatrix}\begin{vmatrix}
+                b_{11}&\cdots&b_{1r}\\
+                \vdots& &\vdots\\
+                b_{r1}&\cdots&b_{rr}
+            \end{vmatrix}
+    \end{aligned}\]
+\end{solution}
+\begin{homework}[4(2)]
+    设$|\mat{A}|$是关于$1,2,\cdots,n$的范德蒙德行列式,求
+    \[\mat{A}\begin{pmatrix}
+        1,2,\cdots,n-1\\
+        1,3,\cdots,n
+    \end{pmatrix}\]
+\end{homework}
+\begin{solution}
+    注意到划去第$n$行和第$2$列后得到的行列式是一个$n-1$阶的范德蒙德行列式,因此
+    \[\begin{aligned}
+        \mat{A}\begin{pmatrix}
+            1,2,\cdots,n-1\\
+            1,3,\cdots,n
+        \end{pmatrix}
+        &= (3-1)\cdots(n-1)\cdot(4-3)\cdots(n-3)\cdots(n-(n-1)) \\
+        &= (n-1)!\cdot(n-3)!\cdots1! = (n-1)(n-2)!\cdots1! \\
+        &= (n-1)\prod_{k=1}^{n-2}k!
+    \end{aligned}\]
 \end{solution}
 \end{document}
