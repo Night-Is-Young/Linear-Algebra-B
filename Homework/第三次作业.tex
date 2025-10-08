@@ -1,0 +1,333 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第三次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+\section*{习题3.1}
+\begin{homework}[3(1)]
+    在$K^4$中,判断$\bs{\beta}$能否用向量组$\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3$线性表出.如果可以,写出一种表出方式.
+    \[\bs{\alpha}_1=\begin{bmatrix}
+        -1\\3\\0\\-5
+    \end{bmatrix},\quad\bs{\alpha}_2=\begin{bmatrix}
+        2\\0\\7\\-3
+    \end{bmatrix},\quad\bs{\alpha}_3=\begin{bmatrix}
+        -4\\1\\-2\\6
+    \end{bmatrix},\quad\bs{\beta}=\begin{bmatrix}
+        8\\3\\-1\\-25
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    考虑方程
+    \[x_1\bs{\alpha}_1+x_2\bs{\alpha}_2+x_3\bs{\alpha}_3=\bs{\beta}\]
+    其对应的线性方程组增广矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        -1 & 2 & -4 & 8\\
+        3 & 0 & 1 & 3\\
+        0 & 7 & -2 & -1\\
+        -5 & -3 & 6 & -25
+    \end{bmatrix}\]
+    对$\mat{A}$进行初等行变换有
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        -1&2&-4&8\\
+        0&6&-11&27\\
+        0&7&-2&-1\\
+        0&-13&26&-65
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&2&-4&8\\
+        0&-1&-9&28\\
+        0&7&-2&-1\\
+        0&1&-2&5
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&2&-4&8\\
+        0&1&-2&5\\
+        0&7&-2&-1\\
+        0&0&-11&33
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&2&-4&8\\
+        0&1&-2&5\\
+        0&0&1&-3\\
+        0&0&0&0
+    \end{bmatrix}\]
+    非零行数目与未知量数目均为$3$,因此原方程的唯一解为
+    \[\begin{bmatrix}
+        2&-1&-3
+    \end{bmatrix}^{\text{t}}\]
+    于是
+    \[\bs{\beta}=2\bs{\alpha}_1-\bs{\alpha}_2-3\bs{\alpha}_3\]
+    并且表出方式唯一.
+\end{solution}
+\begin{homework}[5]
+    在$K^4$中,令
+    \[\bs{\alpha}_1=\begin{bmatrix}
+        1\\0\\0\\0
+    \end{bmatrix},\quad\bs{\alpha}_2=\begin{bmatrix}
+        1\\1\\0\\0
+    \end{bmatrix},\quad\bs{\alpha}_3=\begin{bmatrix}
+        1\\1\\1\\0
+    \end{bmatrix},\quad\bs{\alpha}_4=\begin{bmatrix}
+        1\\1\\1\\1
+    \end{bmatrix}\]
+    试证明:$K^4$中的任意向量$\bs{\alpha}=\begin{bmatrix}
+        a_1&a_2&a_3&a_4
+    \end{bmatrix}^{\text{t}}$都可以由$\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3,\bs{\alpha}_4$线性表出,并且表出方式唯一;写出这种表出方式.
+\end{homework}
+\begin{solution}
+    考虑方程
+    \[x_1\bs{\alpha}_1+x_2\bs{\alpha}_2+x_3\bs{\alpha}_3+x_4\bs{\alpha}_4=\bs{\alpha}\]
+    其对应的线性方程未知数数目与方程数目相等,其系数矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        1&1&1&1\\
+        0&1&1&1\\
+        0&0&1&1\\
+        0&0&0&1
+    \end{bmatrix}\]
+    于是
+    \[\det\mat{A}=1\neq0\]
+    因此原方程有唯一解,从而表出方式唯一.解这个线性方程,不难得到解为
+    \[\begin{bmatrix}
+        a_1-a_2\\a_2-a_3\\a_3-a_4\\a_4
+    \end{bmatrix}^{\text{t}}\]
+    于是表出方式为
+    \[\bs{\alpha}=\left(a_1-a_2\right)\bs{\alpha}_1+\left(a_2-a_3\right)\bs{\alpha}_2+\left(a_3-a_4\right)\bs{\alpha}_3+a_4\bs{\alpha}_4\]
+\end{solution}
+\begin{homework}[6]
+    证明:向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$中的任一向量$\bs{\alpha}_i$都能由这个向量组线性表出.
+\end{homework}
+\begin{solution}
+    注意到
+    \[\bs{\alpha}_i=\lambda_{i1}\bs{\alpha}_1+\lambda_{i2}\bs{\alpha}_2+\cdots+\lambda_{is}\bs{\alpha}_s\]
+    其中
+    \[\lambda_{ii}=1,\quad\lambda_{ij}=0(j\neq i)\]
+    于是命题得证.
+\end{solution}
+\section*{习题3.2}
+\begin{homework}[1]
+    下面的说法正确吗?为什么?
+    \begin{enumerate}[label=\tbf{(\arabic*)},topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 如果有$k_1=k_2=\cdots=k_s$使得
+            \[k_1\bs{\alpha}+k_2\bs{\alpha}_2+\cdots+k_s\bs{\alpha}_s=\mbf{0}\]
+            那么向量组$\bs{\alpha}_1,\bs{\alpha}_2,\cdots,\bs{\alpha}_s$线性无关.
+        \item 如果有一组不全为$0$的数$k_1,k_2,\cdots,k_s$使得
+            \[k_1\bs{\alpha}_1+k_2\bs{\alpha}_2+\cdots+k_s\bs{\alpha}_s\neq\mbf{0}\]
+            那么向量组$\bs{\alpha}_1,\bs{\alpha}_2,\cdots,\bs{\alpha}_s$线性无关.
+        \item 如果向量组$\bs{\alpha}_1,\bs{\alpha}_2,\cdots,\bs{\alpha}_s$线性相关,那么对其中任一向量$\bs{\alpha}_i$,都可以由其余向量线性表出.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+    \begin{enumerate}[label=\tbf{(\arabic*)},topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 错误.对于任意向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$,都有
+            \[0\bs{\alpha}_1+\cdots+0\bs{\alpha}_s=\mbf{0}\]
+            无论$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$是否线性无关.
+        \item 错误.考虑线性相关的向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_{s-1}$,并且$\bs{\alpha}_1\neq\mbf0$.于是存在不全为$0$的$k_1,\cdots,k_s$使得
+            \[k_1\bs{\alpha}_1+\cdots+k_{s-1}\bs{\alpha}_{s-1}=\mbf0\]
+            现在令$\bf{\alpha}_s=2\bs{\alpha}_1$, $k_s=1$,于是
+            \[k_1\bs{\alpha}_1+\cdots+k_s\bs{\alpha}_s=2\bs{\alpha}_1\neq\mbf0\]
+            而$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$线性相关.
+        \item 错误.当$s>1$时,考虑线性无关的向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_{s-1}$,令$\bs{\alpha}_s=2\bs{\alpha}_1$,于是向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$线性相关.然而,如果$\bs{\alpha}_2$能由$\bs{\alpha}_1,\bs{\alpha}_3,\cdots,\bs{\alpha}_s$线性表出,意味着存在不全为$0$的$k_1,k_3,\cdots,k_s$使得
+            \[\bs{\alpha}_2=k_1\bs{\alpha}_1+k_3\bs{\alpha}_3+\cdots+k_s\bs{\alpha}_s\]
+            于是
+            \[\left(k_1+2k_s\right)\bs{\alpha}_1-\bs{\alpha}_2+k_3\bs{\alpha}_3+\cdots+k_{s-1}\bs{\alpha}_{s-1}=\mbf0\]
+            这与$\bs{\alpha}_1,\cdots,\bs{\alpha}_{s-1}$线性无关矛盾.
+    \end{enumerate}
+\end{solution}
+\begin{homework}[2(3)]
+    判断下列向量组是否线性相关,如果相关,请写出其中一个向量由其余向量线性表出的式子.
+    \[\bs{\alpha}_1=\begin{bmatrix}
+        3\\-1\\2
+    \end{bmatrix},\quad\bs{\alpha}_2=\begin{bmatrix}
+        1\\5\\-7
+    \end{bmatrix},\quad\bs{\alpha}_3=\begin{bmatrix}
+        7\\-13\\20
+    \end{bmatrix},\quad\bs{\alpha}_4=\begin{bmatrix}
+        -2\\6\\1
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    考虑方程
+    \[x_1\bs{\alpha}_1+x_2\bs{\alpha}_2+x_3\bs{\alpha}_4=\bs{\alpha}_3\]
+    其对应线性方程组的系数矩阵$\mat{A}$的行列式
+    \[\det\mat{A}=\begin{vmatrix}
+        3&1&-2\\
+        -1&5&6\\
+        2&-7&1
+    \end{vmatrix}=160\neq0\]
+    于是方程组有唯一解,即题述向量组线性相关.对方程组的增广矩阵做初等行变换有
+    \[\begin{bmatrix}
+        3&1&-2&7\\
+        -1&5&6&-13\\
+        2&-7&1&20
+    \end{bmatrix}\longrightarrow
+    \begin{bmatrix}
+        -1&5&6&-13\\
+        0&16&16&-32\\
+        0&3&13&-6
+    \end{bmatrix}\longrightarrow
+    \begin{bmatrix}
+        -1&5&6&-13\\
+        0&1&1&-2\\
+        0&0&10&0
+    \end{bmatrix}\]
+    于是原方程组的唯一解为
+    \[\begin{bmatrix}
+        3&-2&0
+    \end{bmatrix}\]
+    即
+    \[\bs{\alpha}_3=3\bs{\alpha}_1-2\bs{\alpha}_2\]
+\end{solution}
+\begin{homework}[4]
+    证明:如果向量组$\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3$线性无关,那么向量组$2\bs{\alpha}_1+\bs{\alpha}_2,\bs{\alpha}_2+5\bs{\alpha}_3,4\bs{\alpha}_3+3\bs{\alpha}_1$也线性无关.
+\end{homework}
+\begin{proof}
+    采用反证法.如果向量组$2\bs{\alpha}_1+\bs{\alpha}_2,\bs{\alpha}_2+5\bs{\alpha}_3,4\bs{\alpha}_3+3\bs{\alpha}_1$线性相关,那么存在非零的$k_1,k_2,k_3$使得
+    \[k_1\left(2\bs{\alpha}_1+\bs{\alpha}_2\right)+k_2\left(\bs{\alpha}_2+5\bs{\alpha}_3\right)+k_3\left(4\bs{\alpha}_3+3\bs{\alpha}_1\right)=\mbf0\]
+    即
+    \[\left(2k_1+3k_3\right)\bs{\alpha}_1+\left(k_1+k_2\right)+\left(5k_2+4k_3\right)\bs{\alpha}_3=\mbf0\]
+    由于$\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3$线性无关,上式成立当且仅当
+    \[2k_1+3k_3=k_1+k_2=5k_2+4k_3=0\]
+    这相当于一个齐次线性方程组,其系数行列式
+    \[\begin{vmatrix}
+        2&0&3\\1&1&0\\0&5&4
+    \end{vmatrix}=-7\neq0\]
+    于是原方程只有零解,这与$k_1,k_2,k_3$不全为$0$矛盾.于是向量组$2\bs{\alpha}_1+\bs{\alpha}_2,\bs{\alpha}_2+5\bs{\alpha}_3,4\bs{\alpha}_3+3\bs{\alpha}_1$线性无关.
+\end{proof}
+\begin{homework}[5]
+    设向量组$\bs{\alpha}_1,\bs{\alpha}_2,\bs{\alpha}_3,\bs{\alpha}_4$线性无关,判断向量组$\bs{\alpha}_1+\bs{\alpha}_2,\bs{\alpha}_2+\bs{\alpha}_3,\bs{\alpha}_3+\bs{\alpha}_4,\bs{\alpha}_4+\bs{\alpha}_1$是否线性无关.
+\end{homework}
+\begin{solution}
+    注意到
+    \[\bs{\alpha}_1+\bs{\alpha}_2=\left(\bs{\alpha}_2+\bs{\alpha}_3\right)+\left(\bs{\alpha}_4+\bs{\alpha}_1\right)-\left(\bs{\alpha}_3+\bs{\alpha}_4\right)\]
+    于是上述向量组线性相关.
+\end{solution}
+\begin{homework}[6]
+    设向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$线性无关,向量$\bs{\beta}=b_1\bs{\alpha}_1+\cdots+b_s\bs{\alpha}_s$.试证明:如果某个$b_i\neq0$,那么用$\bs{\beta}$替换$\bs{\alpha}_i$后得到的向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_{i-1},\bs{\beta},\bs{\alpha}_{i+1},\cdots,\bs{\alpha}_s$仍然线性无关.
+\end{homework}
+\begin{proof}
+    采用反证法.如果向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_{i-1},\bs{\beta},\bs{\alpha}_{i+1},\cdots,\bs{\alpha}_s$线性相关,那么存在不全为$0$的$\li k,s$使得
+    \[k_1\bs{\alpha}_1+\cdots+k_{i-1}\bs{\alpha}_{i-1}+k_i\bs{\beta}+k_{i+1}\bs{\alpha}_{i+1}+\cdots+k_s\bs{\alpha}_s=\mbf0\]
+    将$\bs{\beta}$的定义代入上式有
+    \[\left(k_1+k_ib_1\right)\bs{\alpha}_1+\cdots+k_ib_i\bs{\alpha}_i+\cdots+\left(k_n+k_ib_n\right)\bs{\alpha}_s=\mbf{0}\]
+    如果$k_i=0$,就有
+    \[k_1\bs{\alpha}_1+\cdots+k_{i-1}\bs{\alpha}_{i-1}+0\bs{\alpha}_i+k_{i+1}\bs{\alpha}_{i+1}+\cdots+k_s\bs{\alpha}_s=\mbf0\]
+    并且由于$\li k,s$,这意味着$\li k,{i-1},k_{i+1},\cdots,k_s$不全为$0$.于是向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$线性相关,矛盾.\\
+    如果$k_{i\neq0}$,并且由于$b_i\neq0$,于是$k_1+k_ib_1,\cdots,k_ib_i,\cdots,k_s+k_ib_s$不全为零,于是向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_s$线性相关,矛盾.\\
+    综上所述,向量组$\bs{\alpha}_1,\cdots,\bs{\alpha}_{i-1},\bs{\beta},\bs{\alpha}_{i+1},\cdots,\bs{\alpha}_s$线性无关.
+\end{proof}
+\begin{homework}[7]
+    设$\li a,r$是两两不同的数, $r\leqslant n$.令
+    \[\bs{\alpha}_1=\begin{bmatrix}
+        1\\a_1\\\vdots\\a_1^{n-1}
+    \end{bmatrix},\quad\bs{\alpha}_2=\begin{bmatrix}
+        1\\a_2\\\vdots\\a_2^{n-1}
+    \end{bmatrix},\quad\cdots,\quad\bs{\alpha}_r=\begin{bmatrix}
+        1\\a_r\\\vdots\\a_r^{n-1}
+    \end{bmatrix}\]
+    证明:向量组$\li{\bs{\alpha}},r$线性无关.
+\end{homework}
+\begin{proof}
+    考虑两两不同的数$a_{r+1},\cdots,a_n$,并且与$\li a,r$两两不同.同样地令
+    \[\bs{\alpha}_i=\begin{vmatrix}
+        1\\a_i\\\vdots\\a_i^{n-1}
+    \end{vmatrix}(r<i\leqslant n)\]
+    由于以$\li{\bs\alpha},n$为列向量的矩阵$\mat{A}$的行列式
+    \[\det\mat{A}=\begin{bmatrix}
+        1&1&\cdots&1\\
+        a_1&a_2&\cdots&a_n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_1^{n-1}&a_2^{n-1}&\cdots&a_n^{n-1}
+    \end{bmatrix}=\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\neq0\]
+    于是向量组$\li{\bs{\alpha}},n$线性无关,所以向量组$\li{\bs{\alpha}},r$线性无关.
+\end{proof}
+\section*{习题3.3}
+\begin{homework}[2]
+    设
+    \[\bs\alpha_1=\begin{bmatrix}
+        3\\-2\\0
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        27\\-18\\0
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        -1\\5\\8
+    \end{bmatrix}\]
+    求向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$的一个极大线性无关组和秩.
+\end{homework}
+\begin{solution}
+    注意到$\bs\alpha_2=9\bs\alpha_1$.考虑$k_1,k_3$使得
+    \[k_1\bs\alpha_1+k_3\bs\alpha_3=\mbf0\]
+    考虑第三个分量就有$0k_1+8k_3=0$,于是$k_3=0$,进而$3k_1=-2k_1=0$,进而$k_1=0$,于是$\bs\alpha_1$和$\bs\alpha_3$线性无关.\\
+    于是原向量组的一个极大线性无关组为$\bs\alpha_1,\bs\alpha_3$,秩为$2$.
+\end{solution}
+\begin{homework}[3]
+    证明:秩为$r$的向量组中任意$r$个线性无关的向量都构成它的一个极大线性无关组.
+\end{homework}
+\begin{proof}
+    考虑这一$r$个向量构成的组$\li{\bs\alpha},r$.如果在剩余的向量中存在一个向量$\bs\beta$使得$\li{\bs\alpha},r,\bs\beta$线性无关,那么原向量组的极大线性无关组的长度至少为$r+1$.这与向量组的秩为$r$矛盾,从而$\li{\bs\alpha},r$是原向量组的极大线性无关组.
+\end{proof}
+\begin{homework}[4]
+    证明:$K^n$中任意线性无关的向量组所含向量的个数不超过$n$.
+\end{homework}
+\begin{proof}
+    考虑$K^n$中的向量
+    \[\bs\beta_1=\begin{bmatrix}
+        1\\0\\\vdots\\0
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        0\\1\\\vdots\\0
+    \end{bmatrix},\quad\cdots,\quad\bs\beta_n=\begin{bmatrix}
+        0\\0\\\vdots\\1
+    \end{bmatrix}\]
+    由于以$\li{\bs\beta},n$为列向量的矩阵的行列式
+    \[\begin{vmatrix}
+        1&0&\cdots&0\\
+        0&1&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&1
+    \end{vmatrix}=1\neq0\]
+    于是向量组$\li{\bs\beta},n$线性无关.\\
+    对于给定的$K^n$中的向量组$\li{\bs\alpha},s$,考虑向量组$\li{\bs\alpha},s,\li{\bs\beta},n$.由于任意
+    \[\bs\alpha_i=\begin{bmatrix}
+        a_{i1}&a_{i2}&\cdots&a_{in}
+    \end{bmatrix}^{\text{t}}=\sum_{j=1}^{n}a_{ij}\bs\beta_j\]
+    于是$\li{\bs\beta},n$是上述向量组的极大线性无关组,于是上述向量组的秩为$n$.进而,如果$\li{\bs\alpha},s$线性无关,那么它所含的向量数目不能大于$n$,命题得证.
+\end{proof}
+\begin{homework}[5]
+    证明:在$K^n$中,如果向量组$\li{\bs\alpha},n$线性无关,那么任意$\bs\beta\in K^n$都可由上述向量组线性表出.
+\end{homework}
+\begin{proof}
+    考虑向量组$\li{\bs\alpha},n,\bs\beta$.由\tbf{习题3.3.4}可知上述向量组线性相关(这向量组所含的向量数目$n+1>n$).于是存在非零的$\li k,n,b$使得
+    \[k_1\bs\alpha_1+\cdots+k_s\bs\alpha_s+b\bs\beta=\mbf0\]
+    如果$b=0$,这意味着向量组$\li{\bs\alpha},n$线性相关,与题意矛盾.于是$b\neq0$,进而
+    \[\bs\beta=-\dfrac{k_1}{b}\bs\alpha_1-\cdots-\dfrac{k_n}{b}\bs\alpha_n\]
+    于是$\bs\beta$能由向量组$\li{\bs\alpha},n$线性表出,命题得证.
+\end{proof}
+\begin{homework}[6]
+    证明:在$K^n$中,如果任意$\bs\beta\in K^n$都可以由向量组$\li{\bs\alpha},n$线性表出,那么上述向量组线性无关.
+\end{homework}
+\begin{proof}
+    考虑$K^n$中的向量
+    \[\bs\beta_1=\begin{bmatrix}
+        1\\0\\\vdots\\0
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        0\\1\\\vdots\\0
+    \end{bmatrix},\quad\cdots,\quad\bs\beta_n=\begin{bmatrix}
+        0\\0\\\vdots\\1
+    \end{bmatrix}\]
+    在\tbf{习题3.3.4}已经证明$\li{\bs\beta},n$线性无关,并且任意$\bs\alpha_i$都可以由向量组$\li{\bs\beta},n$线性表出.同样,根据题意可知任意$\bs\beta_j$都可以由向量组$\li{\bs\alpha},n$线性表出,于是向量组$\li{\bs\alpha},n$和$\li{\bs\beta},n$等价,因而具有相同的秩$n$.于是向量组$\li{\bs\alpha},n$线性无关.
+\end{proof}
+\begin{homework}[7]
+    证明:如果秩为$r$的向量组可以由它的$r$个向量线性表出,则这$r$个向量构成这个向量组的一个极大线性无关组.
+\end{homework}
+\begin{proof}
+    记原向量组为$\mathcal{A}$,这$r$个向量构成的向量组为$\mathcal{R}$.显然, $\mathcal{R}$可以由$\mathcal{A}$表出.由题意, $\mathcal{A}$也可以由$\mathcal{R}$线性表出.于是$\mathcal{A}$与$\mathcal{R}$等价.因而$\mathcal{R}$的秩也为$r$,于是$\mathcal{R}$线性无关.又因为$\mathcal{A}$中除去$\mathcal{R}$的其它向量都可以由$\mathcal{R}$线性表出,于是$\mathcal{R}$是$\mathcal{A}$的极大线性无关组.
+\end{proof}
+\begin{homework}[9]
+    证明:对于向量组$\li{\bs\alpha},s,\li{\bs\beta},r$总有
+    \[\text{rank}\left\{\li{\bs\alpha},s,\li{\bs\beta},r\right\}\leqslant\text{rank}\left\{\li{\bs\alpha},s\right\}+\text{rank}\left\{\li{\bs\beta},r\right\}\]
+\end{homework}
+\begin{proof}
+    考虑向量组$\li{\bs\alpha},s$和$\li{\bs\beta},r$各自的一个极大线性无关组$\li{\bs\alpha},p$和$\li{\bs\beta},q$,则有
+    \[\text{rank}\left\{\li{\bs\alpha},s\right\}=p,\quad\text{rank}\left\{\li{\bs\beta},r\right\}=q\]
+    依定义,向量组$\li{\bs\alpha},s,\li{\bs\beta},r$中的所有向量都能由向量组$\li{\bs\alpha},p,\li{\bs\beta},q$线性表出.于是
+    \[\text{rank}\left\{\li{\bs\alpha},s,\li{\bs\beta},r\right\}\leqslant\text{rank}\left\{\li{\bs\alpha},p,\li{\bs\beta},q\right\}\leqslant p+q\]
+    于是命题得证.
+\end{proof}
+\end{document}
