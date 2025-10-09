@@ -1,0 +1,249 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{$n$维向量空间}
+\begin{problem}
+    设
+    \[\bs{\alpha}_1=\begin{pmatrix}
+        1\\3\\-5\\-9
+    \end{pmatrix},\quad\bs\alpha_2=\begin{pmatrix}
+        2\\-1\\-3\\-4
+    \end{pmatrix},\quad\bs\alpha_3=\begin{pmatrix}
+        -3\\5\\1\\-1
+    \end{pmatrix},\quad\bs\alpha_4=\begin{pmatrix}
+        -4\\6\\2\\0
+    \end{pmatrix},\quad\bs\beta=\begin{pmatrix}
+        -5\\-1\\11\\17
+    \end{pmatrix}\]
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 求向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$的一个极大线性无关组.
+        \item 判断$\bs\beta$是否可以由向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$线性表出.如果可以,给出所有的线性表出方式.
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+    考虑以$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$为列向量的矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1 & 2 & -3 & -4\\
+        3 & -1 & 5 & 6\\
+        -5 & -3 & 1 & 2\\
+        -9 & -4 & -1 & 0
+    \end{bmatrix}\]
+    对$\mat{A}$做初等行变换可得
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        1&2&-3&-4\\
+        0&-7&14&18\\
+        0&7&-14&-18\\
+        0&-7&14&18
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&-3&-4\\
+        0&-7&14&18\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+    于是上述向量组的一个极大线性无关组为$\bs\alpha_1,\bs\alpha_2$.\\
+    \indent 考虑方程
+    \[x_1\bs\alpha_1+x_2\bs\alpha_2+x_3\bs\alpha_3+x_4\bs\alpha_4=\bs\beta\]
+    对应线性方程组的增广矩阵
+    \[\mat{B}=\begin{bmatrix}
+        1 & 2 & -3 & -4&-5\\
+        3 & -1 & 5 & 6&-1\\
+        -5 & -3 & 1 & 2&11\\
+        -9 & -4 & -1 & 0&17
+    \end{bmatrix}\]
+    对$\mat{B}$做初等行变换可得
+    \[\mat{B}\longrightarrow\begin{bmatrix}
+        1&2&-3&-4&-5\\
+        0&-7&14&18&14\\
+        0&7&-14&-18&-14\\
+        0&-7&14&18&14
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&-3&-4&-5\\
+        0&-7&14&18&14\\
+        0&0&0&0&0\\
+        0&0&0&0&0
+    \end{bmatrix}\]
+    于是原方程组的解为
+    \[\left\{\begin{array}{l}
+        x_1=-1-x_3-\dfrac{8}{7}x_4\\
+        x_2=-2+2x_3+\dfrac{18}{7}x_4\\
+    \end{array}\right.\]
+    因此$\bs\beta$可以被$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$线性表出,且所有的线性表出方式为
+    \[\bs\beta=-\left(1+a+\dfrac{8}{7}b\right)\bs\alpha_1+\left(-2+2a+\dfrac{18}{7}b\right)\bs\alpha_2+a\bs\alpha_3+b\bs\alpha_4,\quad a,b\in\mathbb{K}\]
+\end{solution}
+\begin{problem}
+    设
+    \[\mat{A}=\begin{bmatrix}
+        1&1&2&x\\3&2&1&y\\1&-1&0&z
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        3&1&5&14\\0&2&-1&11\\0&0&3&3
+    \end{bmatrix}\]
+    求$x,y,z$使得$\mat{A}$的行向量组与$\mat{B}$的行向量组等价.
+\end{problem}
+\begin{solution}
+    对$\mat{A}$做初等行变换可得
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        1&1&2&x\\
+        0&-1&-5&y-3x\\
+        0&-2&-2&z-x
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&2&x\\
+        0&-1&-5&y-3x\\
+        0&0&8&5x-2y+z
+    \end{bmatrix}\]
+\end{solution}
+\begin{problem}
+    求$\lambda$的值使矩阵
+    \[\mat{A}=\begin{bmatrix}
+        3&1&1&4\\
+        \lambda&4&10&1\\
+        1&7&17&3\\
+        2&2&4&3
+    \end{bmatrix}\]
+    的秩最小.
+\end{problem}
+\begin{solution}
+    对$\mat{A}$做初等行变换可得
+    \[\begin{aligned}
+        \mat{A}
+        &\longrightarrow\begin{bmatrix}
+            3&1&1&4\\
+            0&12-\lambda&30-\lambda&3-4\lambda\\
+            0&20&50&5\\
+            0&4&10&1
+        \end{bmatrix}\longrightarrow\begin{bmatrix}
+            3&1&1&4\\
+            0&4&10&1\\
+            0&12-\lambda&30-\lambda&3-4\lambda\\
+            0&0&0&0
+        \end{bmatrix}\\
+        &\longrightarrow\begin{bmatrix}
+            3&1&1&4\\
+            0&4&10&1\\
+            0&\lambda&\lambda&4\lambda\\
+            0&0&0&0
+        \end{bmatrix}\longrightarrow\begin{bmatrix}
+            3&1&1&4\\
+            0&4&10&1\\
+            0&0&-2\lambda&5\lambda\\
+            0&0&0&0
+        \end{bmatrix}
+    \end{aligned}\]
+    当$\lambda=0$时,矩阵的秩为$2$,否则矩阵的秩为$3$.于是$\lambda=0$.
+\end{solution}
+\begin{problem}
+    设向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$线性无关.令
+    \[\bs\beta_1=\bs\alpha_1+2\bs\alpha_2+3\bs\alpha_3+4\bs\alpha_4,\quad\bs\beta_2=2\bs\alpha_1+3\bs\alpha_2+4\bs\alpha_3+\bs\alpha_4,\]
+    \[\bs\beta_3=3\bs\alpha_1+4\bs\alpha_2+1\bs\alpha_3+2\bs\alpha_4,\quad\bs\beta_4=4\bs\alpha_1+\bs\alpha_2+2\bs\alpha_3+3\bs\alpha_4.\]
+    判断向量组$\bs\beta_1,\bs\beta_2,\bs\beta_3,\bs\beta_4$是否线性无关.
+\end{problem}
+\begin{solution}
+    假定向量组$\bs\beta_1,\bs\beta_2,\bs\beta_3,\bs\beta_4$线性相关,于是存在不全为$0$的$k_1,k_2,k_3,k_4$使得
+    \[k_1\bs\beta_1+k_2\bs\beta_2+k_3\bs\beta_3+k_4\bs\beta_4=\mbf0\]
+    即
+    \[\begin{aligned}
+        &\left(k_1+2k_2+3k_3+4k_4\right)\bs\alpha_1+\left(2k_1+3k_2+4k_3+k_4\right)\bs\alpha_2\\
+        +&\left(3k_1+4k_2+k_3+2k_4\right)\bs\alpha_3+\left(4k_1+k_2+2k_3+3k_4\right)\bs\alpha_4=\mbf0
+    \end{aligned}\]
+    由于向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$线性无关,于是
+    \[\left\{\begin{array}{l}
+        k_1+2k_2+3k_3+4k_4=0\\
+        2k_1+3k_2+4k_3+k_4=0\\
+        3k_1+4k_2+k_3+2k_4=0\\
+        4k_1+k_2+2k_3+3k_4=0
+    \end{array}\right.\]
+    这线性方程组的系数行列式为
+    \[\begin{vmatrix}
+        1&2&3&4\\
+        2&3&4&1\\
+        3&4&1&2\\
+        4&1&2&3
+    \end{vmatrix}=10\begin{vmatrix}
+        1&2&3&4\\
+        1&3&4&1\\
+        1&4&1&2\\
+        1&1&2&3
+    \end{vmatrix}=10\begin{vmatrix}
+        1&2&3&4\\
+        0&1&1&-3\\
+        0&2&-2&-2\\
+        0&-1&-1&-1
+    \end{vmatrix}=10\begin{vmatrix}
+        1&1&-3\\
+        2&-2&-2\\
+        -1&-1&-1
+    \end{vmatrix}=10\begin{vmatrix}
+        1&1&-3\\
+        0&-4&4\\
+        0&0&-4
+    \end{vmatrix}=160\neq0\]
+    于是原方程仅有零解,即$k_1=k_2=k_3=k_4=0$,这与$k_1,k_2,k_3,k_4$不全为$0$矛盾.于是向量组$\bs\beta_1,\bs\beta_2,\bs\beta_3,\bs\beta_4$线性无关
+\end{solution}
+\begin{problem}
+    设向量组
+    \[\bs\alpha_1=\begin{pmatrix}
+        3\\-1\\2\\-5
+    \end{pmatrix},\quad\bs\alpha_2=\begin{pmatrix}
+        4\\3\\7\\2
+    \end{pmatrix},\quad\bs\alpha_3=\begin{pmatrix}
+        1\\4\\5\\-3
+    \end{pmatrix},\quad\bs\alpha_4=\begin{pmatrix}
+        7\\-1\\2\\0
+    \end{pmatrix},\quad\bs\alpha_5=\begin{pmatrix}
+        1\\2\\5\\6
+    \end{pmatrix}\]
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 证明: $\bs\alpha_1,\bs\alpha_2$线性无关.
+        \item 将$\bs\alpha_1,\bs\alpha_2$扩充为$\bs\alpha_1,\cdots,\bs\alpha_5$的一个极大线性无关组.
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+    考虑向量
+    \[\bs\beta_1=\begin{pmatrix}
+        3\\-1
+    \end{pmatrix},\quad\bs\beta_2=\begin{pmatrix}
+        4\\3
+    \end{pmatrix}\]
+    以$\bs\beta_1,\bs\beta_2$为列向量的矩阵的行列式
+    \[\begin{vmatrix}
+        3&4\\
+        -1&3
+    \end{vmatrix}=13\neq0\]
+    于是$\bs\beta_1,\bs\beta_2$线性无关,因而它们的延伸组$\bs\alpha_1,\bs\alpha_2$线性无关.\\
+    \indent 注意到$\bs\alpha_3=\bs\alpha_2-\bs\alpha_1$.将$\bs\alpha_4$加入$\bs\alpha_1,\bs\alpha_2$中,考虑前三个分量有
+    \[\begin{vmatrix}
+        3&4&7\\
+        -1&3&-1\\
+        2&7&2
+    \end{vmatrix}=\begin{vmatrix}
+        3&4&7\\
+        -1&3&-1\\
+        0&0&-4
+    \end{vmatrix}=-4\begin{vmatrix}
+        3&4\\-1&3
+    \end{vmatrix}=-52\neq0\]
+    于是向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4$线性无关.将$\bs\alpha_5$加入$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4$中,有
+    \[\begin{vmatrix}
+        3&4&7&1\\
+        -1&3&-1&2\\
+        2&7&2&5\\
+        -5&2&0&6
+    \end{vmatrix}=\begin{vmatrix}
+        13&4&7&-11\\
+        \frac{13}{2}&3&-1&-7\\
+        \frac{39}{2}&7&2&-16\\
+        0&2&0&0
+    \end{vmatrix}=2\cdot\dfrac{13}{2}\cdot(-1)^{2+4}\begin{vmatrix}
+        2&7&-11\\
+        1&-1&-7\\
+        3&2&-16
+    \end{vmatrix}=13\begin{vmatrix}
+        2&7&-11\\
+        1&-1&-7\\
+        0&-4&2
+    \end{vmatrix}=780\neq0\]
+    于是$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$线性无关.根据前面的讨论,向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$即$\bs\alpha_1,\cdots,\bs\alpha_5$的一个极大线性无关组.
+\end{solution}
+\begin{problem}
+    
+\end{problem}
+\end{document}

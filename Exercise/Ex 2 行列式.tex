@@ -1,0 +1,751 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{行列式}
+\begin{problem}
+    设$n\geqslant 2$,$n$级矩阵$\mat{A}$的元素都是$1$或者$-1$.
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item $\mat{A}$的行列式$\det\mat{A}$一定是偶数.
+        \item 在$n=3$的时候,求$\det\mat{A}$的最大值.
+        \item 当$n\geqslant 3$时,证明:
+            \[\left|\det\mat{A}\right|\leqslant(n-1)!(n-1)\]
+    \end{enumerate}
+\end{problem}
+\begin{proof}\ 
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 首先证明$\det\mat{A}$为偶数.\\
+            \tbf{方法一}:考虑行列式的定义:
+            \[\det\mat{A}=\sum_{j_1\cdots j_n}(-1)^{\tau\left(j_1\cdots j_n\right)}\prod_{i=1}^{n}a_{ij_{i}}\]
+            由于$a_{ij_i}=\pm1$,于是
+            \[(-1)^{\tau\left(j_1\cdots j_n\right)}\prod_{i=1}^{n}a_{ij_{i}}=\pm1\]
+            又因为$j_1\cdots j_n$的排列数目共有$n!$种,当$n\geqslant2$时$n!$为偶数.于是$\det\mat{A}$是偶数个$1$或$-1$相加的结果,于是一定为偶数.\\
+            \tbf{方法二}:采用数学归纳法.当$n=2$时,不难有
+            \[\det\mat{A}=a_{11}a_{22}-a_{12}a_{21}\]
+            由于$a_{ij}=\pm1$,于是$a_{11}a_{22}=\pm1,a_{12}a_{21}=\pm1$.无论何种情况,都有$\det\mat{A}=-2,0,2$,为偶数.\\
+            当$n\geqslant3$时,将行列式按照第一行展开,有
+            \[\det\mat{A}=\sum_{i=1}^{n}a_{1i}A_{1}\]
+            余子式$A_{1i}$也是由$-1,1$组成的行列式,按照归纳假设,$A_{1i}$均为偶数.又因为$a_{1i}=\pm1$,于是$\det\mat{A}$为$n$个偶数相加减的结果,当然也是偶数.于是命题得证.
+        \item 当$n=3$时,$\det\mat{A}$一共有$6$项,并且它们只能取$\pm1$.因此,$\det\mat{A}$能取到的最大值为$6$,并且此时
+            \[a_{11}a_{22}a_{33}=a_{12}a_{23}a_{31}=a_{13}a_{21}a_{32}=1\]
+            \[a_{11}a_{23}a_{32}=a_{12}a_{21}a_{33}=a_{13}a_{22}a_{31}=-1\]
+            分别将各行的三项相乘可得
+            \[\prod_{1\leqslant i,j\leqslant3}a_{ij}=1,\ \ \prod_{1\leqslant i,j\leqslant3}a_{ij}=-1\]
+            这是矛盾的.因此$\det\mat{A}$无法取到$6$,又因为
+            \[\begin{vmatrix}
+                1&1&1\\-1&1&1\\1&-1&1
+            \end{vmatrix}=4\]
+            于是$\det\mat{A}$的最大值为$4$.
+        \item 采用数学归纳法.当$n=3$时,有
+            \[\det\mat{A}\leqslant4=(3-1)!(3-1)\]
+            将$\det\mat{A}$按照第一行展开可得
+            \[\det\mat{A}=\sum_{j=1}^{n}a_{1j}A_{1j}\leqslant\sum_{j=1}^{n}\left|a_{1j}\right|\left|A_{1j}\right|\leqslant n(n-2)!(n-2)<(n-2)!\left(n^2-2n+1\right)=(n-1)!(n-1)\]
+            于是命题得证.
+    \end{enumerate}
+\end{proof}
+\begin{problem}
+    计算以下行列式的值.
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item \[\begin{vmatrix}
+                a_1+b_1&a_1+b_2&\cdots&a_1+b_n\\
+                a_2+b_1&a_2+b_2&\cdots&a_2+b_n\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_n+b_1&a_n+b_2&\cdots&a_n+b_n
+            \end{vmatrix}\]
+        \item \[\begin{vmatrix}
+                a_{1n}+a_{11}&a_{11}+a_{12}&\cdots&a_{1(n-1)}+a_{1n}\\
+                a_{2n}+a_{21}&a_{21}+a_{22}&\cdots&a_{2(n-1)}+a_{2n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{nn}+a_{n1}&a_{n1}+a_{n2}&\cdots&a_{n(n-1)}+a_{nn}
+            \end{vmatrix}\]
+        \item \[\begin{vmatrix}
+                1&2&3&\cdots&n-2&n-1&n\\
+                2&3&4&\cdots&n-1&n&n\\
+                3&4&5&\cdots&n&n&n\\
+                \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+                n&n&n&\cdots&n&n&n
+            \end{vmatrix}\]
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 将第一列减去第二列可得
+            \[\begin{aligned}
+                \begin{vmatrix}
+                    a_1+b_1&a_1+b_2&\cdots&a_1+b_n\\
+                    a_2+b_1&a_2+b_2&\cdots&a_2+b_n\\
+                    \vdots&\vdots&\ddots&\vdots\\
+                    a_n+b_1&a_n+b_2&\cdots&a_n+b_n
+                \end{vmatrix}
+                &=
+                \begin{vmatrix}
+                    b_1-b_2&a_1+b_2&\cdots&a_1+b_n\\
+                    b_1-b_2&a_2+b_2&\cdots&a_2+b_n\\
+                    \vdots&\vdots&\ddots&\vdots\\
+                    b_1-b_2&a_n+b_2&\cdots&a_n+b_n
+                \end{vmatrix}\\
+                &=\left(b_1-b_2\right)
+                \begin{vmatrix}
+                    1&a_1+b_2&\cdots&a_1+b_n\\
+                    1&a_2+b_2&\cdots&a_2+b_n\\
+                    \vdots&\vdots&\ddots&\vdots\\
+                    1&a_n+b_2&\cdots&a_n+b_n
+                \end{vmatrix}
+            \end{aligned}\]
+            同样地,将第$2$列减去第$3$列,可以得到
+            \[LHS=\left(b_1-b_2\right)\left(b_2-b_3\right)\begin{vmatrix}
+                1&1&\cdots&a_1+b_n\\
+                1&1&\cdots&a_2+b_n\\
+                \vdots&\vdots&\ddots&\vdots\\
+                1&1&\cdots&a_n+b_n
+            \end{vmatrix}\]
+            既然第一列与第二列相同,因此原行列式的值为$0$.
+        \item 将行列式每列拆成两列的和.如果第一列保留$a_{i1}$,那么第二列只能保留$a_{i2}$(否则两列相同,行列式值为$0$).依次类推,可得第$j$列只能保留$a_{ij}$;如果第一列保留$a_{in}$,那么最后一列只能保留$a_{i(n-1)}$,依次类推,可得第$j$列只能保留$a_{i(j-1)}$.因此,原行列式可拆成两个行列式之和:
+            \[\begin{vmatrix}
+                a_{1n}+a_{11}&a_{11}+a_{12}&\cdots&a_{1(n-1)}+a_{1n}\\
+                a_{2n}+a_{21}&a_{21}+a_{22}&\cdots&a_{2(n-1)}+a_{2n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{nn}+a_{n1}&a_{n1}+a_{n2}&\cdots&a_{n(n-1)}+a_{nn}
+            \end{vmatrix}=\begin{vmatrix}
+                a_{11}&a_{12}&\cdots&a_{1n}\\
+                a_{21}&a_{22}&\cdots&a_{2n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{n1}&a_{n2}&\cdots&a_{nn}
+            \end{vmatrix}+\begin{vmatrix}
+                a_{1n}&a_{11}&\cdots&a_{1(n-1)}\\
+                a_{2n}&a_{21}&\cdots&a_{2(n-1)}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{nn}&a_{n1}&\cdots&a_{n(n-1)}
+            \end{vmatrix}\]
+            将第二个行列式的第一列移到最后一列共需$n-1$次对换,因此
+            \[\begin{vmatrix}
+                a_{1n}+a_{11}&a_{11}+a_{12}&\cdots&a_{1(n-1)}+a_{1n}\\
+                a_{2n}+a_{21}&a_{21}+a_{22}&\cdots&a_{2(n-1)}+a_{2n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{nn}+a_{n1}&a_{n1}+a_{n2}&\cdots&a_{n(n-1)}+a_{nn}
+            \end{vmatrix}=\left(1+(-1)^{n-1}\right)\begin{vmatrix}
+                a_{11}&a_{12}&\cdots&a_{1n}\\
+                a_{21}&a_{22}&\cdots&a_{2n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{n1}&a_{n2}&\cdots&a_{nn}
+            \end{vmatrix}\]
+        \item \tbf{方法一}:将第$n$列减去第$n-1$列可得
+            \[\begin{vmatrix}
+                1&2&3&\cdots&n-2&n-1&n\\
+                2&3&4&\cdots&n-1&n&n\\
+                3&4&5&\cdots&n&n&n\\
+                \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+                n&n&n&\cdots&n&n&n
+            \end{vmatrix}=\begin{vmatrix}
+                1&2&3&\cdots&n-2&n-1&1\\
+                2&3&4&\cdots&n-1&n&0\\
+                3&4&5&\cdots&n&n&0\\
+                \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+                n&n&n&\cdots&n&n&0
+            \end{vmatrix}\]
+            按照最后一列展开,仍然把第$n-1$列减去第$n-2$列可得
+            \[LHS=(-1)^{n+1}\begin{vmatrix}
+                2&3&4&\cdots&n-1&n\\
+                3&4&5&\cdots&n&n\\
+                \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+                n&n&n&\cdots&n&n
+            \end{vmatrix}=(-1)^{n+1}\begin{vmatrix}
+                2&3&4&\cdots&n-1&1\\
+                3&4&5&\cdots&n&0\\
+                \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+                n&n&n&\cdots&n&0
+            \end{vmatrix}\]
+            重复上面的操作,可得
+            \[LHS=(-1)^{(n+1)+n+\cdots+3}\left|n\right|=(-1)^{\frac{(n+4)(n-1)}{2}}n\]
+            \tbf{方法二}:将第$j$列减去第$j-1$列,于是原行列式的右下部分全部为$0$.按照行列式的定义有
+            \[LHS=(-1)^{\frac{n(n-1)}{2}}n\]
+    \end{enumerate}
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[D_n=\begin{vmatrix}
+        1&1&\cdots&1&1\\
+        x_1&x_2&\cdots&x_{n-1}&x_n\\
+        x_1^2&x_2^2&\cdots&x_{n-1}^2&x_n^2\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        x_1^{n-2}&x_2^{n-2}&\cdots&x_{n-1}^{n-2}&x_n^{n-2}\\
+        x_1^n&x_2^n&\cdots&x_{n-1}^n&x_n^n
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    考虑$n+1$阶行列式
+    \[\tilde{D}_{n+1}(y)=\begin{vmatrix}
+        1&1&\cdots&1&1\\
+        x_1&x_2&\cdots&x_n&y\\
+        x_1^2&x_2^2&\cdots&x_n^2&y^2\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        x_1^n&x_2^n&\cdots&x_n^n&y^n
+    \end{vmatrix}\]
+    这行列式的$(n,n+1)$元的余子式即为$D_n$,于是只需考虑$y^{n-1}$的系数即可.又$\tilde{D}_{n+1}$本身为范德蒙德行列式,于是
+    \[\tilde{D}_{n+1}(y)=\left(y-x_1\right)\cdots\left(y-x_n\right)\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)\]
+    于是
+    \[(-1)^{n+(n+1)}D_n=-\left(x_1+x_2+\cdots+x_n\right)\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)\]
+    从而
+    \[D_n=\left(\sum_{i=1}^{n}x_i\right)\left(\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)\right)\]
+\end{solution}
+\begin{problem}
+    求下面行列式的值:
+    \[D_n=\begin{vmatrix}
+        1+x_1&1+x_2&\cdots&1+x_n\\
+        1+x_1^2&1+x_2^2&\cdots&1+x_n^2\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1+x_1^n&1+x_2^n&\cdots&1+x_n^n
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    考虑行列式
+    \[\tilde{D}_{n}=\begin{vmatrix}
+        1&1&1&\cdots&1\\
+        0&1+x_1&1+x_2&\cdots&1+x_n\\
+        0&1+x_1^2&1+x_2^2&\cdots&1+x_n^2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&1+x_1^n&1+x_2^n&\cdots&1+x_n^n
+    \end{vmatrix}\]
+    将$\tilde{D}_n$按第一行展开即可得$\tilde{D}_n=D_n$.现在将$\tilde{D}_n$的第$j$行$(1<j\leqslant n+1)$减去第$1$行可得
+    \[\tilde{D}_n=\begin{vmatrix}
+        1&1&1&\cdots&1\\
+        -1&x_1&x_2&\cdots&x_n\\
+        -1&x_1^2&x_2^2&\cdots&x_n^2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        -1&x_1^n&x_2^n&\cdots&x_n^n
+    \end{vmatrix}=\begin{vmatrix}
+        2&1&1&\cdots&1\\
+        0&x_1&x_2&\cdots&x_n\\
+        0&x_1^2&x_2^2&\cdots&x_n^2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&x_1^n&x_2^n&\cdots&x_n^n
+    \end{vmatrix}+\begin{vmatrix}
+        -1&1&1&\cdots&1\\
+        -1&x_1&x_2&\cdots&x_n\\
+        -1&x_1^2&x_2^2&\cdots&x_n^2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        -1&x_1^n&x_2^n&\cdots&x_n^n
+    \end{vmatrix}\]
+    右边两个行列式都可以拆解成范德蒙德行列式的形式,于是有
+    \[\begin{aligned}
+        D_n=\tilde{D}_n
+        &= 2\prod_{k=1}^{n}x_k\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)-\prod_{k=1}^{n}\left(x_k-1\right)\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right) \\
+        &= \prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)\left(2\prod_{k=1}^{n}x_k-\prod_{k=1}^{n}\left(x_k-1\right)\right)
+    \end{aligned}\]
+    \textcolor{blue}{如果遇到一行(列)中只有一个元素与其它的不同,就可以考虑将这个元素进行拆项.}
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,$a_i\neq0,i=1,\cdots,n$.计算以下行列式的值:
+    \[A_n=\begin{vmatrix}
+        x_1-a_1&x_2&\cdots&x_n\\
+        x_1&x_2-a_2&\cdots&x_n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        x_1&x_2&\cdots&x_n-a_n
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    考虑行列式
+    \[\tilde{A}_n=\begin{vmatrix}
+        1&x_1&x_2&\cdots&x_n\\
+        0&x_1-a_1&x_2&\cdots&x_n\\
+        0&x_1&x_2-a_2&\cdots&x_n\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&x_1&x_2&\cdots&x_n-a_n
+    \end{vmatrix}\]
+    将$\tilde{A_n}$按第一列展开可得$\tilde{A_n}=A_n$.现在将$\tilde{A_n}$的第$i$行$(1<j\leqslant n+1)$减去第$1$行可得
+    \[\tilde{A}_n=\begin{vmatrix}
+        1&x_1&x_2&\cdots&x_n\\
+        -1&-a_1&0&\cdots&0\\
+        -1&0&-a_2&\cdots&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        -1&0&0&\cdots&-a_n
+    \end{vmatrix}=\begin{vmatrix}
+        \displaystyle1-\sum_{k=1}^{n}\dfrac{x_k}{a_k}&x_1&x_2&\cdots&x_n\\
+        0&-a_1&0&\cdots&0\\
+        0&0&-a_2&\cdots&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&0&0&\cdots&-a_n
+    \end{vmatrix}\]
+    这是一个上三角行列式,于是
+    \[A_n=\tilde{A}_n=(-1)^{n}\left(1-\sum_{k=1}^{n}\dfrac{x_k}{a_k}\right)\left(\prod_{k=1}^{n}a_k\right)\]
+\end{solution}
+\begin{problem}
+    求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&0&1&\cdots&n-3&n-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        n-2&n-3&n-4&\cdots&0&1\\
+        n-1&n-2&n-3&\cdots&1&0
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    将第$i$行减去第$i-1$行$(i>1)$可得
+    \[A_n=\begin{vmatrix}
+        0&1&\cdots&n-2&n-1\\
+        1&-1&\cdots&-1&-1\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&1&\cdots&-1&-1\\
+        1&1&\cdots&1&-1
+    \end{vmatrix}\]
+    将第$i$行减去第$i-1$行$(i>2)$可得
+    \[A_n=\begin{vmatrix}
+        0&1&\cdots&n-2&n-1\\
+        1&-1&\cdots&-1&-1\\
+        0&2&\cdots&0&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&\cdots&0&0\\
+        0&0&\cdots&2&0
+    \end{vmatrix}\]
+    按照行列式的定义,只有第一行选择$n-1$,第二行选择$1$,后面所有行选择$2$才能使得求和的项不为$0$.于是
+    \[A_n=(-1)^{n-1}(n-1)2^{n-2}\]
+\end{solution}
+\begin{problem}
+    求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        1&2&\cdots&n-1&n\\
+        2&3&\cdots&n&1\\
+        3&4&\cdots&1&2\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        n&1&\cdots&n-2&n-1
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    将第$i$行减去第$i-1$行有
+    \[A_n=\begin{vmatrix}
+        1&2&\cdots&n-1&n\\
+        1&1&\cdots&1&1-n\\
+        1&1&\cdots&1-n&1\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&1-n&\cdots&1&1
+    \end{vmatrix}\]
+    将第$i$列减去第$1$列有
+    \[A_n=\begin{vmatrix}
+        1&1&\cdots&n-2&n-1\\
+        1&0&\cdots&0&-n\\
+        1&0&\cdots&-n&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&-n&\cdots&0&0
+    \end{vmatrix}=\begin{vmatrix}
+        1+\frac{1}{n}+\frac{2}{n}+\cdots+\frac{n-1}{n}&1&\cdots&n-2&n-1\\
+        0&0&\cdots&0&-n\\
+        0&0&\cdots&-n&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&-n&\cdots&0&0
+    \end{vmatrix}\]
+    按照第一列展开可得
+    \[A_n=\dfrac{n(n+1)}{2n}(-n)^{n-1}(-1)^{\frac{(n-1)(n-2)}{2}}=\dfrac{(n+1)}{2}n^{n-1}(-1)^{\frac{n(n-1)}{2}}\]
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        1&1&1&\cdots&1&1\\
+        1&2&0&\cdots&0&0\\
+        1&0&3&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&0&0&\cdots&0&n\\
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    将第$i$行减去第$1$行$(i>1)$可得
+    \[A_n=\begin{vmatrix}
+        1&1&1&\cdots&1&1\\
+        0&1&-1&\cdots&-1&-1\\
+        0&-1&2&\cdots&-1&-1\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&-1&-1&\cdots&-1&n-1\\
+    \end{vmatrix}\]
+    按照第一列展开可得
+    \[A_n=\begin{vmatrix}
+        1&-1&\cdots&-1&-1\\
+        -1&2&\cdots&-1&-1\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        -1&-1&\cdots&-1&n-1\\
+    \end{vmatrix}=\begin{vmatrix}
+        1&-2&\cdots&-2&-2\\
+        -1&3&\cdots&0&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        -1&0&\cdots&0&n
+    \end{vmatrix}=\left(1-\sum_{i=3}^{n}\dfrac{2}{i}\right)\dfrac{n!}{2}\]
+    整理可得
+    \[A_n=\left(\dfrac12-\sum_{i=3}^{n}\dfrac{1}{i}\right)n!=\left(1-\sum_{i=2}^{n}\dfrac{1}{i}\right)n!\]
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        x&0&0&\cdots&0&0&a_0\\
+        -1&x&0&\cdots&0&0&a_1\\
+        0&-1&x&\cdots&0&0&a_2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots&\vdots\\
+        0&0&0&\cdots&-1&x&a_{n-2}\\
+        0&0&0&\cdots&0&-1&x+a_{n-1}
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    将$A_n$按第一行展开可得
+    \[A_n=xA_{n-1}+a_0(-1)^{1+n}(-1)^{n-1}=xA_{n-1}+a_0\]
+    并且有$A_1=x+a_{n-1}$.于是
+    \[A_n=x^n+\sum_{i=0}^{n-1}a_ix^i\]
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        a_0+a_1&a_1&0&0&\cdots&0&0\\
+        a_1&a_1+a_2&a_2&0&\cdots&0&0\\
+        0&a_2&a_2+a_3&a_3&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&0&\cdots&a_{n-1}&a_{n-1}+a_n
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    将行列式按最后一行展开可得
+    \[A_n=\left(a_{n-1}+a_n\right)A_{n-1}-a_{n-1}\begin{vmatrix}
+        a_0+a_1&a_1&0&\cdots&0&0\\
+        a_1&a_1+a_2&a_2&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&a_{n-3}+a_{n-2}&0\\
+        0&0&0&\cdots&a_{n-2}&a_{n-1}
+    \end{vmatrix}\]
+    将后一个行列式按最后一行展开可得
+    \[A_n=\left(a_{n-1}+a_n\right)A_{n-1}-a_{n-1}^2A_{n-2}\]
+    即
+    \[A_n-a_nA_{n-1}=a_{n-1}\left(A_{n-1}-a_{n-1}A_{n-2}\right)\]
+    又因为
+    \[A_1=a_0+a_1,\quad A_2=a_0a_1+a_0a_2+a_1a_2\]
+    于是
+    \[A_n-a_nA_{n-1}=\prod_{i=0}^{n-1}a_i\]
+    于是
+    \[A_n=\prod_{i=0}^{n-1}a_i+a_n\left(\prod_{i=0}^{n-2}a_i+a_{n-1}\left(\prod_{i=0}^{n-3}a_n+\cdots\right)\right)=\left(\prod_{i=0}^{n}a_i\right)\left(\sum_{i=0}^{n}\dfrac{1}{a_i}\right)\]
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\frac{1}{a_1+b_2}&\cdots&\frac{1}{a_1+b_n}\\
+        \frac{1}{a_2+b_1}&\frac{1}{a_2+b_2}&\cdots&\frac{1}{a_2+b_n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{1}{a_n+b_1}&\frac{1}{a_n+b_2}&\cdots&\frac{1}{a_n+b_n}
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    将每一列减去最后一列可得
+    \[D_n=\begin{vmatrix}
+        \frac{1}{a_1+b_1}-\frac{1}{a_1+b_n}&\cdots&\frac{1}{a_1+b_{n-1}}-\frac{1}{a_1+b_n}&\frac{1}{a_1+b_n}\\
+        \frac{1}{a_2+b_1}-\frac{1}{a_2+b_n}&\cdots&\frac{1}{a_2+b_{n-1}}-\frac{1}{a_2+b_n}&\frac{1}{a_2+b_n}\\
+        \vdots&\ddots&\vdots&\vdots\\
+        \frac{1}{a_n+b_1}-\frac{1}{a_n+b_n}&\cdots&\frac{1}{a_n+b_{n-1}}-\frac{1}{a_n+b_n}&\frac{1}{a_n+b_n}
+    \end{vmatrix}=\begin{vmatrix}
+        \frac{b_n-b_1}{\left(a_1+b_1\right)\left(a_1+b_n\right)}&\cdots&\frac{b_n-b_{n-1}}{\left(a_1+b_{n-1}\right)\left(a_1+b_n\right)}&\frac{1}{a_1+b_n}\\
+        \frac{b_n-b_1}{\left(a_2+b_1\right)\left(a_2+b_n\right)}&\cdots&\frac{b_n-b_{n-1}}{\left(a_2+b_{n-1}\right)\left(a_2+b_n\right)}&\frac{1}{a_2+b_n}\\
+        \vdots&\ddots&\vdots&\vdots\\
+        \frac{b_n-b_1}{\left(a_n+b_1\right)\left(a_n+b_n\right)}&\cdots&\frac{b_n-b_{n-1}}{\left(a_n+b_{n-1}\right)\left(a_n+b_n\right)}&\frac{1}{a_n+b_n}
+    \end{vmatrix}\]
+    将各行各列分别提取公因子可得
+    \[D_n=\prod_{i=1}^{n}\dfrac{1}{a_i+b_n}\prod_{i=1}^{n-1}\left(b_n-b_i\right)\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\cdots&\frac{1}{a_1+b_{n-1}}&1\\
+        \frac{1}{a_2+b_1}&\cdots&\frac{1}{a_2+b_{n-1}}&1\\
+        \vdots&\ddots&\vdots&\vdots\\
+        \frac{1}{a_n+b_1}&\cdots&\frac{1}{a_n+b_{n-1}}&1
+    \end{vmatrix}\]
+    对于上面的行列式,将每一行减去最后一行,然后按最后一列展开可得
+    \[\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\cdots&\frac{1}{a_1+b_{n-1}}&1\\
+        \frac{1}{a_2+b_1}&\cdots&\frac{1}{a_2+b_{n-1}}&1\\
+        \vdots&\ddots&\vdots&\vdots\\
+        \frac{1}{a_n+b_1}&\cdots&\frac{1}{a_n+b_{n-1}}&1
+    \end{vmatrix}=\begin{vmatrix}
+        \frac{a_n-a_1}{\left(a_1+b_1\right)\left(a_n+b_1\right)}&\cdots&\frac{a_n-a_1}{\left(a_1+b_{n-1}\right)\left(a_n+b_{n-1}\right)}&0\\
+        \frac{a_n-a_2}{\left(a_2+b_1\right)\left(a_n+b_1\right)}&\cdots&\frac{a_n-a_2}{\left(a_2+b_{n-1}\right)\left(a_n+b_{n-1}\right)}&0\\
+        \vdots&\ddots&\vdots&\vdots\\
+        \frac{1}{a_n+b_1}&\cdots&\frac{1}{a_n+b_{n-1}}&1
+    \end{vmatrix}=\prod_{i=1}^{n}\dfrac{1}{a_n+b_i}\prod_{i=1}^{n-1}\left(a_n-a_i\right)D_{n-1}\]
+    于是
+    \[D_n=\prod_{i=1}^{n}\dfrac{1}{\left(a_i+b_n\right)\left(a_n+b_i\right)}\prod_{i=1}^{n-1}\left(a_n-a_i\right)\left(b_n-b_i\right)D_{n-1}\]
+    又因为
+    \[D_1=\dfrac{1}{a_1+b_1}\]
+    于是
+    \[D_n=\dfrac{\displaystyle\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\left(b_j-b_i\right)}{\displaystyle\prod_{1\leqslant i,j\leqslant n}\left(a_i+b_j\right)}\]
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        1&x_1+a_{11}&x_1^2+a_{21}x_1+a_{22}&\cdots&x_1^{n-1}+a_{(n-1)1}x_1^{n-2}+\cdots+a_{(n-1)(n-1)}\\
+        1&x_2+a_{11}&x_2^2+a_{21}x_2+a_{22}&\cdots&x_2^{n-1}+a_{(n-1)1}x_2^{n-2}+\cdots+a_{(n-1)(n-1)}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        1&x_n+a_{11}&x_n^2+a_{21}x_n+a_{22}&\cdots&x_n^{n-1}+a_{(n-1)1}x_n^{n-2}+\cdots+a_{(n-1)(n-1)}
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    第$j$列可以按$x_i$的次数拆成$j$个部分.由于第一列全部为$1$,因此第二列只能选择$\begin{bmatrix}
+        x_1&x_2&\cdots&x_n
+    \end{bmatrix}^{\text{t}}$,否则第一列和第二列成比例,行列式为$0$.同理,每一列都只能选择最高次项,否则总会和前面的某一列成比例.于是
+    \[A_n=\begin{vmatrix}
+        1&x_1&x_1^2&\cdots&x_1^{n-1}\\
+        1&x_2&x_2^2&\cdots&x_2^{n-1}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        1&x_n&x_n^2&\cdots&x_n^{n-1}
+    \end{vmatrix}=\prod_{1\leqslant i<j\leqslant n}\left(x_j-x_i\right)\]
+\end{solution}
+\begin{problem}
+    设$n\geqslant2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        a_1b_1&a_1b_2&\cdots&a_1b_n\\
+        a_1b_2&a_2b_2&\cdots&a_2b_n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_1b_n&a_2b_n&\cdots&a_nb_n
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    只有第一列和最后一列具有共同的因子.于是有
+    \[A_n=a_1b_n\begin{vmatrix}
+        b_1&a_1b_2&\cdots&a_1b_{n-1}&a_1\\
+        b_2&a_2b_2&\cdots&a_2b_{n-1}&a_2\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        b_n&a_2b_n&\cdots&a_{n-1}b_n&a_n
+    \end{vmatrix}=a_1b_n\begin{vmatrix}
+        b_1&a_1b_2-a_2b_1&a_1b_3-a_3b_1&\cdots&a_1b_{n-1}-a_{n-1}b_1&a_1\\
+        b_2&0&a_2b_3-a_3b_2&\cdots&a_2b_{n-1}-a_{n-1}b_2&a_2\\
+        b_3&0&0&\cdots&a_3b_{n-1}-a_{n-1}b_3&a_3\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        b_n&0&0&\cdots&0&a_n
+    \end{vmatrix}\]
+    将第一列的$-\dfrac{a_n}{b_n}$倍加到最后一列可得
+    \[A_n=a_1b_n\begin{vmatrix}
+        b_1&a_1b_2-a_2b_1&a_1b_3-a_3b_1&\cdots&a_1b_{n-1}-a_{n-1}b_1&a_1-\frac{b_1a_n}{b_n}\\
+        b_2&0&a_2b_3-a_3b_2&\cdots&a_2b_{n-1}-a_{n-1}b_2&a_2-\frac{b_2a_n}{b_n}\\
+        b_3&0&0&\cdots&a_3b_{n-1}-a_{n-1}b_3&a_3-\frac{b_3a_n}{b_n}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        b_n&0&0&\cdots&0&0
+    \end{vmatrix}\]
+    按照最后一行展开可得
+    \[A_n=a_1b_n^2(-1)^{n+1}\prod_{i=1}^{n-2}\left(a_ib_{i+1}-a_{i+1}b_i\right)\left(a_{n-1}-\dfrac{b_{n-1}a_n}{b_n}\right)\]
+    整理可得
+    \[A_n=(-1)^{n+1}a_1b_n\prod_{i=1}^{n-1}\left(a_ib_{i+1}-a_{i+1}b_i\right)\]
+    \textcolor{blue}{下面是一种更简单的办法.}\\
+    提取第一列和最后一行的公因子可得
+    \[A_n=a_1b_n\begin{vmatrix}
+        b_1&a_1b_2&\cdots&a_1b_n\\
+        b_2&a_2b_2&\cdots&a_2b_n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        b_{n-1}&a_2b_{n-1}&\cdots&a_{n-1}b_n\\
+        1&a_2&\cdots&a_n
+    \end{vmatrix}=a_1b_n\begin{vmatrix}
+        b_1&a_1b_2-a_2b_1&\cdots&a_1b_n-a_nb_1\\
+        b_2&0&\cdots&a_2b_n-a_nb_2\\
+        \vdots&\vdots&\ddots&\vdots\\
+        b_{n-1}&0&\cdots&a_{n-1}b_n-a_nb_{n-1}\\
+        1&0&\cdots&0
+    \end{vmatrix}\]
+    将右边的行列式按最后一行展开即可得
+    \[A_n=(-1)^{n+1}a_1b_n\prod_{i=1}^{n-1}\left(a_ib_{i+1}-a_{i+1}b_i\right)\]
+\end{solution}
+\begin{problem}
+    求以下$2n$阶行列式的值:
+    \[A_n=\begin{vmatrix}
+        a&&&&b\\
+        &a&&b&\\
+        &&\ddots&&\\
+        &b&&a&\\
+        b&&&&a\\
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    按照第一行和最后一行展开可得
+    \[A_n=\begin{vmatrix}
+        a&b\\b&a
+    \end{vmatrix}(-1)^{1+n+1+n}A_{n-1}=\left(a^2-b^2\right)A_{n-1}\]
+    又
+    \[A_1=\begin{vmatrix}
+        a&b\\b&a
+    \end{vmatrix}=a^2-b^2\]
+    于是
+    \[A_n=\left(a^2-b^2\right)^n\]
+\end{solution}
+\begin{problem}
+    求以下$n$阶行列式的值:
+    \[A_n(x)=\begin{vmatrix}
+        x&a_1&a_2&\cdots&a_{n-1}\\
+        a_1&x&a_2&\cdots&a_{n-1}\\
+        a_1&a_2&x&\cdots&a_{n-1}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        a_1&a_2&a_3&\cdots&x
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    令$x=a_1$,可得
+    \[A_n\left(a_1\right)=\begin{vmatrix}
+        a_1&a_1&\cdots&a_{n-1}\\
+        a_1&a_1&\cdots&a_{n-1}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_1&a_2&\cdots&a_1
+    \end{vmatrix}=0\]
+    同理可得对任意$i=1,\cdots,n-1$都有
+    \[A_n\left(a_i\right)=0\]
+    并且$A_n(x)$的最高次项$x^n$的系数为$1$(这是因为要取到最高次项$x^n$,只能从每行中选择$x$).此外,注意到每行元素和相同,因此将每一列都加到第一列上即可得
+    \[A_n(x)=\left(x+\sum_{i=1}^{n-1}a_i\right)\begin{vmatrix}
+        \ast
+    \end{vmatrix}\]
+    于是$A_n(x)$还具有因式$\displaystyle x+\sum_{i=1}^{n-1}a_i$.于是
+    \[A_n(x)=\left(x+\sum_{i=1}^{n-1}a_i\right)\prod_{i=1}^{n-1}\left(x-a_i\right)\]
+\end{solution}
+\begin{problem}
+    假定方阵$\mat{A}$的某一行全部为$1$,求它的所有元素的代数余子式的和.
+\end{problem}
+\begin{solution}
+    假定$\mat{A}$的第$k$行全部为$1$.我们有
+    \[\sum_{1\leqslant i,j\leqslant n}A_{ij}=\sum_{j=1}^{n}a_{kj}A_{kj}+\sum_{1\leqslant i\leqslant n,i\neq k}a_{kj}A_{ij}=\det\mat{A}+0=\det\mat{A}\]
+\end{solution}
+\begin{problem}
+    证明:把$n$级矩阵$\mat{A}$的每个元素加上同一个数$t$得到矩阵$\mat{T}$,那么$\mat{T}$的元素的所有代数余子式的和等于$\mat{A}$的所有元素的代数余子式的和.
+\end{problem}
+\begin{solution}
+    我们有
+    \[\det\mat{T}=\det\mat{A}+t\begin{vmatrix}
+        1&a_{12}&\cdots&a_{1n}\\
+        1&a_{22}&\cdots&a_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&a_{n2}&\cdots&a_{nn}
+    \end{vmatrix}+t\begin{vmatrix}
+        a_{11}&1&\cdots&a_{1n}\\
+        a_{21}&1&\cdots&a_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_{n1}&1&\cdots&a_{nn}
+    \end{vmatrix}+\cdots=\det\mat{A}+t\sum_{i=1}^{n}\sum_{j=1}^{n}A_{ij}\]
+    于是
+    \[\begin{aligned}
+        t\sum_{1\leqslant i,j\leqslant n}A_{ij}
+        &=\det\mat{T}-\det\mat{A}=\begin{vmatrix}
+        a_{11}+t&a_{12}+t&\cdots&a_{1n}+t\\
+        a_{21}+t&a_{22}+t&\cdots&a_{2n}+t\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_{n1}+t&a_{n2}+t&\cdots&a_{nn}+t
+        \end{vmatrix}-\begin{vmatrix}
+            a_{11}&a_{12}&\cdots&a_{1n}\\
+            a_{21}&a_{22}&\cdots&a_{2n}\\
+            \vdots&\vdots&\ddots&\vdots\\
+            a_{n1}&a_{n2}&\cdots&a_{nn}
+        \end{vmatrix}\\
+        &= \begin{vmatrix}
+                a_{11}+t&a_{12}+t&\cdots&a_{1n}+t\\
+                a_{21}-a_{11}&a_{22}-a_{12}&\cdots&a_{2n}-a_{1n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{n1}-a_{11}&a_{n2}-a_{12}&\cdots&a_{nn}-a_{1n}
+            \end{vmatrix}-
+            \begin{vmatrix}
+                a_{11}&a_{12}&\cdots&a_{1n}\\
+                a_{21}-a_{11}&a_{22}-a_{12}&\cdots&a_{2n}-a_{1n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{n1}-a_{11}&a_{n2}-a_{12}&\cdots&a_{nn}-a_{1n}
+            \end{vmatrix}\\
+            &= t\begin{vmatrix}
+                1&1&\cdots&1\\
+                a_{21}-a_{11}&a_{22}-a_{12}&\cdots&a_{2n}-a_{1n}\\
+                \vdots&\vdots&\ddots&\vdots\\
+                a_{n1}-a_{11}&a_{n2}-a_{12}&\cdots&a_{nn}-a_{1n}
+            \end{vmatrix}
+    \end{aligned}\]
+    于是有恒等式
+    \[\sum_{1\leqslant i,j\leqslant n}A_{ij}=\begin{vmatrix}
+        1&1&\cdots&1\\
+        a_{21}-a_{11}&a_{22}-a_{12}&\cdots&a_{2n}-a_{1n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_{n1}-a_{11}&a_{n2}-a_{12}&\cdots&a_{nn}-a_{1n}
+    \end{vmatrix}\]
+    同样地,对$\mat{T}$使用该等式可得
+    \[\sum_{1\leqslant i,j\leqslant n}T_{ij}=\begin{vmatrix}
+        1&\cdots&1\\
+        \left(a_{21}+t\right)-\left(a_{11}+t\right)&\cdots&\left(a_{2n}+t\right)-\left(a_{1n}+t\right)\\
+        \vdots&\ddots&\vdots\\
+        \left(a_{n1}+t\right)-\left(a_{11}+t\right)&\cdots&\left(a_{nn}+t\right)-\left(a_{1n}+t\right)
+    \end{vmatrix}=\begin{vmatrix}
+        1&\cdots&1\\
+        a_{21}-a_{11}&\cdots&a_{2n}-a_{1n}\\
+        \vdots&\ddots&\vdots\\
+        a_{n1}-a_{11}&\cdots&a_{nn}-a_{1n}
+    \end{vmatrix}=\sum_{1\leqslant i,j\leqslant n}A_{ij}\]
+    于是命题得证.
+\end{solution}
+\begin{problem}
+    给定$n$个两两不同的数$\li a,n$.设$\li b,n$为任意的$n$个数,证明:存在唯一的次数不超过$n-1$的多项式$f(x)$使得$f\left(a_i\right)=b_i$成立.
+\end{problem}
+\begin{proof}
+    设$f(x)=\displaystyle\sum_{i=0}^{n-1}c_ix^i$.于是有线性方程组:
+    \[\left\{\begin{array}{c}
+        c_0+c_1a_1+c_2a_1^2+\cdots+c_{n-1}a_1^{n-1}=b_1\\
+        c_0+c_1a_2+c_2a_2^2+\cdots+c_{n-1}a_2^{n-1}=b_2\\
+        \vdots\\
+        c_0+c_1a_n+c_2a_n^2+\cdots+c_{n-1}a_n^{n-1}=b_n
+    \end{array}\right.\]
+    这方程组的系数行列式为
+    \[\begin{vmatrix}
+        1&a_1&a_1^2&\cdots&a_1^{n-1}\\
+        1&a_2&a_2^2&\cdots&a_2^{n-1}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        1&a_n&a_n^2&\cdots&a_n^{n-1}
+    \end{vmatrix}=\sum_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\]
+    由于$\li a,n$两两不同,因此该行列式不为$0$,从而原线性方程组有唯一解,从而$f(x)$存在且唯一.
+\end{proof}
+\begin{problem}
+    设行列式
+    \[\begin{vmatrix}
+        \zeta_{11}&\zeta_{12}&\cdots&\zeta_{1n}\\
+        \zeta_{21}&\zeta_{22}&\cdots&\zeta_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \zeta_{n1}&\zeta_{n2}&\cdots&\zeta_{nn}
+    \end{vmatrix}\]
+    不为零.
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 证明:满足下面方程组的$x_{ijk}$唯一:
+            \[\zeta_{jt}\zeta_{kt}=\sum_{i=1}^{n}x_{ijk}\zeta_{it},\quad1\leqslant j,k,t\leqslant n\]
+        \item 求出$x_{ijk}$的值.
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+    对于固定的$j,k$,有方程组
+    \[\left\{\begin{array}{c}
+        \zeta_{11}x_{1jk}+\zeta_{21}x_{2jk}+\cdots+\zeta_{n1}x_{njk}=\zeta_{j1}\zeta_{k1}\\
+        \zeta_{12}x_{1jk}+\zeta_{22}x_{2jk}+\cdots+\zeta_{n2}x_{njk}=\zeta_{j2}\zeta_{k2}\\
+        \vdots\\
+        \zeta_{1n}x_{1jk}+\zeta_{2n}x_{2jk}+\cdots+\zeta_{nn}x_{njk}=\zeta_{jn}\zeta_{kn}
+    \end{array}\right.\]
+    该方程组的系数行列式转置后即为题设的行列式,因此该方程组有唯一解,于是$x_{ijk}$唯一.\\
+    记题设的行列式的值为$\zeta$根据Cramer法则可得
+    \[x_{ijk}=\dfrac{1}{\zeta}\begin{vmatrix}
+        \zeta_{11}&\cdots&\zeta_{(i-1)1}&\zeta_{j1}\zeta_{k1}&\zeta{(i+1)1}&\cdots&\zeta_{n1}\\
+        \vdots&\ddots&\vdots&\vdots&\vdots&\ddots&\vdots\\
+        \zeta_{1n}&\cdots&\zeta_{(i-1)n}&\zeta_{jn}\zeta_{kn}&\zeta{(i+1)n}&\cdots&\zeta_{nn}
+    \end{vmatrix}\]
+\end{solution}
+\begin{problem}
+    设$\mat{A}$是元素为实数的矩阵,并且
+    \[a_{ii}>\sum_{1\leqslant j\leqslant n,j\neq i}\left|a_{ij}\right|,\quad i=1,\cdots,n\]
+    这样的矩阵被称作严格主对角占优矩阵.证明:
+    \[\det\mat{A}\neq0\]
+    进一步地,证明:
+    \[\det\mat{A}>0\]
+\end{problem}
+\begin{proof}
+    为证明$\det\mat{A}\neq0$,只需证明齐次线性方程组
+    \[\left\{\begin{array}{c}
+        a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0\\
+        a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=0\\
+        \vdots\\
+        a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=0
+    \end{array}\right.\]
+    仅有零解即可.假定该方程有非零解,那么设$x_k$是$\li x,n$中绝对值最大的,则$\left|x_k\right|>0$.于是根据第$k$个方程可得
+    \[\left|a_{kk}x_k\right|=\left|\sum_{1\leqslant j\leqslant n,j\neq k}a_{kj}x_j\right|\]
+    由于$a_{kk}>0$,于是
+    \[a_{kk}\left|x_k\right|\leqslant\sum_{1\leqslant j\leqslant n,j\neq k}\left|a_{kj}\right|\left|x_j\right|\leqslant\left|x_k\right|\sum_{1\leqslant j\leqslant n,j\neq k}\left|a_{kj}\right|\]
+    即
+    \[x_{kk}\leqslant\sum_{1\leqslant j\leqslant n,j\neq k}\left|a_{kj}\right|\]
+    这与题意矛盾.于是$\det\mat{A}\neq0$.\\
+    令$t\geqslant0$,设
+    \[f(t)=\begin{vmatrix}
+        a_{11}+t&a_{12}&\cdots&a_{1n}\\
+        a_{21}&a_{22}+t&\cdots&a_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_{n1}&a_{n2}&\cdots&a_{nn}+t
+    \end{vmatrix}\]
+    于是上述行列式也是主对角占优的,因此$f(t)\neq0$.又因为$f(t)$是关于$t$的首一多项式,于是
+    \[\lim_{t\to+\infty}f(t)=+\infty\]
+    根据连续函数的介值定理可得$f(0)>0$(否则总存在$t\in[0,+\infty)$使得$f(t)=0$,这与$f(t)\neq0$矛盾).于是$\det\mat{A}=f(0)>0$,命题得证.
+\end{proof}
+\end{document}
