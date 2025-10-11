@@ -244,6 +244,117 @@
     于是$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$线性无关.根据前面的讨论,向量组$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$即$\bs\alpha_1,\cdots,\bs\alpha_5$的一个极大线性无关组.
 \end{solution}
 \begin{problem}
-    
+    证明:对于向量组$\li{\bs\alpha},s,\li{\bs\beta},r$总有
+    \[\text{rank}\left\{\li{\bs\alpha},s,\li{\bs\beta},r\right\}\leqslant\text{rank}\left\{\li{\bs\alpha},s\right\}+\text{rank}\left\{\li{\bs\beta},r\right\}\]
+\end{problem}
+\begin{proof}
+    考虑向量组$\li{\bs\alpha},s$和$\li{\bs\beta},r$各自的一个极大线性无关组$\li{\bs\alpha},p$和$\li{\bs\beta},q$,则有
+    \[\text{rank}\left\{\li{\bs\alpha},s\right\}=p,\quad\text{rank}\left\{\li{\bs\beta},r\right\}=q\]
+    依定义,向量组$\li{\bs\alpha},s,\li{\bs\beta},r$中的所有向量都能由向量组$\li{\bs\alpha},p,\li{\bs\beta},q$线性表出.于是
+    \[\text{rank}\left\{\li{\bs\alpha},s,\li{\bs\beta},r\right\}\leqslant\text{rank}\left\{\li{\bs\alpha},p,\li{\bs\beta},q\right\}\leqslant p+q\]
+    于是命题得证.
+\end{proof}
+\begin{problem}
+    设
+    \[\bs\beta_i=\sum_{1\leqslant j\leqslant n,j\neq i}\bs\alpha_j,\quad i=1,2,\cdots,n\]
+    证明:
+    \[\rank\left\{\li{\bs\alpha},n\right\}=\rank\left\{\li{\bs\beta},n\right\}\]
+\end{problem}
+\begin{proof}
+    记
+    \[\mathcal{A}=\left\{\li{\bs\alpha},n\right\},\quad\mathcal{B}=\left\{\li{\bs\beta},n\right\}\]
+    由$\bs\beta_i$的定义可得向量组$\mathcal{B}$能由向量组$\mathcal{A}$线性表出.注意到
+    \[\bs\alpha_i=\sum_{j=1}^{n}\bs\alpha_j-\sum_{1\leqslant j\leqslant n,j\neq i}\bs\alpha_j=\dfrac{1}{n-1}\sum_{j=1}^{n}\bs\beta_j-\bs\beta_i,\quad i=1,2,\cdots,n\]
+    于是$\mathcal{A}$能由向量组$\mathcal{B}$线性表出.于是$\mathcal{A}$与$\mathcal{B}$等价,从而
+    \[\rank\ \mathcal{A}=\rank\ \mathcal{B}\]
+    命题得证.
+\end{proof}
+\begin{problem}
+    设向量$\bs\beta$可以由向量组$\li{\bs\alpha},s$线性表出,但不能由$\li{\bs\alpha},{s-1}$线性表出.证明:
+    \[\rank\left\{\li{\bs\alpha},s\right\}=\rank\left\{\li{\bs\alpha},{s-1},\bs\beta\right\}\]
+\end{problem}
+\begin{proof}
+    记
+    \[\mathcal{A}=\left\{\li{\bs\alpha},s\right\},\quad\mathcal{B}=\left\{\li{\bs\alpha},{s-1},\bs\beta\right\}\]
+    对于$\mathcal{B}$中的每个向量而言,有
+    \[\bs\alpha_{i}=0\bs\alpha_1+\cdots+1\bs\alpha_i+\cdots+0\bs\alpha_{s-1},\quad i=1,2,\cdots,i-1\]
+    并且由题意, $\bs\beta$可以由$\mathcal{A}$线性表出.于是$\mathcal{B}$可以由$\mathcal{A}$线性表出.\\
+    \indent 另一方面,对于$\mathcal{A}$中的每个向量而言,同样有
+    \[\bs\alpha_{i}=0\bs\alpha_1+\cdots+1\bs\alpha_i+\cdots+0\bs\alpha_{s-1},\quad i=1,2,\cdots,i-1\]
+    考虑$\bs\beta$由$\mathcal{A}$线性表出的式子:
+    \[\bs\beta=k_1\bs\alpha_1+\cdots+k_{s-1}\bs\alpha_{s-1}+k_s\bs\alpha_s\]
+    如果$k_s=0$,那么意味着$\bs\beta$能由$\li{\bs\alpha},{s-1}$线性表出,这与题意矛盾.于是$k_s\neq0$,从而
+    \[\bs\alpha_s=-\dfrac{k_1}{k_s}\bs\alpha_1-\cdots-\dfrac{k_{s-1}}{k_s}\bs\alpha_{s-1}-\dfrac{1}{k_s}\bs\beta\]
+    于是$\bs\alpha_s$能由$\mathcal{B}$线性表出,从而$\mathcal{A}$能由$\mathcal{B}$线性表出.\\
+    \indent 综上, $\mathcal{A}$与$\mathcal{B}$等价,从而
+    \[\rank\ \mathcal{A}=\rank\ \mathcal{B}\]
+    命题得证.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B},\mat{C}$分别为$s\times n,l\times m,s\times m$矩阵.
+    \begin{enumerate}[label=\tbf{\arabic*}.,topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 证明:
+            \[\rank\begin{bmatrix}
+                \mat{A}&\mat{C}\\
+                \mbf{0}&\mat{B}
+            \end{bmatrix}\geqslant\rank\ \mat{A}+\rank\ \mat{B}\]
+        \item 证明:如果$\rank\ \mat{A}=s,\rank\ \mat{B}=l$,则以上不等式取到等号.
+        \item 证明:如果$\rank\ \mat{A}=n,\rank\ \mat{B}=m$,则以上不等式取到等号.
+    \end{enumerate}
+\end{problem}
+\begin{proof}
+    考虑
+    \[\mat{M}
+    =\begin{bmatrix}
+        \mat{A}&\mat{C}\\
+        \mbf{0}&\mat{B}
+    \end{bmatrix}\]
+    的阶数最大的非零子式$M$.这一子式也可以写做如下形式:
+    \[M=\begin{vmatrix}
+        A&C\\0&B
+    \end{vmatrix}\]
+    其中$A,B,C,0$分别为$\mat{A},\mat{B},\mat{C}$和$\mbf0$的子式.根据分块矩阵的行列式的性质可知
+    \[M=AB\]
+    于是$A,B$均非零.
+\end{proof}
+\begin{problem}
+    求以下$n$级方阵的秩:
+    \[\mat{A}_n(x)=\begin{bmatrix}
+        x&a&\cdots&a\\
+        a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a&a&\cdots&x
+    \end{bmatrix}\]
+\end{problem}
+\begin{solution}
+    注意到
+    \[\det\mat{A}_n(x)=\begin{vmatrix}
+        x+(n-1)a&a&\cdots&a\\
+        x+(n-1)a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        x+(n-1)a&a&\cdots&x
+    \end{vmatrix}=\left[x+(n-1)a\right]\begin{vmatrix}
+        1&a&\cdots&a\\
+        0&x-a&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&x-a
+    \end{vmatrix}=\left[x+(n-1)a\right]\left(x-a\right)^{n-1}\]
+    当$x=a=0$时$\mat{A}_n(x)$由零向量组成,于是$\rank\ \mat{A}_n(x)=0$.\\
+    当$a\neq0$时,分以下几种情况讨论.\\
+    当$x=a$时, $\det\mat{A}_n(x)=0$,并且不难注意到$\mat{A}$的列向量均相同,于是$\rank\ \mat{A}=1$.\\
+    当$x=(1-n)a$时, $\det\mat{A}_n(x)=0$,并且$\mat{A}_n(x)$的$(1,1)$元的余子式
+    \[A_{11}=\det\mat{A}_{n-1}(x)=\left[x+(n-2)a\right](x-a)^{n-1}=(-a)(-na)^{n-1}\neq0\]
+    于是$\rank\ \mat{A}_n(x)=n-1$.\\
+    当$x\neq a,(1-n)a$时, $\det\mat{A}_n(x)\neq0$,于是$\rank\ \mat{A}_n(x)=n$.\\
+    综上所述有
+    \[\rank\ \mat{A}_n(x)=\left\{\begin{array}{l}
+        0,\quad x=a=0\\
+        1,\quad x=a\neq0\\
+        n-1,\quad x=(1-n)a,a\neq0\\
+        n,\quad x\neq a,(1-n)a 
+    \end{array}\right.\]
+\end{solution}
+\begin{problem}
+    设数域$\mathbb{K}$中一个$s\times n$的矩阵$\mat{A}$的秩为$r>0$.证明:$\mat{A}$的任何$r$个线性无关的行与任何$r$个线性无关的列交出的$r$阶子式一定非零.
 \end{problem}
 \end{document}
