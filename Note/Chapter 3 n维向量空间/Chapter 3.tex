@@ -33,12 +33,77 @@
     \[k_1\boldsymbol{\alpha}_1+k_2\boldsymbol{\alpha}_2+\cdots+k_m\boldsymbol{\alpha}_m=\boldsymbol{0}\]
     当且仅当$k_1=k_2=\cdots=k_m=0$.
 \end{definition}
-显然,$K^n$中的向量组要么线性相关,要么线性无关.
+显然, $K^n$中的向量组要么线性相关,要么线性无关.
 \subsection{极大线性无关组与向量组的秩}
 \begin{definition}[极大线性无关组]
-    设$K^n$中的向量组$\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m$线性相关,则其中的一个线性无关子组,且任一向量加入该子组后都变成线性相关,称为该向量组的一个极大线性无关组.
+    设$K^n$中的向量组$\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s$线性相关,则其中的一个线性无关子组,且任一向量加入该子组后都变成线性相关,称为该向量组的一个极大线性无关组.
 \end{definition}
+\begin{definition}[等价的向量组]
+    设向量组$\mathcal{A}=\left\{\li{\bs\alpha},s\right\},\mathcal{B}=\left\{\li{\bs\beta},r\right\}$.如果$\mathcal{A}$中的每个向量都能由$\mathcal{B}$线性表出,且$\mathcal{B}$中的每个向量也都能由$\mathcal{A}$线性表出,则称向量组$\mathcal{A},\mathcal{B}$\tbf{等价},记为$\mathcal{A}\simeq\mathcal{B}$.
+\end{definition}
+\begin{theorem}
+    向量组和它的极大线性无关组等价.
+\end{theorem}
+\begin{proof}
+    考虑向量组$\mathcal{A}=\li{\bs\alpha},s$,假定它的一个极大线性无关组为$\mathcal{B}=\li{\bs\alpha},r(r\leqslant s)$.对于任意$1\leqslant i\leqslant s$有
+    \[\bs\alpha_i=0\bs\alpha_1+\cdots+1\bs\alpha_i+\cdots+0\bs\alpha_s\]
+    于是向量组$\mathcal{B}$的每个向量都能由$\mathcal{A}$线性表出.同样,对于任意$1\leqslant i\leqslant r$, $\mathcal{A}$中的$\bs\alpha_i$也能由$\mathcal{B}$线性表出.现在考虑$r<j\leqslant s$.根据极大线性无关组的定义,$\bs\alpha_j$总是能由$\mathcal{B}$线性表出.因此$\mathcal{A}$中的每个向量都能由$\mathcal{B}$线性表出.综上, $\mathcal{A}\simeq\mathcal{B}$.
+\end{proof}
+从上面的定理可以很容易地得出下面的推论.
+\begin{lemma}
+    向量组的任意两个极大线性无关组等价.
+\end{lemma}
+\begin{theorem}
+    设向量组$\li{\bs\beta},r$可以由向量组$\li{\bs\alpha},s$线性表出.如果$r>s$,那么向量组$\li{\bs\beta},r$线性相关.
+\end{theorem}
+\begin{proof}
+    考虑$\bs\beta_i$由$\li{\bs\alpha},s$线性表出的表达式:
+    \[\bs\beta_i=a_{i1}\bs\alpha_1+\cdots+a_{is}\bs\alpha_s\]
+    其中$1\leqslant i\leqslant r$.考虑$\li k,r$使得
+    \[k_1\bs\beta_1+\cdots+k_r\bs\beta_r=\mbf0\]
+    即
+    \[\left(k_1a_{11}+\cdots+k_ra_{r1}\right)\bs\alpha_1+\cdots+\left(k_1a_{1s}+\cdots+k_ra_{rs}\right)\bs\alpha_s=\mbf0\]
+    为使得上式成立,考虑齐次线性方程组
+    \[\left\{\begin{array}{c}
+        k_1a_{11}+k_2a_{21}+\cdots+k_ra_{r1}=0\\
+        k_1a_{12}+k_2a_{22}+\cdots+k_ra_{r2}=0\\
+        \vdots\\
+        k_1a_{1s}+k_2a_{2s}+\cdots+k_ra_{rs}=0
+    \end{array}\right.\]
+    这是一个有$r$个未知数和$s$个方程的齐次线性方程组,由于$r>s$,所以它有非零解.取一组非零解,即可证得$\li{\bs\beta},r$线性相关.
+\end{proof}
+上述命题的逆否命题如下.
+\begin{lemma}
+    设向量组$\li{\bs\beta},r$可以由向量组$\li{\bs\alpha},s$线性表出.如果向量组$\li{\bs\beta},r$线性无关,那么$r\leqslant s$.
+\end{lemma}
+从上面的推论容易得到下面的定理.
+\begin{theorem}
+    向量组的两个极大线性无关组含有向量的数目相等.
+\end{theorem}
+这就引出了秩的概念.
 \begin{definition}[秩]
-    设$K^n$中的向量组$\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m$的一个极大线性无关组含$r$个向量,则称$r$为该向量组的秩,记为$r(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_m)$.
+    设$K^n$中的向量组$\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s$的一个极大线性无关组含$r$个向量,则称$r$为该向量组的秩,记为$r(\boldsymbol{\alpha}_1,\boldsymbol{\alpha}_2,\cdots,\boldsymbol{\alpha}_s)$.\\
+    此外,规定由零向量构成的向量组的秩为$0$.
 \end{definition}
+有关向量组的秩有一些重要的性质和定理.
+\begin{theorem}
+    向量组$\li{\bs\alpha},s$线性无关,当且仅当$\rank\left\{\li{\bs\alpha},s\right\}=s$.
+\end{theorem}
+\begin{proof}
+    易得.
+\end{proof}
+\begin{theorem}
+    设向量组$\li{\bs\beta},r$可以由向量组$\li{\bs\alpha},s$线性表出,则
+    \[\rank\left\{\li{\bs\beta},r\right\}\leqslant\rank\left\{\li{\bs\alpha},s\right\}\]
+\end{theorem}
+\begin{proof}
+    取它们的极大线性无关组$\li{\bs\beta},t$和$\li{\bs\alpha},m$.由前面的推论知$t\leqslant m$.所以
+    \[\rank\left\{\li{\bs\beta},r\right\}= t\leqslant m=\rank\left\{\li{\bs\alpha},s\right\}\]
+\end{proof}
+\begin{theorem}
+    设向量组$\mathcal{A},\mathcal{B}$满足$\rank\ \mathcal{A}=\rank\ \mathcal{B}$,且$\mathcal{A}$可以由$\mathcal{B}$线性表出,则$\mathcal{A}\simeq\mathcal{B}$.
+\end{theorem}
+\begin{proof}
+    设$\li{\bs\alpha},r$和$\li{\bs\beta},r$分别为$\mathcal{A}$和$\mathcal{B}$的极大线性无关组.由线性表出的传递性可得$\li{\bs\alpha},r$可以由$\li{\bs\beta},r$线性表出.任取$1\leqslant i\leqslant r$,则向量组$\li{\bs\alpha},r,\bs\beta_i$可以由向量组$\li{\bs\beta},r$线性表出.根据前面的引理可知向量组$\li{\bs\alpha},r,\bs\beta_i$线性相关,并且由于$\li{\bs\alpha},r$线性无关,所以$\bs\beta_i$可以由$\li{\bs\alpha},r$线性表出.因此$\mathcal{B}$中的每个向量都能由$\mathcal{A}$线性表出.综上, $\mathcal{A}\simeq\mathcal{B}$.
+\end{proof}
 \end{document}
