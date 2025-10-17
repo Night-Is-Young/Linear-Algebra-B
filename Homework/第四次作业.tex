@@ -1,0 +1,427 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第四次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+\section*{习题3.4}
+\begin{homework}[1(1)]
+    计算下面的矩阵的秩,并求出其列向量组的一个极大线性无关组.
+    \[\begin{bmatrix}
+        3&-2&0&1\\
+        -1&-3&2&0\\
+        2&0&-4&5\\
+        4&1&-2&1
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    对原矩阵做初等行变换:
+    \[\text{原矩阵}\longrightarrow\begin{bmatrix}
+        3&-2&0&1\\
+        0&-\frac{11}{3}&2&\frac{1}{3}\\
+        0&-6&0&5\\
+        0&1&6&-9
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        3&-2&0&1\\
+        0&-11&6&1\\
+        0&0&-\frac{36}{11}&\frac{49}{11}\\
+        0&0&\frac{72}{11}&-\frac{98}{11}
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        3&-2&0&1\\
+        0&-11&6&1\\
+        0&0&36&-49\\
+        0&0&0&0
+    \end{bmatrix}\]
+    于是原矩阵的秩为$3$,其列向量组的一个极大线性无关组为
+    \[\bs\alpha_1=\begin{bmatrix}
+        3\\-1\\2\\4
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        -2\\-3\\0\\1
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        0\\2\\-4\\-2
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[2(2)]
+    求下列向量组的秩及其一个极大线性无关组.
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\1\\4
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        -1\\-1\\-4
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        -3\\2\\3
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        1\\-1\\-2
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    注意到$\bs\alpha_2=-\bs\alpha_1$.考虑以$\bs\alpha_1,\bs\alpha_3,\bs\alpha_4$为列向量构成的矩阵:
+    \[\begin{bmatrix}
+        1&-3&1\\
+        1&2&-1\\
+        4&3&-2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&1\\
+        0&5&-2\\
+        0&15&-6
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&1\\
+        0&5&-2\\
+        0&0&0
+    \end{bmatrix}\]
+    于是向量组的秩为$2$,其一个极大线性无关组为$\bs\alpha_1,\bs\alpha_3$.
+\end{solution}
+\begin{homework}[2(3)]
+    求下列向量组的秩及其一个极大线性无关组.
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\-1\\2\\3
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        3\\-7\\8\\9
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        -1\\-3\\0\\-3
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        1\\-9\\6\\3
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    考虑以$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$为列向量构成的矩阵:
+    \[\begin{bmatrix}
+        1&3&-1&1\\
+        -1&-7&-3&-9\\
+        2&8&0&6\\
+        3&9&-3&3
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&3&-1&1\\
+        0&-4&-4&-8\\
+        0&2&2&4\\
+        0&0&0&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&3&-1&1\\
+        0&2&2&4\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+    于是向量组的秩为$2$,其一个极大线性无关组为$\bs\alpha_1,\bs\alpha_2$.
+\end{solution}
+\begin{homework}[3]
+    对于$\lambda$的不同值,求下面矩阵的秩.
+    \[\begin{bmatrix}
+        1&\lambda&-1&2\\
+        2&-1&\lambda&5\\
+        1&10&-6&1
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    对原矩阵做初等行变换:
+    \[\text{原矩阵}\longrightarrow\begin{bmatrix}
+        1&\lambda&-1&2\\
+        0&-1-2\lambda&\lambda+2&1\\
+        0&10-\lambda&-5&-1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&\lambda&-1&2\\
+        0&-1-2\lambda&\lambda+2&1\\
+        0&9-3\lambda&\lambda-3&0
+    \end{bmatrix}\]
+    只有最后一行有可能为零行,并且要求$\lambda=3$.于是
+    \[\text{原矩阵的秩}=\left\{\begin{array}{l}
+       2,\quad\lambda=3\\
+       3,\quad\lambda\neq3
+    \end{array}\right.\]
+\end{solution}
+\begin{homework}[4]
+    证明:一个矩阵的任意子矩阵的秩不会超过这个矩阵的秩.
+\end{homework}
+\begin{proof}
+    设矩阵$\mat{A}$的子矩阵$\mat{B}$,记$\rank\ \mat{A}=a,\rank\ \mat{B}=b$.于是$\mat{B}$至少有一个非零的$b$阶子式.由于$\mat{B}$是$\mat{A}$的子矩阵,于是按照相同的取法,$\mat{A}$中也至少存在一个非零的$b$阶子式,于是$a\geqslant b$.
+\end{proof}
+\begin{homework}[5]
+    求下列$\C$上的矩阵$\mat{A}$的秩及其列向量组的一个极大线性无关组.
+    \[\mat{A}=\begin{bmatrix}
+        1&\i^m&\i^{2m}&\i^{3m}&\i^{4m}\\
+        1&\i^{m+1}&\i^{2(m+1)}&\i^{3(m+1)}&\i^{4(m+1)}\\
+        1&\i^{m+2}&\i^{2(m+2)}&\i^{3(m+2)}&\i^{4(m+2)}\\
+        1&\i^{m+3}&\i^{2(m+3)}&\i^{3(m+3)}&\i^{4(m+3)}
+    \end{bmatrix}\]
+    其中$m$是正整数.
+\end{homework}
+\begin{solution}
+    考虑$\mat{A}$的前四列构成的矩阵的行列式:
+    \[\begin{vmatrix}
+        1&\i^m&\i^{2m}&\i^{3m}\\
+        1&\i^{m+1}&\i^{2(m+1)}&\i^{3(m+1)}\\
+        1&\i^{m+2}&\i^{2(m+2)}&\i^{3(m+2)}\\
+        1&\i^{m+3}&\i^{2(m+3)}&\i^{3(m+3)}
+    \end{vmatrix}=\prod_{0\leqslant i<j\leqslant 3}\left(\i^{m+j}-\i^{m+i}\right)=\i^m\prod_{0\leqslant i<j\leqslant 3}\left(\i^j-\i^i\right)\neq0\]
+    于是$\rank\ \mat{A}=4$,其列向量组的一个极大线性无关组为
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\1\\1\\1
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        \i^m\\\i^{m+1}\\\i^{m+2}\\\i^{m+3}
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        \i^{2m}\\\i^{2(m+1)}\\\i^{2(m+2)}\\\i^{2(m+3)}
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        \i^{3m}\\\i^{3(m+1)}\\\i^{3(m+2)}\\\i^{3(m+3)}
+    \end{bmatrix}\]
+\end{solution}
+\section*{习题3.5}
+\begin{homework}[2]
+    判断下列线性方程组有没有解,有多少解:
+    \[\left\{\begin{array}{c}
+        x_1+ax_2+a^2x_3+\cdots+a^{n-1}x_n=b_1\\
+        x_1+a^2x_2+a^4x_3+\cdots+a^{2(n-1)}x_n=b_2\\
+        \vdots\\
+        x_1+a^sx_2+a^{2s}x_3+\cdots+a^{s(n-1)}x_n=b_s
+    \end{array}\right.\]
+    其中$s<n,a\neq0$,且当$0<r<s$时$a^r\neq1$.
+\end{homework}
+\begin{solution}
+    考虑系数矩阵的前$s$列构成的矩阵:
+    \[\mat{A}=\begin{bmatrix}
+        1&a&\cdots&a^s\\
+        1&a^2&\cdots&a^{2s}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&a^s&\cdots&a^{s^2}
+    \end{bmatrix}\]
+    有
+    \[\det\mat{A}=\prod_{1\leqslant i<j\leqslant s}\left(a^j-a^i\right)\]
+    由题意,对任意$1\leqslant i<j\leqslant s$都有$a^j-a^i=a^i\left(a^{j-i}-1\right)\neq0$,于是$\det\mat{A}\neq0$.于是$\rank\mat{A}=s<n$,原方程组有解,并且有无穷多个解.
+\end{solution}
+\begin{homework}[4]
+    已知线性方程组
+    \[\left\{\begin{array}{c}
+        a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+        a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=b_2\\
+        \vdots\\
+        a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=b_n
+    \end{array}\right.\]
+    的系数矩阵$\mat{A}$的秩等于以下矩阵$\mat{B}$的秩:
+    \[\mat{B}=\begin{bmatrix}
+        a_{11}&a_{12}&\cdots&a_{1n}&b_1\\
+        a_{12}&a_{22}&\cdots&a_{2n}&b_2\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        a_{1n}&a_{2n}&\cdots&a_{nn}&b_n\\
+        b_1&b_2&\cdots&b_n&0
+    \end{bmatrix}\]
+    证明:上述线性方程组有解.
+\end{homework}
+\begin{proof}
+    考虑方程组的增广矩阵
+    \[\tilde{\mat{A}}=\begin{bmatrix}
+        a_{11}&a_{12}&\cdots&a_{1n}&b_1\\
+        a_{12}&a_{22}&\cdots&a_{2n}&b_2\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        a_{1n}&a_{2n}&\cdots&a_{nn}&b_n\\
+    \end{bmatrix}\]
+    于是$\mat{A}$是$\tilde{\mat{A}}$的子矩阵,而$\tilde{\mat{A}}$是$\mat{B}$的子矩阵.由$\tbf{习题3.4.4}$可知
+    \[\rank\ \mat{A}\leqslant\rank\ \tilde{\mat{A}}\leqslant\rank\ \mat{B}\]
+    由题意可知
+    \[\rank\ \mat{A}=\rank\ \mat{B}\]
+    于是
+    \[\rank\ \mat{A}=\rank\ \tilde{\mat{A}}\]
+    于是原方程有解.
+\end{proof}
+\section*{习题3.6}
+\begin{homework}[1(1)]
+    求下列齐次线性方程组的基础解系和解集:
+    \[\left\{\begin{array}{l}
+        x_1-3x_2+x_3-2x_4=0\\
+        -5x_1+x_2-2x_3+3x_4=0\\
+        -x_1-11x_2+2x_3-5x_4=0\\
+        3x_1+5x_2+x_4=0
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    对方程组的系数矩阵做初等行变换:
+    \[\begin{bmatrix}
+        1&-3&1&-2\\
+        -5&1&-2&3\\
+        -1&-11&2&-5\\
+        3&5&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&1&-2\\
+        0&-14&3&-7\\
+        0&-14&3&-7\\
+        0&14&-3&7
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&1&-2\\
+        0&-14&3&-7\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&\frac{5}{14}&-\frac12\\
+        0&1&-\frac{3}{14}&\frac12\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+    于是原方程的解为
+    \[\left\{\begin{array}{l}
+        x_1=-\frac{5}{14}x_3+\frac12x_4\\
+        x_2=\frac{3}{14}x_3-\frac12x_4
+    \end{array}\right.\]
+    自由变量为$x_3,x_4$.于是原方程组的基础解系为
+    \[\bs\eta_1=\begin{bmatrix}
+        -5&3&14&0
+    \end{bmatrix}^{\text{t}},\quad\bs\eta_2=\begin{bmatrix}
+        1&-1&0&2
+    \end{bmatrix}^\text{t}\]
+    其解集为
+    \[W=\left\{k_1\bs\eta_1+k_2\bs\eta_2:k_1,k_2\in K\right\}\]
+\end{solution}
+\begin{homework}[1(3)]
+    求下列齐次线性方程组的基础解系和解集:
+    \[\left\{\begin{array}{l}
+        2x_1-5x_2+x_3-3x_4=0\\
+        -3x_1+4x_2-2x_3+x_4=0\\
+        x_1+2x_2-x_3+3x_4=0\\
+        -2x_1+15x_2-6x_3+13x_4=0
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    对方程组的系数矩阵做初等行变换:
+    \[\begin{bmatrix}
+        2&-5&1&-3\\
+        -3&4&-2&1\\
+        1&2&-1&3\\
+        -2&15&-6&13
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&-1&3\\
+        0&1&-2&1\\
+        0&-9&3&-9\\
+        0&10&-5&10
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&1&-2\\
+        0&1&-2&1\\
+        0&3&-1&3\\
+        0&2&-1&2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&1\\
+        0&1&0&1\\
+        0&0&1&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+    \[\left\{\begin{array}{l}
+        x_1=-x_4\\
+        x_2=-x_4\\
+        x_3=0
+    \end{array}\right.\]
+    自由变量为$x_4$,于是原方程组的基础解系为
+    \[\bs\eta=\begin{bmatrix}
+        1&1&0&-1
+    \end{bmatrix}^{\text{t}}\]
+    其解集为
+    \[W=\left\{k\bs\eta:k\in K\right\}\]
+\end{solution}
+\begin{homework}[2]
+    证明:设$\li{\bs\eta},t$是$n$元齐次线性方程组的一个基础解系,则与$\li{\bs\eta},t$等价的线性无关向量组也是该方程组的一个基础解系.
+\end{homework}
+\begin{proof}
+    设$\li{\bs\zeta},t$是与$\li{\bs\eta},t$等价的线性无关向量组,则根据等价的定义可知存在一组数$k_{11},\cdots,k_{tt}$使得对任意$1\leqslant i\leqslant t$都有
+    \[\bs\eta_i=\sum_{j=1}^{t}k_{ij}\bs\zeta_j\]
+    对于该方程组的任意一个解$\bs{\alpha}$,都有
+    \[\alpha=a_1\bs\eta_1+\cdots+a_t\bs\eta_t=\sum_{j=1}^{t}\left[\left(\sum_{i=1}^{t}a_ik_{ij}\right)\bs\zeta_j\right]\]
+    于是$\alpha$可以用$\li{\bs\zeta},t$线性表示.又由于$\li{\bs\zeta},t$线性无关,于是$\li{\bs\zeta},t$是该方程组的一个基础解系.
+\end{proof}
+\begin{homework}[3]
+    证明:设$n$元齐次方程组的系数矩阵的秩为$r(r<n)$,则它的任意$n-r$个线性无关的解都是它的一个基础解系.
+\end{homework}
+\begin{proof}
+    根据本节书中的定理,上述线性方程组的每个基础解系所含解的个数均为$n-r$.考虑某个基础解系$\bs\eta_1,\cdots,\bs\eta_{n-r}$以及题中所取的$n-r$个线性无关的解$\bs\zeta_1,\cdots,\bs\zeta_{n-r}$.由于$\bs\zeta_1,\cdots,\bs\zeta_{n-r}$是该方程组的解,于是它们可以用$\bs\eta_1,\cdots,\bs\eta_{n-r}$线性表出.又因为这两个向量组的秩相等,于是它们等价,因而根据上面的\tbf{2.}可得$\bs\zeta_1,\cdots,\bs\zeta_{n-r}$也是该方程组的一个基础解系.
+\end{proof}
+\section*{习题3.7}
+\begin{homework}[1(1)]
+    求下列非齐次线性方程组的解集:
+    \[\left\{\begin{array}{l}
+        x_1-5x_2+2x_3-3x_4=11\\
+        -3x_1+x_2-4x_3+2x_4=-5\\
+        -x_1-9x_2-4x_4=17\\
+        5x_1+3x_2+6x_3-x_4=-1
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    对方程组的增广矩阵做初等行变换:
+    \[\begin{bmatrix}
+        1&-5&2&-3&11\\
+        -3&1&-4&2&-5\\
+        -1&-9&0&-4&17\\
+        5&3&6&-1&-1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-5&2&-3&11\\
+        0&-14&2&-7&28\\
+        0&-14&2&-7&28\\
+        0&-28&-4&14&-56
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&\frac97&-\frac12&1\\
+        0&-14&2&-7&28\\
+        0&0&0&0&0\\
+        0&0&0&0&0
+    \end{bmatrix}\]
+    于是该方程的特解为
+    \[\bs\gamma_0=\begin{bmatrix}
+        1&-2&0&0
+    \end{bmatrix}^{\text{t}}\]
+    基础解系为
+    \[\bs\eta_1=\begin{bmatrix}
+        -9&1&7&0
+    \end{bmatrix}^{\text{t}},\quad\bs\eta_2=\begin{bmatrix}
+        1&-1&0&2
+    \end{bmatrix}^{\text{t}}\]
+    于是该方程组的解集为
+    \[W=\left\{\bs\gamma_0+k_1\bs\eta_1+k_2\bs\eta_2:k_1,k_2\in K\right\}\]
+\end{solution}
+\begin{homework}[4]
+    证明:如果$\bs\gamma_0$是$n$元非齐次线性方程组的一个特解, $\li{\bs\eta},t$是导出组的一个基础解系.令
+    \[\bs\gamma_i=\bs\gamma_0+\bs\eta_i,\quad i=1,2,\cdots,t\]
+    则方程的任意解$\bs\gamma$都可以表示为
+    \[\bs\gamma=u_0\bs\gamma_0+\cdots+u_t\bs\gamma_t\]
+    其中$u_0+\cdots+u_t=1$.
+\end{homework}
+\begin{proof}
+    对方程的任意解$\bs\gamma$都有
+    \[\begin{aligned}
+        \bs\gamma
+        &= \bs\gamma_0+k_1\bs\eta_1+\cdots+k_t\bs\eta_t \\
+        &= \dfrac{1+k_1+\cdots+k_t}{1+k_1+\cdots+k_t}\bs\gamma_0+k_1\bs\eta_1+\cdots+k_t\bs\eta_t \\
+        &= \dfrac{1}{1+k_1+\cdots+k_t}\bs\gamma_0+\dfrac{k_1}{1+k_1+\cdots+k_t}\left(\bs\eta_1+\bs\gamma_0\right)+\cdots+\dfrac{k_t}{1+k_1+\cdots+k_t}\left(\bs\eta_t+\bs\gamma_0\right) \\
+        &= \dfrac{1}{1+k_1+\cdots+k_t}\bs\gamma_0+\dfrac{k_1}{1+k_1+\cdots+k_t}\bs\gamma_1+\cdots+\dfrac{k_t}{1+k_1+\cdots+k_t}\bs\gamma_t \\
+        &= u_0\bs\gamma_0+\cdots+u_t\bs\gamma_t
+    \end{aligned}\]
+    于是命题得证.
+\end{proof}
+\section*{习题3.8}
+\begin{homework}[1]
+    设$r<n$,令
+    \[U=\left\{\begin{bmatrix}
+        a_1&a_2&\cdots&a_r&0&\cdots&0
+    \end{bmatrix}^{\text{t}}:a_i\in K,i=1,2,\cdots,r\right\}\]
+    说明$U$是$K^n$的子空间,并给出$U$的一个基和维数.
+\end{homework}
+\begin{solution}
+    考虑向量组$\bs\alpha_1,\cdots,\bs\alpha_r$,其中$\bs\alpha_i$的第$i$个分量为$1$,其余分量均为$0$.不难看出$\bs\alpha_1,\cdots,\bs\alpha_r$线性无关,并且对任意$\bs\alpha\in U$,都有
+    \[\bs\alpha=a_1\bs\alpha_1+\cdots+a_r\bs\alpha_r\]
+    于是$\bs\alpha_1,\cdots,\bs\alpha_r$是$U$的一个基,并且$\dim U=r$.
+\end{solution}
+\begin{homework}[4]
+    求下述矩阵的列空间的一个基和维数:
+    \[\begin{bmatrix}
+        1&3&-2&-7\\
+        0&-1&-3&4\\
+        5&2&0&1\\
+        1&4&1&-11
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    对原矩阵做初等行变换:
+    \[\text{原矩阵}\longrightarrow\begin{bmatrix}
+        1&3&-2&-7\\
+        0&-1&-3&4\\
+        0&-13&10&36\\
+        0&1&3&-4
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&-2&-7\\
+        0&-1&-3&4\\
+        0&0&49&-16\\
+        0&0&0&0
+    \end{bmatrix}\]
+    于是列空间的基为前三个列向量,维数为$3$.
+\end{solution}
+\end{document}
