@@ -1,0 +1,80 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2023-24学年第一学期线性代数B期中试题}
+\end{center}
+\begin{homework}[1(10')]
+    判断下面的方程组是否有解.如果有解,给出方程组的全部解;如果无解,请给出理由.
+    \[\left\{\begin{array}{l}
+        x_1+x_3=1\\
+        3x_1+x_2+2x_3+x_4=2\\
+        x_1+2x_2-x_3+2x_4=2\\
+        -x_2+x_3-x_4=0
+    \end{array}\right.\]
+\end{homework}
+\begin{homework}[2(10')]
+    已知线性方程组
+    \[\left\{\begin{array}{c}
+        \left(a_1+b\right)x_1+a_2x_2+\cdots+a_nx_n=0\\
+        a_1x_1+\left(a_2+b\right)x_2+\cdots+a_nx_n=0\\
+        \cdots\\
+        a_1x_1+a_2x_2+\cdots+\left(a_n+b\right)x_n=0
+    \end{array}\right.\]
+    其中$\displaystyle\sum_{i=1}^{n}a_i\neq0$.
+    \begin{enumerate}[label=\tbf{(\arabic*)},topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 计算上述方程组的系数矩阵的行列式.
+        \item 讨论$\li a,n,b$满足何种条件时\tbf{a.}方程仅有零解; \tbf{b.}方程组有非零解.
+        \item 当方程组有非零解时,求出方程的一个基础解系.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[3(15')]
+    计算下面的行列式:
+    求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&0&1&\cdots&n-3&n-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        n-2&n-3&n-4&\cdots&0&1\\
+        n-1&n-2&n-3&\cdots&1&0
+    \end{vmatrix}\]
+\end{homework}
+\begin{homework}[4(13')]
+    求下面行列式中所有元素的代数余子式之和:
+    \[\begin{bmatrix}
+        1&0&0&0&0\\
+        1&1&0&0&0\\
+        1&1&1&0&0\\
+        1&1&1&1&0\\
+        1&1&1&1&1
+    \end{bmatrix}\]
+\end{homework}
+\begin{homework}[5(10')]
+    已知向量组
+    \[\bs\alpha_1=\begin{bmatrix}
+        3\\4\\-2
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        2\\-5\\0
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        5\\0\\-1
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        3\\3\\-3
+    \end{bmatrix}\]
+    求该向量组的一个极大线性无关组.
+\end{homework}
+\begin{homework}[6(12')]
+    求下列$n$级方阵的秩:
+    \[\begin{bmatrix}
+        x&a&\cdots&a\\
+        a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a&a&\cdots&x
+    \end{bmatrix}\]
+\end{homework}
+\begin{homework}[7(10')]
+    给定$n$个两两不同的数$\li a,n$.设$\li b,n$为任意的$n$个数,证明:存在唯一的次数不超过$n-1$的多项式$f(x)$使得$f\left(a_i\right)=b_i$成立.
+\end{homework}
+\begin{homework}[8(10')]
+    设$5$级方阵$\mat{M}$满足$\det\mat{M}\neq0$.试证明:存在一个$5$级上三角矩阵$\mat{B}$满足$\det\mat{B}\neq0$使得$\mat{B}\mat{M}$有如下性质:对于任一$1\leqslant i\leqslant 5$,都有且仅有$\mat{B}\mat{M}$的一行满足该行的前$i-1$个位置为$0$,第$i$个位置不为$0$.
+\end{homework}
+\end{document}
