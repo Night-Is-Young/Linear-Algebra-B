@@ -73,12 +73,38 @@
             \vdots&\ddots&\vdots\\
             0&\cdots&b\\
         \end{vmatrix}=\left(\displaystyle\sum_{i=1}^{n}a_i+b\right)b^{n-1}\]
-        \item 齐次方程仅有零解要求$\det\mat{A}\neq0$,于是$\displaystyle\sum_{i=1}^{n}a_i+b\neq0$且$b\neq0$.于是$a_1+\cdots+a_n+b\neq0$且$b\neq$时原方程仅有零解;$a_1+\cdots+a_n+b=0$或$b=0$时原方程有非零解.
+        \item 齐次方程仅有零解要求$\det\mat{A}\neq0$,于是$\displaystyle\sum_{i=1}^{n}a_i+b\neq0$且$b\neq0$.于是$a_1+\cdots+a_n+b\neq0$且$b\neq0$时原方程仅有零解; $a_1+\cdots+a_n+b=0$或$b=0$时原方程有非零解.
+        \item 当$b=0$时,对系数矩阵做初等行变换可得
+        \[\mat{A}\longrightarrow\begin{bmatrix}
+            a_1&a_2&\cdots&a_n\\
+            0&0&\cdots&0\\
+            \vdots&\vdots&\ddots&\vdots\\
+            0&0&\cdots&0
+        \end{bmatrix}\]
+        设$a_i$是$\li a,n$中第一个不为零的元素,则方程组的解为
+        \[x_i=-\dfrac{a_1}{a_i}x_1-\cdots-\dfrac{a_{i-1}}{a_i}x_{i-1}-\dfrac{a_{i+1}}{a_i}x_{i+1}-\cdots-\dfrac{a_n}{a_i}x_n\]
+        其中除$x_i$外均为自由变量.于是方程组的一个基础解系为$\bs\eta_1,\cdots,\bs\eta_{i-1},\bs\eta_{i+1},\cdots,\bs\eta_n$,其中$\bs\eta_{k}$的第$k$个分量为$1$,第$i$个分量为$-\dfrac{a_1}{a_i}$.
+        当$b\neq0$且$\displaystyle\sum_{i=1}^{n}a_i+b=0$时,对系数矩阵做初等行变换可得
+        \[\mat{A}\longrightarrow\begin{bmatrix}
+            b&0&0&\cdots&-b\\
+            0&b&0&\cdots&-b\\
+            0&0&b&\cdots&-b\\
+            \vdots&\vdots&\vdots&\ddots&\vdots\\
+            a_1&a_2&a_3&\cdots&a_n+b
+        \end{bmatrix}\longrightarrow\begin{bmatrix}
+            1&0&0&\cdots&-1\\
+            0&1&0&\cdots&-1\\
+            0&0&1&\cdots&-1\\
+            \vdots&\vdots&\vdots&\ddots&\vdots\\
+            0&0&0&\cdots&0
+        \end{bmatrix}\]
+        于是方程的解为$x_i=-x_n(i=1,\cdots,n-1)$,方程组的基础解系为$\bs\eta=\begin{bmatrix}
+            1&1&\cdots&1
+        \end{bmatrix}^{\text{t}}$.
     \end{enumerate}
 \end{solution}
 \begin{homework}[3(15')]
     计算下面的行列式:
-    求下面行列式的值:
     \[A_n=\begin{vmatrix}
         0&1&2&\cdots&n-2&n-1\\
         1&0&1&\cdots&n-3&n-2\\
@@ -87,16 +113,47 @@
         n-1&n-2&n-3&\cdots&1&0
     \end{vmatrix}\]
 \end{homework}
+\begin{solution}
+    将第二行及以后的行减去第一行可得
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&-1&-1&\cdots&-1&-1\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&1&1&\cdots&-1&-1\\
+        1&1&1&\cdots&1&-1
+    \end{vmatrix}\]
+    将第二列及以后的列减去第一列可得
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&-2&-2&\cdots&-2&-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&0&0&\cdots&-2&-2\\
+        1&0&0&\cdots&0&-2
+    \end{vmatrix}=\begin{vmatrix}
+        \dfrac{n-1}{2}&1&2&\cdots&n-2&n-1\\
+        0&-2&-2&\cdots&-2&-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&-2&-2\\
+        0&0&0&\cdots&0&-2
+    \end{vmatrix}=\dfrac{n-1}{2}(-2)^{n-1}\]
+    于是
+    \[A_n=(-1)^{n-1}(n-1)2^{n-2}\]
+\end{solution}
 \begin{homework}[4(13')]
     求下面行列式中所有元素的代数余子式之和:
-    \[\begin{bmatrix}
+    \[\begin{vmatrix}
         1&0&0&0&0\\
         1&1&0&0&0\\
         1&1&1&0&0\\
         1&1&1&1&0\\
         1&1&1&1&1
-    \end{bmatrix}\]
+    \end{vmatrix}\]
 \end{homework}
+\begin{solution}
+    记行列式对应的矩阵为$\mat{A}$,由于$\mat{A}$是下三角矩阵,于是$\det\mat{A}=1$.\\
+    于是有
+    \[\sum_{1\leqslant i,j\leqslant 5}A_{ij}=\sum_{j=1}^{5}a_{5j}A_{5j}+\sum_{i=1}^{4}\sum_{j=1}^{5}a_{5j}A_{ij}=\det\mat{A}+0=1\]
+\end{solution}
 \begin{homework}[5(10')]
     已知向量组
     \[\bs\alpha_1=\begin{bmatrix}
@@ -110,6 +167,21 @@
     \end{bmatrix}\]
     求该向量组的一个极大线性无关组.
 \end{homework}
+\begin{solution}
+    首先有
+    \[\begin{vmatrix}
+        3&2\\4&-5
+    \end{vmatrix}=-23\neq0\]
+    于是$\bs\alpha_1,\bs\alpha_2$线性无关.然后有
+    \[\begin{vmatrix}
+        3&2&5\\4&-5&0\\-2&0&-1
+    \end{vmatrix}=\begin{vmatrix}
+        -7&2&5\\4&-5&0\\0&0&-1
+    \end{vmatrix}=(-1)\cdot\begin{vmatrix}
+        -7&2\\4&-5
+    \end{vmatrix}=27\neq0\]
+    于是$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$线性无关.考虑由$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$构成的矩阵,其行秩与列秩最大为$3$,于是原向量组的一个极大线性无关组为$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$.
+\end{solution}
 \begin{homework}[6(12')]
     求下列$n$级方阵的秩:
     \[\begin{bmatrix}
@@ -119,6 +191,35 @@
         a&a&\cdots&x
     \end{bmatrix}\]
 \end{homework}
+\begin{solution}
+    记上述矩阵为$\mat{A}_n(x)$,注意到$\mat{A}_n$的每一行元素之和均为$x+(n-1)a$,于是有
+    \[\begin{aligned}
+        \det\mat{A}(x)
+    &=\begin{vmatrix}
+        x+(n-1)a&a&\cdots&a\\
+        x+(n-1)a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        x+(n-1)a&a&\cdots&x
+    \end{vmatrix}
+    =\left[x+(n-1)a\right]\begin{vmatrix}
+        1&a&\cdots&a\\
+        1&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&a&\cdots&x
+    \end{vmatrix}\\
+    &=\left[x+(n-1)a\right]\begin{vmatrix}
+        1&a&\cdots&a\\
+        0&x-a&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&x-a
+    \end{vmatrix}=\left[x+(n-1)a\right](x-a)^{n-1}
+    \end{aligned}\]
+    当$x\neq a$且$x+(n-1)a\neq0$时$\det\mat{A}_n(x)\neq0$,即$\rank\ \mat{A}_n(x)=n$.\\
+    当$x=a$时注意到每一列均相同.此时如果$a=0$则$\rank\ \mat{A}_n(x)=0$,否则$\rank\ \mat{A}_n(x)=1$.\\
+    当$x=(1-n)a$时(这里$x=a=0$已经讨论过)考虑$\mat{A}_n(x)$的$(1,1)$元的余子式,恰为$\mat{A}_{n-1}(x)$.于是
+    \[A_{11}=\mat{A}_{n-1}(x)=\left[x-(n-2)a\right](x-a)^{n-2}=a(-na)^{n-2}\neq0\]
+    于是$\rank\mat{A}_n(x)=n-1$.
+\end{solution}
 \begin{homework}[7(10')]
     给定$n$个两两不同的数$\li a,n$.设$\li b,n$为任意的$n$个数,证明:存在唯一的次数不超过$n-1$的多项式$f(x)$使得$f\left(a_i\right)=b_i$成立.
 \end{homework}
