@@ -218,11 +218,36 @@
     当$x=a$时注意到每一列均相同.此时如果$a=0$则$\rank\ \mat{A}_n(x)=0$,否则$\rank\ \mat{A}_n(x)=1$.\\
     当$x=(1-n)a$时(这里$x=a=0$已经讨论过)考虑$\mat{A}_n(x)$的$(1,1)$元的余子式,恰为$\mat{A}_{n-1}(x)$.于是
     \[A_{11}=\mat{A}_{n-1}(x)=\left[x-(n-2)a\right](x-a)^{n-2}=a(-na)^{n-2}\neq0\]
-    于是$\rank\mat{A}_n(x)=n-1$.
+    于是$\rank\mat{A}_n(x)=n-1$.于是总结如下:
+    \[\rank\ \mat{A}_n(x)=\left\{\begin{array}{l}
+        n,\quad x\neq a\text{且}x\neq(1-n)a\\
+        n-1, \quad x=(1-n)a\text{且}a\neq0\\
+        1,\quad x=a\text{且}a\neq0\\
+         0,\quad x=a=0 
+    \end{array}\right.\]
 \end{solution}
 \begin{homework}[7(10')]
     给定$n$个两两不同的数$\li a,n$.设$\li b,n$为任意的$n$个数,证明:存在唯一的次数不超过$n-1$的多项式$f(x)$使得$f\left(a_i\right)=b_i$成立.
 \end{homework}
+\begin{proof}
+    考虑线性方程组
+    \[\left\{\begin{array}{c}
+        c_0+c_1a_1+c_2a_1^2+\cdots+c_{n-1}a_1^{n-1}=b_1\\
+        c_0+c_1a_2+c_2a_2^2+\cdots+c_{n-1} a_2^{n-1}=b_2\\
+        \cdots\\
+        c_0+c_1a_n+c_2a_n^2+\cdots+c_{n-1} a_n^{n-1}=b_n
+    \end{array}\right.\]
+    这一方程组的系数矩阵的行列式为
+    \[\begin{vmatrix}
+        1&a_1&a_1^2&\cdots&a_1^{n-1}\\
+        1&a_2&a_2^2&\cdots&a_2^{n-1}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        1&a_n&a_n^2&\cdots&a_n^{n-1}
+    \end{vmatrix}=\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\neq0\]
+    于是原方程组有唯一解,因此存在唯一的多项式
+    \[f(x)=c_0+c_1x+\cdots+c_nx^{n-1}\]
+    使其满足题意.
+\end{proof}
 \begin{homework}[8(10')]
     设$5$级方阵$\mat{M}$满足$\det\mat{M}\neq0$.试证明:存在一个$5$级上三角矩阵$\mat{B}$满足$\det\mat{B}\neq0$使得$\mat{B}\mat{M}$有如下性质:对于任一$1\leqslant i\leqslant 5$,都有且仅有$\mat{B}\mat{M}$的一行满足该行的前$i-1$个位置为$0$,第$i$个位置不为$0$.
 \end{homework}

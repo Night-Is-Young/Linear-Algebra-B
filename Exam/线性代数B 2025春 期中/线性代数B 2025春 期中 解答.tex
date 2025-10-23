@@ -1,0 +1,324 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2024-25学年第二学期线性代数B期中试题}
+\end{center}
+\begin{homework}[1]
+    求下列线性方程组的导出组的基础解系,方程组的特解和通解.
+    \[\left\{\begin{array}{l}
+        x_1+2x_2-x_3-x_4=0\\
+        x_1+2x_2+x_4=4\\
+        -x_1-2x_2+2x_3+4x_4=5
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    对方程组的增广矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        1&2&-1&-1&0\\
+        1&2&0&1&4\\
+        -1&-2&2&4&5
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&-1&-1&0\\
+        0&0&1&2&4\\
+        0&0&1&3&5
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&0&0&3\\
+        0&0&1&0&2\\
+        0&0&0&1&1
+    \end{bmatrix}\]
+    于是方程组的导出组的基础解系为
+    \[\bs\eta=\begin{bmatrix}
+        -2&1&0&0
+    \end{bmatrix}^{\text{t}}\]
+    特解为
+    \[\bs\gamma=\begin{bmatrix}
+        1&1&2&1
+    \end{bmatrix}\]
+    方程组的解集为
+    \[W=\left\{\bs\gamma+k\bs\eta:k\in K\right\}\]
+\end{solution}
+\begin{homework}[2]
+    求方程组
+    \[\left\{\begin{array}{l}
+        (\lambda-2)x_1+2x_2=0\\
+        2x_1+(\lambda-3)x_2+2x_3=1\\
+        2x_2+(\lambda-4)x_3=-3
+    \end{array}\right.\]
+    的解集与$\lambda$的关系.
+\end{homework}
+\begin{solution}
+    考虑方程组的系数矩阵$\mat{A}$的行列式:
+    \[\begin{aligned}
+        \det\mat{A}
+        &=\begin{vmatrix}
+            \lambda-2&2&0\\
+            2&\lambda-3&2\\
+            0&2&\lambda-4
+        \end{vmatrix}=(\lambda-2)\begin{vmatrix}
+            \lambda-3&2\\2&\lambda-4
+        \end{vmatrix}-2\begin{vmatrix}
+            2&2\\0&\lambda-4
+        \end{vmatrix}\\
+        &= \left(\lambda-2\right)\left(\lambda^2-7\lambda+8\right)-2\left(2\lambda-8\right) \\
+        &= \lambda^3-9\lambda^2+18\lambda \\
+        &= \lambda(\lambda-3)(\lambda-6)
+    \end{aligned}\]
+    于是当$\lambda=0,3,6$时方程组有无穷多解,否则方程组有唯一解.当$\lambda\neq0,3,6$时,方程组的解为
+    \[x_1=\dfrac{-2(\lambda+2)}{\lambda(\lambda-3)(\lambda-6)},\quad x_2=\dfrac{(\lambda+2)(\lambda-2)}{\lambda(\lambda-3)(\lambda-6)},\quad x_3=\dfrac{-3\lambda^2+13\lambda+2}{\lambda(\lambda-3)(\lambda-6)}\]
+\end{solution}
+\begin{homework}[3]
+    计算下面的行列式:
+    \[\begin{vmatrix}
+        5&7&-2&4\\
+        1&1&0&-5\\
+        -1&3&1&3\\
+        2&-4&-1&-3
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    记题中的行列式为$A$,于是
+    \[A=\begin{vmatrix}
+        3&13&0&10\\
+        1&1&0&-5\\
+        -1&3&1&3\\
+        1&-1&0&0
+    \end{vmatrix}=1\cdot(-1)^{3+3}\begin{vmatrix}
+        3&13&10\\
+        1&1&-5\\
+        1&-1&0
+    \end{vmatrix}=\begin{vmatrix}
+        3&16&10\\
+        1&2&-5\\
+        1&0&0
+    \end{vmatrix}=1\cdot(-1)^{1+3}\begin{vmatrix}
+        16&10\\2&-5
+    \end{vmatrix}=-100\]
+\end{solution}
+\begin{homework}[4]
+    现有以下一向量组:
+    \[\bs\alpha_1=\begin{bmatrix}
+        2\\3\\4\\7
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        5\\-1\\3\\2
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        -3\\4\\1\\5
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        0\\-1\\7\\2
+    \end{bmatrix},\quad\bs\alpha_5=\begin{bmatrix}
+        6\\2\\1\\5
+    \end{bmatrix}\]
+    \begin{enumerate}[label=\tbf{(\arabic*)},topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+        \item 证明:向量组$\bs\alpha_1,\bs\alpha_2$线性无关.
+        \item 求上述向量组的所有包含$\bs\alpha_1,\bs\alpha_2$的极大线性无关组.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}[label=\tbf{(\arabic*)},topsep=0pt,parsep=0pt,itemsep=0pt,partopsep=0pt]
+    \item 考虑$\bs\alpha_1,\bs\alpha_2$的前两个分量构成的矩阵的行列式:
+    \[\begin{vmatrix}
+        2&5\\3&-1
+    \end{vmatrix}=-17\neq0\]
+    于是向量$\begin{bmatrix}
+        2\\3
+    \end{bmatrix},\begin{bmatrix}
+        5\\-1
+    \end{bmatrix}$线性无关,因而它们的延伸组$\bs\alpha_1,\bs\alpha_2$也线性无关.
+    \item 观察可得$\bs\alpha_3=\bs\alpha_1-\bs\alpha_2$,因此$\bs\alpha_3$不包含于所求的组中.考虑$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4$的前三个分量构成的矩阵的行列式
+    \[\begin{vmatrix}
+        2&5&0\\
+        3&-1&-1\\
+        4&3&7
+    \end{vmatrix}=2\begin{vmatrix}
+        -1&-1\\3&7
+    \end{vmatrix}-5\begin{vmatrix}
+        3&-1\\4&7
+    \end{vmatrix}=-135\neq0\]
+    于是$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4$线性无关.考虑$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$构成的矩阵的行列式：
+    \[\begin{aligned}
+        \begin{vmatrix}
+        2&5&0&6\\
+        3&-1&-1&2\\
+        4&3&7&1\\
+        7&2&2&5
+    \end{vmatrix}
+    &=\begin{vmatrix}
+        2&5&-5&6\\
+        3&-1&0&2\\
+        4&3&4&1\\
+        7&2&0&5
+    \end{vmatrix}=\begin{vmatrix}
+        0&1/2&-5&15\\
+        2&-1&0&2\\
+        0&3&4&1\\
+        0&2&0&5
+    \end{vmatrix}=-\begin{vmatrix}
+        1&-10&30\\
+        3&4&1\\
+        2&0&5
+    \end{vmatrix}\\
+    &=-\begin{vmatrix}
+        1&-10&30\\
+        0&34&-89\\
+        0&20&-55
+    \end{vmatrix}=-\begin{vmatrix}
+        34&-89\\20&-55
+    \end{vmatrix}=90\neq0
+    \end{aligned}\]
+    于是上述向量组包含$\bs\alpha_1,\bs\alpha_2$的极大线性无关组为$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$。
+\end{enumerate}
+\end{solution}
+\begin{homework}[5]
+    现有矩阵
+    \[\mat{A}=\begin{bmatrix}
+        3&2&0&5&0\\
+        3&-2&3&6&-1\\
+        1&6&-4&-1&4\\
+        2&0&1&5&-3
+    \end{bmatrix}\]
+    写出$\mat{A}$的一个子式,使得它为$\mat{A}$的最高阶非零子式,并证明你的结论.
+\end{homework}
+\begin{solution}
+    对$\mat{A}$做初等行变换可得
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        1&6&-4&-1&4\\
+        0&-16&12&8&-12\\
+        0&-20&15&9&-13\\
+        0&-12&9&7&-11
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&6&-4&-1&4\\
+        0&-4&3&2&-3\\
+        0&0&0&-1&2\\
+        0&0&0&1&-2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&6&-4&-1&4\\
+        0&-4&3&2&-3\\
+        0&0&0&-1&2\\
+        0&0&0&0&0
+    \end{bmatrix}\]
+    于是$\rank\ \mat{A}=3$,即阶数最高的子式的阶数为$3$.由行变换的结果可得$\mat{A}$的$1,2,4$列列向量构成列向量组的极大线性无关组,因此$\mat{A}$的一个最高阶非零子式为
+    \[\begin{bmatrix}
+        3&2&5\\
+        3&-2&6\\
+        1&6&-1
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[6]
+    已知某$n$元齐次线性方程组的系数矩阵$\mat{A}$满足$\det\mat{A}=0$,其$(2,3)$元的代数余子式$A_{23}\neq0$.求该线性方程组的解集.
+\end{homework}
+\begin{solution}
+    由于$\det\mat{A}=0$且$\mat{A}$有$n-1$阶非零子式$A_{23}$,于是$\rank\ \mat{A}=n-1$,因此解集$W$的维数
+    \[\dim{W}=n-\rank\ \mat{A}=1\]
+    并且当$i=2$时有
+    \[\sum_{j=1}^{n}a_{ij}A_{2j}=\sum_{j=1}^{n}a_{2j}A_{2j}=\det\mat{A}=0\]
+    当$i\neq2$时有
+    \[\sum_{j=1}^{n}a_{ij}A_{2j}=0\]
+    于是方程组的基础解系为
+    \[\bs\eta=\begin{bmatrix}
+        A_{21}&A_{22}&A_{23}&\cdots&A_{2n}
+    \end{bmatrix}^{\text{t}}\]
+    由于$A_{23}\neq0$,因此$\bs\eta\neq\mbf{0}$.于是方程组的解集$W$为
+    \[W=\left\{k\bs\eta:k\in K\right\}\]
+\end{solution}
+\begin{homework}[7]
+    设$n>100$,向量组$\li{\bs\alpha},n$线性无关,则向量组$\bs\alpha_1+\bs\alpha_2,\cdots,\bs\alpha_{n-1}+\bs\alpha_n,\bs\alpha_n+\bs\alpha_1$是否线性无关?证明你的结论.
+\end{homework}
+\begin{proof}
+    假定向量组$\bs\alpha_1+\bs\alpha_2,\cdots,\bs\alpha_{n-1}+\bs\alpha_n,\bs\alpha_n+\bs\alpha_1$线性相关,于是存在非零的$k_1,\cdots,k_n$使得
+    \[k_1\left(\bs\alpha_1+\bs\alpha_2\right)+\cdots+k_{n-1}\left(\bs\alpha_{n-1}+\bs\alpha_n\right)+k_n\left(\bs\alpha_n+\bs\alpha_1\right)=\mbf0\]
+    即
+    \[\left(k_n+k_1\right)\bs\alpha_1+\left(k_1+k_2\right)\bs\alpha_2+\cdots+\left(k_{n-1}+k_n\right)\bs\alpha_n=\mbf0\]
+    由于向量组$\li{\bs\alpha},n$线性无关,于是要求
+    \[k_n+k_1=k_1+k_2=\cdots=k_{n-1}+k_n=0\]
+    这一齐次线性方程组的系数矩阵$\mat{A}_n$的行列式为
+    \[\det\mat{A}_n=\begin{vmatrix}
+        1&0&\cdots&1\\
+        1&1&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&1
+    \end{vmatrix}=1\cdot(-1)^{1+1}\begin{vmatrix}
+        1&0&\cdots&0\\
+        1&1&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&1
+    \end{vmatrix}+1\cdot(-1)^{1+n}\begin{vmatrix}
+        1&1&\cdots&0\\
+        0&1&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&1
+    \end{vmatrix}\]
+    后面两个行列式分别为下三角和上三角的,并且对角线元素均为$1$,于是
+    \[\det\mat{A}_n=\left\{\begin{array}{l}
+        2,\quad n\text{为奇数}\\
+        0,\quad n\text{为偶数}
+    \end{array}\right.\]
+    于是当$n$为偶数时方程组有非零解,即题设向量组线性相关,否则题设向量组线性无关.
+\end{proof}
+\begin{homework}[8]
+    现有矩阵
+    \[\mat{A}=\begin{bmatrix}
+        3&a&-1&4\\
+        1&-1&1&1\\
+        5&3&b&6
+    \end{bmatrix}\]
+    求$a,b$使得$\rank\ \mat{A}=2$.
+\end{homework}
+\begin{solution}
+    对$\mat{A}$做初等行变换可得
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        1&-1&1&1\\
+        0&8&b-5&1\\
+        0&a+3&-4&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-1&1&1\\
+        0&8&b-5&1\\
+        0&0&-4-\frac{(a+3)(b-5)}{8}&1-\frac{a+3}{8}
+    \end{bmatrix}\]
+    要求$\rank\ \mat{A}=2$,则须令
+    \[-4-\frac{(a+3)(b-5)}{8}=1-\frac{a+3}{8}=0\]
+    解得$a=5,b=1$.
+\end{solution}
+\begin{homework}[9]
+    求以下行列式的值:
+    \[\begin{vmatrix}
+        x_1+a_1b_1&a_1b_2&\cdots&a_1b_n\\
+        a_2b_1&x_2+a_2b_2&\cdots&a_2b_n\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_nb_1&a_nb_2&\cdots&x_n+a_nb_n
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    将题设行列式记作$A_n$,对$A_n$的第$j$列作如下拆分
+    \[\mat{A}_j=\bs\alpha_j+\vec{x}_j,\quad\bs\alpha_j=\begin{bmatrix}
+        a_1b_j\\
+        a_2b_j\\
+        \vdots\\
+        a_nb_j
+    \end{bmatrix}=b_j\begin{vmatrix}
+        a_1\\
+        a_2\\
+        \vdots\\
+        a_n
+    \end{vmatrix}\]
+    其中$\vec{x}_j$的第$j$个分量为$x_j$,其余分量均为$x_0$.可以看出,各$\bs\alpha_j$成比例.
+    题设行列式因此可以拆分为$2^n$个行列式.在所有拆分方法中,最多只能出现一次$\bs\alpha_j$,否则将有成比例的两列,因而使得行列式为$0$.于是
+    \[A_n=\begin{vmatrix}
+        x_1&0&\cdots&0\\
+        0&x_2&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&x_n
+    \end{vmatrix}+b_1\begin{vmatrix}
+        a_1&0&\cdots&0\\
+        a_2&x_2&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_n&0&\cdots&x_n
+    \end{vmatrix}+\cdots+b_n\begin{vmatrix}
+        x_1&0&\cdots&a_1\\
+        0&x_2&\cdots&a_2\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&a_n
+    \end{vmatrix}\]
+    将后面第$j$个行列式的第$j$行与第$1$行交换,第$j$列和第$1$列交换,可将其转化为下三角行列式.其对角线上的元素为$x_1,\cdots,x_{j-1},a_j,x_{j+1},\cdots,x_n$.于是有
+    \[A_n=\prod_{i=1}^{n}x_i+\sum_{j=1}^{n}\left(a_jb_j\prod_{i\neq j}x_i\right)=\left(\prod_{i=1}^{n}x_i\right)\left(1+\sum_{i=1}^{n}\dfrac{a_ib_i}{x_i}\right)\]
+\end{solution}
+\end{document}

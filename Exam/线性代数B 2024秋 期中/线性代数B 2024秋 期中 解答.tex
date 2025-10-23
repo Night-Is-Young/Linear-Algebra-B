@@ -1,0 +1,301 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2024-25学年第一学期线性代数B期中试题}
+\end{center}
+\begin{homework}[1]
+    求下列行向量构成的向量组的秩和一个极大线性无关组:
+    \[\bs\alpha_1=\begin{bmatrix}
+        -1\\5\\3\\2
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        4\\1\\-2\\9
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        2\\0\\1\\4
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        0\\3\\4\\-5
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    考虑以$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$为列向量构成的矩阵$\mat{A}$并对其做初等行变换有
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        -1&4&2&0\\
+        0&21&10&3\\
+        0&10&7&0\\
+        0&17&8&-5
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&4&2&0\\
+        0&1&-4&3\\
+        0&3&6&5\\
+        0&7&1&-5
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&4&2&0\\
+        0&1&-4&3\\
+        0&0&18&-4\\
+        0&0&29&-26
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&4&2&0\\
+        0&1&-4&3\\
+        0&0&18&-4\\
+        0&0&0&-176/9
+    \end{bmatrix}\]
+    于是题设向量组的秩为$4$,其极大线性无关组即为$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$.
+\end{solution}
+\begin{homework}[2]
+    下述齐次线性方程组何时有非零解?何时只有零解?
+    \[\left\{\begin{array}{l}
+        x_1-3x_2-5x_3=0\\
+        2x_1-7x_2-4x_3=0\\
+        4x_1-9x_2+ax_3=0\\
+        5x_1+bx_2-55x_3=0
+    \end{array}\right.\]
+\end{homework}
+\begin{solution}
+    对系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        1&-3&-5\\
+        2&-7&-4\\
+        4&-9&a\\
+        5&b&-55
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&-5\\
+        0&-1&6\\
+        0&3&a+20\\
+        0&b+15&-30
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-23\\
+        0&-1&6\\
+        0&0&a+38\\
+        0&0&6b+60
+    \end{bmatrix}\]
+    当且仅当$a=-38$且$b=-10$时原方程有非零解,否则原方程仅有零解.
+\end{solution}
+\begin{homework}[3]
+    计算下面的行列式:
+    \[A_n=\begin{vmatrix}
+        1&1&1&\cdots&1\\
+        1&2&0&\cdots&0\\
+        1&0&3&\cdots&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        1&0&0&\cdots&n
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    我们有
+    \[A_n=\begin{vmatrix}
+        1-\frac12-\cdots-\frac1n&0&0&\cdots&0\\
+        1&2&0&\cdots&0\\
+        1&0&3&\cdots&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        1&0&0&\cdots&n
+    \end{vmatrix}=\left(1-\sum_{i=2}^{n}\dfrac1i\right)\begin{vmatrix}
+        2&0&\cdots&0\\
+        0&3&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&n
+    \end{vmatrix}=n!\sum_{i=2}^{n}\dfrac1i\]
+\end{solution}
+\begin{homework}[4]
+    已知
+    \[\begin{vmatrix}
+        x&y&z&x+y+z\\
+        3&0&2&0\\
+        1&1&1&1\\
+        2&2&2&1
+    \end{vmatrix}=\dfrac12\]
+    求
+    \[\begin{vmatrix}
+        x-y&y&z-x&x+y+z\\
+        3&0&-1&0\\
+        y-x&2-y&x-z&2-x-y-z\\
+        3&2&-1&1
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    首先有
+    \[\dfrac12=\begin{vmatrix}
+        x&y&z&x+y+z\\
+        3&0&2&0\\
+        1&1&1&1\\
+        2&2&2&1
+    \end{vmatrix}=\begin{vmatrix}
+        x-y&y&z-x&x+y+z\\
+        3&0&-1&0\\
+        0&1&0&1\\
+        0&2&0&1
+    \end{vmatrix}\]
+    观察待求行列式的形式,将第一行加到第三行上可得
+    \[\text{代求行列式}=\begin{vmatrix}
+        x-y&y&z-x&x+y+z\\
+        3&0&-1&0\\
+        0&2&0&2\\
+        0&2&0&1
+    \end{vmatrix}=2\begin{vmatrix}
+        x-y&y&z-x&x+y+z\\
+        3&0&-1&0\\
+        0&1&0&1\\
+        0&2&0&1
+    \end{vmatrix}=1\]
+\end{solution}
+\begin{homework}[5]
+    证明:
+    \[\rank\begin{bmatrix}
+        \mat{A}&\mbf{0}\\
+        \mat{C}&\mat{B}
+    \end{bmatrix}\geqslant\rank\ \mat{A}+\rank\ \mat{B}\]
+\end{homework}
+\begin{proof}
+    记不等式左边的矩阵为$\mat{M}$.考虑$\mat{A}$的阶数最高的非零子式对应的矩阵$\mat{A}'$和$\mat{B}$的阶数最高的子式对应的矩阵$\mat{B}'$.设两者的阶数分别为$s,r$,则有
+    \[\rank\ \mat{A}'=s,\quad\rank\ \mat{B}'=r\]
+    现在把$\mat{A}',\mat{B}'$在$\mat{M}$中对应的行和列选出构成$\mat{M}$的一个子矩阵$\mat{M}'=\begin{bmatrix}
+        \mat{A}'&\mbf{0}\\
+        \mat{C}'&\mat{B}'
+    \end{bmatrix}$,则有
+    \[\det\begin{bmatrix}
+        \mat{A}'&\mbf{0}\\
+        \mat{C}'&\mat{B}'
+    \end{bmatrix}=\det\mat{A}'\cdot\det\mat{B}'\neq0\]
+    于是矩阵$\mat{M}$至少有一个阶数为$s+r$的非零子式.因此有
+    \[\rank\begin{bmatrix}
+        \mat{A}&\mbf{0}\\
+        \mat{C}&\mat{B}
+    \end{bmatrix}\geqslant s+r=\rank\ \mat{A}+\rank\ \mat{B}\]
+\end{proof}
+\begin{homework}[6]
+    已知向量$\bs\beta$能由向量组$\li{\bs\alpha},s$线性表出,但不能由向量组$\li{\bs\alpha},{s-1}$线性表出.证明:
+    \[\rank\left\{\li{\bs\alpha},s\right\}=\rank\left\{\li{\bs\alpha},{s-1},\bs\beta\right\}\]
+\end{homework}
+\begin{proof}
+    只需证明两个向量组等价即可.记
+    \[\mathcal{A}=\left\{\li{\bs\alpha},s\right\},\quad\mathcal{B}=\left\{\li{\bs\alpha},{s-1},\bs\beta\right\}\]
+    由题意,向量$\bs\beta$能由向量组$\mathcal{A}$线性表出,因此设
+    \[\bs\beta=k_1\bs\alpha_1+\cdots+k_s\bs\alpha_s\]
+    对于$\mathcal{B}$中的前$s-1$个向量,都有
+    \[\bs\alpha_i=0\bs\alpha_1+\cdots+0\bs\alpha_{i-1}+\bs\alpha_i+0\bs\alpha_{i+1}+\cdots+0\bs\alpha_{s-1},\quad i=1,\cdots,s-1\]
+    于是$\mathcal{B}$中的前$s-1$个向量能由$\mathcal{A}$线性表出.同理,$\mathcal{A}$中的前$s-1$个向量能由$\mathcal{B}$线性表出.\\
+    现在,由于$\bs\beta$能由$\mathcal{A}$线性表出,因此$\mathcal{B}$能由$\mathcal{A}$线性表出.\\
+    由于$\bs\beta$不能由向量组$\li{\bs\alpha},{s-1}$线性表出,因此$k_s\neq0$.于是对前述式子做变换可得
+    \[\bs\alpha_s=-\dfrac{k_1}{k_s}\bs\alpha_1-\cdots-\dfrac{k_{s-1}}{k_s}\bs\alpha_{s-1}+\dfrac{1}{k_s}\bs\beta\]
+    于是$\bs\alpha_s$能由$\mathcal{B}$线性表出,从而$\mathcal{A}$能由$\mathcal{B}$线性表出.\\
+    于是两者是等价的向量组,因此有
+    \[\rank\ \mathcal{A}=\rank\ \mathcal{B}\]
+\end{proof}
+\begin{homework}[7]
+    矩阵
+    \[\begin{bmatrix}
+        1&1&2&x\\
+        3&2&1&y\\
+        1&-1&0&z
+    \end{bmatrix}\]
+    的行向量组何时与矩阵
+    \[\begin{bmatrix}
+        3&1&5&14\\
+        0&2&-1&11\\
+        0&0&3&3
+    \end{bmatrix}\]
+    的行向量组等价?
+\end{homework}
+\begin{solution}
+    设题设矩阵分别为$\mat{A}$和$\mat{B}$.由于对矩阵做初等行变换,行向量组仍然等价,于是对$\mat{A}$做初等行变换可得
+    \[\begin{aligned}
+    \mat{A}
+    &\longrightarrow\begin{bmatrix}
+        1&1&2&x\\
+        0&-1&-5&y-3x\\
+        0&-2&-2&z-x
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&2&x\\
+        0&-1&-5&y-3x\\
+        0&0&8&5x-2y+z
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&2&x\\
+        0&1&5&3x-y\\
+        0&0&1&\frac{5x-2y+z}{8}
+    \end{bmatrix}\\
+    &\longrightarrow\begin{bmatrix}
+        1&1&0&-\frac{2x-4y+2z}{8}\\
+        0&1&0&-\frac{x-2y+5z}{8}\\
+        0&0&1&\frac{5x-2y+z}{8}
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&-\frac{x-2y-3z}{8}\\
+        0&1&0&-\frac{x-2y+5z}{8}\\
+        0&0&1&\frac{5x-2y+z}{8}
+    \end{bmatrix}
+    \end{aligned}\]
+    对$\mat{B}$做初等行变换可得
+    \[\mat{B}\longrightarrow\begin{bmatrix}
+        3&1&5&14\\
+        0&2&-1&11\\
+        0&0&3&3
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        3&1&5&14\\
+        0&2&0&12\\
+        0&0&1&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&1\\
+        0&1&0&6\\
+        0&0&1&1
+    \end{bmatrix}\]
+    于是有
+    \[\left\{\begin{array}{l}
+        x-2y-3z=-8\\
+        x-2y+5z=-48\\
+        5x-2y+z=8
+    \end{array}\right.\]
+    解得
+    \[x=9,\quad y=16,\quad z=-5\]
+    于是当且仅当$x=9,y=16,z=-5$时上述两个矩阵的行向量组等价.
+\end{solution}
+\begin{homework}[8]
+    设$n$个方程的$n$元齐次线性方程组的系数矩阵$\mat{A}$的行列式等于$0$,并且$\mat{A}$的$(k,l)$元的代数余子式$A_{kl}\neq0$.试证明:
+    \[\bs\eta=\begin{bmatrix}
+        A_{k1}\\A_{k2}\\\vdots\\A_{kn}
+    \end{bmatrix}\]
+    是该齐次线性方程组的一个基础解系.
+\end{homework}
+\begin{proof}
+    先将$\bs\eta$代入方程验证成立性.考虑方程的第$i$行$(i\neq k)$有
+    \[\sum_{j=1}^{n}a_{ij}A_{kj}=0\]
+    根据代数余子式的性质,上式总是成立.\\
+    考虑方程的第$k$行有
+    \[\sum_{j=1}^{n}a_{kj}A_{kj}=\det\mat{A}=0\]
+    于是$\bs\eta$为方程的一个解.\\
+    由于$\det\mat{A}=0$,并且$\mat{A}$有$n-1$阶非零子式$A_{kl}$,于是$\rank\ \mat{A}=n-1$.从而方程的解空间$W$的维数
+    \[\dim\ W=n-\rank\ \mat{A}=n-(n-1)=1\]
+    又因为$\bs\eta\in W$,从而$W$中的所有向量必须可由$\bs\eta$线性表出.于是$\bs\eta$为该方程组的一个基础解系.
+\end{proof}
+\begin{homework}[9]
+    已知方程组
+    \[\left\{\begin{array}{c}
+        a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0\\
+        a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=0\\
+        \vdots\\
+        a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=0
+    \end{array}\right.\]
+    的解都是方程
+    \[b_1x_1+\cdots+b_nx_n=0\]
+    的解.证明:$\bs\beta=\begin{bmatrix}
+        b_1&b_2&\cdots&b_n
+    \end{bmatrix}^{\text{t}}$可以由向量组$\li{\bs\alpha},n$线性表出,其中$\bs\alpha_i$是上述方程组系数矩阵$\mat{A}$的行向量.
+\end{homework}
+\begin{proof}
+    考虑上述方程组的系数矩阵$\mat{A}$和下面的方程组的系数矩阵$\mat{B}$:
+    \[\left\{\begin{array}{c}
+        a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0\\
+        \vdots\\
+        a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=0\\
+        b_1x_1+\cdots+b_nx_n=0
+    \end{array}\right.\]
+    设题设方程组的解集为$W_A$,上述方程组的解集为$W_B$.由题意可知$W_A\subseteq W_B$,于是
+    \[\dim W_A\leqslant\dim W_B\]
+    由齐次线性方程组解集的维数与系数矩阵的秩的关系可得
+    \[\dim W_A=n-\rank\ \mat{A},\quad\dim W_B=n-\rank\ \mat{B}\]
+    于是
+    \[\rank\ \mat{A}\geqslant\rank\ \mat{B}\]
+    由于$\mat{B}$包含$\mat{A}$,于是
+    \[\rank\ \mat{B}\geqslant\rank\ \mat{A}\]
+    于是
+    \[\rank\ \mat{B}=\rank\ \mat{A}\]
+    于是向量组$\li{\bs\alpha},n$与向量组$\li{\bs\alpha},n,\bs\beta$具有相同的秩.因此,$\bs\beta$可以由向量组$\li{\bs\alpha},n$线性表出.
+\end{proof}
+\end{document}
