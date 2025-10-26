@@ -1,0 +1,652 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\title{\tbf{Mid-Term Exam Review}}
+\author{夜未央}
+\begin{document}
+\maketitle
+\section{数域}
+先回顾数域的定义.
+\begin{definition}[数域]
+    复数域$\C$的一个子集$\mathbb{K}$如果满足:
+    \begin{enumerate}
+        \item $0,1\in\mathbb{K}$.
+        \item 如果$a,b\in\mathbb{K}$,那么$a\pm b,ab\in\mathbb{K}$.
+        \item 如果$a,b\in\mathbb{K}$且$b\neq0$,那么$\dfrac ba\in\mathbb{K}$.
+    \end{enumerate}
+    则称$\mathbb{K}$是一个数域.
+\end{definition}
+在证明某一集合$\mathbb{K}$是数域时,\red{不要忘记说明$0,1\in\mathbb{K}$;不要忘记$\mathbb{K}$是$\C$的子集;不要忘记上述定义中的运算都是$\C$上的运算.}\\
+\indent 因此有下面的推论.
+\begin{lemma}[关于数域的推论]
+    有理数域$\Q$是最小的数域,复数域$\C$是最大的数域,即对任意数域$\K$都有$\Q\subseteq\K\subseteq\C$.
+\end{lemma}
+\section{线性方程组}
+\subsection{线性方程组的求解方法}
+\begin{theorem}[线性方程组的求解]
+    求解给定的线性方程组的办法是\blue{将方程组对应的增广矩阵做初等行变换为简化阶梯形矩阵,然后读出方程的解}.一般而言,化为阶梯形矩阵然后从下往上依次求出各未知数也可以.
+\end{theorem}
+\red{千万不要把未知数的下标抄成系数!}
+\begin{problem}\textit{丘砖}1.1.1(5)\\
+    解下列线性方程组:
+    \[\left\{\begin{array}{l}
+        x_1-2x_2+3x_3-4x_4=4\\
+        x_1+x_2-x_3+x_4=-11\\
+        x_1+3x_2+x_4=1\\
+        -7x_2+3x_3+x_4=-3
+    \end{array}\right.\]
+\end{problem}
+\begin{solution}
+    对方程组的增广矩阵做初等行变换可得:
+    \[\begin{bmatrix}
+        1&-2&3&-4&4\\
+        1&1&-1&1&-11\\
+        1&3&0&1&1\\
+        0&-7&3&1&-3
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&-1&1&-11\\
+        0&-3&4&-5&15\\
+        0&2&1&0&12\\
+        0&-7&3&1&-3
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&-1&1&-11\\
+        0&1&-5&5&-27\\
+        0&2&1&0&12\\
+        0&-7&3&1&-3
+    \end{bmatrix}\longrightarrow\]
+    \[\begin{bmatrix}
+        1&1&-1&1&-11\\
+        0&1&-5&5&-27\\
+        0&0&11&-10&66\\
+        0&0&-32&36&-192
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&-1&1&-11\\
+        0&1&-5&5&-27\\
+        0&0&1&-\frac{10}{11}&6\\
+        0&0&1&-\frac{9}{8}&6
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&-1&1&-11\\
+        0&1&-5&5&-27\\
+        0&0&1&-\frac{10}{11}&6\\
+        0&0&0&-\frac{19}{88}&0
+    \end{bmatrix}\]
+    于是原方程的解为
+    \[\begin{bmatrix}
+        -8&3&6&0
+    \end{bmatrix}^{\text{t}}\]
+\end{solution}
+\begin{problem}\textit{丘砖}1.1.3(1)\\
+    解下列线性方程组:
+    \[\left\{\begin{array}{l}
+        2x_1-3x_2+x_3+5x_4=6\\
+        -3x_1+x_2+2x_3-4x_4=5\\
+        -x_1-2x_2+3x_3+x_4=11
+    \end{array}\right.\]
+\end{problem}
+\begin{solution}
+    对方程组的增广矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        2&-3&1&5&6\\
+        -3&1&2&-4&5\\
+        -1&-2&3&1&11
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&-3&-1&-11\\
+        0&-7&7&7&28\\
+        0&7&-7&-7&-28\\
+    \end{bmatrix}\longrightarrow\]
+    \[\begin{bmatrix}
+        1&2&-3&-1&-11\\
+        0&1&-1&-1&-4\\
+        0&0&0&0&0\\
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-1&1&-3\\
+        0&1&-1&-1&-4\\
+        0&0&0&0&0
+    \end{bmatrix}\]
+    于是自由变量为$x_3$, $x_4$,方程组的解为
+    \[\left\{\begin{array}{l}
+        x_1=-3+x_3-x_4\\
+        x_2=-4+x_3+x_4
+    \end{array}\right.\]
+\end{solution}
+\subsection{线性方程组的解的情况}
+\begin{theorem}[线性方程组的解的情况]
+    线性方程组的解的情况可由增广矩阵$\tilde{A}$做初等行变换得到的简化阶梯形矩阵$\mat{J}$判断.
+    \begin{enumerate}
+        \item 如果$\mat{J}$中出现$0=d(d\neq0)$的行,则原方程无解.
+        \item 如果$\mat{J}$中没有出现$0=d(d\neq0)$的行,并且非零行的数目少于未知数的数目,那么原方程有无穷多组解.
+        \item 如果$\mat{J}$中没有出现$0=d(d\neq0)$的行,并且非零行的数目等于未知数的数目,那么原方程有唯一解.
+    \end{enumerate}
+\end{theorem}
+判断方程组有没有解实际上和解方程的过程是一样的.
+\section{行列式}
+\subsection{行列式的定义与性质}
+先回顾课本的内容.
+\begin{definition}[行列式的定义]
+    $n$级行列式的定义为
+    \[\begin{vmatrix}
+        a_{11}&\cdots&a_{1n}\\
+        \vdots&\ddots&\vdots\\
+        a_{1n}&\cdots&a_{nn}
+    \end{vmatrix}=\sum_{j_1\cdots j_n}\left((-1)^{\tau\left(j_1\cdots j_n\right)}\prod_{i=1}^{n}a_{ij_i}\right)\]
+\end{definition}
+\begin{theorem}[行列式的性质]
+    \begin{enumerate}
+        \item $\det\mat{A}=\det\mat{A}^{\text{t}}$.\blue{这意味着行列式的行和列是等价的,于是下面所有描述行的性质都可以应用于列上.}
+        \item 行列式的一行的公因子可以提出到行列式外.
+        \item 行列式可以按一行拆分为两个行列式的和.
+        \item 两行互换,行列式的值反号.
+        \item 两行成倍数关系,行列式为$0$. \blue{根据\tbf{(3)}和\tbf{(5)}可知:把一行的倍数加到另一行上,行列式的值不变.}
+        \item $n$级矩阵的初等行变换不改变其行列式的非零性质.
+    \end{enumerate}
+\end{theorem}
+\begin{definition}[余子式和代数余子式]
+    $n$级矩阵$\mat{A}$划去第$i$行和第$j$列得到的$n-1$级矩阵$\mat{A}_{ij}$的行列式$\det\mat{A}_{ij}$称作$\mat{A}$的$(i,j)$元的余子式,通常记作$M_{ij}$. $\mat{A}$的$(i,j)$元的代数余子式$A_{ij}$定义为
+    \[A_{ij}=(-1)^{i+j}M_{ij}\]
+\end{definition}
+\begin{theorem}[行列式按一行展开]
+    \[\det\mat{A}=\sum_{j=1}^{n}a_{ij}A_{ij}\]
+    \[\sum_{j=1}^{n}a_{kj}A_{ij}=0,\quad k\neq i\]
+\end{theorem}
+\subsection{行列式的计算}
+\subsubsection{依定义直接计算行列式}
+首先有一个重要定理.
+\begin{theorem}[上三角/下三角行列式的值]
+    形如
+    \[\begin{bmatrix}
+        a_{11}&\cdots&a_{1n}\\
+        \vdots&\ddots&\vdots\\
+        0&\cdots&a_{nn}
+    \end{bmatrix}\]
+    的矩阵称作上三角矩阵,它的主对角线下方的元素全部为$0$.上三角矩阵的转置为下三角矩阵,其主对角线上方的元素全部为$0$.\\
+    对于上三角/下三角矩阵$\mat{A}$有
+    \[\det\mat{A}=\prod_{i=1}^{n}a_{ii}\]
+    根据定义不难证明其成立性.
+\end{theorem}
+可以看出, $n$级方阵对应的阶梯形矩阵一定是上三角矩阵.于是我们有下面的一种通用的办法.
+\begin{hint}
+    对于一个没有明显规律的行列式(例如由无规则的数构成的行列式),一种稳妥的办法是将其通过初等行变换成上三角矩阵后进行计算.
+\end{hint}
+在以后的其它求行列式的方法中也经常用到上三角/下三角行列式的这一性质.\\
+\indent 除此之外,依定义计算行列式也可以用在行列式中出现比较多$0$的情况下(虽然此时可能通过行列变换后按某一行展开的效果更好). \blue{下面这道例题实际上并不一定要依定义计算.}
+\begin{problem}
+    依定义计算下列$n$级行列式的值:
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_n\\
+        b_1&1&0&\cdots&0\\
+        b_2&0&1&\cdots&0\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        b_n&0&0&\cdots&1
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    从定义出发考虑.如果在第一行选择$a_i(i>1)$,那么在第$i$行只能选择$b_i$才能使得求和项不为零,这也意味着其它行只能选择$1$.这样,这一求和项对应的排列为
+    \[i23\cdots(i-1)1(i+1)\cdots n\]
+    这一排列经过$2i-1$次对换后变为$12\cdots n$,因此其为奇排列,于是有
+    \[\begin{vmatrix}
+        a_1&a_2&a_3&\cdots&a_n\\
+        b_1&1&0&\cdots&0\\
+        b_2&0&1&\cdots&0\\
+        \vdots&\vdots&\vdots& &\vdots\\
+        b_n&0&0&\cdots&1
+    \end{vmatrix}=a_1-\sum_{i=2}^{n}a_ib_i\]
+\end{solution}
+\indent 另外一种需要用到定义计算的情况通常涉及\red{求和次序的交换}.例如:
+\begin{problem}
+    设$f_{ij}(t)$是可微函数,其中$1\leq i,j\leq n$.矩阵$\mat{F}(t)$的$(i,j)$元为$f_{ij}(t)$,记
+    \[F(t)=\det\mat{F}(t)\]
+    证明:
+    \[\dfrac{\di F(t)}{\di t}=\sum_{j=1}^{n}\det\mat{F}_j(t)\]
+    其中$\mat{F}_j(t)$是把$\mat{F}(t)$的第$j$列替换为
+    \[\begin{bmatrix}
+        \dfrac{\di f_{1j}(t)}{\di t}&\dfrac{\di f_{2j}(t)}{\di t}&\cdots&\dfrac{\di f_{nj}(t)}{\di t}
+    \end{bmatrix}^{\text{t}}\]
+    得到的矩阵.
+\end{problem}
+\begin{proof}
+    对$\det\mat{F}(t)$按定义展开可得
+    \[F(t)=\det\mat{F}(t)=\sum_{j_1\cdots j_n}\left((-1)^{\tau\left(j_1\cdots j_n\right)}\prod_{i=1}^{n}f_{ij_i}(t)\right)\]
+    于是
+    \[\begin{aligned}
+        \dfrac{\di F(t)}{\di t}
+        &= \sum_{j_1\cdots j_n}\left[(-1)^{\tau\left(j_1\cdots j_n\right)}\left(\dfrac{\di}{\di t}\prod_{i=1}^{n}f_{ij_i}(t)\right)\right] \\
+        &= \sum_{j_1\cdots j_n}\left[(-1)^{\tau\left(j_1\cdots j_n\right)}\left(\sum_{i=1}^{n}\dfrac{\di f_{ij_i}(t)}{\di t}\prod_{k\neq i}f_{kj_k}(t)\right)\right] \\
+        &\xlongequal{\text{交换求和符号}}\sum_{i=1}^{n}\left[\sum_{j_1\cdots j_n}(-1)^{\tau\left(j_1\cdots j_n\right)}\dfrac{\di f_{ij_i}(t)}{\di t}\prod_{k\neq i}f_{kj_k}(t)\right]
+    \end{aligned}\]
+    观察求和的每一项,可以看出这正好是矩阵$\mat{F}_i$的行列式.于是
+    \[\dfrac{\di F(t)}{\di t}=\sum_{i=1}^{n}\det\mat{F}_{i}\]
+    于是命题得证.
+\end{proof}
+\subsubsection{求和法}
+\begin{hint}
+    当行列式的每一列/行列式元素的和相同时,可以尝试把每一行/列都加到第一行/列上,然后提取公因子后消元以简化计算.
+\end{hint}
+\begin{problem}
+    计算下列$n$级行列式的值:
+    \[A_n(x)=\begin{vmatrix}
+        x&a&\cdots&a\\
+        a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a&a&\cdots&x
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    注意到每一行的元素之和均为$x+(n-1)a$,于是将第一列之后的列全部加到第一列上可得
+    \[A_n(x)=\begin{vmatrix}
+        x+(n-1)a&a&\cdots&a\\
+        x+(n-1)a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        x+(n-1)a&a&\cdots&x
+    \end{vmatrix}=\left[x+(n-1)a\right]\begin{vmatrix}
+        1&a&\cdots&a\\
+        1&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&a&\cdots&x
+    \end{vmatrix}\]
+    然后将后面的行列式的第一行以后的行减去第一行可得
+    \[A_n(x)=\left[x+(n-1)a\right]\begin{vmatrix}
+        1&a&\cdots&a\\
+        0&x-a&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        0&0&\cdots&x-a
+    \end{vmatrix}=\left[x+(n-1)a\right](x-a)^{n-1}\]
+\end{solution}
+\begin{hint}
+    大部分时候求和法和作差法的效果似乎相差不大.
+\end{hint}
+\subsubsection{作差法}
+\begin{hint}
+    如果行列式的某两行之间不同的元素较少,或者元素相差的值有明显的规律,那么可以尝试对这两行作差以化简.
+\end{hint}
+适用于作差的行列式非常多,大部分都具有明显的规律.这里举一些例子.
+\begin{problem}\textit{23秋线代B期中 3.}\\
+    计算下面的行列式:
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&0&1&\cdots&n-3&n-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        n-2&n-3&n-4&\cdots&0&1\\
+        n-1&n-2&n-3&\cdots&1&0
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    \blue{首先注意到每一行元素都和上一行同一列元素的差值为$\pm1$.这意味着将相邻两行作差可以得到一个大部分元素为$\pm1$的矩阵,再次作差就可能可以得到一个大部分元素为$0$的矩阵.}\\
+    将第二行及以后的行减去上一行可得
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&-1&-1&\cdots&-1&-1\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&1&1&\cdots&-1&-1\\
+        1&1&1&\cdots&1&-1
+    \end{vmatrix}\]
+    将第二列及以后的列减去第一列可得
+    \[A_n=\begin{vmatrix}
+        0&1&2&\cdots&n-2&n-1\\
+        1&-2&-2&\cdots&-2&-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&0&0&\cdots&-2&-2\\
+        1&0&0&\cdots&0&-2
+    \end{vmatrix}=\begin{vmatrix}
+        \dfrac{n-1}{2}&1&2&\cdots&n-2&n-1\\
+        0&-2&-2&\cdots&-2&-2\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&-2&-2\\
+        0&0&0&\cdots&0&-2
+    \end{vmatrix}=\dfrac{n-1}{2}(-2)^{n-1}\]
+    于是
+    \[A_n=(-1)^{n-1}(n-1)2^{n-2}\]
+\end{solution}
+\subsubsection{拆项法}
+\begin{hint}
+    如果行列式的每一行都可以拆成有规律的几项之和(通常,行之间的很多项都成倍数关系),那么可以尝试使用拆项法.\\
+    使用拆项法时,通常用到两行/列成倍数则行列式为$0$这一结论以舍去很多不必要计算的项.
+\end{hint}
+\subsubsection{提取公因子法}
+\begin{hint}
+    一般而言,有公因子一定要提取公因子.这在很多行列式的计算中有很好的效果.
+\end{hint}
+\subsubsection{范德蒙德行列式}
+\begin{theorem}[范德蒙德行列式]
+    形如
+    \[\begin{vmatrix}
+        1&1&\cdots&1\\
+        a_1&a_2&\cdots&a_n\\
+        \vdots&\ddots&\vdots&\vdots\\
+        a_1^{n-1}&a_2^{n-1}&\cdots&a_{n}^{n-1}
+    \end{vmatrix}\]
+    的行列式称为范德蒙德行列式,并且有
+    \[\begin{vmatrix}
+        1&1&\cdots&1\\
+        a_1&a_2&\cdots&a_n\\
+        \vdots&\ddots&\vdots&\vdots\\
+        a_1^{n-1}&a_2^{n-1}&\cdots&a_{n}^{n-1}
+    \end{vmatrix}=\prod_{1\leq i,j\leq n}\left(a_j-a_i\right)\]
+    这可以由数学归纳法得到.
+\end{theorem}
+\begin{hint}
+    一旦看到指数递增形式的行列式,就可以尝试将它与范德蒙德行列式联系起来.
+\end{hint}
+\subsubsection{按行展开法}
+\begin{hint}
+    如果行列式中出现几乎全部为$0$的行/列,就可以尝试按此行/列展开.
+\end{hint}
+上述办法在很多行列式的求值中都可能用到.
+\subsubsection{归纳与递推}
+\begin{hint}
+    如果行列式有明显的自相似结构,可以尝试通过按行展开的方式将其降为低一级的同一结构的行列式,从而实现递推.
+\end{hint}
+\begin{theorem}[三对角行列式]
+    形如
+    \[\begin{vmatrix}
+        c&b&0&\cdots&0&0\\
+        a&c&b&\cdots&0&0\\
+        0&a&c&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&c&b\\
+        0&0&0&\cdots&a&c\\
+    \end{vmatrix}\]
+    的行列式被称作三对角行列式.
+\end{theorem}
+下面推导三对角行列式的值.\\
+\begin{solution}
+    记上述行列式为$D_n$,按第一行展开可得
+    \[D_n=c\begin{vmatrix}
+        c&b&\cdots&0&0\\
+        a&c&\cdots&0&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&\cdots&c&b\\
+        0&0&\cdots&a&c\\
+    \end{vmatrix}-b\begin{vmatrix}
+        a&b&\cdots&0&0\\
+        0&c&\cdots&0&0\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&\cdots&c&b\\
+        0&0&\cdots&a&c\\
+    \end{vmatrix}\]
+    注意到第一个行列式即为$D_{n-1}$,而将第二个行列式按第一列展开可得
+    \[D_n=cD_{n-1}-ab\begin{vmatrix}
+        c&\cdots&0&0\\
+        \vdots&\ddots&\vdots&\vdots\\
+        0&\cdots&c&b\\
+        0&\cdots&a&c\\
+    \end{vmatrix}=cD_{n-1}-abD_{n-2}\]
+    这一递推关系对应的特征方程为
+    \[\lambda^2-c\lambda+ab=0\]
+    对特征方程的根的情况分类讨论.
+    \begin{enumerate}[label=\tbf{\alph*.}]
+        \item 如果$c^2\neq 4ab$,那么记上述方程的两个复根分别为$\alpha,\beta$,则有
+        \[D_n-\alpha D_{n-1}=\beta\left(D_{n-1}-\alpha D_{n-2}\right)\]
+        并且$D_1=c=\alpha+\beta$, $D_2=c^2-ab=\left(\alpha+\beta\right)^2-\alpha\beta=\alpha^2+\alpha\beta+\beta^2$,于是就有
+        \[D_{n}-\alpha D_{n-1}=\beta^n\]
+        于是累加可得
+        \[D_n=\dfrac{\alpha^{n+1}-\beta^{n+1}}{\alpha-\beta}\]
+        \item 如果$c^2=4ab$,那么设方程的根为$n$,同理不难推出
+        \[D_n=(n+1)\left(\dfrac{c}{2}\right)^n\]
+    \end{enumerate}
+\end{solution}
+\begin{hint}
+    在考试中如果出现三对角行列式仍要推导其递推公式,不能直接使用结论.
+\end{hint}
+\subsubsection{复杂行列式的计算}
+现在给出一些复杂行列式的例子.
+\begin{problem}
+    设$n\geq2$,求下面行列式的值:
+    \[A_n=\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\frac{1}{a_1+b_2}&\cdots&\frac{1}{a_1+b_n}\\
+        \frac{1}{a_2+b_1}&\frac{1}{a_2+b_2}&\cdots&\frac{1}{a_2+b_n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{1}{a_n+b_1}&\frac{1}{a_n+b_2}&\cdots&\frac{1}{a_n+b_n}
+    \end{vmatrix}\]
+\end{problem}
+\begin{solution}
+    \blue{我们首先注意到
+    \[\dfrac{1}{a_i+b_j}-\dfrac{1}{a_i+b_k}=\dfrac{b_k-b_j}{\left(a_i+b_j\right)\left(a_i+b_k\right)}\]
+    如果将每一列都减去某一列,似乎能提取出公因式.我们现在进行尝试.}\\
+    将第$n$列前的所有列减去第$n$列可得
+    \[A_n=\begin{vmatrix}
+        \frac{b_n-b_1}{\left(a_1+b_1\right)\left(a_1+b_n\right)}&\frac{b_n-b_2}{\left(a_1+b_2\right)\left(a_1+b_n\right)}&\cdots&\frac{1}{a_1+b_n}\\
+        \frac{b_n-b_1}{\left(a_2+b_1\right)\left(a_2+b_n\right)}&\frac{b_n-b_2}{\left(a_2+b_2\right)\left(a_2+b_n\right)}&\cdots&\frac{1}{a_2+b_n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{b_n-b_1}{\left(a_n+b_1\right)\left(a_n+b_n\right)}&\frac{b_n-b_2}{\left(a_n+b_2\right)\left(a_n+b_n\right)}&\cdots&\frac{1}{a_n+b_n}
+    \end{vmatrix}\]
+    这就整理成了一个比较好的形式.第$i$行具有公因式$\frac{1}{a_1+b_n}$,第$j$列具有公因式$b_n-b_j$.于是有
+    \[A_n=\prod_{i=1}^{n}\dfrac{1}{a_i+b_n}\prod_{j=1}^{n-1}\left(b_n-b_j\right)\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\frac{1}{a_1+b_2}&\cdots&1\\
+        \frac{1}{a_2+b_1}&\frac{1}{a_2+b_2}&\cdots&1\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{1}{a_n+b_1}&\frac{1}{a_n+b_2}&\cdots&1
+    \end{vmatrix}\]
+    \blue{可以看到我们已经把最后一列的元素变成$1$.注意到原行列式的行和列在形式上是对称的,这启发我们对列进行相同的变换.}\\
+    将上述等式右端的行列式的第$n$行以前的所有行减去第$n$行可得
+    \[|\cdot|=\begin{vmatrix}
+        \frac{a_n-a_1}{\left(a_1+b_1\right)\left(a_n+b_1\right)}&\frac{a_n-a_1}{\left(a_1+b_2\right)\left(a_n+b_2\right)}&\cdots&0\\
+        \frac{a_n-a_2}{\left(a_2+b_1\right)\left(a_n+b_1\right)}&\frac{a_n-a_2}{\left(a_2+b_2\right)\left(a_n+b_2\right)}&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{1}{a_n+b_1}&\frac{1}{a_n+b_2}&\cdots&1
+    \end{vmatrix}=\prod_{j=1}^{n-1}\dfrac{1}{a_n+b_i}\prod_{i=1}^{n}\left(a_n-a_i\right)\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\frac{1}{a_1+b_2}&\cdots&0\\
+        \frac{1}{a_2+b_1}&\frac{1}{a_2+b_2}&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&1&\cdots&1
+    \end{vmatrix}\]
+    现在,将行列式按最后一列展开,其$(n,n)$元的余子式恰好为$A_{n-1}$.于是可得
+    \[A_n=\prod_{i=1}^{n}\dfrac{1}{a_i+b_n}\prod_{j=1}^{n-1}\left(b_n-b_j\right)\prod_{j=1}^{n-1}\dfrac{1}{a_n+b_i}\prod_{i=1}^{n-1}\left(a_n-a_i\right)A_{n-1}\]
+    这样,递推完成后分子应当包括所有$a_i+b_j(1\leq i,j\leq n)$,分母应当包括所有$a_j-a_i$和$b_j-b_i(1\leq i<j\leq n)$.于是
+    \[A_n=\dfrac{\displaystyle\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\left(b_j-b_i\right)}{\displaystyle\prod_{1\leqslant i,j\leqslant n}\left(a_i+b_j\right)}\]
+\end{solution}
+\subsection{Cramer法则}
+\begin{theorem}[Cramer法则]
+    $n$个方程的$n$元线性方程组有唯一解,当且仅当其系数矩阵$\mat{A}$满足$\det\mat{A}\neq0$,此时唯一解的形式为
+    \[\begin{bmatrix}
+        \dfrac{\det\mat{B}_1}{\det\mat{A}}&\dfrac{\det\mat{B}_2}{\det\mat{A}}&\cdots&\dfrac{\det\mat{B}_n}{\det\mat{A}}
+    \end{bmatrix}^{\text{t}}\]
+    其中$\mat{B}_i$是把$\mat{A}$的第$i$列替换为常数项构成的列向量所得的矩阵.
+\end{theorem}
+\red{当$\det\mat{A}\neq0$时,不能判断方程是无解还是无穷解,仍然需要通过增广矩阵的形式来进一步判断.}
+\begin{problem}\textit{25春线代B期中 2.}\\
+    求方程组
+    \[\left\{\begin{array}{l}
+        (\lambda-2)x_1+2x_2=0\\
+        2x_1+(\lambda-3)x_2+2x_3=1\\
+        2x_2+(\lambda-4)x_3=-3
+    \end{array}\right.\]
+    的解集与$\lambda$的关系.
+\end{problem}
+\begin{solution}
+    考虑方程组的系数矩阵$\mat{A}$的行列式:
+    \[\begin{aligned}
+        \det\mat{A}
+        &=\begin{vmatrix}
+            \lambda-2&2&0\\
+            2&\lambda-3&2\\
+            0&2&\lambda-4
+        \end{vmatrix}=(\lambda-2)\begin{vmatrix}
+            \lambda-3&2\\2&\lambda-4
+        \end{vmatrix}-2\begin{vmatrix}
+            2&2\\0&\lambda-4
+        \end{vmatrix}\\
+        &= \left(\lambda-2\right)\left(\lambda^2-7\lambda+8\right)-2\left(2\lambda-8\right) \\
+        &= \lambda^3-9\lambda^2+18\lambda \\
+        &= \lambda(\lambda-3)(\lambda-6)
+    \end{aligned}\]
+    于是当$\lambda=0,3,6$时方程组有无穷多解,否则方程组有唯一解.当$\lambda\neq0,3,6$时,方程组的解为
+    \[x_1=\dfrac{-2(\lambda+2)}{\lambda(\lambda-3)(\lambda-6)},\quad x_2=\dfrac{(\lambda+2)(\lambda-2)}{\lambda(\lambda-3)(\lambda-6)},\quad x_3=\dfrac{-3\lambda^2+13\lambda+2}{\lambda(\lambda-3)(\lambda-6)}\]
+\end{solution}
+\section{线性方程组的进一步理论}
+\subsection{关于秩的基本理论}
+有关线性无关/相关,以及极大线性无关组的理论通常都可以从定义出发得以解决.因此,这里给出有关秩的一些定理.
+\begin{theorem}[秩不等式]
+    如果向量组$\mathcal{A}$能由向量组$\mathcal{B}$线性表出,那么有
+    \[\rank\mathcal{A}\leqslant\rank\mathcal{B}\]
+    特别地,等价的向量组具有相同的秩.以及,如果秩相等的向量组中的一个能线性表出另外一个,那么它们等价.
+\end{theorem}
+\begin{hint}
+    在证明有关秩的等式/不等式中,使用秩不等式将秩的关系转化为向量组线性表出的关系也许可以起到简化问题的作用.
+\end{hint}
+\begin{theorem}[矩阵初等行变换对矩阵行/列空间的影响]
+    对矩阵$\mat{A}$做初等行变换前后\red{行向量组等价,列向量组的线性相关/无关性不发生改变}.\\
+    后一个结论的推论为:如果$\mat{A}$经初等行变换成矩阵$\mat{B}$,并且$\mat{B}$的第$\li j,t$列构成列向量组的极大线性无关组,那么$\mat{A}$的第$\li j,t$列构成$\mat{A}$的列向量组的极大线性无关组.\\
+    这一推论再进一步即为:对矩阵$\mat{A}$做初等行变换不改变矩阵的列秩.
+\end{theorem}
+因此,唯一需要注意的是: \red{对矩阵的初等行变换只能保证列向量的线性无关性不变,不能保证列向量组前后等价}.
+\begin{theorem}[秩与行列式的关系]
+    矩阵$\mat{A}$的秩等于其最高阶非零子式的阶数.
+\end{theorem}
+{\color{darkgreen}我们从矩阵行列变换的角度提供另外一种思考方式.
+\begin{definition}[Hermite标准型]
+    任意矩阵$m\times n$级矩阵$\mat{A}$都能通过初等行变换和初等列变换成以下形式:
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        \mat{I}_{r\times r}&\mbf{0}_{r\times(n-r)}\\
+        \mbf{0}_{(m-r)\times r}&\mbf{0}_{(m-r)\times(n-r)}
+    \end{bmatrix}\]
+    其中$r=\rank\mat{A}$.
+\end{definition}
+\begin{proof}
+    首先,由于$\mat{A}$的秩为$r$,因此其行向量组的极大线性无关组的长度一定为$r$,列向量也同理.将这$r$行$r$列移动到$\mat{A}$的左上角,记移动后的矩阵为$\mat{B}$.\\
+    现在,由于$\mat{B}$的前$r$行为线性无关向量,因此第$r$行以后的行可以通过初等行变换被消去,即
+    \[\mat{A}\longrightarrow\mat{B}\longrightarrow\begin{bmatrix}
+        \mat{X}_{r\times r}&\mat{Y}_{r\times(n-r)}\\
+        \mbf{0}_{(m-r)\times r}&\mbf{0}_{(m-r)\times(n-r)}
+    \end{bmatrix}\]
+    其中$\mat{X}$和$\mat{Y}$是未知的矩阵.\\
+    \tbf{注意到初等行变换不改变列向量组的等价性,因此上述右边矩阵的前$r$列仍然线性无关},并且初等行变换不改变矩阵的秩,因此上述右边矩阵的第$r$列之后的列可以通过初等列变换被消去,于是有
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        \mat{X}_{r\times r}&\mbf{0}_{r\times(n-r)}\\
+        \mbf{0}_{(m-r)\times r}&\mbf{0}_{(m-r)\times(n-r)}
+    \end{bmatrix}\]
+    现在,不难看出$\mat{X}$是满秩的,于是线性方程组$\mat{X}\vec{x}=\mbf{0}$仅有零解.这意味着对$\mat{X}$初等行变换得到的简化阶梯形矩阵仅有对角线元素为$1$,其余元素均为$0$.依定义,这是$r\times r$的恒等矩阵$\mat{I}$.于是命题得证.
+\end{proof}
+从Hermite标准型看待矩阵的秩往往有很独特的视角.这在矩阵的秩与矩阵运算联系起来之后有更广泛的应用.}
+\begin{theorem}[解空间的维数和系数矩阵的秩的关系]
+    $n$元齐次线性方程组的解空间$W$与系数矩阵$\mat{A}$的关系如下:
+    \[\dim W=n-\rank\mat{A}\]
+\end{theorem}
+{\color{darkgreen}直观而言,这与我们对线性方程组的解应当具有的性质符合,即\tbf{自由变量数目与主元数目之和等于总变量数目}.如果用内积空间的观点看待这一定理,这实际上描述了这样一个事实:对于$\K^n$的子空间$U$,总有$\dim U+\dim U^\bot=n$,其中$U^\bot$是$U$的正交补.事实上,齐次线性方程组的解$\vec{x}$就是满足$\bs\alpha_i\cdot\vec{x}=0$的向量,其中$\bs\alpha_i$是$\mat{A}$的行向量.于是任意$\vec{x}\in W$都正交于由$\li{\bs\alpha},s$张成的空间.}\\
+\indent 关于线性方程组与行向量的关系,有下面的经典的命题,在数次考试中都有出现.
+\begin{problem}
+    如果$s\times n$矩阵$\mat{A}$和$r\times n$矩阵$\mat{B}$使得齐次线性方程组$\mat{A}\vec{x}=\mbf{0}$和$\mat{B}\vec{x}=\mbf{0}$的解集相同,证明:$\mat{A}$和$\mat{B}$的行向量组等价.
+\end{problem}
+\begin{proof}
+    考虑线性方程组
+    \[\begin{bmatrix}
+        \mat{A}\\\mat{B}
+    \end{bmatrix}\vec{x}=\mbf{0}\]
+    依题意,这方程组的解集$W$与题述两个方程组的解集相同.于是就有
+    \[\dim W=n-\rank\mat{A}=n-\rank\mat{B}=n-\rank\begin{bmatrix}
+        \mat{A}\\\mat{B}
+    \end{bmatrix}\]
+    不妨记上述三个矩阵的秩为$r$.现在考虑$\mat{A}$的行向量组的极大线性无关组$\li{\bs\alpha},r$.如果存在$\mat{B}$的行向量$\bs\beta_i$不能被$\li{\bs\alpha},r$表出,那么根据极大线性无关组的定义可知$\begin{bmatrix}
+        \mat{A}\\\mat{B}
+    \end{bmatrix}$的行向量组的极大线性无关组至少包含$r+1$个向量,也即
+    \[\rank\begin{bmatrix}
+        \mat{A}\\\mat{B}
+    \end{bmatrix}\geq r+1\]
+    这与前面推出的$\rank\begin{bmatrix}
+        \mat{A}\\\mat{B}
+    \end{bmatrix}=r$矛盾.于是$\mat{B}$的行向量均能被$\mat{A}$的行向量组表出.\\
+    同理可以证得$\mat{A}$的行向量可以被$\mat{B}$的行向量组线性表出.于是两个行向量组等价.
+\end{proof}
+\subsection{线性表出,线性相关/无关与极大线性无关组}
+\subsubsection{线性表出,线性相关/无关的判断方法}
+\begin{theorem}[线性表出的判别方法]
+    判断向量$\bs\beta$能否由向量组$\li{\bs\alpha},s$线性表出,实际上就是判断线性方程组
+    \[\mat{A}\vec{x}=\bs\beta\]
+    是否有解,其中系数矩阵$\mat{A}$的\red{列向量组}为$\li{\bs\alpha},s$.
+\end{theorem}
+\begin{hint}
+    由此,能否线性表出实际上就是判断线性方程组的解的问题.将$\li{\bs\alpha},s$和$\bs\beta$为列向量排成一个矩阵,将该矩阵视作某一线性方程组的增广矩阵并做行变换,根据解的情况即可判断能否线性表出.
+\end{hint}
+\begin{theorem}[线性无关/线性相关的判别方法]
+    回顾线性无关/相关的定义,我们实际上在寻找用向量组$\li{\bs\alpha},s$线性表出$\mbf{0}$的方式.利用前面的定理,这实际上就是判断齐次线性方程组
+    \[\mat{A}\vec{x}=\mbf{0}\]
+    是否有非零解(其中$\mat{A}$的定义同前).如果有非零解,那么向量组$\li{\bs\alpha},s$线性相关,否则它们线性无关.
+\end{theorem}
+\begin{hint}
+    由此,判断向量组是否线性相关也可以归结为判断齐次线性方程组是否具有无穷解的问题.对方程的系数矩阵$\mat{A}$做初等行变换,观察非零行的数目$r$和变量数目$n$的关系即可得出结论.
+\end{hint}
+\begin{theorem}[向量组的延伸/缩短组的线性相关/无关性]\\
+    如果向量组$\li{\bs\alpha},s$线性相关,那么它们的\red{缩短组}线性相关.\\
+    如果向量组$\li{\bs\alpha},s$线性无关,那么它们的\red{延伸组}线性无关. \red{千万不要搞反了!}
+\end{theorem}
+\subsubsection{极大线性无关组的求法}
+\begin{hint}
+    求向量组的极大线性无关组主要有两个办法:
+    \begin{enumerate}[label={\color{blue}\tbf{(\arabic*)}}]
+        \item 每次向向量组中添加一个向量,并证明添加后的向量组线性无关,直到处理完所有向量.
+        \item 以向量组中的所有向量为列向量构成矩阵,将其经初等行变换成简化阶梯形矩阵,主元所在的列对应原向量组中的向量构成极大线性无关组.
+    \end{enumerate}
+    \tbf{(2)}的计算效率比\tbf{(1)}高.但是,如果需要将给定的向量组扩充成极大线性无关组,就只能用\tbf{(1)}了.
+\end{hint}
+\begin{problem}\textit{25春线代B期中 4.}\\
+    现有以下一向量组:
+    \[\bs\alpha_1=\begin{bmatrix}
+        2\\3\\4\\7
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        5\\-1\\3\\2
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        -3\\4\\1\\5
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        0\\-1\\7\\2
+    \end{bmatrix},\quad\bs\alpha_5=\begin{bmatrix}
+        6\\2\\1\\5
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 证明:向量组$\bs\alpha_1,\bs\alpha_2$线性无关.
+        \item 求上述向量组的所有包含$\bs\alpha_1,\bs\alpha_2$的极大线性无关组.
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}
+    \item 考虑$\bs\alpha_1,\bs\alpha_2$的前两个分量构成的矩阵的行列式:
+    \[\begin{vmatrix}
+        2&5\\3&-1
+    \end{vmatrix}=-17\neq0\]
+    于是向量$\begin{bmatrix}
+        2\\3
+    \end{bmatrix},\begin{bmatrix}
+        5\\-1
+    \end{bmatrix}$线性无关,因而它们的延伸组$\bs\alpha_1,\bs\alpha_2$也线性无关.
+    \item 观察可得$\bs\alpha_3=\bs\alpha_1-\bs\alpha_2$,因此$\bs\alpha_3$不包含于所求的组中.考虑$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4$的前三个分量构成的矩阵的行列式
+    \[\begin{vmatrix}
+        2&5&0\\
+        3&-1&-1\\
+        4&3&7
+    \end{vmatrix}=2\begin{vmatrix}
+        -1&-1\\3&7
+    \end{vmatrix}-5\begin{vmatrix}
+        3&-1\\4&7
+    \end{vmatrix}=-135\neq0\]
+    于是$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4$线性无关.考虑$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$构成的矩阵的行列式：
+    \[\begin{aligned}
+        \begin{vmatrix}
+        2&5&0&6\\
+        3&-1&-1&2\\
+        4&3&7&1\\
+        7&2&2&5
+    \end{vmatrix}
+    &=\begin{vmatrix}
+        2&5&-5&6\\
+        3&-1&0&2\\
+        4&3&4&1\\
+        7&2&0&5
+    \end{vmatrix}=\begin{vmatrix}
+        0&1/2&-5&15\\
+        2&-1&0&2\\
+        0&3&4&1\\
+        0&2&0&5
+    \end{vmatrix}=-\begin{vmatrix}
+        1&-10&30\\
+        3&4&1\\
+        2&0&5
+    \end{vmatrix}\\
+    &=-\begin{vmatrix}
+        1&-10&30\\
+        0&34&-89\\
+        0&20&-55
+    \end{vmatrix}=-\begin{vmatrix}
+        34&-89\\20&-55
+    \end{vmatrix}=90\neq0
+    \end{aligned}\]
+    于是上述向量组包含$\bs\alpha_1,\bs\alpha_2$的极大线性无关组为$\bs\alpha_1,\bs\alpha_2,\bs\alpha_4,\bs\alpha_5$。
+\end{enumerate}
+\end{solution}
+\end{document}
