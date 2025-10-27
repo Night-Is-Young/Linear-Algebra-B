@@ -1,0 +1,36 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\title{\tbf{Mid-Term Exam Review}}
+\author{夜未央}
+\begin{document}
+\maketitle
+\section{行列式}
+\begin{problem}
+    设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}$满足
+    \[a_{ij}=\left\{\begin{array}{l}
+        x,\quad\left|i-j\right|=2\\
+        0,\quad\left|i-j\right|\neq2
+    \end{array}\right.\]
+    求$\det\mat{A}$.
+\end{problem}
+\begin{problem}
+    设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}$满足$a_{ij}=\left(a_i+b_j\right)^{n-1}$,求$\det\mat{A}$.
+\end{problem}
+\begin{problem}
+    设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}$满足
+    \[a_{ij}=\left\{\begin{array}{l}
+        1+\cos\left(\theta_i-\varphi_j\right),\quad i=j\\
+        \cos\left(\theta_i-\varphi_j\right),\quad i\neq j
+    \end{array}\right.\]
+    求$\det\mat{A}$.
+\end{problem}
+\section{线性方程组的进一步理论}
+\begin{problem}
+    设$\R^n$中的向量组$\li{\bs\alpha},s$线性无关,向量组$\bs\alpha_1-\lambda\bs\alpha_2,\bs\alpha_2-\lambda\bs\alpha_3,\cdots,\bs\alpha_s-\lambda\bs\alpha_1$线性相关,求实数$\lambda$.
+\end{problem}
+\begin{problem}
+    若向量组$\li{\bs\alpha},s$线性无关,并且
+    \[\bs\beta_i=\sum_{j=1}^{n}c_{ij}\bs\alpha_j,\quad i=1,\cdots,t\]
+    证明:向量组$\li{\bs\beta},t$线性无关当且仅当$c_{ij}$拼成的矩阵$\mat{C}$行满秩.
+\end{problem}
+\end{document}
