@@ -1,0 +1,60 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2021-22学年第二学期线性代数B期中试题}
+\end{center}
+\begin{homework}[1(20')]
+    求$a$为何值时,下述线性方程组有有解?在有解时求出所有解.
+    \[\left\{\begin{array}{l}
+        x_1+x_2+x_3+x_4=-1\\
+        x_1+3x_3-x_4=8\\
+        x_1+2x_2-x_3+x_4=2a+2\\
+        3x_1+3x_2+3x_3+2x_4=-11\\
+        2x_1+2x_2+2x_3+x_4=2a
+    \end{array}\right.\]
+\end{homework}
+\begin{homework}[2(20')]
+    求下述矩阵的行空间和列空间的维数和各自的一个基:
+    \[\mat{A}=\begin{bmatrix}
+        1&-1&2&1&0\\
+        2&-2&4&-2&0\\
+        3&0&6&-1&1\\
+        0&3&0&0&1
+    \end{bmatrix}\]
+\end{homework}
+\begin{homework}[3(20')]
+    给定$\K^5$中的向量
+    \[\bs\eta_1=\begin{bmatrix}
+        1\\2\\3\\4\\5
+    \end{bmatrix},\quad\bs\eta_2=\begin{bmatrix}
+        1\\-1\\1\\-1\\1
+    \end{bmatrix},\quad\bs\eta_3=\begin{bmatrix}
+        1\\2\\4\\8\\16
+    \end{bmatrix}\]
+    试求一个齐次线性方程组,使得$\bs\eta_1,\bs\eta_2,\bs\eta_3$构成该方程组的一个基础解系.
+\end{homework}
+\begin{homework}[4(10')]
+    设正整数$n>1$,已知$\bs\gamma\in\K^n$是有$n$个未知量的非齐次线性方程组$\mat{A}\vec{x}=\bs\beta$的一个解,并且$\li{\bs\eta},{n-r}\in\K^n(1<r<n)$是该方程组的导出组的一个基础解系.
+    证明:
+    \begin{enumerate}
+        \item 向量组$\bs\gamma+\bs\eta_1,\bs\gamma+\bs\eta_2,\cdots,\bs\gamma+\bs\eta_{n-r}$线性无关.
+        \item 方程组$\mat{A}\vec{x}=\bs\beta$的任一解都可以被向量组$\bs\gamma+\bs\eta_1,\bs\gamma+\bs\eta_2,\cdots,\bs\gamma+\bs\eta_{n-r}$线性表出.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[5(10')]
+    设$\mat{A}_{s\times n}$满足$\rank\mat{A}=r$.证明: \mat{A}的任意$r$个线性无关的行与任意$r$个线性无关的列交叉处元素形成的子式一定非零.
+\end{homework}
+\begin{homework}[6(10')]
+    设$n$为正整数,$\R$上的矩阵$\mat{A}=\left(a_{ij}\right)_{n\times n}$满足
+    \[a_ii>\sum_{j=1,j\neq i}^{n}\left|a_{ij}\right|,\quad i=1,\cdots,n\]
+    证明:
+    \begin{enumerate}
+        \item $\det\mat{A}\neq0$.
+        \item 定义$f(t)=\det\left(t\mat{I}+\mat{A}\right)$,则$\forall t\in[0,+\infty)$有$f(t)>0$.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[7(10')]
+    设$\mat{A}=\left(a_{ij}\right)_{n\times n}$满足$a_{ij}=\frac{1}{a_i+b_j}$,求$\det\mat{A}$.
+\end{homework}
+\end{document}

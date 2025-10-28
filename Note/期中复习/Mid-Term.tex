@@ -433,6 +433,40 @@
     这样,递推完成后分子应当包括所有$a_i+b_j(1\leq i,j\leq n)$,分母应当包括所有$a_j-a_i$和$b_j-b_i(1\leq i<j\leq n)$.于是
     \[A_n=\dfrac{\displaystyle\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\left(b_j-b_i\right)}{\displaystyle\prod_{1\leqslant i,j\leqslant n}\left(a_i+b_j\right)}\]
 \end{solution}
+{\color{darkgreen}
+\begin{theorem}[Binet-Cauchy公式的方阵版本]
+    设$\mat{A}$和$\mat{B}$均为$n$级方阵,则有
+    \[\det\mat{A}\mat{B}=\det\mat{A}\det\mat{B}\]
+\end{theorem}
+证明方法在下一章中可以找到.这里就不详细加以说明了.大多数具有级数求和形式的行列式都可用此方法解决.}
+\begin{problem}
+    设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}=\frac{1-a_i^nb_j^n}{1-a_ib_j}$,求$\det\mat{A}$.
+\end{problem}
+\begin{solution}
+    注意到
+    \[a_{ij}=\frac{1-a_i^nb_j^n}{1-a_ib_j}=\sum_{k=1}^{n}a_i^{k-1}b_j^{k-1}\]
+    考虑矩阵$\mat{X}_{n\times n}$和$\mat{Y}_{n\times n}$使得$x_{ik}=a_i^k,y_{kj}=b_j^k$,则有
+    \[a_{ij}=\sum_{k=1}^{n}x_{ik}y_{kj}\]
+    于是根据矩阵乘法的定义可知$\mat{A}=\mat{X}\mat{Y}$.而$\det\mat{X}$和$\det\mat{Y}$均为范德蒙德行列式,于是
+    \[\det\mat{A}=\det\mat{X}\det\mat{Y}=\prod_{1\leq i<j\leq n}\left(a_j-a_i\right)\prod_{1\leq i<j\leq n}\left(b_j-b_i\right)\]
+\end{solution}
+\begin{problem}
+    设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}=\left(a_i+b_j\right)^{n-1}$,求$\det\mat{A}$.
+\end{problem}
+\begin{solution}
+    仍然注意到
+    \[a_{ij}=\sum_{k=1}^{n}C_{n-1}^{k-1}a_i^{k-1}b_j^{n-k}\]
+    考虑矩阵$\mat{X}_{n\times n}$和$\mat{Y}_{n\times n}$使得$x_{ik}=C_{n-1}^{k-1}a_i^{k-1},y_{kj}=b_j^{n-k}$,则有
+    \[a_{ij}=\sum_{k=1}^{n}x_{ik}y_{kj}\]
+    于是根据矩阵乘法的定义可知$\mat{A}=\mat{X}\mat{Y}$.\\
+    现在分别考虑$\det\mat{X}$与$\det\mat{Y}$.\\
+    注意到$\mat{X}$的第$k$列有公因子$C_{n-1}^{k-1}$.提取公因子后又变成范德蒙德行列式.于是
+    \[\det\mat{X}=\prod_{k=0}^{n-1}C_{n-1}^{k}\prod_{1\leq i<j\leq n}\left(a_j-a_i\right)\]
+    而注意到$\det\mat{Y}$将每一行逆序排列后变为范德蒙德行列式,于是
+    \[\det\mat{Y}=(-1)^{\tau\left(n(n-1)\cdots1\right)}\prod_{1\leq i<j\leq n}\left(b_j-b_i\right)=(-1)^{\frac{n(n-1)}{2}}\prod_{1\leq i<j\leq n}\left(b_j-b_i\right)\]
+    于是
+    \[\det\mat{A}=(-1)^{\frac{n(n-1)}{2}}\prod_{k=0}^{n-1}C_{n-1}^{k}\prod_{1\leq i<j\leq n}\left(a_j-a_i\right)\prod_{1\leq i<j\leq n}\left(b_j-b_i\right)\]
+\end{solution}
 \subsection{Cramer法则}
 \begin{theorem}[Cramer法则]
     $n$个方程的$n$元线性方程组有唯一解,当且仅当其系数矩阵$\mat{A}$满足$\det\mat{A}\neq0$,此时唯一解的形式为

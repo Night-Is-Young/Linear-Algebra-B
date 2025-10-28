@@ -357,4 +357,36 @@
 \begin{problem}
     设数域$\mathbb{K}$中一个$s\times n$的矩阵$\mat{A}$的秩为$r>0$.证明:$\mat{A}$的任何$r$个线性无关的行与任何$r$个线性无关的列交出的$r$阶子式一定非零.
 \end{problem}
+\begin{proof}
+    先将这$r$行$r$列分别移动到$\mat{A}$的前$r$行和前$r$列.由于$\rank\mat{A}=r$,因此前$r$行和前$r$列分别构成行向量组和列向量组的极大线性无关组.\\
+    于是第$r$行后的每一行都可以由前$r$行线性表出,因而可以对$\mat{A}$进行初等行变换使得第$r$行后的每一行的元素均变为$0$.\\
+    由于初等行变换不改变列向量组的线性无关性,因此此时第$r$列后的每一列仍可以由前$r$列线性表出.因而可以对$\mat{A}$继续初等列变换使得第$r$列后的每一列的元素均变为$0$.\\
+    初等行列变换不改变矩阵的秩,因此此时前$r$行与前$r$列构成的子式仍应当非零.于是在行列变换前这子式也非零,命题得证.
+\end{proof}
+\begin{problem}
+    定义函数$f_i:\mathbb{Z}^+\to\K(i=1,\cdots,r)$.证明:不存在一组不全为$0$的数$\li l,r$使得
+    \[l_1f_1+\cdots+l_rf_r=0\]
+    当且仅当存在$\li i,r\in\mathbb{Z}^+$使得
+    \[\rank\begin{bmatrix}
+        f_1\left(i_1\right)&\cdots&f_1\left(i_r\right)\\
+        \vdots&\ddots&\vdots\\
+        f_r\left(i_1\right)&\cdots&f_r\left(i_r\right)
+    \end{bmatrix}=r\]
+\end{problem}
+\begin{proof}
+    如果
+    \[\rank\begin{bmatrix}
+        f_1\left(i_1\right)&\cdots&f_1\left(i_r\right)\\
+        \vdots&\ddots&\vdots\\
+        f_r\left(i_1\right)&\cdots&f_r\left(i_r\right)
+    \end{bmatrix}=r\]
+    于是其行向量线性无关.考虑向量
+    \[\]
+\end{proof}
+\begin{problem}
+    设$U\subseteq\K^n$是非零子空间.证明: $U$中任何一组线性无关的向量组可以扩充为$U$的一个基.
+\end{problem}
+\begin{problem}
+    设$U,V$是$\K^n$的两个子空间,且$U\subset V$.证明: $\dim U\leq\dim V$,并给出等号成立的充分必要条件.
+\end{problem}
 \end{document}

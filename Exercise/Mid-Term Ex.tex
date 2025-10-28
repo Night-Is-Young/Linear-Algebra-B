@@ -13,9 +13,17 @@
     \end{array}\right.\]
     求$\det\mat{A}$.
 \end{problem}
+\begin{solution}
+
+\end{solution}
 \begin{problem}
     设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}$满足$a_{ij}=\left(a_i+b_j\right)^{n-1}$,求$\det\mat{A}$.
 \end{problem}
+\begin{solution}
+    对$a_{ij}$变形可得
+    \[a_{ij}=\left(a_i+b_j\right)^{n-1}=\sum_{k=0}^{n-1}C_{n-1}^{k}a_i^kb_j^{n-1-k}\]
+    
+\end{solution}
 \begin{problem}
     设矩阵$\mat{A}_{n\times n}$的元素$a_{ij}$满足
     \[a_{ij}=\left\{\begin{array}{l}
@@ -24,6 +32,7 @@
     \end{array}\right.\]
     求$\det\mat{A}$.
 \end{problem}
+
 \section{线性方程组的进一步理论}
 \begin{problem}
     设$\R^n$中的向量组$\li{\bs\alpha},s$线性无关,向量组$\bs\alpha_1-\lambda\bs\alpha_2,\bs\alpha_2-\lambda\bs\alpha_3,\cdots,\bs\alpha_s-\lambda\bs\alpha_1$线性相关,求实数$\lambda$.
@@ -32,5 +41,8 @@
     若向量组$\li{\bs\alpha},s$线性无关,并且
     \[\bs\beta_i=\sum_{j=1}^{n}c_{ij}\bs\alpha_j,\quad i=1,\cdots,t\]
     证明:向量组$\li{\bs\beta},t$线性无关当且仅当$c_{ij}$拼成的矩阵$\mat{C}$行满秩.
+\end{problem}
+\begin{problem}
+    已知线性方程组$\mat{A}\vec{x}=\vec{b}$有解,证明:$\mat{A}$的第$k$个列向量不能被其余列向量线性表出当且仅当该方程的任意解$\vec{x}$的第$k$个分量相同.
 \end{problem}
 \end{document}
