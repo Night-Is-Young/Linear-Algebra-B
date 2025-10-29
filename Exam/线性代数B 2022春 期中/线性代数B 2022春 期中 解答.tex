@@ -92,17 +92,80 @@
     \end{bmatrix}\]
     试求一个齐次线性方程组,使得$\bs\eta_1,\bs\eta_2,\bs\eta_3$构成该方程组的一个基础解系.
 \end{homework}
+\begin{solution}
+    方程组的每一行的系数$a_1,\cdots,a_5$都满足
+    \[\left\{\begin{array}{l}
+        a_1+2a_2+3a_3+4a_4+5a_5=0\\
+        a_1-a_2+a_3-a_4+a_5=0\\
+        a_1+2a_2+4a_3+8a_4+16a_5=0
+    \end{array}\right.\]
+    因此,对以$\bs\eta_1,\bs\eta_2,\bs\eta_3$为行的矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        1&2&3&4&5\\
+        1&-1&1&-1&1\\
+        1&2&4&8&16
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-1&1&-1&1\\
+        0&3&2&5&4\\
+        0&0&1&4&11
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&-6&-16\\
+        0&1&0&-1&-6\\
+        0&0&1&4&11
+    \end{bmatrix}\]
+    于是原方程的解为
+    \[\left\{\begin{array}{l}
+        a_1=6a_4+16a_5\\
+        a_2=a_4+6a_5\\
+        a_3=-4a_4-11a_5
+    \end{array}\right.\]
+    于是原方程可以是
+    \[\left\{\begin{array}{l}
+        6x_1+x_2-4x_3+x_4=0\\
+        16x_1+6x_2-11x_3+x_5=0
+    \end{array}\right.\]
+\end{solution}
 \begin{homework}[4(10')]
     设正整数$n>1$,已知$\bs\gamma\in\K^n$是有$n$个未知量的非齐次线性方程组$\mat{A}\vec{x}=\bs\beta$的一个解,并且$\li{\bs\eta},{n-r}\in\K^n(1<r<n)$是该方程组的导出组的一个基础解系.
     证明:
     \begin{enumerate}
-        \item 向量组$\bs\gamma+\bs\eta_1,\bs\gamma+\bs\eta_2,\cdots,\bs\gamma+\bs\eta_{n-r}$线性无关.
-        \item 方程组$\mat{A}\vec{x}=\bs\beta$的任一解都可以被向量组$\bs\gamma+\bs\eta_1,\bs\gamma+\bs\eta_2,\cdots,\bs\gamma+\bs\eta_{n-r}$线性表出.
+        \item 向量组$\bs\gamma,\bs\gamma+\bs\eta_1,\bs\gamma+\bs\eta_2,\cdots,\bs\gamma+\bs\eta_{n-r}$线性无关.
+        \item 方程组$\mat{A}\vec{x}=\bs\beta$的任一解都可以被向量组$\bs\gamma,\bs\gamma+\bs\eta_1,\bs\gamma+\bs\eta_2,\cdots,\bs\gamma+\bs\eta_{n-r}$线性表出.
     \end{enumerate}
 \end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item 设$k_0,\li k,{n-r}\in\K$使得
+        \[k_0\bs\gamma+k_1\left(\bs\gamma+\bs\eta_1\right)+\cdots+k_{n-r}\left(\bs\gamma+\bs\eta_{n-r}\right)=\mbf{0}\]
+        则有
+        \[k_1\bs\eta_1+\cdots+k_{n-r}\bs\eta_{n-r}=\sum_{i=0}^{n-r}k_i\bs\gamma\]
+        如果$\displaystyle\sum_{i=0}^{n-r}k_i\neq0$,则
+        \[\mat{A}\bs\gamma=\dfrac{k_1\mat{A}\bs\eta_1+\cdots+k_{n-r}\mat{A}\bs\eta_{n-r}}{\displaystyle\sum_{i=0}^{n-r}k_i}=\mbf{0}\]
+        与$\mat{A}\bs\gamma=\bs\beta\neq\mbf{0}$矛盾.如果$\displaystyle\sum_{i=0}^{n-r}k_i=0$而$k_0,\li k,{n-r}$不全为零,则
+        \[k_1\bs\eta_1+\cdots+k_{n-r}\bs\eta_{n-r}=\mbf{0}\]
+        于是$\bs\eta_1,\cdots,\bs\eta_{n-r}$线性相关,这与基础解系的定义矛盾.\\
+        于是原式成立当且仅当$k_1=\cdots=k_{n-r}=0$,即题述向量组线性无关.
+    \item 该线性方程组的解集为
+        \[W=\left\{\bs\gamma+k_1\bs\eta_1+\cdots+k_{n-r}\bs\eta_{n-r}:\li k,{n-r}\in\K\right\}\]
+        对于任意$\bs\delta\in W$,令$a_0=\displaystyle1-\sum_{i=1}^{n-r}k_i,a_i=k_i(1\leq i\leq n-r)$,于是有
+        \[\begin{aligned}
+            \bs\delta
+            &=\bs\gamma+k_1\bs\eta_1+\cdots+k_{n-r}\bs\eta_{n-r}\\
+            &=\left(1-\sum_{i=1}^{n-r}k_i\right)\bs\gamma+\sum_{i=1}^{n-r}k_i\left(\bs\gamma+\bs\eta_i\right)\\
+            &=a_0\bs\gamma+a_1\left(\bs\gamma+\bs\eta_1\right)+\cdots+a_{n-r}\left(\bs\gamma+\bs\eta_{n-r}\right)
+        \end{aligned}\]
+        于是任意$\bs\delta\in W$都能写成上述向量组的线性组合.
+\end{enumerate}
+\end{solution}
 \begin{homework}[5(10')]
     设$\mat{A}_{s\times n}$满足$\rank\mat{A}=r$.证明: \mat{A}的任意$r$个线性无关的行与任意$r$个线性无关的列交叉处元素形成的子式一定非零.
 \end{homework}
+\begin{proof}
+    先将这$r$行$r$列分别移动到$\mat{A}$的前$r$行和前$r$列.由于$\rank\mat{A}=r$,因此前$r$行和前$r$列分别构成行向量组和列向量组的极大线性无关组.\\
+    于是第$r$行后的每一行都可以由前$r$行线性表出,因而可以对$\mat{A}$进行初等行变换使得第$r$行后的每一行的元素均变为$0$.\\
+    由于初等行变换不改变列向量组的线性无关性,因此此时第$r$列后的每一列仍可以由前$r$列线性表出.因而可以对$\mat{A}$继续初等列变换使得第$r$列后的每一列的元素均变为$0$.\\
+    初等行列变换不改变矩阵的秩,因此此时前$r$行与前$r$列构成的子式仍应当非零.于是在行列变换前这子式也非零,命题得证.
+\end{proof}
 \begin{homework}[6(10')]
     设$n$为正整数,$\R$上的矩阵$\mat{A}=\left(a_{ij}\right)_{n\times n}$满足
     \[a_ii>\sum_{j=1,j\neq i}^{n}\left|a_{ij}\right|,\quad i=1,\cdots,n\]
@@ -112,7 +175,67 @@
         \item 定义$f(t)=\det\left(t\mat{I}+\mat{A}\right)$,则$\forall t\in[0,+\infty)$有$f(t)>0$.
     \end{enumerate}
 \end{homework}
+\begin{proof}
+\begin{enumerate}
+    \item 为证明$\det\mat{A}\neq0$,只需证明齐次线性方程组
+    \[\left\{\begin{array}{c}
+        a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=0\\
+        a_{21}x_1+a_{22}x_2+\cdots+a_{2n}x_n=0\\
+        \vdots\\
+        a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=0
+    \end{array}\right.\]
+    仅有零解即可.假定该方程有非零解,那么设$x_k$是$\li x,n$中绝对值最大的,则$\left|x_k\right|>0$.于是根据第$k$个方程可得
+    \[\left|a_{kk}x_k\right|=\left|\sum_{1\leqslant j\leqslant n,j\neq k}a_{kj}x_j\right|\]
+    由于$a_{kk}>0$,于是
+    \[a_{kk}\left|x_k\right|\leqslant\sum_{1\leqslant j\leqslant n,j\neq k}\left|a_{kj}\right|\left|x_j\right|\leqslant\left|x_k\right|\sum_{1\leqslant j\leqslant n,j\neq k}\left|a_{kj}\right|\]
+    即
+    \[x_{kk}\leqslant\sum_{1\leqslant j\leqslant n,j\neq k}\left|a_{kj}\right|\]
+    这与题意矛盾.于是$\det\mat{A}\neq0$.
+    \item 令$t\geqslant0$,设
+    \[f(t)=\begin{vmatrix}
+        a_{11}+t&a_{12}&\cdots&a_{1n}\\
+        a_{21}&a_{22}+t&\cdots&a_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_{n1}&a_{n2}&\cdots&a_{nn}+t
+    \end{vmatrix}\]
+    于是上述行列式也是主对角占优的,因此$f(t)\neq0$.又因为$f(t)$是关于$t$的首一多项式,于是
+    \[\lim_{t\to+\infty}f(t)=+\infty\]
+    根据连续函数的介值定理可得$f(t)>0$(如果存在$t_0\in[0,+\infty]$使得$f\left(t_0\right)\leq0$,则总存在$t\in\left[t_0,+\infty\right)$使得$f(t)=0$,这与$f(t)\neq0$矛盾).于是命题得证.
+\end{enumerate}
+\end{proof}
 \begin{homework}[7(10')]
     设$\mat{A}=\left(a_{ij}\right)_{n\times n}$满足$a_{ij}=\frac{1}{a_i+b_j}$,求$\det\mat{A}$.
 \end{homework}
+\begin{solution}
+    将第$n$列前的所有列减去第$n$列可得
+    \[A_n=\begin{vmatrix}
+        \frac{b_n-b_1}{\left(a_1+b_1\right)\left(a_1+b_n\right)}&\frac{b_n-b_2}{\left(a_1+b_2\right)\left(a_1+b_n\right)}&\cdots&\frac{1}{a_1+b_n}\\
+        \frac{b_n-b_1}{\left(a_2+b_1\right)\left(a_2+b_n\right)}&\frac{b_n-b_2}{\left(a_2+b_2\right)\left(a_2+b_n\right)}&\cdots&\frac{1}{a_2+b_n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{b_n-b_1}{\left(a_n+b_1\right)\left(a_n+b_n\right)}&\frac{b_n-b_2}{\left(a_n+b_2\right)\left(a_n+b_n\right)}&\cdots&\frac{1}{a_n+b_n}
+    \end{vmatrix}\]
+    注意到第$i$行具有公因式$\frac{1}{a_1+b_n}$,第$j$列具有公因式$b_n-b_j$.于是有
+    \[A_n=\prod_{i=1}^{n}\dfrac{1}{a_i+b_n}\prod_{j=1}^{n-1}\left(b_n-b_j\right)\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\frac{1}{a_1+b_2}&\cdots&1\\
+        \frac{1}{a_2+b_1}&\frac{1}{a_2+b_2}&\cdots&1\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{1}{a_n+b_1}&\frac{1}{a_n+b_2}&\cdots&1
+    \end{vmatrix}\]
+    将上述等式右端的行列式的第$n$行以前的所有行减去第$n$行可得
+    \[|\cdot|=\begin{vmatrix}
+        \frac{a_n-a_1}{\left(a_1+b_1\right)\left(a_n+b_1\right)}&\frac{a_n-a_1}{\left(a_1+b_2\right)\left(a_n+b_2\right)}&\cdots&0\\
+        \frac{a_n-a_2}{\left(a_2+b_1\right)\left(a_n+b_1\right)}&\frac{a_n-a_2}{\left(a_2+b_2\right)\left(a_n+b_2\right)}&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \frac{1}{a_n+b_1}&\frac{1}{a_n+b_2}&\cdots&1
+    \end{vmatrix}=\prod_{j=1}^{n-1}\dfrac{1}{a_n+b_i}\prod_{i=1}^{n}\left(a_n-a_i\right)\begin{vmatrix}
+        \frac{1}{a_1+b_1}&\frac{1}{a_1+b_2}&\cdots&0\\
+        \frac{1}{a_2+b_1}&\frac{1}{a_2+b_2}&\cdots&0\\
+        \vdots&\vdots&\ddots&\vdots\\
+        1&1&\cdots&1
+    \end{vmatrix}\]
+    现在,将行列式按最后一列展开,其$(n,n)$元的余子式恰好为$A_{n-1}$.于是可得
+    \[A_n=\prod_{i=1}^{n}\dfrac{1}{a_i+b_n}\prod_{j=1}^{n-1}\left(b_n-b_j\right)\prod_{j=1}^{n-1}\dfrac{1}{a_n+b_i}\prod_{i=1}^{n-1}\left(a_n-a_i\right)A_{n-1}\]
+    这样,递推完成后分子应当包括所有$a_i+b_j(1\leq i,j\leq n)$,分母应当包括所有$a_j-a_i$和$b_j-b_i(1\leq i<j\leq n)$.于是
+    \[A_n=\dfrac{\displaystyle\prod_{1\leqslant i<j\leqslant n}\left(a_j-a_i\right)\left(b_j-b_i\right)}{\displaystyle\prod_{1\leqslant i,j\leqslant n}\left(a_i+b_j\right)}\]
+\end{solution}
 \end{document}
