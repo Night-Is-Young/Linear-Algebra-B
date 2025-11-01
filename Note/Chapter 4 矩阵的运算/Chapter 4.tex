@@ -1,0 +1,37 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{矩阵的运算}
+\subsection{矩阵的加法,数乘和乘法}
+\begin{definition}[矩阵的加法]
+    设$\mat{A}=(a_{ij})_{m\times n}$, $\mat{B}=(b_{ij})_{m\times n}$,令
+    \[\mat{C}=(a_{ij}+b_{ij})_{m\times n}\]
+    则称$\mat{C}$是$\mat{A}$与$\mat{B}$的和,记作$\mat{C}=\mat{A}+\mat{B}$.
+\end{definition}
+\begin{definition}[矩阵的数乘]
+    设$\mat{A}=(a_{ij})_{m\times n}$,对于$k\in K$,令
+    \[\mat{A}=(k_ij)_{m\times n}\]
+    则称$\mat{M}$是$k$与矩阵$\mat{A}$的数量积,记作$\mat{M}=k\mat{A}$.
+\end{definition}
+\begin{definition}[矩阵的乘法]
+    设$\mat{A}=(a_{ij})_{s\times n}$, $\mat{B}=(b_{ij})_{n\times m}$,令
+    \[\mat{C}=(c_{ij})_{m\times n}\]
+    其中
+    \[c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}\]
+    则称$\mat{C}$是$\mat{A}$与$\mat{B}$的积,记作$\mat{C}=\mat{A}\mat{B}$.
+\end{definition}
+矩阵乘法满足结合律,但不满足交换律.
+\begin{definition}[恒等矩阵]
+    对角线元素为$1$,其余元素均为$0$的$n\times n$级矩阵称作$n$阶恒等矩阵,记作$\mat{I}_n$.
+\end{definition}
+\begin{definition}[可交换矩阵]
+    如果$n$级方阵$\mat{A}$和$\mat{B}$满足
+    \[\mat{A}\mat{B}=\mat{B}\mat{A}\]
+    则称$\mat{A}$和$\mat{B}$是可交换的.
+\end{definition}
+\subsection{特殊矩阵}
+\subsubsection{对角矩阵}
+\begin{definition}[对角矩阵]
+    除主对角线上的元素以外,其它元素均为$0$的矩阵称作对角矩阵,记作$\diag\{\li a,n\}$,其中$\li a,n$为对角线上的元素.
+\end{definition}
+\end{document}
