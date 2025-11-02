@@ -32,6 +32,71 @@
 \subsection{特殊矩阵}
 \subsubsection{对角矩阵}
 \begin{definition}[对角矩阵]
-    除主对角线上的元素以外,其它元素均为$0$的矩阵称作对角矩阵,记作$\diag\{\li a,n\}$,其中$\li a,n$为对角线上的元素.
+    除主对角线上的元素以外,其它元素均为$0$的矩阵称作\tbf{对角矩阵},记作$\diag\{\li a,n\}$,其中$\li a,n$为对角线上的元素.
 \end{definition}
+\begin{theorem}[对角矩阵的乘法]
+    用对角矩阵$\mat{D}$左乘矩阵$\mat{A}$,相当于用$\mat{D}$的主对角元乘$\mat{A}$的各行,即
+    \[\begin{bmatrix}
+        d_1&\cdots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\cdots&d_n
+    \end{bmatrix}\begin{bmatrix}
+        \bs\gamma_1\\
+        \vdots\\
+        \bs\gamma_n
+    \end{bmatrix}=\begin{bmatrix}
+        d_1\bs\gamma_1\\
+        \vdots\\
+        d_n\bs\gamma_n
+    \end{bmatrix}\]
+    用对角矩阵$\mat{D}$右乘矩阵$\mat{A}$,相当于用$\mat{D}$的主对角元乘$\mat{A}$的各列,即
+    \[\begin{bmatrix}
+        \bs\alpha_1&\cdots&\bs\alpha_n
+    \end{bmatrix}\begin{bmatrix}
+        d_1&\cdots&0\\
+        \vdots&\ddots&\vdots\\
+        0&\cdots&d_n
+    \end{bmatrix}=\begin{bmatrix}
+        d_1\bs\alpha_1&\cdots&d_n\bs\alpha_n
+    \end{bmatrix}\]
+\end{theorem}
+\subsubsection{基本矩阵}
+\begin{definition}[基本矩阵]
+    只有一个元素是$1$,其它元素均为$0$的矩阵称作基本矩阵. $(i,j)$元为$1$的基本矩阵记作$\mat{E}_{ij}$.
+\end{definition}
+\begin{theorem}[基本矩阵的乘法]
+    用$\mat{E}_{ij}$左乘矩阵$\mat{A}$就相当于把$\mat{A}$的第$j$行移到第$i$行,其余行均为$\mbf{0}$;用$\mat{E}_{ij}$右乘矩阵$\mat{A}$就相当于把$\mat{A}$的第$i$列移到第$j$列,其余列均为$\mbf{0}$.
+\end{theorem}
+\subsubsection{上/下三角矩阵}
+\begin{definition}[上/下三角矩阵]
+    主对角线下/上方元素均为$0$的方阵称作\tbf{上/下三角矩阵}.
+\end{definition}
+\begin{theorem}[上/下三角矩阵的乘法]
+    上/下三角矩阵的乘积仍为上/下三角矩阵,并且主对角线上的元素等于各矩阵主对角线上对应元素的乘积.
+\end{theorem}
+\subsubsection{初等矩阵}
+\begin{definition}[初等矩阵]
+    由单位矩阵经过一次初等行(列)变换所得到的矩阵称作\tbf{初等矩阵}.
+\end{definition}
+根据单位矩阵和基本矩阵的乘法即可推导出有关初等矩阵的乘法.事实上,初等矩阵与其对应的初等行(列)变换是等价的.
+\subsubsection{对称矩阵与斜对称矩阵}
+\begin{definition}[对称矩阵]
+    如果矩阵$\mat{A}$满足$\mat{A}=\mat{A}^{\text{t}}$,则称$\mat{A}$为\tbf{对称矩阵}.
+\end{definition}
+\begin{theorem}[对称矩阵的乘法]
+    设$\mat{A}$和$\mat{B}$都是数域$\K$上的$n$级对称矩阵,则$\mat{A}\mat{B}$为对称矩阵当且仅当$\mat{A}$与$\mat{B}$可交换.
+\end{theorem}
+\begin{definition}[斜对称矩阵]
+    如果矩阵$\mat{A}$满足$\mat{A}=-\mat{A}^{\text{t}}$,则称$\mat{A}$为\tbf{斜对称矩阵}.
+\end{definition}
+\begin{theorem}[斜对称矩阵的行列式]
+    设$\mat{A}$为数域$\K$上的$n$级斜对称矩阵,则当$n$为奇数时,$\det(\mat{A})=0$.
+\end{theorem}
+\begin{proof}
+    因为$\mat{A}^{\t}=-\mat{A}$,于是
+    \[\det\mat{A}=\det\mat{A}^\t=\det(-\mat{A})=(-1)^n\det\mat{A}=-\det\mat{A}\]
+    于是
+    \[\det\mat{A}=0\]
+\end{proof}
+
 \end{document}
