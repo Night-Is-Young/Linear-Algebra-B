@@ -98,5 +98,36 @@
     于是
     \[\det\mat{A}=0\]
 \end{proof}
-
+\subsection{矩阵乘积的秩与行列式}
+\begin{theorem}
+    设$\mat{A}$和$\mat{B}$分别为数域$\K$上的$s\times n$矩阵和$n\times m$矩阵,则
+    \[\rank\mat{A}\mat{B}\leq\min\{\rank\mat{A},\rank\mat{B}\}\]
+\end{theorem}
+\begin{proof}
+    设$\mat{A}$的列向量组为$\li{\bs\alpha},n$,则有
+    \[\begin{aligned}
+        \mat{A}\mat{B}
+        &=\begin{bmatrix}
+            \bs\alpha_1&\cdots\bs\alpha_n
+        \end{bmatrix}\begin{bmatrix}
+            b_{11}&\cdots&b_{1m}\\
+            \vdots&\ddots&\vdots\\
+            b_{n1}&\cdots&b_{nm}
+        \end{bmatrix}\\
+        &=\begin{bmatrix}
+            b_{11}\bs\alpha_1+\cdots+b_{n1}\bs\alpha_n&\cdots&b_{1m}\bs\alpha_1+\cdots+b_{nm}\bs\alpha_n
+        \end{bmatrix}
+    \end{aligned}\]
+    于是$\mat{AB}$的列向量组能被$\mat{A}$的列向量组线性表出,从而
+    \[\rank\mat{A}\mat{B}\leq\rank\mat{A}\]
+    利用这一结论有
+    \[\rank\mat{A}\mat{B}=\rank(\mat{A}\mat{B})^\t=\rank(\mat{B}^\t\mat{A}^\t)\leq\rank\mat{B}^\t=\rank\mat{B}\]
+    因此
+    \[\rank\mat{A}\mat{B}\leq\min\{\rank\mat{A},\rank\mat{B}\}\]
+    命题得证.
+\end{proof}
+\begin{theorem}
+    设$\mat{A}$, $\mat{B}$均为数域$\K$上的$n$级方阵,则
+    \[\det\mat{A}\mat{B}=\det\mat{A}\det\mat{B}\]
+\end{theorem}
 \end{document}

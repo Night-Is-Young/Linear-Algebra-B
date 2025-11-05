@@ -1,0 +1,175 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第五次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+4.1: 3, 4 (1)(12), 5, 8, 10; 4.2: 2, 3, 4, 7; 4.3: 3, 5, 7; 4.4: 1, 3 (2), 4, 5, 7, 8, 9 (1), 10 (2).
+\section*{习题4.1}
+\begin{homework}[3]
+    设$\mat{I}$是$n$阶单位矩阵, $\mat{J}$是元素全为$1$的$n$阶矩阵,设
+    \[\mat{M}=\begin{bmatrix}
+        k&\lambda&\cdots&\lambda\\
+        \lambda&k&\cdots&\lambda\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \lambda&\lambda&\cdots&k
+    \end{bmatrix}\]
+    试把$\mat{M}$表示成$x\mat{I}+y\mat{J}$的形式.
+\end{homework}
+\begin{solution}
+    不难发现
+    \[\mat{M}=\begin{bmatrix}
+        \lambda&\lambda&\cdots&\lambda\\
+        \lambda&\lambda&\cdots&\lambda\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \lambda&\lambda&\cdots&\lambda
+    \end{bmatrix}+\begin{bmatrix}
+        k-\lambda&&&\\
+        &k-\lambda&&\\
+        &&\ddots&\\
+        &&&k-\lambda
+    \end{bmatrix}=(k-\lambda)\mat{I}+\lambda\mat{J}\]
+    于是可知
+    \[x=k-\lambda,\quad y=\lambda\]
+\end{solution}
+\begin{homework}[4(1)]
+    计算
+    \[\begin{bmatrix}
+        7&-1\\-2&5\\3&-4
+    \end{bmatrix}\begin{bmatrix}
+        1&4\\-5&2
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    \[\text{原式}=\begin{bmatrix}
+        7\cdot\begin{bmatrix}1&4\end{bmatrix}+(-1)\begin{bmatrix}-5&2\end{bmatrix}\\
+        -2\cdot\begin{bmatrix}1&4\end{bmatrix}+5\begin{bmatrix}-5&2\end{bmatrix}\\
+        3\cdot\begin{bmatrix}1&4\end{bmatrix}+(-4)\begin{bmatrix}-5&2\end{bmatrix}
+    \end{bmatrix}=\begin{bmatrix}
+        12&26\\-27&2\\23&4
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[4(12)]
+    计算
+    \[\begin{bmatrix}
+        a_1&a_2&a_3\\
+        b_1&b_2&b_3\\
+        c_1&c_2&c_3
+    \end{bmatrix}\begin{bmatrix}
+        1&0&0\\
+        k&1&0\\
+        0&0&1
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    \[\text{原式}
+        =\begin{bmatrix}
+        a_1&a_2&a_3\\
+        b_1&b_2&b_3\\
+        c_1&c_2&c_3
+    \end{bmatrix}\left(\begin{bmatrix}
+        1&0&0\\
+        0&1&0\\
+        0&0&1
+    \end{bmatrix}+\begin{bmatrix}
+        0&0&0\\
+        k&0&0\\
+        0&0&0
+    \end{bmatrix}\right)\\
+    =\begin{bmatrix}
+        a_1&a_2&a_3\\
+        b_1&b_2&b_3\\
+        c_1&c_2&c_3
+    \end{bmatrix}+\begin{bmatrix}
+        ka_2&0&0\\
+        kb_2&0&0\\
+        kc_2&0&0
+    \end{bmatrix}=\begin{bmatrix}
+        a_1+ka_2&a_2&a_3\\
+        b_1+kb_2&b_2&b_3\\
+        c_1+kc_2&c_2&c_3
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[5]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&2\\3&4
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        5&6\\7&8
+    \end{bmatrix}\]
+    求$\mat{A}\mat{B}$, $\mat{B}\mat{A}$, $\mat{A}\mat{B}-\mat{B}\mat{A}$.
+\end{homework}
+\begin{solution}
+    \[\mat{A}\mat{B}=\begin{bmatrix}
+        1\cdot\begin{bmatrix}5&6\end{bmatrix}+2\cdot\begin{bmatrix}7&8\end{bmatrix}\\
+        3\cdot\begin{bmatrix}5&6\end{bmatrix}+4\cdot\begin{bmatrix}7&8\end{bmatrix}
+    \end{bmatrix}=\begin{bmatrix}
+        19&22\\
+        43&50
+    \end{bmatrix}\]
+    \[\mat{B}\mat{A}=\begin{bmatrix}
+        5\cdot\begin{bmatrix}1&2\end{bmatrix}+6\cdot\begin{bmatrix}3&4\end{bmatrix}\\
+        7\cdot\begin{bmatrix}1&2\end{bmatrix}+8\cdot\begin{bmatrix}3&4\end{bmatrix}
+    \end{bmatrix}=\begin{bmatrix}
+        23&34\\
+        31&46
+    \end{bmatrix}\]
+    \[\mat{A}\mat{B}-\mat{B}\mat{A}=\begin{bmatrix}
+        -4&-12\\
+        12&4
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[8]
+    如果$n$级方阵$\mat{B}$满足$\mat{B}^3=\mbf{0}$,求$(\mat{I}-\mat{B})(\mat{I}+\mat{B}+\mat{B}^2)$.
+\end{homework}
+\begin{solution}
+    \[(\mat{I}-\mat{B})(\mat{I}+\mat{B}+\mat{B}^2)=\mat{I}^2+\mat{I}\mat{B}+\mat{I}\mat{B}^2-\mat{B}\mat{I}-\mat{B}^2-\mat{B}^3=\mat{I}-\mat{B}^3=\mat{I}\]
+\end{solution}
+\begin{homework}[10]
+    证明:如果$\mat{A}=\dfrac12(\mat{B}+\mat{I})$,那么$\mat{A}^2=\mat{A}$当且仅当$\mat{B}^2=\mat{I}$.
+\end{homework}
+\begin{proof}
+    $\Rightarrow$:由$\mat{A}^2=\mat{A}$可知
+    \[\mbf{0}=\mat{A}^2-\mat{A}=\dfrac14(\mat{B}+\mat{I})(\mat{B}-\mat{I})=\dfrac14(\mat{B}^2-\mat{I})\]
+    于是$\mat{B}^2-\mat{I}=\mbf{0}$,即$\mat{B}^2=\mat{I}$.\\
+    $\Leftarrow$:由$\mat{B}^2=\mat{I}$可知
+    \[\mat{A}^2-\mat{A}=\dfrac14(\mat{B}^2+2\mat{B}+\mat{I})-\dfrac12(\mat{B}+\mat{I})=\dfrac14(\mat{B}^2-\mat{I})=\mbf0\]
+    于是$\mat{A}^2=\mat{A}$.
+\end{proof}
+\section*{习题4.2}
+\begin{homework}[2]
+    证明:两个$n$级下三角矩阵的乘积仍是下三角矩阵,并且乘积矩阵的主对角元等于因子矩阵相应主对角元的乘积.
+\end{homework}
+\begin{proof}
+    设$\mat{A}=(a_{ij})$, $\mat{B}=(b_{ij})$均为$n$级下三角矩阵,则有
+    \[\begin{aligned}
+        \mat{A}\mat{B}
+        &=\left(\sum_{i=1}^{n}\sum_{j=1}^{i}a_{ij}\mat{E}_{ij}\right)\left(\sum_{k=1}^{n}\sum_{l=1}^{k}b_{kl}\mat{E}_{kl}\right)\\
+        &=\sum_{i=1}^{n}\sum_{j=1}^{i}\sum_{k=1}^{n}\sum_{l=1}^{k}a_{ij}b_{kl}\mat{E}_{ij}\mat{E}_{kl}\\
+        &=\sum_{i=1}^{n}\sum_{j=1}^{i}\sum_{l=1}^{j}a_{ij}b_{jl}\mat{E}_{il}
+    \end{aligned}\]
+    于是总有$l\leq j\leq i$,因此$\mat{A}\mat{B}$是下三角矩阵.特别地,当$i=j=l$时有
+    \[(\mat{A}\mat{B})_{ii}=a_{ij}b_{jl}=a_{ii}b_{ii}\]
+    于是主对角元等于因子矩阵对应主对角元的乘积.
+\end{proof}
+\begin{homework}[3]
+    证明:与所有$n$级矩阵可交换的矩阵一定是$n$级数量矩阵.
+\end{homework}
+\begin{proof}
+    设待求矩阵为$\mat{A}=(a_{ij})$.特别的,$\mat{A}$与基本矩阵$\mat{E}_{ij}$可交换,于是总有
+    \[\begin{bmatrix}
+        0&\cdots&0\\
+        \vdots&\ddots&\vdots\\
+        a_{j1}&\cdots&a_{jn}\\
+        \vdots&\ddots&\vdots\\
+        0&\cdots&0
+    \end{bmatrix}=\begin{bmatrix}
+        0&\cdots&a_{1i}&\cdots&0\\
+        \vdots&\ddots&\vdots&\ddots&\vdots\\
+        0&\cdots&a_{ni}&\cdots&0\\
+    \end{bmatrix}\]
+    于是总有$a_{j1}=\cdots=a_{j(j-1)}=a_{j(j+1)}=\cdots=a_{jn}=0$, $a_{1i}=\cdots=a_{(i-1)i}=a_{(i+1)i}=\cdots=a_{ni}=0$, $a_{jj}=a_{ii}$对所有$1\leq i,j\leq n$成立.\\
+    满足上述要求的矩阵除主对角元外均为$0$,并且主对角元均相等.于是$\mat{A}$是数量矩阵,得证.
+\end{proof}
+\end{document}
