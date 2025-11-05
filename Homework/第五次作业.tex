@@ -172,4 +172,241 @@
     于是总有$a_{j1}=\cdots=a_{j(j-1)}=a_{j(j+1)}=\cdots=a_{jn}=0$, $a_{1i}=\cdots=a_{(i-1)i}=a_{(i+1)i}=\cdots=a_{ni}=0$, $a_{jj}=a_{ii}$对所有$1\leq i,j\leq n$成立.\\
     满足上述要求的矩阵除主对角元外均为$0$,并且主对角元均相等.于是$\mat{A}$是数量矩阵,得证.
 \end{proof}
+\begin{homework}[4]
+    证明:设$\mat{A}$是任一$s\times n$矩阵,则$\mat{A}\mat{A}^\t$和$\mat{A}^\t\mat{A}$均为对称矩阵.
+\end{homework}
+\begin{proof}
+    设$\mat{A}=(a_{ij})$, $\mat{A}^\t=(a'_{ij})$,则$a'_{ij}=a_{ji}$.考虑$\mat{A}\mat{A}^\t=(b_{ij})$的元素:
+    \[b_{ij}=\sum_{k=1}^{n}a_{ik}a'_{kj}=\sum_{k=1}^{n}a_{ik}a_{jk}=\sum_{k=1}^{n}a'_{jk}a_{ki}=b_{ji}\]
+    于是$\mat{A}\mat{A}^\t$是对称矩阵.将上述结论应用于$\mat{A}^\t$可得$\mat{A}^\t\mat{A}$也是对称矩阵.于是命题得证.
+\end{proof}
+\begin{homework}[7]
+    证明:设$\mat{A}$是任一$n$级方阵,则$\mat{A}+\mat{A}^\t$是对称矩阵,$\mat{A}-\mat{A}^\t$是斜对称矩阵.
+\end{homework}
+\begin{proof}
+    记$\mat{A}=(a_{ij})$, $\mat{B}=\mat{A}+\mat{A}^\t=(b_{ij})$, $\mat{C}=\mat{A}-\mat{A}^\t=(c_{ij})$,则
+    \[b_{ij}=a_{ij}+a_{ji}=a_{ji}+a_{ij}=b_{ji}\]
+    \[c_{ij}=a_{ij}-a_{ji}=-(a_{ji}-a_{ij})=-c_{ji}\]
+    于是$\mat{B}$是对称矩阵, $\mat{C}$是斜对称矩阵,得证.
+\end{proof}
+\section*{习题4.3}
+\begin{homework}[3]
+    证明:设$\mat{A}$是$n$级方阵,则$\det\mat{A}\mat{A}^\t=(\det\mat{A})^2$.
+\end{homework}
+\begin{proof}
+    有
+    \[\det\mat{A}\mat{A}^\t=\det\mat{A}\cdot\det\mat{A}^\t=\det\mat{A}\cdot\det\mat{A}=(\det\mat{A})^2\]
+    得证.
+\end{proof}
+\begin{homework}[5]
+    证明:如果$\mat{A}$是数域$\K$上的$n$级方阵,且满足
+    \[\mat{A}\mat{A}^\t=\mat{I},\quad\det\mat{A}=-1,\]
+    则$\det(\mat{I}+\mat{A})=0$.
+\end{homework}
+\begin{proof}
+    有
+    \[\det(\mat{I}+\mat{A})=\det(\mat{A}\mat{A}^\t+\mat{A})=\det\mat{A}\det(\mat{A}^\t+\mat{I})\]
+    而$(\mat{A}^\t+\mat{I})^\t=\mat{A}+\mat{I}$,于是
+    \[\det(\mat{I}+\mat{A})=-\det(\mat{I}+\mat{A})\]
+    于是
+    \[\det(\mat{I}+\mat{A})=0\]
+\end{proof}
+\begin{homework}[7]
+    设$s_k=x_1^k+x_2^k+x_3^k(k=0,1,2,3,4)$,矩阵
+    \[\mat{A}=\begin{bmatrix}
+        s_0&s_1&s_2\\
+        s_1&s_2&s_3\\
+        s_2&s_3&s_4
+    \end{bmatrix}\]
+    证明:
+    \[\det\mat{A}=\prod_{1\leq j<i\leq 3}(x_i-x_j)^2\]
+\end{homework}
+\begin{proof}
+    注意到$\mat{A}$的$(i,j)$元为$s_{i+j-2}$.设
+    \[\mat{B}=\begin{bmatrix}
+        1&1&1\\
+        x_1&x_2&x_3\\
+        x_1^2&x_2^2&x_3^2\\
+    \end{bmatrix},\quad\mat{C}=\begin{bmatrix}
+        1&x_1&x_1^2\\
+        1&x_2&x_2^2\\
+        1&x_3&x_3^2\\
+    \end{bmatrix}\]
+    于是$b_{ik}=x_k^{i-1}$, $c_{kj}=x_{k}^{j-1}$.于是有
+    \[a_{ij}=x_1^{i+j-2}+x_2^{i+j-2}+x_3^{i+j-2}=\sum_{k=1}^{3}b_{ik}c_{kj}\]
+    于是$\mat{A}=\mat{B}\mat{C}$,因而
+    \[\det\mat{A}=\det\mat{B}\det\mat{C}=\prod_{1\leq j<i\leq 3}(x_i-x_j)\prod_{1\leq j<i\leq 3}(x_i-x_j)=\prod_{1\leq j<i\leq 3}(x_i-x_j)^2\]
+\end{proof}
+\section*{习题4.4}
+\begin{homework}[1]
+    数量矩阵$k\mat{I}$何时可逆?何时不可逆?当$k\mat{I}$可逆时,求其逆矩阵.
+\end{homework}
+\begin{solution}
+    有
+    \[\det k\mat{I}=k\det\mat{I}=k\]
+    于是当且仅当$k\neq0$时$k\mat{I}$可逆,否则不可逆.当$k\neq0$时有
+    \[(k\mat{I})^{-1}=\dfrac1k\mat{I}\]
+\end{solution}
+\begin{homework}[3(2)]
+    判断下列矩阵是否可逆,如果可逆则求出其逆矩阵:
+    \[\begin{bmatrix}
+        0&1\\1&0
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    \[\det\begin{bmatrix}
+        0&1\\1&0
+    \end{bmatrix}=0-1=-1\neq0\]
+    于是$\mat{A}$可逆,并且
+    \[\mat{A}^{-1}=\dfrac{1}{\det\mat{A}}\mat{A}^\ast=-\begin{bmatrix}
+        0&-1\\-1&0
+    \end{bmatrix}=\begin{bmatrix}
+        0&1\\1&0
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[4]
+    证明:如果$\mat{A}$可逆,那么$\mat{A}^\ast$也可逆,并求$(\mat{A}^\ast)^{-1}$.
+\end{homework}
+\begin{proof}
+    由于$\mat{A}$可逆,于是
+    \[\mat{A}^{-1}=\dfrac{1}{\det\mat{A}}\mat{A}^\ast\]
+    令$\mat{B}=\dfrac{1}{\det\mat{A}}\mat{A}$,则有
+    \[\mat{B}\mat{A}^\ast=\dfrac{1}{\det\mat{A}}\mat{A}(\det\mat{A})\mat{A}^{-1}=\mat{A}\mat{A}^{-1}=\mat{I}\]
+    同理可证$\mat{A}^\ast\mat{B}=\mat{I}$.于是$\mat{A}^\ast$可逆,其逆矩阵为$\dfrac{1}{\det\mat{A}}\mat{A}$.
+\end{proof}
+\begin{homework}[5]
+    证明:如果$n$级方阵$\mat{A}$满足$\mat{A}^3=\mbf0$,那么$\mat{I}-\mat{A}$可逆,并求出其逆矩阵.
+\end{homework}
+\begin{proof}
+    由$\mat{A}^3=\mbf0$可知
+    \[\mat{I}^3-\mat{A}^3=\mat{I}\]
+    于是
+    \[(\mat{I}-\mat{A})(\mat{I}+\mat{A}+\mat{A}^2)=\mat{I}\]
+    于是$\mat{I}-\mat{A}$可逆,且$(\mat{I}-\mat{A})^{-1}=\mat{I}+\mat{A}+\mat{A}^2$.
+\end{proof}
+\begin{homework}[7]
+    证明:如果$n$级矩阵$\mat{A}$满足$2\mat{A}^4-5\mat{A}^2+4\mat{A}+2\mat{I}=\mbf0$,那么$\mat{A}$可逆,并求出$\mat{A}^{-1}$.
+\end{homework}
+\begin{proof}
+    由题意可知
+    \[-2\mat{I}=2\mat{A}^4-5\mat{A}^2+4\mat{A}=\mat{A}(2\mat{A}^3-5\mat{A}+4\mat{I})\]
+    于是
+    \[\mat{A}\left(-\mat{A}^3+\dfrac52\mat{A}-2\mat{I}\right)=\mat{I}\]
+    于是$\mat{A}$可逆,并且$\mat{A}^{-1}=-\mat{A}^3+\dfrac52\mat{A}-2\mat{I}$.
+\end{proof}
+\begin{homework}[8]
+    证明:可逆的对称(斜对称)矩阵的逆依然是对称(斜对称)矩阵.
+\end{homework}
+\begin{proof}
+    设$\mat{A}$为对称矩阵,则$\mat{A}=\mat{A}^\t$.于是
+    \[\mat{A}^{-1}=(\mat{A}^\t)^{-1}=(\mat{A}^{-1})^\t\]
+    于是$\mat{A}^{-1}$也是对称矩阵.\\
+    设$\mat{B}$为斜对称矩阵,则$\mat{B}=-\mat{B}^\t$.于是
+    \[\mat{B}^{-1}=(-\mat{B}^\t)^{-1}=(-\mat{B}^{-1})^\t\]
+    于是$\mat{B}^{-1}$也是斜对称矩阵.
+\end{proof}
+\begin{homework}[9(1)]
+    求下列矩阵的逆:
+    \[\begin{bmatrix}
+        1&0&-1\\
+        -2&1&3\\
+        3&-1&2
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    有
+    \[\begin{bmatrix}
+        1&0&-1&1&0&0\\
+        -2&1&3&0&1&0\\
+        3&-1&2&0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-1&1&0&0\\
+        0&1&1&2&1&0\\
+        0&-1&5&-3&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-1&1&0&0\\
+        0&1&1&2&1&0\\
+        0&0&6&-1&1&1
+    \end{bmatrix}\]
+    \[\longrightarrow\begin{bmatrix}
+        1&0&-1&1&0&0\\
+        0&1&1&2&1&0\\
+        0&0&1&-\frac16&\frac16&\frac16
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&\frac{5}{6}&\frac16&\frac16\\
+        0&1&0&\frac{13}{6}&\frac{5}{6}&-\frac16\\
+        0&0&1&-\frac16&\frac16&\frac16
+    \end{bmatrix}\]
+    于是题设矩阵的逆矩阵为
+    \[\begin{bmatrix}
+        \frac{5}{6}&\frac16&\frac16\\
+        \frac{13}{6}&\frac{5}{6}&-\frac16\\
+        -\frac16&\frac16&\frac16
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[10(2)]
+    解下列矩阵方程:
+    \[\mat{X}\begin{bmatrix}
+        3&-1&2\\
+        1&0&-1\\
+        -2&1&4
+    \end{bmatrix}=\begin{bmatrix}
+        3&0&-2\\
+        -1&4&1
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    首先有
+    \[\begin{bmatrix}
+        3&-1&2&1&0&0\\
+        1&0&-1&0&1&0\\
+        -2&1&4&0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-1&0&1&0\\
+        0&-1&5&1&-3&0\\
+        0&1&2&0&2&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-1&0&1&0\\
+        0&1&2&0&2&1\\
+        0&0&7&1&-1&1
+    \end{bmatrix}\]
+    \[\longrightarrow\begin{bmatrix}
+        1&0&-1&0&1&0\\
+        0&1&2&0&2&1\\
+        0&0&1&\frac17&-\frac17&\frac17
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&\frac17&\frac67&\frac17\\
+        0&1&0&-\frac27&\frac{16}{7}&\frac57\\
+        0&0&1&\frac17&-\frac17&\frac17
+    \end{bmatrix}\]
+    于是
+    \[\begin{bmatrix}
+        3&-1&2\\
+        1&0&-1\\
+        -2&1&4
+    \end{bmatrix}^{-1}=\dfrac17\begin{bmatrix}
+        1&6&1\\
+        -2&16&5\\
+        1&-1&1
+    \end{bmatrix}\]
+    于是
+    \[\mat{X}=\begin{bmatrix}
+        3&0&-2\\
+        -1&4&1
+    \end{bmatrix}\begin{bmatrix}
+        3&-1&2\\
+        1&0&-1\\
+        -2&1&4
+    \end{bmatrix}^{-1}=\dfrac17\begin{bmatrix}
+        3&0&-2\\
+        -1&4&1
+    \end{bmatrix}\begin{bmatrix}
+        1&6&1\\
+        -2&16&5\\
+        1&-1&1
+    \end{bmatrix}=\begin{bmatrix}
+        \frac17&\frac{20}{7}&\frac17\\
+        -\frac87&\frac{57}{7}&\frac{20}{7}
+    \end{bmatrix}\]
+\end{solution}
 \end{document}
