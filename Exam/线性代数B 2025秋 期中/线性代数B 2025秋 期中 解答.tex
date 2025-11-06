@@ -1,0 +1,378 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2025-26学年第一学期线性代数B期中试题}
+\end{center}
+\begin{homework}[1(16')]
+    已知线性方程组
+    \[\left\{\begin{array}{l}
+        ax_1+x_2+x_3=2\\
+        x_1+bx_2+x_3=1\\
+        x_1+2bx_2+x_3=1
+    \end{array}\right.\]
+    回答下列问题:
+    \begin{enumerate}
+        \item $a,b$为何值时,上述方程组\tbf{a.}有唯一解; \tbf{b.}有无穷多解; \tbf{c.}无解.
+        \item 当方程组有无穷多解时,求方程组的导出组的一个基础解系.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item 对方程组的增广矩阵做初等行变换:
+    \[\begin{bmatrix}
+        a&1&1&2\\
+        1&b&1&1\\
+        1&2b&1&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&b&1&1\\
+        0&1-ab&1-a&2-a\\
+        0&b&0&0
+    \end{bmatrix}\]
+    当$b=0$时,增广矩阵为
+    \[\begin{bmatrix}
+        1&0&1&1\\
+        0&1&1-a&2-a\\
+        0&0&0&0
+    \end{bmatrix}\]
+    非零行数目小于未知数数目,并且没有$0=d(d\neq0)$类型的行,因此方程组有无穷多解.\\
+    当$b\neq0$时,继续做初等行变换可得
+    \[\begin{bmatrix}
+        1&b&1&1\\
+        0&1-ab&1-a&2-a\\
+        0&b&0&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&b&1&1\\
+        0&b&0&0\\
+        0&0&1-a&2-a
+    \end{bmatrix}\]
+    当$a=1$时,增广矩阵出现$0=d(d\neq0)$类型的行,方程组无解;当$a\neq 1$时,非零行数目等于未知数数目,方程组有唯一解.
+\item 方程组有无穷多组解时,其导出组的系数矩阵为
+    \[\begin{bmatrix}
+        1&0&1\\
+        0&1&1-a\\
+        0&0&0
+    \end{bmatrix}\]
+    因此方程组的基础解系为
+    \[\bs\eta=\begin{bmatrix}
+        -1&a-1&1
+    \end{bmatrix}^\t\]
+\end{enumerate}
+\end{solution}
+\begin{homework}[2(16')]
+    判断下列向量组线性相关还是线性无关.如果线性相关,试找出其中一个向量使得它可以由其余向量线性表出,并给出一种表出方式.
+    \[\bs\alpha_1=\begin{bmatrix}
+        -2\\1\\0\\3
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        1\\-3\\2\\4
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        3\\0\\2\\-1
+    \end{bmatrix},\quad\bs\alpha_4=\begin{bmatrix}
+        2\\-2\\4\\6
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    对以上述向量组作为列向量组的矩阵初等行变换可得
+    \[\begin{bmatrix}
+        -2&1&3&2\\
+        1&-3&0&-2\\
+        0&2&2&4\\
+        3&4&-1&6
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&0&-2\\
+        0&-5&3&-2\\
+        0&1&1&2\\
+        0&13&-1&12
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&0&-2\\
+        0&1&1&2\\
+        0&0&8&8\\
+        0&0&-14&-14
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&1\\
+        0&1&0&1\\
+        0&0&1&1\\
+        0&0&0&0
+    \end{bmatrix}\]
+    于是上述向量组构成的矩阵的秩为$3$,因此向量组线性相关.由上述矩阵初等行变换的结果可知
+    \[\bs\alpha_4=\bs\alpha_1+\bs\alpha_2+\bs\alpha_3\]
+\end{solution}
+\begin{homework}[3(10')]
+    计算下面的$n$阶行列式$(n\geq2)$:
+    \[D_n=\begin{vmatrix}
+        1&2&3&\cdots&n-1&n\\
+        1&-1&0&\cdots&0&0\\
+        0&2&-2&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&n-1&1-n
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    首先将第$i$行$(i\geq2)$的公因子提出可得
+    \[D_n=(n-1)!\begin{vmatrix}
+        1&2&3&\cdots&n-1&n\\
+        1&-1&0&\cdots&0&0\\
+        0&1&-1&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&1&-1
+    \end{vmatrix}\]
+    然后将第$i$行加到第$i+1$行$(2\leq i\leq n-1)$可得
+    \[D_n=(n-1)!\begin{vmatrix}
+        1&2&3&\cdots&n-1&n\\
+        1&-1&0&\cdots&0&0\\
+        1&0&-1&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        1&0&0&\cdots&0&-1
+    \end{vmatrix}\]
+    然后将第$j$列加到第$1$列$(2\leq j\leq n)$可得
+    \[D_n=(n-1)!\begin{vmatrix}
+        1+2+\cdots+n&2&3&\cdots&n-1&n\\
+        0&-1&0&\cdots&0&0\\
+        0&0&-1&\cdots&0&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&0&\cdots&0&-1
+    \end{vmatrix}\]
+    最后按第一列展开可得
+    \[D_n=(n-1)!(-1)^{(n-1)}\dfrac{n(n+1)}{2}=\dfrac{(n+1)!(-1)^{n-1}}{2}\]
+\end{solution}
+\begin{homework}[4(10')]
+    计算下面的$n$阶行列式$(n\geq2)$:
+    \[D_n=\begin{vmatrix}
+        1&\alpha&\alpha^2&\cdots&\alpha^{n-2}&\alpha^{n-1}\\
+        \beta&1&\alpha&\cdots&\alpha^{n-3}&\alpha^{n-2}\\
+        \beta^2&\beta&1&\cdots&\alpha^{n-4}&\alpha^{n-3}\\
+        \vdots&\vdots&\vdots&\ddots&\vdots&\vdots\\
+        \beta^{n-2}&\beta^{n-3}&\beta^{n-4}&\cdots&1&\alpha\\
+        \beta^{n-1}&\beta^{n-2}&\beta^{n-3}&\cdots&\beta&1
+    \end{vmatrix}\]
+\end{homework}
+\begin{solution}
+    将第$i$列减去第$i+1$列的$\beta$倍$(1\leq i\leq n-1)$可得
+    \[D_n=\begin{vmatrix}
+        1-\alpha\beta&\alpha-\alpha^2\beta&\cdots&\alpha^{n-2}-\alpha^{n-1}\beta&\alpha^{n-1}\\
+        0&1-\alpha\beta&\cdots&\alpha^{n-3}-\alpha^{n-2}\beta&\alpha^{n-2}\\
+        0&0&\cdots&\alpha^{n-4}-\alpha^{n-3}\beta&\alpha^{n-3}\\
+        \vdots&\vdots&\ddots&\vdots&\vdots\\
+        0&0&\cdots&1-\alpha\beta&\alpha\\
+        0&0&\cdots&0&1\\
+    \end{vmatrix}=(1-\alpha\beta)^{n-1}\]
+\end{solution}
+\begin{homework}[5(13')]
+    设
+    \[\mat{A}=\begin{bmatrix}
+        1&1&7&a\\
+        2&2&1&b\\
+        1&-1&5&c
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        1&1&5&9\\
+        0&2&-1&1\\
+        0&0&3&3
+    \end{bmatrix}\]
+    如果$\mat{A}$可经初等行变换化为$\mat{B}$,求$a,b,c$的值.
+\end{homework}
+\begin{solution}
+    如果$\mat{A}$经初等行变换能化为$\mat{B}$,那么二者经初等行变换化成的简化阶梯形矩阵应当相同.对$\mat{A}$做初等行变换有
+    \[\mat{A}\longrightarrow\begin{bmatrix}
+        1&1&7&a\\
+        0&0&-13&b-2a\\
+        0&-2&-2&c-a
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&7&a\\
+        0&1&1&\frac{a-c}{2}\\
+        0&0&1&\frac{2a-b}{13}
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&\frac{-11a+12b+13c}{26}\\
+        0&1&0&\frac{9a+2b-13c}{26}\\
+        0&0&1&\frac{2a-b}{13}
+    \end{bmatrix}\]
+    对$\mat{B}$做初等行变换有
+    \[\mat{B}\longrightarrow\begin{bmatrix}
+        1&1&5&9\\
+        0&1&-\frac12&\frac12\\
+        0&0&1&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&3\\
+        0&1&0&1\\
+        0&0&1&1
+    \end{bmatrix}\]
+    于是有
+    \[\left\{\begin{array}{l}
+        -11a+12b+13c=78\\
+        9a+2b-13c=26\\
+        2a-b=13
+    \end{array}\right.\]
+    解得
+    \[a=11,\quad b=9,\quad c=7\]
+\end{solution}
+\begin{homework}[6(12')]
+    设
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\3\\2
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        4\\5\\1
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        2\\1\\6
+    \end{bmatrix}\]
+    矩阵$\mat{A}$的列向量组为$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$.设
+    \[\bs\beta_1=\begin{bmatrix}
+        \det\mat{A}\\0\\0
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        0\\\det\mat{A}\\0
+    \end{bmatrix},\quad\bs\beta_3=\begin{bmatrix}
+        0\\0\\\det\mat{A}
+    \end{bmatrix}\]
+    求下面三个方程组的解:
+    \[x_1\bs\alpha_1+x_2\bs\alpha_2+x_3\bs\alpha_3=\bs\beta_i,\quad i=1,2,3.\]
+\end{homework}
+\begin{solution}
+    首先有
+    \[\det\mat{A}=\begin{vmatrix}
+        1&4&2\\
+        3&5&1\\
+        2&1&6
+    \end{vmatrix}=\begin{vmatrix}
+        1&4&2\\
+        0&-7&-5\\
+        0&-7&2
+    \end{vmatrix}=\begin{vmatrix}
+        -7&-5\\
+        -7&2
+    \end{vmatrix}=-49\neq0\]
+    于是上述方程组均有解.\\
+    对于第一个方程$x_1\bs\alpha_1+x_2\bs\alpha_2+x_3\bs\alpha_3=\bs\beta_1$,根据Cramer法则可得
+    \[x_1=\dfrac{1}{\det\mat{A}}\begin{vmatrix}
+        \det\mat{A}&4&2\\
+        0&5&1\\
+        0&1&6
+    \end{vmatrix}=\begin{vmatrix}
+        5&1\\
+        1&6
+    \end{vmatrix}=29\]
+    同理有
+    \[x_2=-16,\quad x_3=-7\]
+    对于第二个方程$x_1\bs\alpha_1+x_2\bs\alpha_2+x_3\bs\alpha_3=\bs\beta_2$,同理有
+    \[x_1=-22,\quad x_2=2,\quad x_3=7\]
+    对于第三个方程$x_1\bs\alpha_1+x_2\bs\alpha_2+x_3\bs\alpha_3=\bs\beta_3$,同理有
+    \[x_1=-6,\quad x_2=5,\quad x_3=-7\]
+\end{solution}
+\begin{homework}[7(10')]
+    证明:
+    \[\rank\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mat{D}
+    \end{bmatrix}\leq\rank\mat{A}+\rank\mat{B}+\rank\mat{C}+\rank\mat{D}\]
+\end{homework}
+\begin{proof}
+    首先证明
+    \[\rank\begin{bmatrix}
+        \mat{X}\\\mat{Y}
+    \end{bmatrix}\leq\rank\mat{X}+\rank\mat{Y}\]
+    考虑$\mat{X}$的行向量组的极大线性无关组$\{\vec{x}_1,\cdots,\vec{x}_s\}$和$\mat{Y}$的行向量组的极大线性无关组$\{\vec{y}_1,\cdots,\vec{y}_t\}$.由于矩阵$\begin{bmatrix}
+        \mat{X}\\\mat{Y}
+    \end{bmatrix}$的每一行都属于$\mat{X}$或$\mat{Y}$,因此它的行向量组能被$\{\vec{x}_1,\cdots,\vec{x}_s,\vec{y}_1,\cdots,\vec{y}_t\}$线性表出,于是
+    \[\rank\begin{bmatrix}
+        \mat{X}\\\mat{Y}
+    \end{bmatrix}\leq s+t=\rank\mat{X}+\rank\mat{Y}\]
+    同理可知
+    \[\rank\begin{bmatrix}
+        \mat{X}&\mat{Y}
+    \end{bmatrix}\leq\rank\mat{X}+\rank\mat{Y}\]
+    现在对$\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mat{D}
+    \end{bmatrix}$应用上述结论就有
+    \[\rank\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mat{D}
+    \end{bmatrix}\leq\rank\begin{bmatrix}
+        \mat{A}\\\mat{C}
+    \end{bmatrix}+\rank\begin{bmatrix}
+        \mat{B}\\\mat{D}
+    \end{bmatrix}\leq\rank\mat{A}+\rank\mat{B}+\rank\mat{C}+\rank\mat{D}\]
+\end{proof}
+\begin{homework}[8(8')]
+    设如下方程组
+    \[\left\{\begin{array}{c}
+        a_{11}x_1+a_{12}x_2+\cdots+a_{1r}x_r=a_{1(r+1)}x_{r+1}+\cdots+a_{1n}x_n\\
+        a_{21}x_1+a_{22}x_2+\cdots+a_{2r}x_r=a_{2(r+1)}x_{r+1}+\cdots+a_{2n}x_n\\
+        \vdots\\
+        a_{r1}x_1+a_{r2}x_2+\cdots+a_{rr}x_r=a_{r(r+1)}x_{r+1}+\cdots+a_{rn}x_n
+    \end{array}\right.\]
+    有解,其中行列式
+    \[\begin{vmatrix}
+        a_{11}&\cdots&a_{1r}\\
+        \vdots&\ddots&\vdots\\
+        a_{r1}&\cdots&a_{rr}
+    \end{vmatrix}\neq0\]
+    设
+    \[\bs\beta_i=\begin{bmatrix}
+        l_{i1}&l_{i2}&\cdots&l_{ir}&l_{i(r+1)}&\cdots&l_{in}
+    \end{bmatrix},\quad i=1,2,\cdots s\]
+    为上述方程组的解.令
+    \[\bs\beta_i'=\begin{bmatrix}
+        l_{i(r+1)}&\cdots&l_{in}
+    \end{bmatrix},\quad i=1,2,\cdots s\]
+    证明:
+    \[\rank\left\{\li{\bs\beta},s\right\}=\rank\left\{\bs\beta_1',\cdots,\bs\beta_s'\right\}\]
+\end{homework}
+\begin{proof}
+    考虑以$\li{\bs\beta},s$为行向量组的矩阵
+    \[\begin{bmatrix}
+        l_{11}&\cdots&l_{1r}&l_{1(r+1)}&\cdots&l_{1n}\\
+        \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+        l_{s1}&\cdots&l_{sr}&l_{s(r+1)}&\cdots&l_{sn}
+    \end{bmatrix}\]
+    由题意,只需证明上述矩阵的前$r$列能被第$r+1$列到第$n$列线性表出即可.为此,考虑上述矩阵的第$i$行$\begin{bmatrix}
+        l_{i1}&\cdots&l_{ir}&l_{i(r+1)}&\cdots&l_{in}
+    \end{bmatrix}$,它是题设的方程组的解.\\
+    \indent 将$\li x,r$视作变量,$x_{r+1},\cdots,x_n$视作可变的参量,记方程组的系数矩阵为$\mat{A}$,根据Cramer法则可得
+    \[x_k=\dfrac{\det\mat{B}_k}{\det\mat{A}},\quad k=1,2,\cdots,r\]
+    其中$\mat{B}_k$是把$\mat{A}$的第$k$列替换为\[\begin{bmatrix}
+        a_{1(r+1)}x_{r+1}+\cdots+a_{1n}x_n\\
+        a_{2(r+1)}x_{r+1}+\cdots+a_{2n}x_n\\
+        \vdots\\
+        a_{r(r+1)}x_{r+1}+\cdots+a_{rn}x_n
+    \end{bmatrix}\]
+    得到的矩阵.根据行列式的性质,对$\det\mat{B}_k$的第$k$列拆分后提取公因子可知
+    \[\det\mat{B}_k=x_{r+1}\det\mat{C}_{k(r+1)}+\cdots+x_{n}\det\mat{C}_{kn}\]
+    其中$\mat{C}_{kl}(r<l\leq n)$是把$\mat{A}$的第$k$列替换为\[\begin{bmatrix}
+        a_{1l}\\a_{2l}\\\vdots\\a_{rl}
+    \end{bmatrix}\]
+    得到的矩阵.于是有
+    \[x_{k}=x_{r+1}\dfrac{\det\mat{C}_{k(r+1)}}{\det\mat{A}}+\cdots+x_{n}\dfrac{\det\mat{C}_{kn}}{\det\mat{A}}\]
+    于是上式对每一个解均成立,即对任意$1\leq i\leq s$都有
+    \[l_{ik}=l_{i(r+1)}\dfrac{\det\mat{C}_{k(r+1)}}{\det\mat{A}}+\cdots+l_{in}\dfrac{\det\mat{C}_{kn}}{\det\mat{A}}\]
+    于是
+    \[\begin{bmatrix}
+        l_{1k}\\\cdots\\l_{sk}
+    \end{bmatrix}=\dfrac{\det\mat{C}_{k(r+1)}}{\det\mat{A}}\begin{bmatrix}
+        l_{1(r+1)}\\\cdots\\l_{s(r+1)}
+    \end{bmatrix}+\cdots+\dfrac{\det\mat{C}_{kn}}{\det\mat{A}}\begin{bmatrix}
+        l_{1n}\\\cdots\\l_{sn}
+    \end{bmatrix}\]
+    即上述矩阵的第$k$列$(1\leq k\leq r)$能被第$r+1$列到第$n$列线性表出,从而命题得证.
+\end{proof}
+\begin{homework}[9(5')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        a_{11}&a_{12}&\cdots&a_{1n}\\
+        a_{21}&a_{22}&\cdots&a_{2n}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a_{s1}&a_{s2}&\cdots&a_{sn}
+    \end{bmatrix}\]
+    其中$s\leq n$.定义
+    \[\det\mat{A}=\sum_{j_1j_2\cdots j_s}(-1)^{\tau\left(j_1j_2\cdots j_s\right)}a_{1j_1}a_{2j_2}\cdots a_{sj_s}\]
+    其中$j_1j_2\cdots j_s$取遍$1,2,\cdots,n$种任意$s$个不同数的排列.当$\det\mat{A}\neq0$时,问$\rank\mat{A}$是否为$s$.若是,请给出证明;若不是,请给出反例.
+\end{homework}
+\begin{proof}
+    $\rank\mat{A}=s$.证明如下:\\
+    \indent 考虑$1,2,\cdots,n$中任取的$s$个不同数$i_1,\cdots,i_s(i_1<\cdots<i_s)$.记$\mat{A}$的第$i_1,\cdots,i_s$列组成的子矩阵为$\mat{B}_{i_1\cdots i_s}$,则有
+    \[\begin{aligned}
+        \det\mat{A}
+        &= \sum_{j_1j_2\cdots j_s}(-1)^{\tau\left(j_1j_2\cdots j_s\right)}a_{1j_1}a_{2j_2}\cdots a_{sj_s}\\
+        &= \sum_{i_1<i_2<\cdots<i_s}\sum_{j_1'j_2'\cdots j_s'}(-1)^{\tau\left(j_1'j_2'\cdots j_s'\right)}a_{1j_1'}a_{2j_2'}\cdots a_{sj_s'}\\
+        &= \sum_{i_1<i_2<\cdots<i_s}\det\mat{B}_{i_1\cdots i_s}
+    \end{aligned}\]
+    其中$j_1',j_2',\cdots,j_s'$是$i_1i_2\cdots i_s$的一个排列.进而,当$\det\mat{A}\neq0$时,至少存在一个$\mat{B}_{i_1\cdots i_s}$使得$\det\mat{B}_{i_1\cdots i_s}\neq0$,因此$\mat{A}$存在不为$0$的$s$阶子式,从而$\rank\mat{A}=s$.
+\end{proof}
+\end{document}
