@@ -1,0 +1,808 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第五次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+\section*{习题4.5}
+\begin{homework}[2]
+    设$\mat{A}$是$n$阶矩阵,且$\mat{A}\neq\mbf0$.证明:存在一个$n\times m$非零矩阵$\mat{B}$,使得$\mat{AB}=\mbf0$当且仅当$\det\mat{A}=0$.
+\end{homework}
+\begin{proof}
+    设$\mat{B}$的列向量组为$\li{\bs\beta},m$,则根据矩阵的分块乘法可知
+    \[\mat{A}\mat{B}=\mat{A}\begin{bmatrix}
+        \bs\beta_1&\cdots&\bs\beta_m
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}\bs\beta_1&\cdots&\mat{A}\bs\beta_m
+    \end{bmatrix}\]
+    于是
+    \[\begin{aligned}
+        \det\mat{A}=0
+        &\Leftrightarrow\mat{A}\vec{x}=\mbf0\text{有非零解}\\
+        &\Leftrightarrow\text{存在非零的}\li{\bs\beta},m\text{使得}\mat{A}\bs\beta_i=\mbf0\\
+        &\Leftrightarrow\text{存在非零的}\mat{B}=\begin{bmatrix}
+            \bs\beta_1&\cdots&\bs\beta_m
+        \end{bmatrix}\text{使得}\mat{A}\mat{B}=\mbf0
+    \end{aligned}\]
+\end{proof}
+\begin{homework}[3]
+    设$\mat{B}$为$n$级矩阵, $\mat{C}$为$n\times m$行满秩矩阵,证明:
+    \begin{enumerate}
+        \item 如果$\mat{B}\mat{C}=\mbf0$,那么$\mat{B}=\mbf0$.
+        \item 如果$\mat{B}\mat{C}=\mat{C}$,那么$\mat{B}=\mat{I}$.
+    \end{enumerate}
+\end{homework}
+\begin{proof}
+    首先证明当$s\times n$矩阵$\mat{X}$和$n\times m$矩阵$\mat{Y}$满足$\mat{X}\mat{Y}=\mbf0$时$\rank\mat{X}+\rank\mat{Y}\leq n$.\\
+    \indent 当$\mat{X}=\mbf0$时显然成立.\\
+    \indent 当$\mat{X}\neq\mbf0$时,设$\mat{Y}$的列向量组为$\li{\vec{y}},m$,则它们都是$\mat{X}\vec{y}=\mbf0$的解.设$\mat{X}\vec{y}=\mbf0$的解空间为$W$,于是
+    \[\rank\mat{Y}=\rank\{\li{\vec{y}},m\}\leq\dim W=n-\rank\mat{X}\]
+    从而$\rank\mat{X}+\rank\mat{Y}\leq n$.
+    \begin{enumerate}
+        \item 根据前述结论有
+        \[\rank\mat{B}\leq n-\rank\mat{C}=n-n=0\]
+        于是$\mat{B}=\mbf0$.
+        \item $\mat{B}\mat{C}=\mat{C}$当且仅当$(\mat{B}-\mat{I})\mat{C}=\mbf0$.根据\tbf{(1)}的结论可知$\mat{B}-\mat{I}=\mbf0$,于是$\mat{B}=\mat{I}$.
+    \end{enumerate}
+\end{proof}
+\begin{homework}[5]
+    设$\mat{A}$是$s\times n$矩阵,且$\mat{A}\neq\mbf0$; $\mat{B}$是$n\times m$矩阵,其列向量组是$\li{\bs\beta},m$; $\mat{C}$是$s\times m$矩阵,其列向量组是$\li{\bs\delta},m$.证明: $\mat{A}\mat{B}=\mat{C}$当且仅当$\bs\beta_j$是线性方程组$\mat{A}\vec{x}=\bs\delta_j$的解对所有$j=1,\cdots,m$成立.
+\end{homework}
+\begin{proof}
+    根据矩阵的分块乘法可知
+    \[\mat{A}\mat{B}=\mat{A}\begin{bmatrix}
+        \bs\beta_1&\cdots&\bs\beta_m
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}\bs\beta_1&\cdots&\mat{A}\bs\beta_m
+    \end{bmatrix}\]
+    于是
+    \[\begin{aligned}
+        \mat{A}\mat{B}=\mat{C}
+        &\Leftrightarrow\begin{bmatrix}
+            \mat{A}\bs\beta_1&\cdots&\mat{A}\bs\beta_m
+        \end{bmatrix}=\begin{bmatrix}
+            \bs\delta_1&\cdots&\bs\delta_m
+        \end{bmatrix}\\
+        &\Leftrightarrow\mat{A}\bs\beta_j=\bs\delta_j,\quad\forall j=1,\cdots,m\\
+        &\Leftrightarrow\bs\beta_j\text{是}\mat{A}\vec{x}=\bs\delta_j\text{的解},\quad\forall j=1,\cdots,m
+    \end{aligned}\]
+\end{proof}
+\begin{homework}[6]
+    设$\mat{A}$是$\R$上的$s\times n$矩阵, $\bs\beta$是$\R^s$中的任一列向量.证明: $n$元线性方程组$\mat{A}^\t\mat{A}\vec{x}=\mat{A}^\t\bs\beta$一定有解.
+\end{homework}
+\begin{proof}
+    题设方程有解当且仅当$\rank\mat{A}^\t\mat{A}=\rank\begin{bmatrix}
+        \mat{A}^\t\mat{A}&\mat{A}^\t\bs\beta
+    \end{bmatrix}$.而
+    \[\rank\begin{bmatrix}
+        \mat{A}^\t\mat{A}&\mat{A}^\t\bs\beta
+    \end{bmatrix}=\rank\mat{A}^\t\begin{bmatrix}
+        \mat{A}&\bs\beta
+    \end{bmatrix}\leq\rank\mat{A}^\t=\rank\mat{A}^\t\mat{A}\]
+    另一方面$\mat{A}^\t\mat{A}$是$\begin{bmatrix}
+        \mat{A}^\t\mat{A}&\mat{A}^\t\bs\beta
+    \end{bmatrix}$的子矩阵,因此
+    \[\rank\mat{A}^\t\mat{A}\leq\rank\begin{bmatrix}
+        \mat{A}^\t\mat{A}&\mat{A}^\t\bs\beta
+    \end{bmatrix}\]
+    从而$\rank\mat{A}^\t\mat{A}=\rank\begin{bmatrix}
+        \mat{A}^\t\mat{A}&\mat{A}^\t\bs\beta
+    \end{bmatrix}$,因此题设方程一定有解.
+\end{proof}
+\begin{homework}[8]
+    设$\mat{A}$是$n(n\geq2)$级矩阵,证明:
+    \[\det\mat{A}^\ast=(\det\mat{A})^{n-1}\]
+\end{homework}
+\begin{proof}
+    如果$\mat{A}=\mbf0$,那么结论显然.现在假设$\mat{A}\neq\mbf0$,则有$\mat{A}\mat{A}^\ast=|\mat{A}|\mat{I}$.\\
+    如果$\det\mat{A}\neq0$,上式两边取行列式可得$|\mat{A}||\mat{A}^\ast|=|\mat{A}|^n$,从而$|\mat{A}^\ast|=|\mat{A}|^{n-1}$.\\
+    如果$\det\mat{A}=0$,则有$\mat{A}\mat{A}^\ast=\mbf0$,于是根据\tbf{3.}的结论可知
+    $\rank\mat{A}+\rank\mat{A}^\ast\leq n$; 并且$\rank\mat{A}>0$.于是$\rank\mat{A}^\ast<n$,因而$\det\mat{A}^\ast=0=|\mat{A}|^{n-1}$.\\
+    综上,命题得证.
+\end{proof}
+\begin{homework}[9]
+    设$\mat{A}$是$n(n\geq2)$级矩阵,证明:
+    \[\rank\mat{A}^\ast=\left\{\begin{array}{l}
+       n,\quad\rank\mat{A}=n\\
+       1,\quad\rank\mat{A}=n-1\\
+       0,\quad\rank\mat{A}<n-1 
+    \end{array}\right.\]
+\end{homework}
+\begin{proof}
+    当$\rank\mat{A}=n$时根据\tbf{8.}的结论可得$\det\mat{A}^\ast=(\det\mat{A})^{n-1}\neq0$,从而$\rank\mat{A}^\ast=n$.\\
+    当$\rank\mat{A}=n-1$时$\mat{A}\mat{A}^\ast=\mbf0$,根据\tbf{3.}的结论可知$\rank\mat{A}^\ast\leq n-\rank\mat{A}=1$,又$\mat{A}$有$n-1$阶非零的代数余子式,于是$\mat{A}^\ast\neq\mbf0$,于是$\rank\mat{A}^\ast=1$.\\
+    当$\rank\mat{A}<n-1$时, $\mat{A}$的所有$n-1$阶代数余子式均为$0$,从而$\mat{A}^\ast=\mbf0$,从而$\rank\mat{A}^\ast=0$.
+\end{proof}
+\begin{homework}[10]
+    证明:分块对角矩阵$\mat{A}=\diag\{\mat{A}_1,\cdots,\mat{A}_s\}$可逆当且仅当主对角线上的所有子矩阵$\mat{A}_i$可逆,并且$\mat{A}$可逆时有
+    \[\mat{A}^{-1}=\diag\{\mat{A}_1^{-1},\cdots,\mat{A}_s^{-1}\}\]
+\end{homework}
+\begin{proof}
+    设矩阵
+    \[\mat{B}=\begin{bmatrix}
+        \mat{B}_{11}&\mat{B}_{12}&\cdots&\mat{B}_{1s}\\
+        \mat{B}_{21}&\mat{B}_{22}&\cdots&\mat{B}_{2s}\\
+        \vdots&\vdots&\ddots&\vdots\\
+        \mat{B}_{s1}&\mat{B}_{s2}&\cdots&\mat{B}_{ss}\\
+    \end{bmatrix}\]
+    其中$\mat{B}_{ii}$与$\mat{A}_i$的阶数相同,记为$r_i$.\\
+    $\Rightarrow$:当$\mat{A}$可逆时,不妨设$\mat{A}\mat{B}=\mat{I}$.根据分块矩阵的乘法可得
+    \[\mat{I}=\sum_{k=1}^{s}\mat{A}_{ik}\mat{B}_{ki}=\mat{A}_{i}\mat{B}_{ii}\]
+    \[\mbf0=\sum_{k=1}^{s}\mat{A}_{ik}\mat{B}_{kj}=\mat{A}_{i}\mat{B}_{ij},\quad i\neq j\]
+    于是存在$\mat{B}_{ii}$使得$\mat{A}_i\mat{B}_{ii}=\mat{I}$,因此$\mat{A}_i$可逆.\\
+    又因为$\mat{A}_i$可逆并且$\mat{A}_{i}\mat{B}_{ij}=\mbf0$,于是$\rank\mat{B}_{ij}\leq r_i-\rank\mat{A}_i=0$,于是$\mat{B}_{ij}=\mbf0$.从而$\mat{A}$的主对角线上所有子矩阵$\mat{A}_i$均可逆,并且$\mat{A}^{-1}=\diag\{\mat{A}_1^{-1},\cdots,\mat{A}_s^{-1}\}$.\\
+    $\Leftarrow$:根据分块矩阵的乘法有
+    \[\begin{bmatrix}
+        \mat{A}_1&&\\
+        &\ddots&\\
+        &&\mat{A}_s
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}_1^{-1}&&\\
+        &\ddots&\\
+        &&\mat{A}_s^{-1}
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{I}_{r_1}&&\\
+        &\ddots&\\
+        &&\mat{I}_{r_s}
+    \end{bmatrix}=\mat{I}\]
+    于是$\mat{A}$可逆,并且$\mat{A}^{-1}=\diag\{\mat{A}_1^{-1},\cdots,\mat{A}_s^{-1}\}$.
+\end{proof}
+\begin{homework}[12]
+    设矩阵
+    \[\mat{B}=\begin{bmatrix}
+        \mbf{0}&\mat{B}_1\\
+        \mat{B}_2&\mbf0
+    \end{bmatrix}\]
+    其中$\mat{B}_1$, $\mat{B}_2$分别为$r$阶, $s$阶矩阵.证明: $\mat{B}$可逆当且仅当$\mat{B}_1$和$\mat{B}_2$均可逆,并且$\mat{B}$可逆时有
+    \[\mat{B}^{-1}=\begin{bmatrix}
+        \mbf{0}&\mat{B}_1^{-1}\\
+        \mat{B}_2^{-1}&\mbf0
+    \end{bmatrix}\]
+\end{homework}
+\begin{proof}
+    设
+    \[\mat{C}=\begin{bmatrix}
+        \mat{C}_1&\mat{C}_2\\
+        \mat{C}_3&\mat{C}_4
+    \end{bmatrix}\]
+    其中$\mat{C}_2$, $\mat{C}_3$分别为$r$阶, $s$阶矩阵.\\
+    $\Rightarrow$:当$\mat{B}$可逆时,不妨设$\mat{B}\mat{C}=\mat{I}$,则有
+    \[\mat{B}\mat{C}=\begin{bmatrix}
+        \mat{B}_1\mat{C}_3&\mat{B}_1\mat{C}_4\\
+        \mat{B}_2\mat{C}_1&\mat{B}_2\mat{C}_2\\
+    \end{bmatrix}=\mat{I}\]
+    于是$\mat{B}_1\mat{C}_3=\mat{I}_r$, $\mat{B}_2\mat{C}_2=\mat{I}_s$,从而$\mat{B}_1$, $\mat{B}_2$均可逆.于是$\mat{C}_1=\mbf0, \mat{C}_4=\mbf0$,因此有
+    \[\mat{B}^{-1}=\begin{bmatrix}
+        \mbf{0}&\mat{B}_1^{-1}\\
+        \mat{B}_2^{-1}&\mbf0
+    \end{bmatrix}\]
+    $\Leftarrow$:根据分块矩阵的乘法可知
+    \[\begin{bmatrix}
+        \mbf{0}&\mat{B}_1\\
+        \mat{B}_2&\mbf0
+    \end{bmatrix}\mat{B}^{-1}=\begin{bmatrix}
+        \mbf{0}&\mat{B}_1^{-1}\\
+        \mat{B}_2^{-1}&\mbf0
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mat{I}_s
+    \end{bmatrix}=\mat{I}\]
+    于是$\mat{B}$可逆.
+\end{proof}
+\begin{homework}[14]
+    设$\mat{A}$, $\mat{B}$分别是$s\times n$, $n\times s$矩阵,证明:
+    \[\left|\mat{I}_s-\mat{A}\mat{B}\right|=\left|\mat{I}_n-\mat{B}\mat{A}\right|\]
+\end{homework}
+\begin{proof}
+    \[\begin{bmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mat{A}&\mat{I}_s
+    \end{bmatrix}\xrightarrow{2-\mat{A}\cdot1}\begin{bmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mbf0&\mat{I}_s-\mat{A}\mat{B}
+    \end{bmatrix}\]
+    于是
+    \[\begin{bmatrix}
+        \mat{I}_n&\mbf0\\
+        -\mat{A}&\mat{I}_s
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mat{A}&\mat{I}_s
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mbf0&\mat{I}_s-\mat{A}\mat{B}
+    \end{bmatrix}\]
+    两边取行列式,根据分块上/下三角矩阵的性质可得
+    \[\begin{vmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mat{A}&\mat{I}_s
+    \end{vmatrix}=\left|\mat{I}_s-\mat{A}\mat{B}\right|\]
+    同样地有
+    \[\begin{bmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mat{A}&\mat{I}_s
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_n&-\mat{A}\\
+        \mbf0&\mat{I}_s
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{I}_n-\mat{B}\mat{A}&\mat{B}\\
+        \mbf0&\mat{I}_s
+    \end{bmatrix}\]
+    于是
+    \[\begin{vmatrix}
+        \mat{I}_n&\mat{B}\\
+        \mat{A}&\mat{I}_s
+    \end{vmatrix}=|\mat{I}_n-\mat{B}\mat{A}|\]
+    从而
+    \[\left|\mat{I}_s-\mat{A}\mat{B}\right|=\left|\mat{I}_n-\mat{B}\mat{A}\right|\]
+\end{proof}
+\section*{习题4.6}
+\begin{homework}[1(5)]
+    判断下列矩阵是否是正交矩阵:
+    \[\begin{bmatrix}
+        -\dfrac12&-\dfrac{\sqrt3}{2}\\[8pt]
+        \dfrac{\sqrt3}{2}&-\dfrac12
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    考虑上述矩阵的列向量组
+    \[\bs\alpha_1=\begin{bmatrix}
+        -\dfrac12\\[8pt]\dfrac{\sqrt3}{2}
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        -\dfrac{\sqrt3}{2}\\[8pt]-\dfrac12
+    \end{bmatrix}\]
+    则
+    \[\bs\alpha_1\bs\alpha_1^\t=\left(-\dfrac12\right)\left(-\dfrac12\right)+\left(\dfrac{\sqrt3}{2}\right)\left(\dfrac{\sqrt3}{2}\right)=1\]
+    \[\bs\alpha_2\bs\alpha_2^\t=\left(-\dfrac{\sqrt3}{2}\right)\left(-\dfrac{\sqrt3}{2}\right)+\left(-\dfrac12\right)\left(-\dfrac12\right)=1\]
+    \[\bs\alpha_1\bs\alpha_2^\t=\left(-\dfrac12\right)\left(-\dfrac{\sqrt3}{2}\right)+\left(\dfrac{\sqrt3}{2}\right)\left(-\dfrac12\right)=0\]
+    于是上述矩阵是正交矩阵.
+\end{solution}
+\begin{homework}[3]
+    证明:如果$\mat{A}$是$\R$上的$n$阶对称矩阵, $\mat{T}$是$n$阶正交矩阵,则$\mat{T}^{-1}\mat{A}\mat{T}$是对称矩阵.
+\end{homework}
+\begin{proof}
+    \[\left(\mat{T}^{-1}\mat{A}\mat{T}\right)^\t=\mat{T}^\t\mat{A}^\t\left(\mat{T}^{-1}\right)^\t\]
+    又因为$\mat{T}$是正交矩阵,于是$\mat{T}^\t=\mat{T}^{-1}$; $\mat{A}$是对称矩阵,于是$\mat{A}^\t=\mat{A}$.于是
+    \[\left(\mat{T}^{-1}\mat{A}\mat{T}\right)^\t=\mat{T}^{-1}\mat{A}\mat{T}\]
+    于是$\mat{T}^{-1}\mat{A}\mat{T}$是对称矩阵.
+\end{proof}
+\begin{homework}[4]
+    证明:如果$\R$上的$n$阶矩阵$\mat{A}$具有下列三个性质中的任意两个,则它必具有三个性质: $\mat{A}$是正交矩阵, $\mat{A}$是对称矩阵, $\mat{A}$是对合矩阵.
+\end{homework}
+\begin{proof}
+    如果$\mat{A}$是正交矩阵且$\mat{A}$是对称矩阵,则
+    \[\mat{A}^2=\mat{A}\mat{A}^\t=\mat{I}\]
+    从而$\mat{A}$是对合矩阵.\\
+    如果$\mat{A}$是正交矩阵且$\mat{A}$是对合矩阵,则
+    \[\mat{I}=\mat{A}^2=\mat{A}\mat{A}^\t\]
+    在上式两端左乘$\mat{A}^{-1}$可得
+    \[\mat{A}^{-1}\mat{A}\mat{A}=\mat{A}^{-1}\mat{A}\mat{A}^\t\]
+    从而$\mat{A}=\mat{A}^\t$,于是$\mat{A}$是对称矩阵.\\
+    如果$\mat{A}$是对称矩阵且$\mat{A}$是对合矩阵,则
+    \[\mat{I}=\mat{A}^2=\mat{A}\mat{A}^\t=\mat{I}\]
+    从而$\mat{A}$是正交矩阵.
+\end{proof}
+\begin{homework}[7]
+    在欧几里得空间$\R^4$中将下列向量单位化:
+    \begin{enumerate}
+        \item $\bs\alpha_1=\begin{bmatrix}
+            3&0&-1&4
+        \end{bmatrix}^\t$.
+        \item $\bs\alpha_2=\begin{bmatrix}
+            5&1&-2&0
+        \end{bmatrix}^\t$.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+    \begin{enumerate}
+        \item \[\bs\ep_1=\begin{bmatrix}
+            \dfrac{3\sqrt{26}}{26}&0&-\dfrac{\sqrt{26}}{26}&\dfrac{2\sqrt{26}}{13}
+        \end{bmatrix}^\t\]
+        \item \[\bs\ep_2=\begin{bmatrix}
+            \dfrac{\sqrt{30}}{6}&\dfrac{\sqrt{30}}{30}&-\dfrac{\sqrt{30}}{15}&0
+        \end{bmatrix}^\t\]
+    \end{enumerate}
+\end{solution}
+\begin{homework}[9]
+    证明:在欧几里得空间$\R^n$中,如果向量$\bs\beta$与向量组$\li{\bs\alpha},s$中的每个向量都正交,则$\bs\beta$与$\li{\bs\alpha},s$的任意线性组合也正交.
+\end{homework}
+\begin{proof}
+    考虑$\li{\bs\alpha},s$的任意线性组合
+    \[\bs\alpha=k_1\bs\alpha_1+\cdots+k_s\bs\alpha_s\]
+    则有
+    \[(\bs\beta,\bs\alpha)=k_1(\bs\beta,\bs\alpha_1)+\cdots+k_s(\bs\beta,\bs\alpha_s)=0k_1+\cdots+0k_s=0\]
+    于是$\bs\beta$与$\li{\bs\alpha},s$的任意线性组合正交.
+\end{proof}
+\begin{homework}[13]
+    设$\mat{A}$是$n$阶正交矩阵,证明:对于欧几里得空间$\R^n$中的任一列向量$\bs\alpha$都有
+    \[\left|\mat{A}\bs\alpha\right|=\left|\bs\alpha\right|\]
+\end{homework}
+\begin{proof}
+    \[|\mat{A}\bs\alpha|^2=(\mat{A}\bs\alpha,\mat{A}\bs\alpha)=(\mat{A}\bs\alpha)^\t(\mat{A}\bs\alpha)=\bs\alpha^\t\mat{A}^\t\mat{A}\bs\alpha=\bs\alpha^\t\bs\alpha=(\bs\alpha,\bs\alpha)=|\bs\alpha|^2\]
+    从而
+    \[\left|\mat{A}\bs\alpha\right|=\left|\bs\alpha\right|\]
+\end{proof}
+\section*{习题5.1}
+\begin{homework}[1(3)]
+    求下列矩阵的相抵标准型:
+    \[\begin{bmatrix}
+        1&-2\\-3&6\\2&-4
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    注意到
+    \[\begin{bmatrix}
+        -2\\6\\-4
+    \end{bmatrix}=-2\begin{bmatrix}
+        1\\-3\\2
+    \end{bmatrix}\]
+    于是上述矩阵的秩为$1$,其相抵标准型为
+    \[\begin{bmatrix}
+        1&0\\0&0\\0&0
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[2]
+    证明: $s\times n$矩阵$\mat{A}$的秩为$r(r\neq0)$当且仅当存在$s\times r$列满秩矩阵$\mat{P}$与$r\times n$行满秩矩阵$\mat{Q}$使得
+    \[\mat{A}=\mat{P}\mat{Q}\]
+\end{homework}
+\begin{proof}
+    $\Rightarrow$:考虑$\mat{A}$的相抵标准型
+    \[\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\]
+    于是存在$s$级矩阵$\mat{P}$和$n$级矩阵$\mat{Q}$使得
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\mat{Q}=\begin{bmatrix}
+        \mat{P}_1&\mat{P}_2
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \mat{Q}_1\\\mat{Q}_2
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{P}_1&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \mat{Q}_1\\\mat{Q}_2
+    \end{bmatrix}=\mat{P}_1\mat{Q}_1\]
+    其中$\mat{P}_1$是$\mat{P}$的前$r$列满秩矩阵构成的子矩阵, $\mat{Q}_1$是$\mat{Q}$的前$r$行构成的子矩阵.由于$\mat{P}$是可逆的,因此$\mat{P}_1$的列向量组线性无关,于是$\rank\mat{P}_1=r$.同理$\rank\mat{Q}_1=r$.于是存在$s\times r$列满秩矩阵$\mat{P}_1$与$r\times n$行满秩矩阵$\mat{Q}_1$使得$\mat{A}=\mat{P}_1\mat{Q}_1$.\\
+    $\Leftarrow$:一方面有
+    \[\rank\mat{P}\mat{Q}\leq\rank\mat{P}=r\]
+    另一方面根据Sylvester秩不等式有
+    \[\rank\mat{P}\mat{Q}\geq\rank\mat{P}+\rank\mat{Q}-r=r\]
+    从而$\rank\mat{A}=\rank\mat{P}\mat{Q}=r$.
+\end{proof}
+\begin{homework}[5]
+    设$\mat{C}$是$s\times r$列满秩矩阵, $\mat{D}$是$r\times m$行满秩矩阵,证明:
+    \[\rank\mat{C}\mat{D}=r\]
+\end{homework}
+\begin{proof}
+    一方面有
+    \[\rank\mat{C}\mat{D}\leq\rank\mat{C}=r\]
+    下面证明Sylvester秩不等式,即
+    \[\rank\mat{C}\mat{D}\geq\rank\mat{C}+\rank\mat{D}-r\]
+    将$\mat{C}$做相抵标准型分解可得
+    \[\mat{C}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\\mbf0&\mbf0
+    \end{bmatrix}\mat{Q}\]
+    于是
+    \[\mat{C}\mat{D}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\\mbf0&\mbf0
+    \end{bmatrix}\mat{Q}\mat{D}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\\mbf0&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}=\mat{P}\begin{bmatrix}
+        \mat{H}_1\\\mbf0
+    \end{bmatrix}\]
+    其中$\mat{H}_1$是$\mat{Q}\mat{D}$的前$r$行构成的矩阵.又因为$\mat{P}$是可逆的,于是
+    \[\rank\mat{C}\mat{D}=\rank\begin{bmatrix}
+        \mat{H}_1\\\mbf0
+    \end{bmatrix}=\rank\mat{H}_1\]
+    又
+    \[\rank\mat{D}=\rank\mat{Q}\mat{B}=\rank\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}\]
+    由于$\mat{H}_1$作为$\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}$的$r$行的子矩阵,其行向量组的极大线性无关组在扩充为$\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}$的行向量组的极大线性无关组时增加的行向量均属于$\mat{H}_2$,于是
+    \[\rank\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}-\rank\mat{H}_1\leq n-s\]
+    从而
+    \[\rank\mat{C}\mat{D}\geq\rank\mat{C}+\rank\mat{D}-r\]
+    综上可知$\rank\mat{C}\mat{D}=r$.
+\end{proof}
+\section*{习题5.2}
+\begin{homework}[3]
+    证明:如果$\mat{A}_1\sim\mat{B}_1$, $\mat{A}_2\sim\mat{B}_2$,那么
+    \[\begin{bmatrix}
+        \mat{A}_1&\mbf0\\
+        \mbf0&\mat{A}_2
+    \end{bmatrix}\sim\begin{bmatrix}
+        \mat{B}_1&\mbf0\\
+        \mbf0&\mat{B}_2
+    \end{bmatrix}\]
+\end{homework}
+\begin{proof}
+    由于$\mat{A}_1\sim\mat{B}_1$, $\mat{A}_2\sim\mat{B}_2$,于是存在可逆矩阵$\mat{P}_1$和$\mat{P}_2$使得
+    \[\mat{B}_1=\mat{P}_1\mat{A}_1\mat{P}_1^{-1},\quad \mat{B}_2=\mat{P}_2\mat{A}_2\mat{P}_2^{-1}\]
+    根据前面的分块对角矩阵的逆矩阵的性质可知
+    \[\begin{bmatrix}
+        \mat{P}_1&\mbf0\\
+        \mbf0&\mat{P}_2
+    \end{bmatrix}^{-1}=\begin{bmatrix}
+        \mat{P}_1^{-1}&\mbf0\\
+        \mbf0&\mat{P}_2^{-1}
+    \end{bmatrix}\]
+    于是
+    \[\begin{bmatrix}
+        \mat{P}_1&\mbf0\\
+        \mbf0&\mat{P}_2
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}_1&\mbf0\\
+        \mbf0&\mat{A}_2
+    \end{bmatrix}\begin{bmatrix}
+        \mat{P}_1&\mbf0\\
+        \mbf0&\mat{P}_2
+    \end{bmatrix}^{-1}=\begin{bmatrix}
+        \mat{P}_1\mat{A}_1\mat{P}_1^{-1}&\mbf0\\\mbf0&\mat{P}_2\mat{A}_2\mat{P}_2^{-1}
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{B}_1&\mbf0\\
+        \mbf0&\mat{B}_2
+    \end{bmatrix}\]
+    于是
+    \[\begin{bmatrix}
+        \mat{A}_1&\mbf0\\
+        \mbf0&\mat{A}_2
+    \end{bmatrix}\sim\begin{bmatrix}
+        \mat{B}_1&\mbf0\\
+        \mbf0&\mat{B}_2
+    \end{bmatrix}\]
+\end{proof}
+\begin{homework}[5]
+    对于$\K$上的多项式$f$以及$n$级矩阵$\mat{A}$, $\mat{B}$,证明:如果$\mat{A}\sim\mat{B}$,那么$f(\mat{A})\sim f(\mat{B})$.
+\end{homework}
+\begin{proof}
+    如果$\mat{A}\sim\mat{B}$,则存在可逆矩阵$\mat{P}$使得$\mat{P}\mat{A}\mat{P}^{-1}=\mat{B}$.于是对$m\in\mathbb{Z}^\ast$有
+    \[\mat{B}^m=\left(\mat{P}\mat{A}\mat{P}^{-1}\right)^m=\underbrace{\left(\mat{P}\mat{A}\mat{P}^{-1}\right)\cdots\left(\mat{P}\mat{A}\mat{P}^{-1}\right)}_{m\text{个}}=\mat{P}\mat{A}^m\mat{P}^{-1}\]
+    于是对任一多项式$f$总有
+    \[\mat{P}f(\mat{A})\mat{P}^{-1}=\sum_{m=0}^{M}a_m\mat{P}\mat{A}^m\mat{P}^{-1}=\sum_{m=0}^{M}a_m\mat{B}=f(\mat{B})\]
+    从而$f(\mat{A})\sim f(\mat{B})$.
+\end{proof}
+\begin{homework}[8]
+    证明:与幂等矩阵相似的矩阵仍然是幂等矩阵.
+\end{homework}
+\begin{proof}
+    设$\mat{A}$为幂等矩阵, $\mat{P}$为可逆矩阵,令$\mat{B}=\mat{P}\mat{A}\mat{P}^{-1}$,则$\mat{A}\sim\mat{B}$.则
+    \[\mat{B}^2=\left(\mat{P}\mat{A}\mat{P}^{-1}\right)\left(\mat{P}\mat{A}\mat{P}^{-1}\right)=\mat{P}\mat{A}^2\mat{P}^{-1}=\mat{P}\mat{A}\mat{P}^{-1}=\mat{B}\]
+    于是$\mat{B}$仍为幂等矩阵.
+\end{proof}
+\begin{homework}[10]
+    证明:与幂零矩阵相似的矩阵仍然是幂零矩阵,并且其幂零指数相同.
+\end{homework}
+\begin{proof}
+    设$\mat{A}$为幂零矩阵,其幂零指数为$t$, $\mat{P}$为可逆矩阵,令$\mat{B}=\mat{P}\mat{A}\mat{P}^{-1}$,则$\mat{A}\sim\mat{B}$.前面已经证得
+    \[\mat{B}^m=\mat{P}\mat{A}^m\mat{P}^{-1}\]
+    当$m<t$时$\mat{A}^m\neq\mbf0$,又因为$\mat{P}$可逆,于是$\mat{B}^m\neq0$.当$m\geq t$时$\mat{A}^m=\mbf0$,从而$\mat{B}^m=\mbf0$.于是$\mat{B}$是幂零矩阵,其幂零指数为$t$.
+\end{proof}
+\section*{习题5.3}
+\begin{homework}[1(2)]
+    求$\K$上的矩阵$\mat{A}$的全部特征值和特征向量,其中
+    \[\mat{A}=\begin{bmatrix}
+        2&3&2\\
+        1&8&2\\
+        -2&-14&-3
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    \[\begin{aligned}
+        |\lambda\mat{I}-\mat{A}|
+        &= \begin{vmatrix}
+            \lambda-2&-3&-2\\
+            -1&\lambda-8&-2\\
+            2&14&\lambda+3
+        \end{vmatrix}=\begin{vmatrix}
+            \lambda-2&-3&-2\\
+            -1&\lambda-8&-2\\
+            0&2\lambda-2&\lambda-1
+        \end{vmatrix}\\
+        &= (\lambda-1)\begin{vmatrix}
+            \lambda-2&-3&-2\\
+            -1&\lambda-8&-2\\
+            0&2&1
+        \end{vmatrix}=(\lambda-1)\begin{vmatrix}
+            \lambda-2&1&-2\\
+            -1&\lambda-4&-2\\
+            0&0&1
+        \end{vmatrix}\\
+        &=(\lambda-1)\left[\lambda^2-6\lambda+9\right]=(\lambda-1)(\lambda-3)^2
+    \end{aligned}\]
+    于是$\mat{A}$的特征值为$1$和$3$.\\
+    对于特征值$1$,解线性方程组$(\mat{I}-\mat{A})\vec{x}=\mbf0$,对系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        -1&-3&-2\\
+        -1&-7&-2\\
+        2&14&4
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&3&2\\
+        0&1&0\\
+        0&0&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&2\\
+        0&1&0\\
+        0&0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_1=\begin{bmatrix}
+        -2&0&1
+    \end{bmatrix}^\t\]
+    于是对应于特征值$1$的特征向量构成的集合为$\{k_1\bs\alpha_1:k_1\in\R,k_1\neq0\}$.\\
+    对于特征值$3$,解线性方程组$(3\mat{I}-\mat{A})\vec{x}=\mbf0$,对系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        1&-3&-2\\
+        -1&-5&-2\\
+        2&14&6
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-3&-2\\
+        0&8&4\\
+        0&10&5
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-1/2\\
+        0&2&1\\
+        0&0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_2=\begin{bmatrix}
+        1&-1&2
+    \end{bmatrix}^\t\]
+    于是对应于特征值$3$的特征向量构成的集合为$\{k_2\bs\alpha_2:k_2\in\R,k_1\neq0\}$.
+\end{solution}
+\begin{homework}[2]
+    求$\C$上的矩阵$\mat{A}$的全部特征值和特征向量.如果把$\mat{A}$看成$\R$上的矩阵,它有没有特征值?有多少个特征值?这里$\mat{A}$分别如下:
+    \begin{enumerate}
+        \item \[\mat{A}=\begin{bmatrix}
+            1&-\sqrt3\\\sqrt3&1
+        \end{bmatrix}\]
+        \item \[\mat{A}=\begin{bmatrix}
+            3&7&-3\\
+            -2&-5&2\\
+            -4&-10&3
+        \end{bmatrix}\]
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item \[|\lambda\mat{I}-\mat{A}|=\begin{vmatrix}
+        \lambda-1&\sqrt3\\
+        -\sqrt{3}&\lambda-1
+    \end{vmatrix}=\lambda-2\lambda+4\]
+    其特征值分别为$1+\sqrt3\i$, $1-\sqrt3\i$.\\
+    对于特征值$1+\sqrt3\i$,解线性方程组$((1+\sqrt3\i)\mat{I}-\mat{A})\vec{x}=\mbf0$,对系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        \sqrt3\i&\sqrt3\\
+        -\sqrt{3}&\sqrt3\i
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        \i&1\\
+        -1&\i
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-\i\\
+        0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_1=\begin{bmatrix}
+        \i&1
+    \end{bmatrix}^\t\]
+    于是对应于特征值$1+\sqrt3\i$的特征向量构成的集合为$\{k_1\bs\alpha_1:k_1\in\C,k_1\neq0\}$.同理可知对应于特征值$1-\sqrt3\i$的特征向量构成的集合为$\{k_2\bs\alpha_2:k_1\in\C,k_2\neq0\}$,其中
+    \[\bs\alpha_2=\begin{bmatrix}
+        -\i&1
+    \end{bmatrix}^\t\]
+    如果$\K=\R$,则上述矩阵没有特征值.
+    \item \[\begin{aligned}
+            |\lambda\mat{I}-\mat{A}|
+            &= \begin{vmatrix}
+                \lambda-3&-7&3\\
+                2&\lambda+5&-2\\
+                4&10&\lambda-3
+            \end{vmatrix}=\begin{vmatrix}
+                \lambda-3&-7&3\\
+                2&\lambda+5&-2\\
+                0&-2\lambda&\lambda+1
+            \end{vmatrix}\\
+            &= (\lambda+1)\begin{vmatrix}
+                \lambda-3&-7\\
+                2&\lambda+5
+            \end{vmatrix}+2\lambda\begin{vmatrix}
+                \lambda-3&3\\
+                2&-2
+            \end{vmatrix}\\
+            &= (\lambda+1)(\lambda^2+2\lambda-1)-4\lambda^2\\
+            &= \lambda^3-\lambda^2+\lambda-1 \\
+            &= (\lambda-1)(\lambda^2+1)
+        \end{aligned}\]
+    于是其特征值分别为$1,\i,-\i$.\\
+    对于特征值$1$,解线性方程组$(\mat{I}-\mat{A})\vec{x}=\mbf0$,对系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        -2&-7&3\\
+        2&6&-2\\
+        4&10&-2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&3&-1\\
+        0&-1&1\\
+        0&-2&2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&2\\
+        0&-1&1\\
+        0&0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_1=\begin{bmatrix}
+        -2&1&1
+    \end{bmatrix}^\t\]
+    于是对应于特征值$1$的特征向量构成的集合为$\{k_1\bs\alpha_1:k_1\in\C,k_1\neq0\}$.\\
+    对于特征值$\i$,解线性方程组$(\i\mat{I}-\mat{A})\vec{x}=\mbf0$,对系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        \i-3&-7&3\\
+        2&\i+5&-2\\
+        4&10&\i-3
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        2&\i+5&-2\\
+        0&-2\i+4&3\i-1\\
+        0&-2\i&\i+1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        2&0&1-2\i\\
+        0&2&\i-1\\
+        0&0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_2=\begin{bmatrix}
+        2\i-1&1-\i&2
+    \end{bmatrix}^\t\]
+    于是对应于特征值$\i$的特征向量构成的集合为$\{k_2\bs\alpha_2:k_2\in\C,k_2\neq0\}$.同理对应于特征值$-\i$的特征向量构成的集合为$\{k_3\bs\alpha_3:k_3\in\C,k_3\neq0\}$,其中
+    \[\bs\alpha_3=\begin{bmatrix}
+        -2\i-1&1+\i&2
+    \end{bmatrix}^\t\]
+\end{enumerate}
+\end{solution}
+\begin{homework}[5]
+    证明: $n$阶幂等矩阵一定有特征值,并且其特征值为$1$或$0$.
+\end{homework}
+\begin{solution}
+    设$\mat{A}$为$n$阶幂等矩阵,则对任一$\bs\alpha\in\K^n$且$\bs\alpha\neq\mbf0$有
+    \[\mat{A}^2\bs\alpha=\mat{A}\bs\alpha\]
+    令$\mat{A}\bs\alpha=\bs\beta$,则
+    \[\mat{A}\bs\beta=\bs\beta\]
+    如果$\bs\beta\neq\mbf0$,则$\mat{A}$有特征值$1$,对应的一个特征向量即为$\bs\beta$.\\
+    如果$\bs\beta=\mbf0$,则有$\mat{A}\bs\alpha=\mbf0$,于是$\mat{A}$有特征值$0$,对应的一个特征向量即为$\bs\alpha$.\\
+    于是命题得证.
+\end{solution}
+\begin{homework}[6]
+    证明: $\C$上周期为$m$的周期矩阵的特征值都是$m$次单位根.
+\end{homework}
+\begin{proof}
+    设$\mat{A}$是$\C$上的周期为$m$的周期矩阵, $\lambda$是其一个特征值,对应的一个特征向量是$\bs\alpha$,则
+    \[\mat{A}\bs\alpha=\lambda\bs\alpha\]
+    于是
+    \[\mat{A}^m\bs\alpha=\mat{A}^{m-1}(\lambda\bs\alpha)=\cdots=\lambda^m\bs\alpha\]
+    另一方面又有$\mat{A}^{m}=\mat{I}$,于是
+    \[\lambda^m\bs\alpha=\mat{A}^{m}\bs\alpha=\bs\alpha\]
+    由于$\bs\alpha\neq\mbf0$,因此总有$\lambda^m=1$,于是$\lambda$是$m$次单位根.
+\end{proof}
+\begin{homework}[7]
+    证明: 方阵$\mat{A}$与$\mat{A}^\t$有相同的特征多项式和特征值.
+\end{homework}
+\begin{proof}
+    注意到
+    \[(\lambda\mat{I}-\mat{A})^\t=(\lambda\mat{I})^\t-\mat{A}^\t=\lambda\mat{I}-\mat{A}^t\]
+    又因为
+    \[\det(\lambda\mat{I}-\mat{A})=\det(\lambda\mat{I}-\mat{A})^\t\]
+    于是
+    \[\det(\lambda\mat{I}-\mat{A}^\t)=\det(\lambda\mat{I}-\mat{A})\]
+    从而二者具有相同的特征多项式,因而具有相同的特征值.
+\end{proof}
+\begin{homework}
+    设$\mat{A}$是一个$n$阶正交矩阵,证明:
+    \begin{enumerate}
+        \item 如果$\mat{A}$有特征值,那么其特征值为$1$或$-1$.
+        \item 如果$n$为奇数且$\det\mat{A}=1$,那么$1$是$\mat{A}$的一个特征值.
+        \item 如果$\det\mat{A}=-1$,那么$-1$是$\mat{A}$的一个特征值.
+    \end{enumerate}
+\end{homework}
+\begin{proof}
+\begin{enumerate}
+    \item 假定$\lambda\in\K$和$\bs\alpha\in\K^n$且$\bs\alpha\neq\mbf0$使得$\mat{A}\bs\alpha=\lambda\bs\alpha$.我们前面已经证明
+    \[|\mat{A}\bs\alpha|=|\bs\alpha|\]
+    于是
+    \[|\lambda||\bs\alpha|=|\bs\alpha|\]
+    由于$\bs\alpha\neq\mbf0$,于是$|\lambda|=1$,从而$\lambda=\pm1$.
+    \item 有
+    \[|\mat{I}-\mat{A}|=|\mat{A}\mat{A}^\t-\mat{A}|=|\mat{A}||\mat{A}^\t-\mat{I}|=|\mat{A}-\mat{I}|=(-1)^n|\mat{I}-\mat{A}|=-|\mat{I}-\mat{A}|\]
+    于是$|\mat{I}-\mat{A}|=0$,因而$1$是$\mat{A}$的一个特征值.
+    \item 有
+    \[|-\mat{I}-\mat{A}|=|-\mat{A}\mat{A}^\t-\mat{A}|=|-\mat{A}||\mat{A}^\t+\mat{I}|=|\mat{A}+\mat{I}|=-|-\mat{I}-\mat{A}|\]
+    于是$|-\mat{I}-\mat{A}|=0$,因而$-1$是$\mat{A}$的一个特征值.
+\end{enumerate}
+\end{proof}
+\section*{习题5.4}
+\begin{homework}[2]
+    设$\mat{A}=[a_{ij}]$是$n$阶上三角矩阵,证明:
+    \begin{enumerate}
+        \item $\mat{A}$的主对角元是$\mat{A}$的全部特征值.
+        \item 如果$\mat{A}$的主对角元两两不等,则$\mat{A}$可对角化.
+    \end{enumerate}
+\end{homework}
+\begin{proof}
+\begin{enumerate}
+    \item 注意到
+    \[|\lambda\mat{I}-\mat{A}|=\begin{vmatrix}
+        \lambda-a_{11}&\cdots&-a_{1n}\\
+        \vdots&\ddots&\vdots\\
+        0&\cdots&\lambda-a_{nn}
+    \end{vmatrix}=\prod_{i=1}^{n}(\lambda-a_{ii})\]
+    从而$\mat{A}$的特征多项式的全部根为$\mat{A}$的主对角元,于是$\mat{A}$的全部主对角元是$\mat{A}$的全部特征值.
+    \item 如果$\mat{A}$的主对角元两两不等,则其有$n$个两两不等的特征值,因而$\mat{A}$可对角化.
+\end{enumerate}
+\end{proof}
+\begin{homework}[3]
+    设矩阵$\mat{A}=\begin{bmatrix}
+        1&2\\-1&4
+    \end{bmatrix}$,求$\mat{A}^m(m\in\mathbb{Z}^\ast)$.
+\end{homework}
+\begin{solution}
+    \[|\lambda\mat{I}-\mat{A}|=\begin{vmatrix}
+        \lambda-1&-2\\
+        1&\lambda-4
+    \end{vmatrix}=(\lambda-2)(\lambda-3)\]
+    于是$\mat{A}$的特征值为$2$和$3$,其对应的特征向量分别为
+    \[\bs\alpha_1=\begin{bmatrix}
+        2\\1
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        1\\1
+    \end{bmatrix}\]
+    令
+    \[\mat{P}=\begin{bmatrix}
+        \bs\alpha_1&\bs\alpha_2
+    \end{bmatrix}=\begin{bmatrix}
+        2&1\\1&1
+    \end{bmatrix},\quad\mat{P}^{-1}=\begin{bmatrix}
+        2&-1\\
+        -1&1
+    \end{bmatrix}\]
+    则
+    \[\mat{P}^{-1}\mat{A}\mat{P}=\begin{bmatrix}
+        2&0\\0&3
+    \end{bmatrix}\]
+    于是
+    \[\mat{P}^{-1}\mat{A}^m\mat{P}=\begin{bmatrix}
+        2^m&0\\0&3^m
+    \end{bmatrix}\]
+    于是
+    \[\mat{A}^m=\mat{P}\begin{bmatrix}
+        2^m&0\\0&3^m
+    \end{bmatrix}\mat{P}^{-1}=\begin{bmatrix}
+        2&1\\1&1
+    \end{bmatrix}\begin{bmatrix}
+        2^m&0\\0&3^m
+    \end{bmatrix}\begin{bmatrix}
+        2&-1\\-1&1
+    \end{bmatrix}=\begin{bmatrix}
+        2\cdot2^m-3^m&2\cdot3^m-2\cdot2^m\\
+        2^m-3^m&2\cdot3^m-2^m
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[6]
+    证明:不为零矩阵的幂零矩阵不可对角化.
+\end{homework}
+\begin{proof}
+    假定非零的幂零矩阵$\mat{A}$的幂零指数为$r$,并且其可对角化.于是存在可逆矩阵$\mat{P}$使得
+    \[\mat{P}^{-1}\mat{A}\mat{P}=\mat{D}\]
+    其中$\mat{P}$的各列为$\mat{A}$的特征向量, $\mat{D}$是对角矩阵,其主对角元为$\mat{A}$的特征值.从而
+    \[\mat{D}^r=\mat{P}^{-1}\mat{A}^r\mat{P}=\mat{P}^{-1}\mbf0\mat{P}=\mbf0\]
+    于是对角矩阵$\mat{D}=\mbf0$.这意味着$\mat{A}$的特征值均为$0$,从而$\mat{A}=\mbf0$,这与$\mat{A}$非零的假设矛盾,因此$\mat{A}$不可对角化.
+\end{proof}
+\end{document}

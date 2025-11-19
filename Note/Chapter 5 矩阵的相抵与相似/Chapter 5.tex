@@ -1,0 +1,36 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{矩阵的相抵与相似}
+\subsection{矩阵的相抵}
+\begin{definition}[矩阵的相抵]
+    对于$\K$上的$s\times n$矩阵$\mat{A}$和$\mat{B}$,如果$\mat{A}$经过一系列初等行列变换能变为$\mat{B}$,则称$\mat{A}$与$\mat{B}$是\tbf{相抵}的,记作$\mat{A}\sim\mat{B}$.
+\end{definition}
+考虑相抵的矩阵$\mat{A}$与$\mat{B}$,这意味着存在一系列$s$级初等矩阵$\mat{P}_1,\cdots,\mat{P}_t$和$n$级初等矩阵$\mat{Q}_1,\cdots,\mat{Q}_r$,使得
+\[\mat{B}=\mat{P}_t\cdots\mat{P}_1\mat{A}\mat{Q}_1\cdots\mat{Q}_r\]
+即存在$s$级可逆矩阵$\mat{P}$和$n$级可逆矩阵$\mat{Q}$,使得
+\[\mat{B}=\mat{P}\mat{A}\mat{Q}\]
+\begin{theorem}[相抵的判断条件I]
+    $\K$上的$s\times n$矩阵$\mat{A}$和$\mat{B}$相抵当且仅当存在$s$级可逆矩阵$\mat{P}$和$n$级可逆矩阵$\mat{Q}$使得$\mat{B}=\mat{P}\mat{A}\mat{Q}$.
+\end{theorem}
+\begin{definition}[相抵标准型]
+    设$\K$上的$s\times n$矩阵$\mat{A}$与矩阵
+    \[\mat{H}_r=\begin{bmatrix}
+        \mat{I}_r&\mbf{0}\\
+        \mbf{0}&\mbf{0}
+    \end{bmatrix}_{s\times n}\]
+    相抵,其中$r=\rank\mat{A}$,则称$\mat{H}_r$为$\mat{A}$的\tbf{相抵标准型}.
+\end{definition}
+不难看出,任意矩阵的相抵标准型是唯一的.于是立即可以得到下面的推论:
+\begin{theorem}[相抵的判断条件]
+    $\K$上的$s\times n$矩阵$\mat{A}$和$\mat{B}$相抵当且仅当$\rank\mat{A}=\rank\mat{B}$.
+\end{theorem}
+于是可以得到下面的推论:
+\begin{theorem}[矩阵的相抵标准型分解]
+    设$\K$上的$s\times n$矩阵$\mat{A}$的秩为$r$,则存在$s$级可逆矩阵$\mat{P}$和$n$级可逆矩阵$\mat{Q}$,使得
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf{0}\\
+        \mbf{0}&\mbf{0}
+    \end{bmatrix}\mat{Q}\]
+\end{theorem}
+\end{document}

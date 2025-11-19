@@ -126,8 +126,93 @@
     \[\rank\mat{A}\mat{B}\leq\min\{\rank\mat{A},\rank\mat{B}\}\]
     命题得证.
 \end{proof}
-\begin{theorem}
+\begin{theorem}[方阵乘积的行列式]
     设$\mat{A}$, $\mat{B}$均为数域$\K$上的$n$级方阵,则
     \[\det\mat{A}\mat{B}=\det\mat{A}\det\mat{B}\]
 \end{theorem}
+\begin{proof}
+    考虑矩阵
+    \[\begin{bmatrix}
+        \mat{A}&\mbf0\\
+        -\mat{I}&\mat{B}
+    \end{bmatrix}=\begin{bmatrix}
+        a_{11}&\cdots&a_{1n}&0&\cdots&0\\
+        \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+        a_{n1}&\cdots&a_{nn}&0&\cdots&0\\
+        -1&\cdots&0&b_{11}&\cdots&b_{1n}\\
+        \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+        0&\cdots&-1&b_{n1}&\cdots&b_{nn}
+    \end{bmatrix}\]
+    将第$i$行$(1\leq i\leq n)$加上第$n+j$行$(1\leq j\leq n)$的$a_{ij}$倍可得
+    \[\begin{vmatrix}
+        \mat{A}&\mbf0\\
+        -\mat{I}&\mat{B}
+    \end{vmatrix}=\begin{vmatrix}
+        0&\cdots&0&\displaystyle\sum_{k=1}^{n}a_{1k}b_{k1}&\cdots&\displaystyle\sum_{k=1}^{n}a_{1k}b_{kn}\\
+        \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+        0&\cdots&0&\displaystyle\sum_{k=1}^{n}a_{nk}b_{k1}&\cdots&\displaystyle\sum_{k=1}^{n}a_{nk}b_{kn}\\
+        -1&\cdots&0&b_{11}&\cdots&b_{1n}\\
+        \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+        0&\cdots&-1&b_{n1}&\cdots&b_{nn}
+    \end{vmatrix}=\begin{vmatrix}
+        \mat{0}&\mat{A}\mat{B}\\
+        -\mat{I}&\mat{B}
+    \end{vmatrix}\]
+    而
+    \[\begin{vmatrix}
+        \mat{0}&\mat{A}\mat{B}\\
+        -\mat{I}&\mat{B}
+    \end{vmatrix}=\det\mat{A}\mat{B}\det\mat{I}(-1)^{1+\cdots+(2n)+n}=(-1)^{2n^2+2n}\det\mat{A}\mat{B}=\det\mat{A}\mat{B}\]
+    于是
+    \[\det\mat{A}\mat{B}=\det\mat{A}\det\mat{B}\]
+\end{proof}
+现在我们把上述结论推广到非方阵的情形.
+\begin{theorem}[Binet-Cauchy公式]\\
+    设$\mat{A}=(a_{ij})_{s\times n}$, $\mat{B}=(b_{ij})_{n\times s}$.\\
+    如果$s>n$,那么$\det\mat{A}\mat{B}=0$;
+    如果$s\leq n$,那么
+    \[\det\mat{A}\mat{B}=\sum_{1\leq v_1<\cdots<v_s\leq n}\mat{A}\left(\begin{array}{c}
+        1,2,\cdots,s\\
+        v_1,v_2,\cdots,v_s
+    \end{array}\right)\mat{B}\left(\begin{array}{c}
+        v_1,v_2,\cdots,v_s\\
+        1,2,\cdots,s
+    \end{array}\right)\]
+    即$\det\mat{A}\mat{B}$为$\mat{A}$的所有$s$阶子式与$\mat{B}$的相应的$s$阶子式的乘积.
+\end{theorem}
+\subsection{可逆矩阵}
+\begin{definition}[可逆矩阵]
+    对于$\K$上的$n$级方阵$\mat{A}$,如果存在$n$级方阵$\mat{B}$使得
+    \[\mat{A}\mat{B}=\mat{B}\mat{A}=\mat{I}_n\]
+    则称$\mat{A}$为\tbf{可逆矩阵},并称$\mat{B}$为$\mat{A}$的\tbf{逆矩阵},记作$\mat{B}=\mat{A}^{-1}$.
+\end{definition}
+\begin{definition}[伴随矩阵]
+    对于$\K$上的$n$级方阵$\mat{A}$,记
+    \[\mat{A}^\ast=\begin{bmatrix}
+        A_{11}&\cdots&A_{1n}\\
+        \vdots&\ddots&\vdots\\
+        A_{n1}&\cdots&A_{nn}
+    \end{bmatrix}\]
+    为$\mat{A}$的\tbf{伴随矩阵},其中$A_{ij}$为$\mat{A}$的$(i,j)$元的代数余子式.
+\end{definition}
+\begin{theorem}[可逆的条件]
+    $\K$上的$n$级方阵$\mat{A}$可逆当且仅当$\det\mat{A}\neq0$,并且此时
+    \[\mat{A}^{-1}=\dfrac{\mat{A}^\ast}{\det\mat{A}}\]
+\end{theorem}
+\subsection{正交矩阵与欧几里得空间}
+\begin{definition}
+    设$\mat{A}$为$\R$上的$n$级方阵,如果$\mat{A}$满足
+    \[\mat{A}^\t\mat{A}=\mat{A}\mat{A}^\t=\mat{I}_n\]
+    则称$\mat{A}$为\tbf{正交矩阵}.
+\end{definition}
+\begin{theorem}[正交矩阵的性质]
+    设$\mat{A}$为$\R$上的$n$级正交矩阵,则有以下性质:
+    \begin{enumerate}[label=\tbf{\arabic*.}]
+        \item $\det\mat{A}=\pm1$.
+        \item $\mat{A}$可逆,并且$\mat{A}^{-1}=\mat{A}^\t$.
+    \end{enumerate}
+\end{theorem}
+\begin{definition}[内积]
+    
+\end{definition}
 \end{document}
