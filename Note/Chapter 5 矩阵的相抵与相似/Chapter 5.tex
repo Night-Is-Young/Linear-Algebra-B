@@ -33,4 +33,68 @@
         \mbf{0}&\mbf{0}
     \end{bmatrix}\mat{Q}\]
 \end{theorem}
+\subsection{矩阵的相似}
+\begin{definition}[矩阵的相似]
+    设$\mat{A}$与$\mat{B}$都是$\K$上的$n$级矩阵,如果存在$\K$上的$n$级可逆矩阵$\mat{P}$,使得
+    \[\mat{B}=\mat{P}^{-1}\mat{A}\mat{P}\]
+    则称$\mat{A}$与$\mat{B}$是\tbf{相似}的,记作$\mat{A}\sim\mat{B}$.
+\end{definition}
+\subsection{特征值与特征向量}
+\begin{definition}[特征值与特征向量]
+    设$\mat{A}$是$\K$上的$n$级矩阵,如果$\K^n$中存在非零向量$\bs\alpha$使得
+    \[\mat{A}\bs\alpha=\lambda\bs\alpha,\quad\lambda\in\K\]
+    则称$\lambda$是$\mat{A}$的一个\tbf{特征值},称$\bs\alpha$是$\mat{A}$对应于特征值$\lambda$的一个\tbf{特征向量}.
+\end{definition}
+\begin{definition}[特征多项式]
+    设$\mat{A}$是$\K$上的$n$级矩阵,则称$f(\lambda)=\det(\lambda\mat{I}-\mat{A})$为$\mat{A}$的\tbf{特征多项式}.
+\end{definition}
+\begin{theorem}
+    设$\mat{A}$是$\K$上的$n$级矩阵,则$\lambda_0\in\K$是$\mat{A}$的特征值当且仅当$f(\lambda_0)=0$,其中$f$是$\mat{A}$的特征多项式.
+\end{theorem}
+\begin{proof}
+    根据线性方程组解与其行列式的关系有
+    \[\begin{aligned}
+        \lambda\text{是}\mat{A}\text{的一个特征值}
+        &\Leftrightarrow\exists\bs\alpha\in\K^n\text{且}\bs\alpha\neq\mbf0\text{使得}\mat{A}\bs\alpha=\lambda\bs\alpha\\
+        &\Leftrightarrow\exists\bs\alpha\in\K^n\text{且}\bs\alpha\neq\mbf0\text{使得}\bs\alpha\text{是线性方程组}(\lambda\mat{I}-\mat{A})\vec{x}=\mbf0\text{的一个非零解}\\
+        &\Leftrightarrow\text{线性方程组}(\lambda\mat{I}-\mat{A})\vec{x}=\mbf0\text{有非零解}\\
+        &\Leftrightarrow\det(\lambda\mat{I}-\mat{A})=0\\
+        &\Leftrightarrow \lambda\text{是特征多项式}f(\lambda)=\det(\lambda\mat{I}-\mat{A})\text{的一个根}
+    \end{aligned}\]
+\end{proof}
+\begin{theorem}
+    相似的矩阵具有相同的特征多项式.
+\end{theorem}
+\begin{proof}
+    假定矩阵$\mat{A}\sim\mat{B}$,并且有可逆矩阵$\mat{P}$使得$\mat{P}^{-1}\mat{A}\mat{P}$,
+\end{proof}
+\subsection{矩阵可对角化的条件}
+\begin{definition}[可对角化]
+    如果$\K$上的$n$级矩阵$\mat{A}$与某个对角矩阵$\mat{D}$相似,则称$\mat{A}$是\tbf{可对角化}的.
+\end{definition}
+\begin{theorem}[矩阵可对角化的条件]
+    $\K$上的$n$级矩阵$\mat{A}$可对角化的充分必要条件是$\mat{A}$有$n$个线性无关的特征向量$\li{\bs\alpha},n$,并且此时令
+    \[\mat{P}=\begin{bmatrix}
+        \bs\alpha_1&\cdots&\bs\alpha_n
+    \end{bmatrix},\quad\mat{D}=\diag\{\lambda_1,\cdots,\lambda_n\}\]
+    其中$\lambda_i$是$\bs\alpha_i$对应的特征值,则有$\mat{P}^{-1}\mat{A}\mat{P}=\mat{D}$.
+\end{theorem}
+\begin{proof}
+    \[\begin{aligned}
+        \mat{P}^{-1}\mat{A}\mat{P}=\mat{D}
+        &\Leftrightarrow\mat{A}\mat{P}=\mat{P}\mat{D}\\
+        &\Leftrightarrow\mat{A}\begin{bmatrix}
+            \bs\alpha_1&\cdots&\bs\alpha_n
+        \end{bmatrix}=\begin{bmatrix}
+            \bs\alpha_1&\cdots&\bs\alpha_n
+        \end{bmatrix}\mat{D}\\
+        &\Leftrightarrow\begin{bmatrix}
+            \mat{A}\bs\alpha_1&\cdots&\mat{A}\bs\alpha_n
+        \end{bmatrix}=\begin{bmatrix}
+            \lambda_1\bs\alpha_1&\cdots&\lambda_n\bs\alpha_n
+        \end{bmatrix}\\
+        &\Leftrightarrow\mat{A}\bs\alpha_i=\lambda_i\bs\alpha_i,\quad i=1,2,\cdots,n
+    \end{aligned}\]
+    并且由于$\mat{P}$是可逆矩阵,于是其列向量组$\li{\bs\alpha},n$线性无关.于是就证明了上述命题.
+\end{proof}
 \end{document}
