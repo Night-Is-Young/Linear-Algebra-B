@@ -1,0 +1,705 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第七次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+\section*{习题5.5}
+\begin{homework}[1]
+    对于下列实对称矩阵$\mat{A}$,求正交矩阵$\mat{T}$使得$\mat{T}^{-1}\mat{A}\mat{T}$为对角矩阵.
+    \begin{enumerate}
+        \item[\tbf{(1)}] \[\begin{bmatrix}
+            0&-2&2\\
+            -2&-3&4\\
+            2&4&-3
+        \end{bmatrix}\]
+        \item[\tbf{(4)}] \[\begin{bmatrix}
+            4&1&0&-1\\
+            1&4&-1&0\\
+            0&-1&4&1\\
+            -1&0&1&4
+        \end{bmatrix}\]
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+\item[\tbf{(1)}] 矩阵$\mat{A}$的特征多项式为
+\[\det(\lambda\mat{I}-\mat{A})=\begin{vmatrix}
+    \lambda&2&-2\\
+    2&\lambda+3&-4\\
+    -2&-4&\lambda+3
+\end{vmatrix}=\begin{vmatrix}
+    \lambda&2&-2\\
+    2&\lambda+3&-4\\
+    0&\lambda-1&\lambda-1
+\end{vmatrix}=\begin{vmatrix}
+    \lambda&4&-2\\
+    2&\lambda+7&-4\\
+    0&0&\lambda-1
+\end{vmatrix}=(\lambda-1)^2(\lambda+8)\]
+故$\mat{A}$的特征值为$1,-8$.\\
+考虑特征值$1$对应的特征向量,有
+\[\mat{I}-\mat{A}=\begin{bmatrix}
+    1&2&-2\\
+    2&4&-4\\
+    -2&-4&4
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    1&2&-2\\
+    0&0&0\\
+    0&0&0
+\end{bmatrix}\]
+其基础解系为
+\[\bs\alpha_1=\begin{bmatrix}
+    -2&1&0
+\end{bmatrix}^\t,\quad\bs\alpha_2=\begin{bmatrix}
+    2&0&1
+\end{bmatrix}^\t\]
+正交化后可得
+\[\bs\beta_1=\begin{bmatrix}
+    -2&1&0
+\end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+    \frac{2}{5}&\frac45&1
+\end{bmatrix}\]
+考虑特征值$-8$对应的特征向量,有
+\[\mat{I}-\mat{A}=\begin{bmatrix}
+    -8&2&-2\\
+    2&-5&-4\\
+    -2&-4&-5
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    4&-1&1\\
+    4&-1&1\\
+    -2&-4&-5
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    -2&-4&-5\\
+    0&-9&-9\\
+    0&0&0
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    2&0&1\\
+    0&1&1\\
+    0&0&0
+\end{bmatrix}\]
+其基础解系为
+\[\bs\alpha_3=\begin{bmatrix}
+    -2&-1&1
+\end{bmatrix}^\t\]
+于是令
+\[\mat{T}=\begin{bmatrix}
+    -\frac{2\sqrt5}{5}&\frac{2\sqrt5}{15}&-\frac{\sqrt6}{3}\\
+    \frac{\sqrt5}{5}&\frac{4\sqrt5}{15}&-\frac{\sqrt6}{6}\\
+    0&\frac{\sqrt5}{3}&\frac{\sqrt6}{6}
+\end{bmatrix}\]
+则$\mat{T}^{-1}\mat{A}\mat{T}=\diag\{1,1,-8\}$.
+\item[\tbf{(4)}] 矩阵$\mat{A}$的特征多项式为
+\[\begin{aligned}
+    \det(\lambda\mat{I}-\mat{A})
+    &=\begin{vmatrix}
+        \lambda-4&-1&0&1\\
+        -1&\lambda-4&1&0\\
+        0&1&\lambda-4&-1\\
+        1&0&-1&\lambda-4
+    \end{vmatrix}=\begin{vmatrix}
+        0&-1&\lambda-4&1-(\lambda-4)^2\\
+        0&\lambda-4&0&\lambda-4\\
+        0&1&\lambda-4&-1\\
+        1&0&-1&\lambda-4
+    \end{vmatrix}\\
+    &=-\begin{vmatrix}
+        -1&\lambda-4&1-(\lambda-4)^2\\
+        \lambda-4&0&\lambda-4\\
+        1&\lambda-4&-1
+    \end{vmatrix}=-\begin{vmatrix}
+        (\lambda-4)^2-2&\lambda-4&1-(\lambda-4)^2\\
+        0&0&\lambda-4\\
+        2&\lambda-4&-1
+    \end{vmatrix}\\
+    &=(\lambda-4)\begin{vmatrix}
+        (\lambda-4)^2-2&\lambda-4\\
+        2&\lambda-4
+    \end{vmatrix}=(\lambda-4)^2(\lambda-2)(\lambda-6)
+\end{aligned}\]
+故$\mat{A}$的特征值为$2,4,6$.\\
+考虑特征值$2$对应的特征向量,有
+\[2\mat{I}-\mat{A}=\begin{bmatrix}
+    -2&-1&0&1\\
+    -1&-2&1&0\\
+    0&1&-2&-1\\
+    1&0&-1&-2
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    1&0&-1&-2\\
+    0&-1&-2&-3\\
+    0&-2&0&-2\\
+    0&1&-2&-1
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    1&0&0&-1\\
+    0&1&0&1\\
+    0&0&1&1\\
+    0&0&0&0
+\end{bmatrix}\]
+其基础解系为$\bs\alpha_1=\begin{bmatrix}
+    1&-1&-1&1
+\end{bmatrix}^\t$.\\
+考虑特征值$4$对应的特征向量,有
+\[4\mat{I}-\mat{A}=\begin{bmatrix}
+    0&-1&0&1\\
+    -1&0&1&0\\
+    0&1&0&-1\\
+    1&0&-1&0
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    1&0&-1&0\\
+    0&-1&0&1\\
+    0&0&0&0\\
+    0&0&0&0
+\end{bmatrix}\]
+其基础解系为
+\[\bs\alpha_2=\begin{bmatrix}
+    1&0&1&0
+\end{bmatrix}^\t,\quad\bs\alpha_3=\begin{bmatrix}
+    0&1&0&1
+\end{bmatrix}\]
+考虑特征值$6$对应的特征向量,有
+\[6\mat{I}-\mat{A}=\begin{bmatrix}
+    2&-1&0&1\\
+    -1&2&1&0\\
+    0&1&2&-1\\
+    1&0&-1&2
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    1&0&-1&2\\
+    0&-1&2&-3\\
+    0&2&0&2\\
+    0&1&2&-1
+\end{bmatrix}\longrightarrow\begin{bmatrix}
+    1&0&0&1\\
+    0&1&0&1\\
+    0&0&1&-1\\
+    0&0&0&0
+\end{bmatrix}\]
+其基础解系为$\bs\alpha_1=\begin{bmatrix}
+    -1&-1&1&1
+\end{bmatrix}^\t$.\\
+于是令
+\[\mat{T}=\begin{bmatrix}
+    \frac12&\frac{\sqrt2}{2}&0&-\frac12\\
+    -\frac12&0&\frac{\sqrt2}{2}&-\frac12\\
+    -\frac12&\frac{\sqrt2}{2}&0&\frac12\\
+    \frac12&0&\frac{\sqrt2}{2}&\frac12
+\end{bmatrix}\]
+则$\mat{T}^{-1}\mat{A}\mat{T}=\diag\{2,4,4,6\}$.
+\end{enumerate}
+\end{solution}
+\begin{homework}[3]
+    证明:如果实矩阵$\mat{A}$正交相似于对角矩阵,那么$\mat{A}$一定是对称矩阵.
+\end{homework}
+\begin{proof}
+    依题设,存在正交矩阵$\mat{T}$使得$\mat{T}^{-1}\mat{A}\mat{T}=\mat{D}$.对两边取转置可得
+    \[\mat{T}^\t\mat{A}^\t(\mat{T}^{-1})^\t=\mat{D}^\t\]
+    由正交矩阵的性质有$\mat{T}^{-1}=\mat{T}^\t$;由对角矩阵的性质有$\mat{D}^\t=\mat{D}$.从而$\mat{T}^{-1}\mat{A}^\t\mat{T}=\mat{D}$,于是
+    \[\mat{A}^\t=\mat{T}\mat{D}\mat{T}^{-1}=\mat{A}\]
+    从而$\mat{A}$是对称矩阵.
+\end{proof}
+\begin{homework}[5]
+    证明:如果$\mat{A}$是实对称矩阵,并且$\mat{A}$是幂零矩阵,那么$\mat{A}=\mbf0$.
+\end{homework}
+\begin{proof}
+    由于$\mat{A}$是幂零矩阵,因此$\mat{A}$的所有特征值一定为$0$.由于所有实对称矩阵一定正交相似于对角矩阵,于是存在正交矩阵$\mat{T}$使得
+    \[\mat{T}^{-1}\mat{A}\mat{T}=\diag\{0,\cdots,0\}=\mbf0\]
+    从而
+    \[\mat{A}=\mat{T}\mbf0\mat{T}^{-1}=\mbf0\]
+\end{proof}
+\section*{习题6.1}
+\begin{homework}[1(2)]
+    用正交替换把下列$\R$上的二次型化为标准形:
+    \[f(x_1,x_2,x_3,x_4)=2x_1x_2-2x_3x_4\]
+\end{homework}
+\begin{solution}
+    这二次型的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        0&1&0&0\\
+        1&0&0&0\\
+        0&0&0&-1\\
+        0&0&-1&0
+    \end{bmatrix}\]
+    其特征多项式为
+    \[\det(\lambda\mat{I}-\mat{A})=\begin{vmatrix}
+        \lambda&-1&0&0\\
+        -1&\lambda&0&0\\
+        0&0&\lambda&1\\
+        0&0&1&\lambda
+    \end{vmatrix}=\begin{vmatrix}
+        \lambda&-1\\
+        -1&\lambda
+    \end{vmatrix}\begin{vmatrix}
+        \lambda&1\\
+        1&\lambda
+    \end{vmatrix}=(\lambda-1)^2(\lambda+1)^2\]
+    考虑特征值$1$对应的特征向量,有
+    \[\mat{I}-\mat{A}=\begin{bmatrix}
+        1&-1&0&0\\
+        -1&1&0&0\\
+        0&0&1&1\\
+        0&0&1&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-1&0&0\\
+        0&0&1&1\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_1=\begin{bmatrix}
+        1&1&0&0
+    \end{bmatrix}^\t,\quad\bs\alpha_2=\begin{bmatrix}
+        0&0&-1&1
+    \end{bmatrix}\]
+    考虑特征值$-1$对应的特征向量,有
+    \[\mat{I}-\mat{A}=\begin{bmatrix}
+        -1&-1&0&0\\
+        -1&-1&0&0\\
+        0&0&-1&1\\
+        0&0&1&-1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&0&0\\
+        0&0&1&-1\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+    其基础解系为
+    \[\bs\alpha_3=\begin{bmatrix}
+        1&-1&0&0
+    \end{bmatrix}^\t,\quad\bs\alpha_4=\begin{bmatrix}
+        0&0&1&1
+    \end{bmatrix}\]
+    于是令
+    \[\mat{T}=\begin{bmatrix}
+        \frac{\sqrt2}{2}&0&\frac{\sqrt2}{2}&0\\
+        \frac{\sqrt2}{2}&0&-\frac{\sqrt2}{2}&0\\
+        0&-\frac{\sqrt2}{2}&0&\frac{\sqrt2}{2}\\
+        0&\frac{\sqrt2}{2}&0&\frac{\sqrt2}{2}
+    \end{bmatrix}\]
+    即有$\mat{T}^{-1}\mat{A}\mat{T}=\diag\{1,1,-1,-1\}$.令
+    \[\begin{bmatrix}
+        x_1\\x_2\\x_3\\x_4
+    \end{bmatrix}=\mat{T}\begin{bmatrix}
+        y_1\\y_2\\y_3\\y_4
+    \end{bmatrix}\]
+    则有
+    \[f(x_1,x_2,x_3,x_4)=y_1^2+y_2^2+y_3^2+y_4^2\]
+\end{solution}
+\begin{homework}[2]
+    做直角坐标变换,将下述二次曲线$S$的方程化为标准方程,并且指出它是什么二次曲线:
+    \[4x^2+8xy+4y^2+13x+3y+4=0\]
+\end{homework}
+\begin{solution}
+    这方程的二次项部分的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        4&4\\
+        4&4
+    \end{bmatrix}\]
+    于是$\det(\lambda\mat{I}-\mat{A})=\lambda(\lambda-8)$.对特征值$0$,特征向量为$\bs\alpha_1=\begin{bmatrix}
+        1&-1
+    \end{bmatrix}^\t$;对特征值$8$,特征向量为$\bs\alpha_2=\begin{bmatrix}
+        1&1
+    \end{bmatrix}^\t$.令
+    \[\mat{T}=\begin{bmatrix}
+        \frac{\sqrt2}{2}&\frac{\sqrt2}{2}\\
+        -\frac{\sqrt2}{2}&\frac{\sqrt2}{2}
+    \end{bmatrix}\]
+    做正交替换
+    \[\begin{bmatrix}
+        x\\y
+    \end{bmatrix}=\mat{T}\begin{bmatrix}
+        x'\\y'
+    \end{bmatrix}\]
+    则二次曲线的方程为
+    \[8x'^2+8\sqrt2x'-5\sqrt2y'+4=0\]
+    配方可得
+    \[5\sqrt2y'=8\left(x'+\dfrac{\sqrt2}{2}\right)^2\]
+    即
+    \[y'=\dfrac{4\sqrt2}{5}\left(x'+\dfrac{\sqrt2}{2}\right)^2\]
+    $S$是抛物线.
+\end{solution}
+\begin{homework}[10]
+    证明:斜对称矩阵的秩一定是偶数.
+\end{homework}
+\begin{proof}
+    首先证明$\K$上的斜对称矩阵$\mat{A}$一定合同于下述形式的分块对角矩阵:
+    \[\diag\left\{\mat{S},\cdots,\mat{S},\mbf0,\cdots,\mbf0\right\}\]
+    其中$\mat{S}=\begin{bmatrix}
+        0&1\\-1&0
+    \end{bmatrix}$.对$\mat{A}$的阶数$n$做数学归纳法.\\
+    当$n=1$时$\mat{A}=\mbf0$,命题显然成立.\\
+    当$n=2$时总有
+    \[\mat{A}=\begin{bmatrix}
+        0&a\\-a&0
+    \end{bmatrix}\xrightarrow{\mbf{1}\cdot a^{-1}}\begin{bmatrix}
+        0&1\\-a&0
+    \end{bmatrix}\xrightarrow[{\mbf{1}\cdot a^{-1}}]{}\begin{bmatrix}
+        0&1\\-1&0
+    \end{bmatrix}\]
+    于是$\mat{A}\simeq\mat{S}$.\\
+    当$n\geq3$时,假定命题对所有阶数小于$n$的斜对称矩阵都成立.现在考虑$n$阶斜对称矩阵$\mat{A}=(a_{ij})$.现在分情况讨论.
+    \begin{enumerate}[label=\tbf{\roman*.}]
+        \item $\mat{A}$左上角的二级子矩阵$\mat{A}_1$可逆.于是将$\mat{A}$写作分块矩阵的形式并做行列变换可得
+        \[\mat{A}=\begin{bmatrix}
+            \mat{A}_1&\mat{A}_2\\
+            -\mat{A}_2^\t&\mat{A}_3
+        \end{bmatrix}\xrightarrow{\mbf2+(\mat{A}_2^\t\mat{A}_1^{-1})\mbf1}\begin{bmatrix}
+            \mat{A}_1&\mat{A}_2\\
+            \mbf0&\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2
+        \end{bmatrix}\xrightarrow[\mbf2-\mbf1(\mat{A}_1^{-1}\mat{A}_2)]{}\begin{bmatrix}
+            \mat{A}_1&\mbf0\\
+            \mbf0&\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2
+        \end{bmatrix}\]
+        从而
+        \[\begin{bmatrix}
+            \mat{I}_2&\mbf0\\
+            \mat{A}_2^\t\mat{A}_{1}^{-1}&\mat{I}_{n-2}
+        \end{bmatrix}\mat{A}\begin{bmatrix}
+            \mat{I}_2&-\mat{A}_{1}^{-1}\mat{A}_2\\
+            \mbf0&\mat{I}_{n-2}
+        \end{bmatrix}=\begin{bmatrix}
+            \mat{A}_1&\mbf0\\
+            \mbf0&\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2
+        \end{bmatrix}\]
+        而
+        \[(\mat{A}_2^\t\mat{A}_{1}^{-1})^\t=(\mat{A}_1^\t)^{-1}\mat{A}_2=-\mat{A}_1^{-1}\mat{A}_2\]
+        因而
+        \[\mat{A}\simeq\begin{bmatrix}
+            \mat{A}_1&\mbf0\\
+            \mbf0&\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2
+        \end{bmatrix}\]
+        而
+        \[(\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2)^\t=\mat{A}_3^\t+\mat{A}_2^\t(\mat{A}_1^{-1})^{-1}\mat{A}_2=-(\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2)\]
+        从而根据归纳假设,存在可逆矩阵$\mat{C}_1,\mat{C}_2$使得
+        \[\mat{C}_1^\t\mat{A}_1\mat{C}_1=\mat{S},\quad\mat{C}_2^\t(\mat{A}_3+\mat{A}_2^\t\mat{A}_1^{-1}\mat{A}_2)\mat{C}_2=\mat{D}_2\]
+        其中$\mat{D}_2$是上述形式的矩阵.令
+        \[\mat{C}=\begin{bmatrix}
+            \mat{C}_1&\mbf0\\
+            \mbf0&\mat{C}_2
+        \end{bmatrix}\]
+        则有
+        \[\mat{C}^\t\mat{A}\mat{C}=\begin{bmatrix}
+            \mat{S}&\mbf0\\\mbf0&\mat{D}_2
+        \end{bmatrix}=\diag\{\mat{S},\mat{D}_2\}=\diag\left\{\mat{S},\cdots,\mat{S},\mbf0,\cdots,\mbf0\right\}\]
+        成立.
+        \item $\mat{A}_1=\mbf0$,但存在$a_{ij}\neq0(i=1,2)$.将$\mat{A}$的第$j$行加到第$i$行上,再将第$j$列加到第$i$列上,即可使得$\mat{A}_1\neq\mbf0$.由合同的传递性,这种情形与\tbf{i.}相同,故得证.
+        \item $\mat{A}_1=\mbf0$, $\mat{A}_2=\mbf0$.由归纳假设,存在可逆矩阵$\mat{C}_2$使得
+        \[\mat{C}_2^\t\mat{A}_3\mat{C}_2=\mat{D}\]
+        其中$\mat{D}$是上述形式的矩阵.我们有
+        \[\begin{bmatrix}
+            \mbf{0}&\mat{I}_{n-2}\\\mat{I}_2&\mbf0
+        \end{bmatrix}\begin{bmatrix}
+            \mbf0&\mbf0\\
+            \mbf0&\mat{A}_3
+        \end{bmatrix}\begin{bmatrix}
+            \mbf{0}&\mat{I}_{2}\\\mat{I}_{n-2}&\mbf0
+        \end{bmatrix}=\begin{bmatrix}
+            \mat{A}_3&\mbf0\\
+            \mbf0&\mbf0
+        \end{bmatrix}\]
+        并且
+        \[\begin{bmatrix}
+            \mat{C}_3&\mbf0\\
+            \mbf0&\mat{I}_2
+        \end{bmatrix}^\t\begin{bmatrix}
+            \mat{A}_3&\mbf0\\
+            \mbf0&\mbf0
+        \end{bmatrix}\begin{bmatrix}
+            \mat{C}_3&\mbf0\\
+            \mbf0&\mat{I}_2
+        \end{bmatrix}=\begin{bmatrix}
+            \mat{D}&\mbf0\\
+            \mbf0&\mbf0
+        \end{bmatrix}=\diag\{\mat{S},\mat{D}_2\}=\diag\left\{\mat{S},\cdots,\mat{S},\mbf0,\cdots,\mbf0\right\}\]
+        于是
+        \[\mat{A}\simeq\begin{bmatrix}
+            \mat{A}_3&\mbf0\\
+            \mbf0&\mbf0
+        \end{bmatrix}\simeq\diag\{\mat{S},\mat{D}_2\}=\diag\left\{\mat{S},\cdots,\mat{S},\mbf0,\cdots,\mbf0\right\}\]
+        于是得证.
+    \end{enumerate}
+    综上可知引理成立.由于合同的矩阵具有相等的秩,因此斜对称矩阵$\mat{A}$的秩必为偶数,原命题得证.
+\end{proof}
+\section*{习题6.2}
+\begin{homework}[3]
+    将所有$n$阶实对称矩阵组成的集合按照合同关系分类,可以分成多少类?
+\end{homework}
+\begin{solution}
+    秩为$k$的矩阵有$k+1$个合同类,分别对应正惯性指数$p=0,\cdots,k$.于是总的合同类数目为
+    \[\sum_{k=0}^{n}(k+1)=\dfrac{(n+1)(n+2)}{2}\]
+\end{solution}
+\begin{homework}[6]
+    证明:一个$n$元实二次型可以分解成两个实系数一次齐次多项式的乘积当且仅当它的秩为$2$且符号差为$0$,或它的秩为$1$.
+\end{homework}
+\begin{proof}
+    $\Leftarrow$:考虑$n$元二次型$\vec{x}^\t\mat{A}\vec{x}$,做非退化线性变换$\vec{x}=\mat{C}\vec{y}$变为其规范形,则各$y_k$都是关于$\li x,n$的实系数一次齐多项式,显然它们的线性组合也是.\\
+    若$\rank\mat{A}=1$,则$\vec{x}^\t\mat{A}\vec{x}=y_k\cdot y_k$,成立.\\
+    若$\rank\mat{A}=2$且符号差为$0$,则$\vec{x}^\t\mat{A}\vec{x}=y_k^2-y_l^2=(y_k+y_l)(y_k-y_l)$,成立.\\
+    $\Rightarrow$:假定
+    \[\vec{x}^\t\mat{A}\vec{x}=\left(\sum_{i=1}^{n}a_ix_i\right)\left(\sum_{i=1}^{n}b_ix_i\right)\]
+    如果
+    \[\begin{bmatrix}
+        b_1&\cdots&b_n
+    \end{bmatrix}^\t=k\begin{bmatrix}
+        a_1&\cdots&a_n
+    \end{bmatrix}\]
+    并且$a_i\neq0$,则令
+    \[x_j=y_j,\quad j\neq i\]
+    \[x_i=\dfrac{1}{a_i}\left(y_i-\sum_{j\neq i}a_jy_j\right)\]
+    这是非退化线性变换.此时有$\vec{x}^\t\mat{A}\vec{x}=a_iy_i^2$,它的秩为$1$.\\
+    否则以这两个向量为列向量的矩阵必有不为$0$的二阶子式.不妨设$\begin{vmatrix}
+        a_1&a_2\\
+        b_1&b_2
+    \end{vmatrix}\neq0$.考虑变换
+    \[\left\{\begin{array}{l}
+        y_1=a_1x_1+\cdots+a_nx_n\\
+        y_2=b_1x_1+\cdots+b_nx_n\\
+        y_j=x_j,\quad j>2
+    \end{array}\right.\]
+    这一方程组的系数矩阵$\mat{C}$的行列式$|\mat{C}|=\begin{vmatrix}
+        a_1&a_2\\
+        b_1&b_2
+    \end{vmatrix}\neq0$,因此$\mat{C}$可逆.令$\vec{x}=\mat{C}^{-1}\vec{y}$可得
+    \[\vec{x}^\t\mat{A}\vec{x}=y_1y_2\]
+    再做非退化线性变换
+    \[y_1=z_1+z_2,\quad y_2=z_1-z_2,\quad y_j=z_j(j>2)\]
+    则
+    \[\vec{x}^\t\mat{A}\vec{x}=z_1^2-z_2^2\]
+    于是该二次型的秩为$2$,符号差为$0$.\\
+    综上所述,原命题得证.
+\end{proof}
+\section*{习题6.3}
+\begin{homework}[4]
+    设$\mat{A}$是$n$阶实对称矩阵,它的$n$个特征值的绝对值中最大者记为$S_r(\mat{A})$.证明:当$t>S_r(\mat{A})$时, $t\mat{I}+\mat{A}$是正定矩阵.
+\end{homework}
+\begin{proof}
+    考虑$\mat{A}$的特征向量$\bs\alpha$和对应的特征值$\lambda$,首先有
+    \[(t\mat{I}+\mat{A})\bs\alpha=(t+\lambda)\bs\alpha\]
+    因此$t\mat{I}+\mat{A}$的特征值为$t+\lambda$.由于$t>S_r(\mat{A})=\max\{\li\lambda,n\}$,从而$t\mat{I}+\mat{A}$的全部特征值均为正,因此它是正定的.
+\end{proof}
+\begin{homework}[6(1)]
+    判断下列二次型是否正定:
+    \[f(x_1,x_2,x_3)=5x_1^2+6x_2^2+4x_3^2-4x_1x_2-4x_2x_3\]
+\end{homework}
+\begin{solution}
+    这一二次型的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        5&-2&0\\
+        -2&6&-2\\
+        0&-2&4
+    \end{bmatrix}\]
+    有
+    \[\begin{vmatrix}
+        5
+    \end{vmatrix}=5>0,\quad\begin{vmatrix}
+        5&-2\\
+        -2&6\\
+    \end{vmatrix}=26>0,\quad\begin{vmatrix}
+        5&-2&0\\
+        -2&6&-2\\
+        0&-2&4
+    \end{vmatrix}=84>0\]
+    于是题设二次型正定.
+\end{solution}
+\begin{homework}[9]
+    证明:如果$\mat{A}$是正定矩阵,那么存在唯一的正定矩阵$\mat{C}$使得$\mat{A}=\mat{C}^2$.
+\end{homework}
+\begin{proof}
+    \textit{存在性}:设$\mat{A}$是$n$级正定矩阵,则存在正交矩阵$\mat{T}$使得
+    \[\mat{A}=\mat{T}^{-1}\begin{bmatrix}
+        \lambda_1&&\\
+        &\ddots&\\
+        &&\lambda_n
+    \end{bmatrix}\mat{T}\]
+    并且$\li\lambda,n$非负.令
+    \[\mat{C}=\mat{T}^{-1}\begin{bmatrix}
+        \sqrt{\lambda_1}&&\\
+        &\ddots&\\
+        &&\sqrt{\lambda_n}
+    \end{bmatrix}\mat{T}\]
+    则
+    \[\mat{C}^2=\mat{T}^{-1}\begin{bmatrix}
+        \sqrt{\lambda_1}&&\\
+        &\ddots&\\
+        &&\sqrt{\lambda_n}
+    \end{bmatrix}\mat{T}\mat{T}^{-1}\begin{bmatrix}
+        \sqrt{\lambda_1}&&\\
+        &\ddots&\\
+        &&\sqrt{\lambda_n}
+    \end{bmatrix}\mat{T}=\mat{T}^{-1}\begin{bmatrix}
+        \lambda_1&&\\
+        &\ddots&\\
+        &&\lambda_n
+    \end{bmatrix}\mat{T}=\mat{A}\]
+    \textit{唯一性}:假定存在正定矩阵$\mat{B}$使得$\mat{B}^2=\mat{A}$.设正交矩阵$\mat{T}$和$\mat{S}$使得
+    \[\mat{C}=\mat{T}^{-1}\diag\{\gamma_1,\cdots,\gamma_n\}\mat{T}\]
+    \[\mat{B}=\mat{S}^{-1}\diag\{\li\beta,n\}\mat{S}\]
+    于是
+    \[\mat{A}=\mat{T}^{-1}\diag\{\gamma_1^2,\cdots,\gamma_n^2\}\mat{T}=\mat{S}^{-1}\diag\{\beta_1^2,\cdots,\beta_n^2\}\mat{S}\]
+    于是$\mat{A}$的特征值为$\gamma_1^2,\cdots,\gamma_n^2$和$\beta_1^2,\cdots,\beta_n^2$.适当调换$\li\beta,n$的下标可得$\gamma_i^2=\beta_i^2(i=1,\cdots,n)$,又因为$\mat{C}$和$\mat{B}$都正定,因此$\gamma_i=\beta_i(i=1,\cdots,n)$.于是令上述对角矩阵为$\mat{D}$,则有
+    \[\mat{T}^{-1}\mat{D}\mat{T}=\mat{S}^{-1}\mat{D}\mat{S}\]
+    则有
+    \[\mat{S}\mat{T}^{-1}\mat{D}=\mat{D}\mat{S}\mat{T}^{-1}\]
+    令$\mat{R}=\mat{S}\mat{T}^{-1}=(r_{ij})$,则有
+    \[r_{ij}\gamma_j^2=\gamma_i^2r_{ij}\]
+    若$r_{ij}\neq0$,则$\gamma_i^2=\gamma_j^2$,从而$\gamma_i=\gamma_j$,从而$r_{ij}\gamma_i=\gamma_jr_{ij}$.当$r_{ij}=0$时该关系显然也成立.于是
+    \[\mat{S}\mat{T}^{-1}\diag\{\li\gamma,n\}=\diag\{\li\gamma,n\}\mat{S}\mat{T}^{-1}\]
+    即
+    \[\mat{T}^{-1}\diag\{\li\gamma,n\}\mat{T}=\mat{S}^{-1}\diag\{\li\beta,n\}\mat{S}\]
+    于是
+    \[\mat{B}=\mat{C}\]
+    因而这样的矩阵是唯一的.
+\end{proof}
+\begin{homework}[12]
+    证明: $n$阶实对称矩阵$\mat{A}$负定当且仅当它的偶数阶顺序主子式全大于$0$, 奇数阶顺序主子式全小于$0$.
+\end{homework}
+\begin{proof}
+    \[\begin{aligned}
+        \mat{A}\text{负定}
+        &\Leftrightarrow\mat{-A}\text{正定}\\
+        &\Leftrightarrow(-\mat{A})\left(\begin{array}{l}
+            1,\cdots,k\\
+            1,\cdots,k
+        \end{array}\right)>0,\quad\forall k=1,\cdots,n\\
+        &\Leftrightarrow(-1)^k\mat{A}\left(\begin{array}{l}
+            1,\cdots,k\\
+            1,\cdots,k
+        \end{array}\right)>0,\quad\forall k=1,\cdots,n\\
+        &\Leftrightarrow\mat{A}\text{的偶数阶顺序主子式全大于}0,\text{ 奇数阶顺序主子式全小于}0.
+    \end{aligned}\]
+\end{proof}
+\section*{习题7.1}
+\begin{homework}[1(3)]
+    判断下述集合对于所指的运算是否构成$\R$上的线性空间:区间$[a,b]$上的所有连续函数的集合,记作$C[a,b]$,对于函数的加法和数量乘法.
+\end{homework}
+\begin{solution}
+    构成.任取$f,g,h\in C[a,b]$有
+    \[(f+g)(x)=f(x)+g(x)=g(x)+f(x)=(g+f)(x)\]
+    \[[(f+g)+h](x)=f(x)+g(x)+h(x)=[f+(g+h)](x)\]
+    \[(f+0)(x)=f(x)+0(x)=f(x)\]
+    规定$(-f)(x)=-f(x)$,则有
+    \[(f+(-f))(x)=f(x)+(-f(x))=0\]
+    规定$1(x)=1$,则有
+    \[(1f)(x)=1\cdot f(x)=f(x)\]
+    任取$k,l\in\R$有
+    \[[(kl)f](x)=k(lf(x))=[k(lf)](x)\]
+    \[[(k+l)f](x)=kf(x)+lf(x)\]
+    \[[k(f+g)](x)=k(f+g)(x)=kf(x)+kg(x)=(kf+kg)(x)\]
+    于是$C[a,b]$是$\R$上的线性空间.
+\end{solution}
+\begin{homework}[2(2)]
+    判断$\R$上的线性空间$\R^\R$中的下列函数是否线性无关:
+    \[1,\cos x,\cos 2x,\cos 3x\]
+\end{homework}
+\begin{solution}
+    考虑
+    \[a1+b\cos x+c\cos 2x+d\cos 3x=0,\forall x\in\R\]
+    分别取$x=0,\frac\pi6,\frac\pi4,\frac\pi2$可得
+    \[\left\{\begin{array}{l}
+        a-b+c-d=0\\
+        a+\frac12b+\frac{\sqrt3}{2}c=0\\
+        a+\frac{\sqrt2}{2}b-\frac{\sqrt2}{2}b=0\\
+        a-c=0
+    \end{array}\right.\]
+    解得$a=b=c=d=0$,从而上述函数组在$\R^\R$中线性无关.
+\end{solution}
+\begin{homework}[3]
+    求下面的线性空间的基和维数:所有正实数构成的集合$\R^+$,定义如下的加法$\oplus$和乘法$\otimes$:
+    \[a\oplus b=ab,\quad\forall a,b\in\R^+\]
+    \[k\otimes a=a^k,\quad\forall a\in\R^+,k\in\R\]
+\end{homework}
+\begin{solution}
+    它的一组基为$\{\e\}$,维数为$1$.证明如下:对任意$x\in\R^+$都有
+    \[x=\e^{\ln x}=\ln x\otimes \e\]
+    于是任意$x\in\R^+$都能用$\e$线性表出,因而$\{\e\}$是该空间的一组基.
+\end{solution}
+\begin{homework}[4]
+    将$\C$看作$\R$上的线性空间,求它的一个基和维数以及任一复数$z=a+b\i$在这个基下的坐标.
+\end{homework}
+\begin{solution}
+    $\C$的一组基为$\{1,\i\}$,其维数为$2$.这是因为任一复数$z=a+b\i\in\C$都有
+    \[z=a\cdot 1+b\cdot\i\]
+    于是$z$是上述向量的线性组合,并且在$\R$上不存在$k$使得$1=k\i$,因此这两个向量线性无关,从而得证.\\
+    另外,该复数的坐标即为$(a,b)$.
+\end{solution}
+\begin{homework}[8]
+    说明$\K$上的所有$n$阶上三角矩阵组成的集合$W$对于矩阵的加法和数量乘法构成$\K$上的线性空间,并求它的一个基和维数.
+\end{homework}
+\begin{solution}
+    对于任意$\mat{A},\mat{B}\in W$,都有
+    \[(\mat{A}+\mat{B})_{ij}=\mat{A}_{ij}+\mat{B}_{ij}=0+0=0,\quad\forall i>j\]
+    从而$\mat{A}+\mat{B}\in W$.对于任意$k\in\K$又有
+    \[(k\mat{A})_{ij}=k\mat{A}_{ij}=k\cdot0=0,\quad\forall i>j\]
+    于是$k\mat{A}\in W$.进而根据矩阵加法和数乘的性质不难知道$W$是线性空间.\\
+    $W$的一组基为$\{\mat{E}_{ij}\}(1\leq j<i\leq n)$.对于任一$\mat{A}\in W$都有
+    \[\mat{A}=\sum_{1\leq j<i\leq n}a_{ij}\mat{E}_{ij}\]
+    并且当$\mat{A}=\mbf0$时总有$a_{ij}=0$.因此上述组是$W$的一组基,其维数则为$\dfrac{n(n+1)}{2}$
+\end{solution}
+\begin{homework}[9]
+    已知$\K^3$的两组基:
+    \[\bs\alpha_1=\begin{bmatrix}
+        1&0&-1
+    \end{bmatrix}^\t,\quad\bs\alpha_2=\begin{bmatrix}
+        2&1&1
+    \end{bmatrix}^\t,\quad\bs\alpha_3=\begin{bmatrix}
+        1&1&1
+    \end{bmatrix}\]
+    \[\bs\beta_1=\begin{bmatrix}
+        0&1&1
+    \end{bmatrix}^\t,\quad\bs\beta_2=\begin{bmatrix}
+        -1&1&0
+    \end{bmatrix}^\t,\quad\bs\beta_3=\begin{bmatrix}
+        1&2&1
+    \end{bmatrix}\]
+    求基$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$到基$\bs\beta_1,\bs\beta_2,\bs\beta_3$的过渡矩阵$\mat{P}$,并求向量$\bs\alpha=\begin{bmatrix}
+        2&5&3
+    \end{bmatrix}^\t$分别在这两组基下的坐标$\vec{x}$和$\vec{y}$.
+\end{homework}
+\begin{solution}
+    设
+    \[\mat{A}=\begin{bmatrix}
+        \bs\alpha_1&\bs\alpha_2&\bs\alpha_3
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        \bs\beta_1&\bs\beta_2&\bs\beta_3
+    \end{bmatrix}\]
+    则有
+    \[\mat{A}^{-1}\mat{B}=\mat{P}\]
+    对矩阵$\begin{bmatrix}
+        \mat{A}&\mat{B}
+    \end{bmatrix}$做初等行变换,当左半边为$\mat{I}$时右半边即为$\mat{P}$,即
+    \[\begin{bmatrix}
+        1&2&1&0&-1&1\\
+        0&1&1&1&1&2\\
+        -1&1&1&1&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&0&1&1\\
+        0&1&0&-1&-3&-2\\
+        0&0&1&2&4&4
+    \end{bmatrix}\]
+    于是
+    \[\mat{P}=\begin{bmatrix}
+        0&1&1\\
+        -1&-3&-2\\
+        2&4&4
+    \end{bmatrix}\]
+    解线性方程组
+    \[\bs\alpha=\mat{B}\vec{y}\]
+    可得
+    \[\vec{y}=\begin{bmatrix}
+        1\\0\\2
+    \end{bmatrix}\]
+    从而
+    \[\vec{x}=\mat{P}\vec{y}=\begin{bmatrix}
+        2\\-5\\10
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[10]
+    证明:在数域$\K$上的$n$维线性空间$V$中,如果每个向量都能由$\bs\alpha_1,\cdots,\bs\alpha_n$线性表出,那么$\bs\alpha_1,\cdots,\bs\alpha_n$是$V$的一组基.
+\end{homework}
+\begin{proof}
+    依题意$V=\text{span}\{\bs\alpha_1,\cdots,\bs\alpha_n\}$,因此只需说明它们线性无关即可.考虑$\li k,n\in\K$使得
+    \[k_1\bs\alpha_1+\cdots+k_n\bs\alpha_n=\mbf0\]
+    如果存在$k_i\neq0$,则
+    \[\bs\alpha_i=-\dfrac{1}{k_i}\sum_{j\neq i}k_j\bs\alpha_j\]
+    于是将$\bs\alpha_i$从上述向量组中去除后,剩下的$n-1$个向量也张成$V$,即$\dim V\leq n-1$.这与题设矛盾,因此上述向量组线性无关,因而是$V$的基.
+\end{proof}
+\end{document}
