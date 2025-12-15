@@ -1,0 +1,145 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{二次型与矩阵的合同}
+\subsection{二次型和它的标准形}
+\begin{definition}[二次型]
+    数域$\K$上的一个$n$元\tbf{二次型}是系数在$\K$中的$n$个变量的齐二次多项式,其一般形式为
+    \[f(x_1,\cdots,x_n)=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_{i}x_{j}\]
+    其中$a_{ij}=a_{ij}$.称矩阵$\mat{A}=(a_{ij})$为该二次型的矩阵.\\
+    如果令$\vec{x}=\begin{bmatrix}
+        x_1\\\vdots\\x_n
+    \end{bmatrix}$,则有$f(x_1,\cdots,x_n)=\vec{x}^\t\mat{A}\vec{x}$.
+\end{definition}
+\begin{definition}[二次型的等价]
+    设$f(x_1,\cdots,x_n)=\vec{x}^\t\mat{A}\vec{x}$和$g(x_1,\cdots,x_n)=\vec{y}^\t\mat{B}\vec{y}$分别是数域$\K$上的两个$n$元二次型,如果存在变量的线性替换
+    \[\vec{y}=\mat{C}\vec{x}\]
+    其中$\mat{C}$为可逆矩阵,使得$g(y_1,\cdots,y_n)=f(x_1,\cdots,x_n)$,则称上述两个二次型是\tbf{等价的}.
+\end{definition}
+\begin{definition}[矩阵的合同]
+    设$\mat{A},\mat{B}\in M_n(\K)$,如果存在可逆矩阵$\mat{C}\in M_n(\K)$,使得
+    \[\mat{B}=\mat{C}^\t\mat{A}\mat{C}\]
+    则称$\mat{A}$与$\mat{B}$是\tbf{合同的}.
+\end{definition}
+\begin{definition}[二次型的标准形]
+    如果二次型$\vec{x}^\t\mat{A}\vec{x}$等价于一个只含平方项的二次型$\vec{y}^\t\mat{D}\vec{y}$,那么称后者为前者的\tbf{标准形}.
+\end{definition}
+\begin{definition}[矩阵的合同标准形]
+    如果对称矩阵$\mat{A}$合同于一个对角矩阵$\mat{D}$,那么称后者为前者的\tbf{合同标准形}.
+\end{definition}
+\begin{theorem}
+    数域$\K$上的任一对称矩阵都合同于某个对角矩阵.
+\end{theorem}
+\begin{proof}
+    采用数学归纳法,对对称矩阵$\mat{A}$的阶数$n$进行归纳.\\
+    当$n=1$时,结论显然成立.现在设$n>1$,并且$n-
+    $级的对称矩阵都合同于某个对角矩阵.设$\mat{A}=(a_{ij})$.
+    \begin{enumerate}[label=\tbf{\roman*.}]
+        \item $a_{11}\neq0$.把$\mat{A}$写作分块矩阵的形式并做初等行列变换:
+        \[\mat{A}=\begin{bmatrix}
+            a_{11}&\bs\alpha^\t\\
+            \bs\alpha&\mat{A}_1
+        \end{bmatrix}\longrightarrow\begin{bmatrix}
+            a_{11}&\mbf0\\
+            \bs\alpha&\mat{A}_1-a_{11}^{-1}\bs\alpha\bs\alpha^\t
+        \end{bmatrix}\longrightarrow\begin{bmatrix}
+            a_{11}&\mbf0\\
+            \mbf0&\mat{A}_1-a_{11}^{-1}\bs\alpha\bs\alpha^\t
+        \end{bmatrix}\]
+        记$\mat{A}_2=\mat{A}_1-a_{11}^{-1}\bs\alpha\bs\alpha^\t$,则根据上述变换可得
+        \[\begin{bmatrix}
+            1&\mbf0\\
+            -a_{11}^{-1}\bs\alpha&\mat{I}_{n-1}
+        \end{bmatrix}\mat{A}\begin{bmatrix}
+            1&-a_{11}^{-1}\bs\alpha^\t\\
+            \mbf0&\mat{I}_{n-1}
+        \end{bmatrix}=\begin{bmatrix}
+            a_{11}&\mbf0\\
+            \mbf0&\mat{A}_2
+        \end{bmatrix}\]
+        由于
+        \[\begin{bmatrix}
+            1&\mbf0\\
+            -a_{11}^{-1}\bs\alpha&\mat{I}_{n-1}
+        \end{bmatrix}^\t=\begin{bmatrix}
+            1&-a_{11}^{-1}\bs\alpha^\t\\
+            \mbf0&\mat{I}_{n-1}
+        \end{bmatrix}\]
+        于是
+        \[\mat{A}\simeq\begin{bmatrix}
+            a_{11}&\mbf0\\
+            \mbf0&\mat{A}_2
+        \end{bmatrix}\]
+        由于
+        \[\mat{A}_2^\t=\left(\mat{A}_1-a_{11}^{-1}\bs\alpha\bs\alpha^\t\right)^\t=\mat{A}_1^\t-a_{11}^{-1}\bs\alpha\bs\alpha^\t=\mat{A}_2\]
+        于是$\mat{A}_2$是$n-1$级对称矩阵.根据归纳假设可知存在对角矩阵$\mat{D}_1$使得$\mat{A}_2\simeq\mat{D}_1$,从而
+        \[\mat{A}_1\simeq\begin{bmatrix}
+            a_{11}&\mbf0\\
+            \mbf0&\mat{D}_1
+        \end{bmatrix}\]
+        \item $a_{11}=0$且存在$a_{ii}\neq0$.将第$1$行与第$i$行互换,第$1$列与第$i$列互换,得到矩阵$\mat{B}$,则$\mat{B}\simeq\mat{A}$且$\mat{B}$满足情况(i),从而$\mat{A}$合同于某个对角矩阵.
+        \item $a_{ii}=0$对所有$i=1,2,\cdots,n$均成立.如果$\mat{A}=\mbf0$,则结论显然成立.否则,存在$a_{ij}\neq0(i\neq j)$,那么将第$j$行加到第$i$行,再将第$j$列加到第$i$列,得到矩阵$\mat{C}$,则$\mat{C}\simeq\mat{A}$且$c_{ii}=2a_{ij}\neq0$,从而$\mat{A}$合同于某个对角矩阵.
+    \end{enumerate}
+    于是归纳可知命题成立.
+\end{proof}
+\begin{theorem}
+    数域$\K$上的任一$n$元二次型都等价于某个只含平方项的二次型.
+\end{theorem}
+\begin{proof}
+    由前面的定理立刻可知.
+\end{proof}
+于是又可以得出一种求二次型的标准形的方法.对于$\K$上的二次型$\vec{x}^\t\mat{A}\vec{x}$考虑如下变换:
+\[\begin{bmatrix}
+    \mat{A}\\\mat{I}
+\end{bmatrix}\xlongrightarrow[\text{对}\mat{I}\text{仅做列变换}]{\text{对}\mat{A}\text{做成对行列变换}}\begin{bmatrix}
+    \mat{D}\\\mat{C}
+\end{bmatrix}\]
+其中$\mat{D}=\diag\{\li d,n\}$,则有
+\[\mat{C}^\t\mat{A}\mat{C}=\mat{D}\]
+令$\vec{x}=\mat{C}\vec{y}$即可得二次型的标准形为$\vec{y}^\t\mat{D}\vec{y}$.
+\begin{definition}[二次型的秩]
+    $\K$上的$n$元二次型$\vec{x}^\t\mat{A}\vec{x}$的任一标准形中平方项的个数称为该二次型的\tbf{秩},它等于矩阵$\mat{A}$的秩.
+\end{definition}
+\subsection{实二次型的规范形}
+\begin{definition}[实二次型的规范形]
+    实二次型$\vec{x}^\t\mat{A}\vec{x}$的形如
+    \[z_1^2+\cdots+z_p^2-z_{p+1}^2-\cdots-z_r^2\]
+    的标准形称为该实二次型的\tbf{规范形}.
+\end{definition}
+\begin{theorem}[惯性定理]
+    $n$元实二次型$\vec{x}^\t\mat{A}\vec{x}$的规范形是唯一的.
+\end{theorem}
+\begin{proof}
+    设实二次型$\vec{x}^\t\mat{A}\vec{x}$的秩为$r$.假定$\vec{x}^\t\mat{A}\vec{x}$分别经过两个非退化线性变换$\vec{x}=\mat{B}\vec{y}$和$\vec{x}=\mat{C}\vec{z}$变换为两个规范形
+    \[\vec{x}^\t\mat{A}\vec{x}=y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_r^2\]
+    \[\vec{x}^\t\mat{A}\vec{x}=z_1^2+\cdots+z_q^2-z_{q+1}^2-\cdots-z_r^2\]
+    现在来证明$p=q$.做非退化线性变换$\vec{z}=\mat{C}^{-1}\mat{B}\vec{y}$可知
+    \[y_1^2+\cdots+y_p^2-y_{p+1}^2-\cdots-y_r^2=z_1^2+\cdots+z_q^2-z_{q+1}^2-\cdots-z_r^2\]
+    设$\mat{G}=\mat{C}^{-1}\mat{B}=(g_{ij})$.如果$p>q$,那么应当可以找到非零的$\vec{y}$使得等式左端为正而右端非正.为此,令
+    \[\bs\beta=\begin{bmatrix}
+        \beta_1&\cdots&\beta_p&0&\cdots&0
+    \end{bmatrix}^\t\]
+    其中$\li k,p$是待定的不全为$0$的数.现在考虑线性方程组
+    \[\left\{\begin{array}{c}
+        g_{11}\beta_1+\cdots+g_{1p}\beta_p=0\\
+        \vdots\\
+        g_{q1}\beta_1+\cdots+g_{qp}\beta_p=0
+    \end{array}\right.\]
+    由于$q<p$,因此上述齐次方程有非零解,记作$\bs\beta_0$.取$\vec{y}=\bs\beta_0$,则有
+    \[z_i=g_{i1}\beta_1+\cdots+g_{ip}\beta_p=0\quad(i=1,2,\cdots,q)\]
+    因此等式右端非正.而等式左端由于$\vec{y}\neq\mbf0$且$\beta_{p+1}=\cdots=\beta_n=0$,所以左端为正,这就产生矛盾,于是$p\leq q$.同理可证$q\leq p$,从而$p=q$.于是上述实二次型的规范形是唯一的.
+\end{proof}
+\begin{definition}[正惯性指数和负惯性指数]
+    实二次型$\vec{x}^\t\mat{A}\vec{x}$的规范形中正平方项的个数称为该实二次型的\tbf{正惯性指数},负平方项的个数称为该实二次型的\tbf{负惯性指数}.
+\end{definition}
+\begin{lemma}
+    任一$n$级实对称矩阵$\mat{A}$都合同于对角矩阵$\diag\{1,\cdots,1,-1,\cdots,-1,0,\cdots,0\}$,其中$1$的个数等于$\vec{x}^\t\mat{A}\vec{x}$的正惯性指数,$-1$的个数等于$\vec{x}^\t\mat{A}\vec{x}$的负惯性指数.这一对角矩阵称为$\mat{A}$的合同规范形.
+\end{lemma}
+而对于复二次型,由于$-1$是$1$的平方,因此复二次型的规范形总是形如
+\[z_1^2+z_2^2+\cdots+z_r^2\]
+的形式,其中$r$为该复二次型的秩.
+\subsection{正定二次型和正定矩阵}
+\begin{definition}[正定二次型]
+    $n$元二次型
+\end{definition}
+\end{document}
