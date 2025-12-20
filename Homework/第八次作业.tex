@@ -1,0 +1,425 @@
+\documentclass{ctexart}
+\usepackage{note}
+\title{线性代数B  第八次作业}
+\author{蒋锦豪 2400011785}
+\date{}
+\begin{document}
+\maketitle
+7.2: 1 (3), 4, 6, 7, 9; 7.3: 2, 4; 8.1: 2 (2), 3, 5, 7; 8.2: 1, 2, 4, 6, 8, 9(1)+10, 11
+\section*{习题7.2}
+\begin{homework}[1(3)]
+    判断下列数域$\K$上的$n$元方程的解集是否为$\K^n$的子空间:
+    \[x_1^2+x_2^2+\cdots+x_{n-1}^2-x_n^2=0\]
+\end{homework}
+\begin{solution}
+    不是.考虑上述方程的两个解
+    \[\vec{x}_1=\begin{bmatrix}
+        1&0&\cdots&0&1
+    \end{bmatrix}^\t,\quad\vec{x}_2=\begin{bmatrix}
+        0&1&\cdots&0&1
+    \end{bmatrix}\]
+    显然
+    \[\vec{x}_1+\vec{x}_2=\begin{bmatrix}
+        1&1&\cdots&0&2
+    \end{bmatrix}\]
+    有$x_1^2+x_2^2+\cdots-x_n^2=-2\neq0$不是上述方程的解,因此该解集对加法不封闭,不是$\K^n$的子空间.
+\end{solution}
+\begin{homework}[4]
+    设$V=\K^4$, $V_1=\langle\bs\alpha_1,\bs\alpha_2,\bs\alpha_3\rangle$, $V_2=\langle\bs\beta_1,\bs\beta_2\rangle$,其中
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\2\\1\\0
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        -1\\1\\1\\1
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        0\\3\\2\\1
+    \end{bmatrix},\quad\bs\beta_1=\begin{bmatrix}
+        2\\-1\\0\\1
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        1\\-1\\3\\7
+    \end{bmatrix}\]
+    分别求$V_1+V_2$, $V_1\cap V_2$的一个基和维数.
+\end{homework}
+\begin{solution}
+    首先注意到$\bs\alpha_3=\bs\alpha_1+\bs\alpha_2$.而显然$\bs\alpha_1,\bs\alpha_2$线性无关,因此它们可以作为$V_1$的基.\\
+    考虑以$\bs\alpha_1,\bs\alpha_2,\bs\beta_1$的前三个分量为列向量的矩阵的行列式:
+    \[\begin{vmatrix}
+        1&-1&2\\
+        2&1&-1\\
+        1&1&0
+    \end{vmatrix}=\begin{vmatrix}
+        1&-2&2\\
+        2&-1&-1\\
+        1&0&0
+    \end{vmatrix}=4\neq0\]
+    于是上述三个向量线性无关.
+    考虑以$\bs\alpha_1,\bs\alpha_2,\bs\beta_1,\bs\beta_2$为列向量的矩阵的行列式:
+    \[\begin{vmatrix}
+        1&-1&2&1\\
+        2&1&-1&-1\\
+        1&1&0&3\\
+        0&1&1&7
+    \end{vmatrix}=\begin{vmatrix}
+        1&-1&2&1\\
+        0&3&-5&-3\\
+        0&2&-2&2\\
+        0&1&1&7
+    \end{vmatrix}=2\begin{vmatrix}
+        3&-8&-24\\
+        1&-2&-6\\
+        1&0&0
+    \end{vmatrix}=2\begin{vmatrix}
+        -8&-24\\
+        -2&-6
+    \end{vmatrix}=0\]
+    从而上述四个向量线性相关.\\
+    于是$\dim(V_1+V_2)=3$,其一组基为$\bs\alpha_1,\bs\alpha_2,\bs\beta_1$; $\dim(V_1\cap V_2)=2+2-3=1$,其一个基为$\begin{bmatrix}
+        0&1&1&-1
+    \end{bmatrix}^\t$.
+\end{solution}
+\begin{homework}[6]
+    设$V=\K^n$, 把齐次线性方程
+    \[x_1+x_2+\cdots+x_n=0\]
+    的解集记作$W_1$,把齐次线性方程组
+    \[\left\{\begin{array}{c}
+        x_1-x_2=0\\
+        \vdots\\
+        x_1-x_n=0
+    \end{array}\right.\]
+    的解集记作$W_2$.证明: $V=W_1\oplus W_2$.
+\end{homework}
+\begin{proof}
+    对任意$\vec{x}\in V$总有
+    \[\vec{x}=\begin{bmatrix}
+        x_1&x_2&\cdots&x_n
+    \end{bmatrix}^\t=\begin{bmatrix}
+        x_1-\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}x_i&\cdots&x_n-\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}x_i
+    \end{bmatrix}^\t+\dfrac{1}{n}\sum_{i=1}^{n}x_i\begin{bmatrix}
+        1&1&\cdots&1
+    \end{bmatrix}^\t\]
+    而
+    \[\begin{bmatrix}
+        x_1-\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}x_i&\cdots&x_n-\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}x_i
+    \end{bmatrix}^\t\in W_1,\quad\begin{bmatrix}
+        1&1&\cdots&1
+    \end{bmatrix}^\t\in W_2\]
+    于是$W_1+W_2=V$.现在考虑$\vec{w}_1\in W_1$和$\vec{w}_2\in W_2$使得$\vec{w}_1+\vec{w}_2=0$,则有
+    \[\vec{w}_1+\vec{w}_2=\begin{bmatrix}
+        y_1+z_1&\cdots&y_n+z_n
+    \end{bmatrix}=\mbf0\]
+    于是$y_1+z_1=\cdots=y_n+z_n=0$.因为$z_1=\cdots=z_n$,于是$y_1=\cdots=y_n=-z_1$,从而$-nz_1=0$,因而$\vec{w}_1=\vec{w}_2=\mbf0$.于是$W_1+W_2$是直和.命题得证.
+\end{proof}
+\begin{homework}[7]
+    证明:数域$\K$上任一$n$维线性空间$V$都可以表示为$n$个一维子空间的直和.
+\end{homework}
+\begin{proof}
+    考虑$V$的一组基$\li{\bs\alpha},n$,记$V_1=\langle\bs\alpha_i\rangle$.显然$\dim V_i=1$,并且$V_i$是$V$的子空间.对于$V$中的任一向量$\bs\alpha$,可将其用这组基表示为
+    \[\bs\alpha=k_1\bs\alpha_1+\cdots+k_n\bs\alpha_n\]
+    从而$V=\displaystyle\sum_{i=1}^{n}V_i$.又因为$\displaystyle\sum_{i=1}^{n}\dim V_i=n=\dim V=\dim\left(\displaystyle\sum_{i=1}^{n}V_i\right)$,于是上述和是直和,命题得证.
+\end{proof}
+\begin{homework}[9]
+    设$\mat{A}$是数域$\K$上的$n$阶矩阵, $\li\lambda,s$是$\mat{A}$的全部不同特征值,用$W_{\lambda_j}$表示$\mat{A}$的属于特征值$\lambda_j$的特征子空间,证明: $\mat{A}$可对角化当且仅当
+    \[\K^n=\bigoplus_{i=1}^{s}W_{\lambda_i}\]    
+\end{homework}
+\begin{proof}
+    已经知道分属不同特征值的特征向量线性无关.考虑$W_{\lambda_i}$的一组基$\bs\eta_{i1},\cdots,\bs\eta_{ir_i}$,其中$r_i=\dim W_{\lambda_i}$.有
+    \[\begin{aligned}
+        \mat{A}\text{可对角化}
+        &\Leftrightarrow\sum_{i=1}^{s}\dim W_{\lambda_s}=n\Leftrightarrow\sum_{i=1}^s r_i=n\\
+        &\Leftrightarrow\bs\eta_{11},\cdots,\bs\eta_{1r_1},\bs\eta_{21},\cdots,\bs\eta_{2r_2},\cdots,\bs\eta_{n1},\cdots,\bs\eta_{nr_n}\text{是}\K^n\text{的一组基}\\
+        &\Leftrightarrow\K^n=\bigoplus_{i=1}^{s}W_{\lambda_i}
+    \end{aligned}\]
+\end{proof}
+\section*{习题7.3}
+\begin{homework}[2]
+    证明:数域$\K$上的线性空间$\K[x]_n$与$\K^n$同构,并写出一个同构映射.
+\end{homework}
+\begin{proof}
+    由于$\dim\K[x]_n=\dim\K^n=n$,因此它们同构.考虑$f(x)=a_0+a_1x+\cdots+a_{n-1}x^{n-1}$,一个可行的同构映射为
+    \[\sigma(f(x))=\begin{bmatrix}
+        a_0&\cdots&a_{n-1}
+    \end{bmatrix}^\t\]
+\end{proof}
+\begin{homework}[4]
+    令
+    \[L=\left\{\begin{bmatrix}
+        a&b\\-b&a
+    \end{bmatrix}:a,b\in\R\right\}\]
+    \begin{enumerate}
+        \item 证明: $L$是实数域上线性空间$M_2(\R)$的一个子空间,并求$L$的一个基和维数.
+        \item 证明:复数域$\C$作为实数域$\R$上的线性空间与$L$同构,并写出一个同构映射.
+    \end{enumerate}
+\end{homework}
+\begin{proof}
+\begin{enumerate}
+    \item 考虑任意$\mat{L}_1=\begin{bmatrix}
+        a_1&b_1\\-b_1&a_1
+    \end{bmatrix},\mat{L}_2=\begin{bmatrix}
+        a_2&b_2\\-b_2&a_2
+    \end{bmatrix}\in L$,有
+    \[\mat{L}_1+\mat{L}_2=\begin{bmatrix}
+        a_1+a_2&b_1+b_2\\
+        -(b_1+b_2)&a_1+a_2
+    \end{bmatrix}\in L\]
+    考虑任意$k\in\K$有
+    \[k\mat{L}_1=\begin{bmatrix}
+        ka_1&kb_1\\-kb_1&ka_1
+    \end{bmatrix}\in L\]
+    于是$L$对加法和数量乘法封闭,因此$L$是$M_2(\R)$的子空间. $L$的一个基为
+    \[\begin{bmatrix}
+        1&0\\0&1
+    \end{bmatrix},\quad\begin{bmatrix}
+        0&1\\-1&0
+    \end{bmatrix}\]
+    因此$\dim L=2$.
+    \item 由于$\dim L=\dim\C=2$,因此二者同构.一个可行的同构映射为
+    \[\sigma(a+b\i)=\begin{bmatrix}
+        a&b\\-b&a
+    \end{bmatrix}\]
+\end{enumerate}
+\end{proof}
+\section*{习题8.1}
+\begin{homework}[2(2)]
+    判断下面定义的$M_n(\K)$上的变换是否为线性变换:设$\mat{B},\mat{C}\in M_n(\K)$,令
+    \[\mathcal{A}(\mat{X})=\mat{B}\mat{X}\mat{C},\quad\forall\mat{X}\in M_n(\K)\]
+\end{homework}
+\begin{solution}
+    考虑任意$\mat{X}_1,\mat{X}_2\in M_n(\K)$和$k\in\K$.有
+    \[\mathcal{A}(\mat{X}_1+\mat{X}_2)=\mat{B}(\mat{X}_1+\mat{X}_2)\mat{C}=\mat{B}\mat{X}_1\mat{C}+\mat{B}\mat{X}_2\mat{C}=\mathcal{A}(\mat{X}_1)+\mathcal{A}(\mat{X}_2)\]
+    \[\mathcal{A}(k\mat{X}_1)=\mat{B}(k\mat{X}_1)\mat{C}=k\mat{B}\mat{X}_1\mat{C}=k\mathcal{A}(\mat{X}_1)\]
+    于是$\mathcal{A}$是线性变换.
+\end{solution}
+\begin{homework}[3]
+    判断下面定义的$\K[x]$上的变换是否为线性变换:给定$a\in\K$,令
+    \[\mathcal{A}(f(x))=f(x+a),\quad\forall f(x)\in\K[x]\]
+\end{homework}
+\begin{solution}
+    考虑任意$f(x),g(x)\in\K[x]$和$k\in\K$.有
+    \[\mathcal{A}(f+g)=(f+g)(x+a)=f(x+a)+g(x+a)=\mathcal{A}f+\mathcal{A}g\]
+    \[\mathcal{A}(kf)=(kf)(x+a)=k(f(x+a))=k(\mathcal{A}f)\]
+    于是$\mathcal{A}$是线性变换.
+\end{solution}
+\begin{homework}[5]
+    在$\K[x]$中令
+    \[\mathcal{A}(
+        f(x))=xf(x),\quad\forall f(x)\in\K[x]\]
+    \begin{enumerate}
+        \item 证明: $\mathcal{A}$是$\K[x]$上的一个线性变换.
+        \item 用$\mathcal{D}$表示求导,证明:
+        \[\mathcal{D}\mathcal{A}-\mathcal{A}\mathcal{D}=\mathcal{I}\]
+    \end{enumerate}
+\end{homework}
+\begin{proof}
+\begin{enumerate}
+    \item 考虑任意$f(x),g(x)\in\K[x]$和$k\in\K$.有
+    \[\mathcal{A}(f+g)=x[(f+g)(x)]=x[f(x)+g(x)]=xf(x)+xg(x)=\mathcal{A}f+\mathcal{A}g\]
+    \[\mathcal{A}(kf)=x[(kf)(x)]=x[kf(x)]=kxf(x)=k\mathcal{A}f\]
+    于是$\mathcal{A}$是线性变换.
+    \item 对任意$f(x)\in\K[x]$有
+    \[(\mathcal{D}\mathcal{A}-\mathcal{A}\mathcal{D})f=\dfrac{\di}{\di x}(xf(x))-x\dfrac{\di}{\di x}f(x)=f(x)+xf'(x)-xf'(x)=f(x)=\mathcal{I}f\]
+    于是命题得证.
+\end{enumerate}
+\end{proof}
+\begin{homework}[7]
+    设$\mathcal{A}$是线性空间$V$上的一个线性变换,证明:如果
+    \[\mathcal{A}^{m-1}(\bs\alpha)\neq\mbf0,\quad\mathcal{A}^{m}(\bs\alpha)=\mbf0,\quad m\in\N^+,\bs\alpha\in V\]
+    那么$\bs\alpha,\mathcal{A}(\bs\alpha),\mathcal{A}^2(\bs\alpha),\cdots,\mathcal{A}^{m-1}(\bs\alpha)$线性无关.
+\end{homework}
+\begin{proof}
+    假定$\bs\alpha,\mathcal{A}(\bs\alpha),\mathcal{A}^2(\bs\alpha),\cdots,\mathcal{A}^{m-1}(\bs\alpha)$线性相关,于是存在非零的$k_0,\cdots,k_{m-1}$使得
+    \[k_0\bs\alpha+k_1\mathcal{A}\bs\alpha+\cdots+k_{m-1}\mathcal{A}^{m-1}\bs\alpha=\mbf0\]
+    在两边同时作用一次$\mathcal{A}$可得
+    \[k_0\mathcal{A}\bs\alpha+k_1\mathcal{A}^2\bs\alpha+\cdots+k_{m-2}\mathcal{A}^{m-1}\bs\alpha=\mbf0\]
+    倘若$k_{m-1}=0$,那么余下的系数非零;倘若$k_{m-1}\neq0$,那么余下的系数也不可全为$0$,否则$\mathcal{A}^{m-1}\bs\alpha=\mbf0$与题意矛盾.因此$\mathcal{A}\bs\alpha,\cdots,\mathcal{A}^{m-1}\bs\alpha$线性相关.重复此操作,最终可得
+    \[k_0\mathcal{A}^{m-1}\bs\alpha=\mbf0\]
+    由此$k_0=0$,但这和余下的系数不全为$0$矛盾.于是假设不成立,命题得证.
+\end{proof}
+\section*{习题8.2}
+\begin{homework}[1]
+    设$\mathcal{A}$是$\K^3$上的一个线性变换:
+    \[\mathcal{A}\begin{bmatrix}
+        x_1\\x_2\\x_3
+    \end{bmatrix}=\begin{bmatrix}
+        x_1+2x_2\\x_3-x_2\\x_2-x_3
+    \end{bmatrix}\]
+    求$\mathcal{A}$在标准基$\bs\ep_1,\bs\ep_2,\bs\ep_3$下的矩阵.
+\end{homework}
+\begin{solution}
+    不难得出矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        1&2&0\\
+        0&-1&1\\
+        0&1&-1
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[2]
+    在$\R^\R$中,将函数
+    \[f_1=\e^{ax}\cos bx,\quad f_2=\e^{ax}\sin bx\]
+    所生成的二维子空间记作$V$, 说明求导$\mathcal{D}$是$V$上的线性变换,并求$\mathcal{D}$在$V$的一个基$f_1,f_2$下的矩阵.
+\end{homework}
+\begin{solution}
+    首先对任意$f=k_1f_1+k_2f_2$有
+    \[\mathcal{D}f=k_1\e^{ax}(a\cos bx-b\sin bx)+k_2\e^{ax}(a\sin bx+b\cos bx)=(k_1a+k_2b)f_1+(k_2a-k_1b)f_2\in V\]
+    于是$\mathcal{D}$是$V$到$V$的映射.不难证明$\mathcal{D}$是保持加法和数量乘法的,因此$\mathcal{D}$是$V$上的线性变换,其在基$f_1,f_2$下的矩阵为
+    \[\mat{D}=\begin{bmatrix}
+        a&b\\
+        -b&a
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[4]
+    设$V$是数域$\K$上的$n$维线性空间,存在$V$上的线性变换$\mathcal{A}$与$V$中的向量$\bs\alpha$使得$\mathcal{A}^{n-1}(\bs\alpha)\neq\mbf0$且$\mathcal{A}^{n}(\bs\alpha)=\mbf0$,证明: $V$中存在一个基使得$\mathcal{A}$在这个基下的矩阵为
+    \[\begin{bmatrix}
+        0&1&0&\cdots&0\\
+        0&0&1&\cdots&0\\
+        \vdots&\vdots&\vdots&\ddots&\vdots\\
+        0&0&0&\cdots&1\\
+        0&0&0&\cdots&0
+    \end{bmatrix}\]
+\end{homework}
+\begin{proof}
+    在上一节已经证明$\bs\alpha,\mathcal{A}\bs\alpha,\cdots,\mathcal{A}^{n-1}\bs\alpha$线性无关.现在取$\bs\eta_i=\mathcal{A}^{n-i}\bs\alpha(i=1,\cdots,n)$作为$\mathcal{A}$的基,则有
+    \[\mathcal{A}\bs\eta_1=\mathcal{A}^n\bs\alpha=\mbf0\]
+    \[\mathcal{A}\bs\eta_j=\mathcal{A}\mathcal{A}^{n-j}\bs\alpha=\mathcal{A}^{n-j+1}\bs\alpha=\bs\eta_{j-1},\quad j=2,\cdots,n\]
+    恰为题设矩阵的形式.于是命题得证.
+\end{proof}
+\begin{homework}[6]
+    设$V$是数域$\K$上的$n$维线性空间, $V$到$\K$的线性映射称为$V$上的线性函数.把$\hom(V,\K)$记作$V^\ast$,称$V^\ast$是$V$的对偶空间.证明: $V^\ast\cong V$.
+\end{homework}
+\begin{proof}
+    我们有
+    \[\dim V^\ast=\dim\hom(V,\K)=\dim V\cdot\dim\K=n\cdot1=n=\dim V\]
+    于是$V^\ast\cong V$.
+\end{proof}
+\begin{homework}[8]
+    已知$\K^3$上的线性变换$\mathcal{A}$在标准基下的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        15&-11&5\\
+        20&-15&8\\
+        8&-7&6
+    \end{bmatrix}\]
+    设
+    \[\bs\eta_1=\begin{bmatrix}
+        2\\3\\1
+    \end{bmatrix},\quad\bs\eta_2=\begin{bmatrix}
+        3\\4\\1
+    \end{bmatrix},\quad\bs\eta_3=\begin{bmatrix}
+        1\\2\\2
+    \end{bmatrix}\]
+    它们构成$\K^3$的一个基.求$\mathcal{A}$在$\bs\eta_1,\bs\eta_2,\bs\eta_3$下的矩阵$\mat{B}$.
+\end{homework}
+\begin{solution}
+    \[\mat{A}\bs\eta_1=2\begin{bmatrix}
+        15\\20\\8
+    \end{bmatrix}+3\begin{bmatrix}
+        -11\\-15\\-7
+    \end{bmatrix}+\begin{bmatrix}
+        5\\8\\6
+    \end{bmatrix}=\begin{bmatrix}
+        2\\3\\1
+    \end{bmatrix}\]
+    \[\mat{A}\bs\eta_2=3\begin{bmatrix}
+        15\\20\\8
+    \end{bmatrix}+4\begin{bmatrix}
+        -11\\-15\\-7
+    \end{bmatrix}+\begin{bmatrix}
+        5\\8\\6
+    \end{bmatrix}=\begin{bmatrix}
+        6\\8\\2
+    \end{bmatrix}\]
+    \[\mat{A}\bs\eta_3=\begin{bmatrix}
+        15\\20\\8
+    \end{bmatrix}+2\begin{bmatrix}
+        -11\\-15\\-7
+    \end{bmatrix}+2\begin{bmatrix}
+        5\\8\\6
+    \end{bmatrix}=\begin{bmatrix}
+        3\\6\\6
+    \end{bmatrix}\]
+    于是
+    \[\mat{B}=\begin{bmatrix}
+        2&6&3\\
+        3&8&6\\
+        1&2&6
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[9(1)]
+    设$V$是数域$\K$上的$3$维线性空间,$V$上的一个线性变换$\mathcal{A}$在$V$的一个基$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$下的矩阵$\mat{A}$如下,求$\mathcal{A}$的全部特征值和特征向量:
+    \[\mat{A}=\begin{bmatrix}
+        2&2&-2\\
+        2&5&-4\\
+        -2&-4&5
+    \end{bmatrix}\]
+\end{homework}
+\begin{solution}
+    \[\begin{aligned}
+        \det(\lambda\mat{I}-\mat{A})
+        &=\begin{vmatrix}
+            \lambda-2&-2&2\\
+            -2&\lambda-5&4\\
+            2&4&\lambda-5
+        \end{vmatrix}=\begin{vmatrix}
+            \lambda-2&-2&2\\
+            -2&\lambda-5&4\\
+            0&\lambda-1&\lambda-1
+        \end{vmatrix}=(\lambda-1)\begin{vmatrix}
+            \lambda-2&-2&2\\
+            -2&\lambda-5&4\\
+            0&1&1
+        \end{vmatrix}\\
+        &=(\lambda-1)\begin{vmatrix}
+            \lambda-2&-4&2\\
+            -2&\lambda-9&4\\
+            0&0&1
+        \end{vmatrix}=(\lambda-1)\begin{vmatrix}
+            \lambda-2&-4\\
+            -2&\lambda-9
+        \end{vmatrix}=(\lambda-1)^2(\lambda-10)
+    \end{aligned}\]
+    对应于特征值$1$的特征向量为$\{k_1(-2\bs\alpha_1+\bs\alpha_2):k_1\in\K,k_1\neq0\},\{k_2(2\bs\alpha_1+\bs\alpha_3):k_2\in\K,k_2\neq0\}$.\\
+    对应于特征值$10$的特征向量为$\{k_3(\bs\alpha_1+2\bs\alpha_2-2\bs\alpha_3):k_3\in\K,k_3\neq0\}$.
+\end{solution}
+\begin{homework}[10]
+    上述线性变换$\mathcal{A}$是否可对角化?如果$\mathcal{A}$可对角化,求其标准形.
+\end{homework}
+\begin{solution}
+    可以对角化,其标准形为
+    \[\begin{bmatrix}
+        1&0&0\\
+        0&1&0\\
+        0&0&10
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[11]
+    设$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3,\bs\alpha_4$是数域$\K$上$4$维线性空间$V$的一个基, $V$上的线性变换$\mathcal{A}$在这个基下的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        1&0&0&0\\
+        0&0&0&0\\
+        1&0&0&0\\
+        0&0&0&1
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$\mathcal{A}$的全部特征值和特征向量.
+        \item 求$V$的一个基使得$\mathcal{A}$在这组基下的矩阵为对角矩阵,并写出这个对角矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item \[\det(\lambda\mat{I}-\mat{A})=\lambda(\lambda-1)\begin{vmatrix}
+        \lambda-1&0&0\\
+        0&1&0\\
+        -1&0&\lambda
+    \end{vmatrix}=\lambda^2(\lambda-1)^2\]
+    于是$\mathcal{A}$的特征值为$1,0$.\\
+    考虑线性方程组$(\mat{I}-\mat{A})\vec{x}=\mbf0$,可知对应于特征值$1$的特征向量为
+    \[\{k_1(\bs\alpha_1+\bs\alpha_3)+k_2\bs\alpha_4:k_1,k_2\in\K,k_1,k_2\text{不全为}0\}\]
+    同理可知对应于特征值$0$的特征向量为
+    \[\{k_3\bs\alpha_2+k_4\bs\alpha_3:k_3,k_4\in\K,k_3,k_4\text{不全为}0\}\]
+    \item 取$V$的一组基$\bs\alpha_1+\bs\alpha_3,\bs\alpha_4,\bs\alpha_2,\bs\alpha_3$, $\mathcal{A}$在这组基下的矩阵为
+    \[\begin{bmatrix}
+        1&0&0&0\\
+        0&1&0&0\\
+        0&0&0&0\\
+        0&0&0&0
+    \end{bmatrix}\]
+\end{enumerate}
+\end{solution}
+\end{document}
