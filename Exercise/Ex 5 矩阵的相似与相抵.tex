@@ -1,0 +1,456 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{矩阵的相似与相抵}
+\begin{problem}
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&1&-1\\
+        x&-2&0\\
+        -1&-1&y
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        1&0&z\\
+        0&-1&0\\
+        z&0&0
+    \end{bmatrix}\]
+    相似.
+    \begin{enumerate}
+        \item 求$x,y,z$.
+        \item 求可逆矩阵$\mat{P}$使得$\mat{P}^{-1}\mat{A}\mat{P}=\mat{B}$.
+        \item 对$m\in\N^\ast$,求$\mat{A}^m$.
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}
+    \item 相似的矩阵应当具有相同的特征多项式.为此,有
+    \[\begin{aligned}
+        \det(\lambda\mat{I}-\mat{A})
+        &=\begin{vmatrix}
+            \lambda-1&-1&1\\
+            -x&\lambda+2&0\\
+            1&1&\lambda-y
+        \end{vmatrix}=\begin{vmatrix}
+            \lambda-1&-1&1\\
+            -x&\lambda+2&0\\
+            1-(\lambda-y)(\lambda-1)&1+\lambda-y&0
+        \end{vmatrix}\\
+        &=-\begin{vmatrix}
+            x&\lambda+2\\
+            \lambda^2-(1+y)\lambda+(y-1)&\lambda+(1-y)
+        \end{vmatrix}\\
+        &=\lambda^3-(y-1)\lambda^2-(x+y+3)\lambda+(y-1)(2-x)
+    \end{aligned}\]
+    \[\det(\lambda\mat{I}-\mat{B})=\begin{vmatrix}
+        \lambda-1&0&-z\\
+        0&\lambda+1&0\\
+        -z&0&\lambda
+    \end{vmatrix}=(\lambda+1)\begin{vmatrix}
+        \lambda-1&-z\\
+        -z&\lambda
+    \end{vmatrix}=(\lambda+1)(\lambda^2-\lambda-z^2)=\lambda^3-(1+z^2)\lambda-z^2\]
+    于是
+    \[\left\{\begin{array}{c}
+        y-1=0\\
+        x+y+3=1+z^2\\
+        (y-1)(2-x)=-z^2
+    \end{array}\right.\]
+    解得
+    \[x=-3,\quad y=1,\quad z=0\]
+    \item 此时有
+    \[\det(\lambda\mat{I}-\mat{A})=\lambda^3-\lambda\]
+    于是$\mat{A}$的特征值为$-1,0,1$.\\
+    考虑方程$(\mat{I}-\mat{A})\vec{x}=\mbf0$,对其系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        0&-1&1\\
+        3&3&0\\
+        1&1&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&1\\
+        0&-1&1\\
+        0&0&0
+    \end{bmatrix}\]
+    于是对应特征值$1$的一个特征向量为
+    \[\bs\eta_1=\begin{bmatrix}
+        -1&1&1
+    \end{bmatrix}^\t\]
+    考虑方程$\mat{A}\vec{x}=\mbf0$,对其系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        -1&-1&1\\
+        3&2&0\\
+        1&1&-1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&2\\
+        0&-1&3\\
+        0&0&0
+    \end{bmatrix}\]
+    于是对应特征值$0$的一个特征向量为
+    \[\bs\eta_2=\begin{bmatrix}
+        -2&3&1
+    \end{bmatrix}^\t\]
+    考虑方程$(\mat{I}+\mat{A})\vec{x}=\mbf0$,对其系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        2&1&-1\\
+        -3&-1&0\\
+        -1&-1&2
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        -1&-1&2\\
+        0&-1&3\\
+        0&2&-6
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&1\\
+        0&1&-3\\
+        0&0&0
+    \end{bmatrix}\]
+    于是对应特征值$0$的一个特征向量为
+    \[\bs\eta_3=\begin{bmatrix}
+        -1&3&1
+    \end{bmatrix}^\t\]
+    于是令
+    \[\mat{P}=\begin{bmatrix}
+        \bs\eta_1&\bs\eta_3&\bs\eta_2
+    \end{bmatrix}=\begin{bmatrix}
+        -1&-1&-2\\
+        1&3&3\\
+        1&1&1
+    \end{bmatrix}\]
+    即有
+    \[\mat{P}^{-1}\mat{A}\mat{P}=\diag\{1,-1,0\}=\mat{B}\]
+    \item 由$\mat{P}^{-1}\mat{A}\mat{P}=\mat{B}$有
+    \[\mat{B}^m=(\mat{P}^{-1}\mat{A}\mat{P})^m=\mat{P}^{-1}\mat{A}^m\mat{P}\]
+    于是
+    \[\mat{A}^m=\mat{P}\mat{B}^{m}\mat{P}^{-1}\]
+    而
+    \[\mat{B}^m=\begin{bmatrix}
+        1&0&0\\
+        0&(-1)^m&0\\
+        0&0&0
+    \end{bmatrix}\]
+    \[\begin{bmatrix}
+        -1&-1&-2&1&0&0\\
+        1&3&3&0&1&0\\
+        1&1&1&0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&2&-1&0&0\\
+        0&2&1&1&1&0\\
+        0&0&-1&1&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&0&-1&2\\
+        0&1&0&1&1&0\\
+        0&0&1&-1&0&-1
+    \end{bmatrix}\]
+    于是
+    \[\mat{P}^{-1}=\begin{bmatrix}
+        0&-1&2\\
+        1&1&0\\
+        -1&0&-1
+    \end{bmatrix}\]
+    于是
+    \[\mat{A}^m=\begin{bmatrix}
+        -1&-1\cdot(-1)^m&0\\
+        1&3\cdot(-1)^m&0\\
+        1&1\cdot(-1)^m&0
+    \end{bmatrix}\begin{bmatrix}
+        0&-1&2\\
+        1&1&0\\
+        -1&0&-1
+    \end{bmatrix}=\begin{bmatrix}
+        (-1)^{m+1}&1+(-1)^{m+1}&-2\\
+        3\cdot(-1)^m&-1+3\cdot(-1)^m&2\\
+        (-1)^{m}&-1+(-1)^m&2
+    \end{bmatrix}\]
+\end{enumerate}
+\end{solution}
+\begin{problem}
+    已知数域$\K$上含参数$a$的矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&2&-3\\
+        -1&4&-3\\
+        1&a&5
+    \end{bmatrix}\]
+    的特征多项式有一个二重根,求$a$的值,并判断$\mat{A}$是否可以对角化.
+\end{problem}
+\begin{solution}
+    有
+    \[\begin{aligned}
+        \det(\lambda\mat{I}-\mat{A})
+        &=\begin{bmatrix}
+            \lambda-1&-2&3\\
+            1&\lambda-4&3\\
+            -1&-a&\lambda-5
+        \end{bmatrix}=\begin{bmatrix}
+            \lambda-1&-2&3\\
+            0&\lambda-4-a&\lambda-2\\
+            -1&-a&\lambda-5
+        \end{bmatrix}\\
+        &=(\lambda-1)\begin{vmatrix}
+            \lambda-(a+4)&\lambda-2\\
+            -a&\lambda-5
+        \end{vmatrix}-\begin{vmatrix}
+            -2&3\\
+            \lambda-(a+4)&\lambda-2
+        \end{vmatrix}\\
+        &=(\lambda-1)(\lambda^2-9\lambda+3a+20)-(-5\lambda+3a+16)\\
+        &=\lambda^3-10\lambda^2+(3a+34)\lambda-(6a+36)
+    \end{aligned}\]
+    记上式为$f(\lambda)$.由于$f(\lambda)=0$有一个二重根,于是$f(\lambda)=0$与$f'(\lambda)=0$有相同的根,即
+    \[\left\{\begin{array}{l}
+        \lambda^3-10\lambda^2+(3a+34)\lambda-(6a+36)=0\\
+        3\lambda^2-20\lambda+(3a+34)=0
+    \end{array}\right.\]
+    解得
+    \[\lambda=2,\quad a=-2\]
+    此时
+    \[f(\lambda)=\lambda^3-10\lambda^2+28\lambda-24=(\lambda-2)^2(\lambda-6)\]
+    对于特征值$\lambda=2$,对线性方程组$(2\mat{I}-\mat{A})\vec{x}=\mbf0$的系数矩阵做行变换可得
+    \[\begin{bmatrix}
+        1&-2&3\\
+        1&-2&3\\
+        -1&2&-3
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&-2&3\\
+        0&0&0\\
+        0&0&0
+    \end{bmatrix}\]
+    故其几何重数为$2$.\\
+    对于特征值$6$,对线性方程组$(6\mat{I}-\mat{A})\vec{x}=\mbf0$的系数矩阵做行变换可得
+    \[\begin{bmatrix}
+        5&-2&3\\
+        1&2&3\\
+        -1&2&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&2&3\\
+        0&-12&-12\\
+        0&4&4
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&1\\
+        0&1&1\\
+        0&0&0
+    \end{bmatrix}\]
+    故其几何重数为$1$.于是可知$\mat{A}$可以对角化.
+\end{solution}
+\begin{problem}
+    设$n$级矩阵$\mat{A},\mat{B}$有相同的特征值.
+    \begin{enumerate}
+        \item 证明:如果$\mat{A}$有$n$个互不相同的特征值,则存在可逆矩阵$\mat{P}$和矩阵$\mat{Q}$使得$\mat{A}=\mat{P}\mat{Q},\mat{B}=\mat{Q}\mat{P}$.
+        \item 如果前一问中$\mat{A}$有$n$个互不相同的特征值这一条件删去,能否得到相同的结论?
+    \end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}
+    \item 由于$\mat{A}$与$\mat{B}$同有$n$个互不相同的特征值,不妨设为$\li\lambda,n$.由于$\mat{A}$和$\mat{B}$的阶数为$n$,因此它们的特征多项式一定为
+    \[f(\lambda)=\prod_{i=1}^{n}(\lambda-\lambda_i)\]
+    因而两者具有相同的特征多项式,于是两者相似.因此,存在可逆矩阵$\mat{P}$使得$\mat{B}=\mat{P}^{-1}\mat{A}\mat{P}$.于是令$\mat{Q}=\mat{B}\mat{P}^{-1}$就有
+    \[\mat{A}=\mat{P}\mat{B}\mat{P}^{-1}=\mat{P}\mat{Q}\]
+    \[\mat{B}=\mat{B}\mat{P}^{-1}\mat{P}=\mat{Q}\mat{P}\]
+    于是命题得证.
+    \item 不能.事实上,将$\mat{B}=\mat{Q}\mat{P}$变形为$\mat{Q}=\mat{B}\mat{P}^{-1}$代入$\mat{A}=\mat{P}\mat{Q}$可得
+    \[\mat{A}=\mat{P}\mat{B}\mat{P}^{-1}\]
+    这要求$\mat{A}$与$\mat{B}$相似.当特征值的数目小于$n$时,两者的特征多项式的某一项的次数可能不同,仍然可以保证特征值相同,但不再相似,结论也就不一定成立了.
+\end{enumerate}
+\end{solution}
+\begin{problem}
+    设$n$级方阵$\mat{A}$满足$\mat{A}^2=2\mat{A}$.证明: $\mat{A}$可以对角化.
+\end{problem}
+\begin{proof}
+    考虑任一非零的$\vec{x}\in\K^n$使得
+    \[\mat{A}\vec{x}=\lambda\vec{x}\]
+    两边左乘$\mat{A}$可得
+    \[\mat{A}^2\vec{x}=\lambda\mat{A}\vec{x}\]
+    由$\mat{A}^2=2\mat{A}$可得
+    \[2\mat{A}\vec{x}=\lambda(\mat{A}\vec{x})\]
+    又$\mat{A}\vec{x}=\lambda\vec{x}$,于是有
+    \[\lambda(\lambda-2)\vec{x}=\mbf0\]
+    由于$\vec{x}\neq\mbf0$,从而$\lambda=0$或$\lambda=2$.于是$\mat{A}$仅有特征值$0$和$2$.\\
+    由于$\mat{A}(\mat{A}-2\mat{I})=\mbf0$,于是根据Sylvester秩不等式可知
+    \[\rank\mat{A}+\rank(\mat{A}-2\mat{I})\leq\rank\mbf0+n=n\]
+    另一方面$\mat{A}+(2\mat{I}-\mat{A})=2\mat{I}$.对于任意的$n$级方阵$\mat{P}$和$\mat{Q}$总有
+    \[\rank(\mat{P}+\mat{Q})\leq\rank\begin{bmatrix}
+        \mat{P}+\mat{Q}\\\mat{Q}
+    \end{bmatrix}=\rank\begin{bmatrix}
+        \mat{P}\\\mat{Q}
+    \end{bmatrix}\leq\rank\mat{P}+\rank\mat{Q}\]
+    于是
+    \[\rank\mat{A}+\rank(2\mat{I}-\mat{A})\geq\rank(2\mat{I})=n\]
+    从而
+    \[\rank\mat{A}+\rank(2\mat{I}-\mat{A})=n\]
+    也即$\mat{A}$的属于特征值$0$的特征空间和属于特征值$2$的特征空间的维数之和为$n$,因此$\mat{A}$可对角化.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B}$是数域$\K$上可对角化的$n$级方阵.称$\mat{A},\mat{B}$可同时对角化,如果存在可逆矩阵$\mat{P}$使得$\mat{P}^{-1}\mat{A}\mat{P}$与$\mat{P}^{-1}\mat{B}\mat{P}$均为对角矩阵.证明:$\mat{A},\mat{B}$可同时对角化,当且仅当它们可交换.
+\end{problem}
+\begin{proof}
+    $\Rightarrow$:设$\mat{C}=\mat{P}^{-1}\mat{A}\mat{P}$, $\mat{D}=\mat{P}^{-1}\mat{B}\mat{P}$,依题意它们都是对角矩阵.由于对角矩阵均可交换,因此
+    \[\mat{C}\mat{D}=\mat{D}\mat{C}\]
+    于是
+    \[\mat{P}^{-1}\mat{A}\mat{P}\mat{P}^{-1}\mat{B}\mat{P}=\mat{P}\mat{P}^{-1}\mat{B}\mat{P}\mat{P}^{-1}\mat{A}\mat{P}\]
+    从而
+    \[\mat{P}^{-1}\mat{A}\mat{B}\mat{P}=\mat{P}^{-1}\mat{B}\mat{A}\mat{P}\]
+    从而
+    \[\mat{A}\mat{B}=\mat{B}\mat{A}\]
+    于是两者可交换.\\
+    $\Leftarrow$:由于$\mat{A}$可对角化,因此对$\K^n$做$\mat{A}$的特征空间的直和分解:
+    \[\K^n=\bigoplus_\lambda E_\lambda(\mat{A})\]
+    任取$\mat{A}$的特征值$\lambda$和$\vec{x}\in E_{\lambda}(\mat{A})$,则有$\mat{A}\vec{x}=\lambda\vec{x}$.又因为$\mat{A},\mat{B}$可交换,于是
+    \[\mat{A}\mat{B}\vec{x}=\mat{B}\mat{A}\vec{x}=\mat{B}\lambda\vec{x}=\lambda(\mat{B}\vec{x})\]
+    从而$\mat{B}\vec{x}\in E_{\lambda}(\mat{A})$,因此$E_\lambda(\mat{A})$是$\mat{B}$的不变子空间.由于$\mat{B}$可对角化,因此$\mat{B}|_{E_\lambda(\mat{A})}$也可以对角化,于是在$E_\lambda(\mat{A})$中可以选择一组$\mat{B}$的特征向量作为这空间的基.依照定义,这组特征向量也是$\mat{A}$的特征向量.\\
+    \indent 于是对每个$E_\lambda(\mat{A})$重复相同的操作,就能找到$n$个线性无关的向量,它们同时是$\mat{A}$和$\mat{B}$的特征向量,因此$\mat{A}$与$\mat{B}$可同时对角化.
+\end{proof}
+\begin{problem}
+    设$\K$上的$n$级方阵$\mat{T}$在$\K$中有$n$个互不相同的特征值.证明:与$\mat{T}$可交换的矩阵$\mat{S}$一定可以对角化.
+\end{problem}
+\begin{proof}
+    考虑$\mat{T}$的特征值$\li\lambda,n$和对应的特征空间$\li E,n$.考虑$\vec{x}_i\in E_i$作为该特征空间的基,则有$\mat{T}\vec{x}_i=\lambda_i\vec{x}_i$.\\
+    由于$\mat{S},\mat{T}$可交换,于是
+    \[\mat{T}(\mat{S}\vec{x}_i)=\mat{T}\mat{S}\vec{x}_i=\mat{S}\mat{T}\vec{x}_i=\mat{S}\lambda\vec{x}_i=\lambda(\mat{S}\vec{x}_i)\]
+    于是$\mat{S}\vec{x}_i\in E_i$.由于$\dim E_i=1$,因此总存在$\mu_i\in\K$使得
+    \[\mat{S}\vec{x}_i=\mu_i\vec{x}_i\]
+    即$\vec{x}_i$也是$\mat{S}$的特征向量.重复上述操作,取出的向量$\li{\vec{x}},n$是$\mat{S}$的$n$个线性无关的特征向量,因此$\mat{S}$可对角化.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B},\mat{C}$都是$\K$上的$n$级方阵,且满足$\mat{A}\mat{B}-\mat{B}\mat{A}=\mat{C}$, $\mat{A}\mat{C}=\mat{C}\mat{A}$.证明:对任意$k\in\N^+$都有$\tr(\mat{C}^k)=0$.
+\end{problem}
+\begin{proof}
+    当$k=1$时有
+    \[\tr(\mat{C})=\tr(\mat{A}\mat{B})-\tr(\mat{B}\mat{A})=0\]
+    当$k>1$时有
+    \[\mat{C}^k=\mat{C}\mat{C}^{k-1}=\mat{A}\mat{B}\mat{C}^{k-1}-\mat{B}\mat{A}\mat{C}^{k-1}=\mat{A}(\mat{B}\mat{C}^{k-1})-(\mat{B}\mat{C}^{k-1})\mat{A}\]
+    记$\mat{B}\mat{C}^{k-1}=\mat{P}$,则有
+    \[\tr(\mat{C}^k)=\tr(\mat{A}\mat{P})-\tr(\mat{P}\mat{A})=0\]
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是$\K$上的$n$级方阵,满足对数域$\K$上的任一$n$级方阵$\mat{X}$都有$\tr(\mat{A}\mat{X})=0$.证明: $\mat{A}=\mbf0$.
+\end{problem}
+\begin{proof}
+    设$\mat{A}=(a_{ij})$,则
+    \[\mat{A}\mat{E}_{ji}=\sum_{k=1}^{n}a_{kj}\mat{E}_{ki}\]
+    从而$\mat{A}\mat{E}_{ij}$的对角线元素依次为$0,\cdots,0,a_{ik},0,\cdots,0$.由于$\tr(\mat{A}\mat{E}_{ji})=0$,因此$a_{ij}=0$.上述式子对任意$i,j$都成立,因此$\mat{A}=\mbf0$.
+\end{proof}
+\begin{problem}
+    证明:一个$n$级复方阵$\mat{B}$可对角化当且仅当存在一个次数不高于$n-1$的复系数多项式$g$和一个有$n$个不同的复特征值的$n$级复方阵$\mat{A}$,满足$\mat{B}$与$g(\mat{A})$相似.
+\end{problem}
+\begin{proof}
+    $\Rightarrow$:由于$\mat{B}$可对角化,因此设其相似于对角矩阵$\mat{D}=\diag\{\li\mu,n\}$,则存在可逆矩阵$\mat{P}$使得
+    \[\mat{B}=\mat{P}\mat{D}\mat{P}^{-1}\]
+    任取$n$个互不相同的$\lambda_i\in\C$,令
+    \[\mat{A}=\mat{P}\diag\{\li\lambda,i\}\mat{P}^{-1}\]
+    根据拉格朗日插值定理,存在次数不高于$n-1$的多项式函数$g$使得
+    \[g(\lambda_i)=\mu_i\]
+    从而
+    \[g(\mat{A})=\mat{P}\diag\{g(\lambda_1),\cdots,g(\lambda_n)\}\mat{P}^{-1}=\mat{P}\mat{D}\mat{P}^{-1}=\mat{B}\]
+    从而$\mat{B}\sim g(\mat{A})$.\\
+    $\Leftarrow$:由于$\mat{A}$有$n$个不同的特征值,因此$\mat{A}$可对角化.于是存在可逆矩阵$\mat{P}$使得
+    \[\mat{A}=\mat{P}\diag\{\li\lambda,n\}\mat{P}^{-1}\]
+    而对任意$m\in\N^+$有
+    \[\mat{A}^m=(\mat{P}\diag\{\li\lambda,n\}\mat{P}^{-1})^m=\mat{P}\diag\{\lambda_1^m,\cdots,\lambda_n^m\}\mat{P}^{-1}\]
+    于是
+    \[g(\mat{A})=\mat{P}\diag\{g(\lambda_1),\cdots,g(\lambda_n)\}\mat{P}^{-1}\]
+    由于$\mat{B}\sim g(\mat{A})$,又$g(\mat{A})\sim\diag\{g(\lambda_1),\cdots,g(\lambda_n)\}$,于是$\mat{B}$可对角化.
+\end{proof}
+\begin{problem}
+    定义$n$级矩阵
+    \[\mat{C}_n=\begin{bmatrix}
+        \mbf0_{(n-1)\times1}&\mat{I}_{n-1}\\
+        1&\mbf0_{1\times(n-1)}
+    \end{bmatrix}\]
+    $n$级矩阵$\mat{S}$被称作循环的,如果存在次数不超过$n-1$的多项式$p$使得$\mat{S}=p(\mat{C}_n)$.证明:一个$n$级矩阵$\mat{A}$可对角化当且仅当它相似于某个循环矩阵$\mat{S}$.
+\end{problem}
+\begin{proof}
+    $\Rightarrow$:由于$\mat{A}$可对角化,于是设$\mat{A}\sim\diag\{\li\lambda,n\}=\mat{D}$.由于
+    \[\det(\lambda\mat{I}-\mat{C}_n)=\lambda^n-1\]
+    于是$\mat{C}_n$的全部特征值为所有$n$次单位根$\omega_k=\e^{\frac{2k\pi\i}{n}},k=1,\cdots,n$,从而$\mat{C}_n$可对角化,于是设可逆矩阵$\mat{P}$使得
+    \[\mat{C}_n=\mat{P}\diag\{\li\omega,n\}\mat{P}^{-1}\]
+    根据拉格朗日插值定理,总存在次数不高于$n-1$的多项式$p$使得
+    \[p(\omega_i)=\lambda_i\]
+    从而
+    \[\mat{S}p(\mat{C}_n)=\mat{P}\diag\{p(\omega_1),\cdots,p(\omega_n)\}\mat{P}^{-1}=\mat{P}\mat{D}\mat{P}^{-1}\]
+    从而$\mat{S}\sim\mat{D}$,因而$\mat{A}\sim\mat{S}$.\\
+    $\Leftarrow$:由前面的推导可得
+    \[\mat{S}=\mat{P}\diag\{p(\omega_1),\cdots,p(\omega_n)\}\mat{P}^{-1}\]
+    即$\mat{S}$可对角化.又$\mat{A}\sim\mat{S}$,因此$\mat{A}$也可对角化.
+\end{proof}
+\begin{problem}
+    设$n$级方阵$\mat{A}$的特征多项式为$f$,证明: $f(\mat{A})=\mbf0$.
+\end{problem}
+\begin{proof}
+    根据伴随矩阵的性质可知对任意方阵$\mat{S}$总有$\mat{S}\mat{S}^\ast=(\det\mat{S})\mat{I}$.现在令$\mat{S}=\lambda\mat{I}-\mat{A}$,则有
+    \[(\lambda\mat{I}-\mat{A})(\lambda\mat{I}-\mat{A})^\ast=\det(\lambda\mat{I}-\mat{A})\mat{I}\]
+    即
+    \[(\lambda\mat{I}-\mat{A})(\lambda\mat{I}-\mat{A})^\ast=f(\lambda)\mat{I}\]
+    而$(\lambda\mat{I}-\mat{A})^\ast$的每个矩阵元都是$\lambda$的不超过$n-1$次的多项式.于是存在矩阵$\mat{S}_0,\cdots,\mat{S}_{n-1}$使得
+    \[(\lambda\mat{I}-\mat{A})^\ast=\mat{S}_0+\lambda\mat{S}_1+\cdots+\lambda^{n-1}\mat{S}^{n-1}\]
+    于是
+    \[\lambda\sum_{i=0}^{n-1}\lambda^i\mat{S}_i-\mat{A}\sum_{i=0}^{n-1}\lambda^i\mat{S}_i=f(\lambda)\mat{I}\]
+    即
+    \[\lambda^n\mat{S}_{n-1}+\lambda^{n-1}(\mat{S}_{n-2}-\mat{A}\mat{S}_{n-1})+\cdots+\lambda(\mat{S}_0-\mat{A}\mat{S}_1)-\mat{A}\mat{S}_0=f(\lambda)\mat{I}\]
+    设$f(\lambda)=\lambda^n+a_{n-1}\lambda^{n-1}+\cdots+a_1\lambda+a_0$,则有
+    \[\lambda^n\mat{S}_{n-1}+\lambda^{n-1}(\mat{S}_{n-2}-\mat{A}\mat{S}_{n-1})+\cdots+\lambda(\mat{S}_0-\mat{A}\mat{S}_1)-\mat{A}\mat{S}_0=\lambda^n\mat{I}+a_{n-1}\lambda^{n-1}\mat{I}+\cdots+a_0\mat{I}\]
+    从而
+    \[\mat{S}_{n-1}=\mat{I},\quad\mat{S}_{n-2}-\mat{A}\mat{S}_{n-1}=a_{n-1}\mat{I},\cdots,\quad-\mat{A}\mat{S}_0=a_0\mat{I}\]
+    于是
+    \[\begin{aligned}
+        f(\mat{A})
+        &=\mat{A}^n+a_{n-1}\mat{A}^{n-1}+\cdots+a_1\mat{A}+a_0\mat{I}\\
+        &=\mat{A}^n\mat{S}_{n-1}+\mat{A}^{n-1}(\mat{S}_{n-2}-\mat{A}\mat{S}_{n-1})+\cdots-\mat{A}\mat{S}_0\\
+        &=\mbf0
+    \end{aligned}\]
+    命题得证.
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是$n$级可逆方阵,证明:存在一个不超过$n-1$次的多项式$g$使得$g(\mat{A})=\mat{A}^{-1}$.
+\end{problem}
+\begin{proof}
+    考虑$\mat{A}$的特征多项式$f(\lambda)=\lambda^n+a_{n-1}\lambda^{n-1}+\cdots+a_1\lambda+a_0$.由前一题的结论可知
+    \[f(\mat{A})=\mat{A}^{n}+a_{n-1}\mat{A}^{n-1}+\cdots+a_1\mat{A}+a_0\mat{I}=\mbf0\]
+    由于$\mat{A}$可逆,因此$a_0\neq0$.于是则有
+    \[-\dfrac{1}{a_0}(\mat{A}^{n-1}+a_{n-1}\mat{A}^{n-2}+\cdots+a_1\mat{I})\mat{A}=\mat{I}\]
+    于是令$g(x)=-\dfrac{1}{a_0}(x^{n-1}+a_{n-1}x^{n-2}+\cdots+a_1)$即可.
+\end{proof}
+\begin{problem}
+    设$n$级方阵$\mat{A},\mat{B}$满足$\mat{A}\mat{B}=\mat{A}+\mat{B}^{2025}$.证明: $\mat{A}\mat{B}=\mat{B}\mat{A}$.
+\end{problem}
+\begin{proof}
+    先证明$\mat{B}-\mat{I}$可逆.考虑$n$级方阵$\mat{X}$使得$(\mat{B}-\mat{I})\mat{X}=\mbf0$,即$\mat{X}=\mat{B}\mat{X}$,则有
+    \[\mat{X}=\mat{B}\mat{X}=\cdots=\mat{B}^{2025}\mat{X}=\mat{A}(\mat{B}-\mat{I})\mat{X}=\mbf0\]
+    于是$\mat{B}-\mat{I}$可逆.由前一题的结论可知存在多项式$f$使得
+    \[f(\mat{B}-\mat{I})=(\mat{B}-\mat{I})^{-1}\]
+    这也是一个仅与$\mat{B}$相关的多项式,不妨记$g(\mat{B})=f(\mat{B}-\mat{I})$.从而
+    \[\mat{A}=\mat{B}^{2025}g(\mat{B})\]
+    这是一个关于$\mat{B}$的多项式,于是它与$\mat{B}$可交换.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B}$分别是$\C$上的$m,n$级方阵,证明:矩阵方程$\mat{A}\mat{X}-\mat{X}\mat{B}=\mbf0$有非零解$\mat{X}$当且仅当$\mat{A},\mat{B}$有共同的特征值.
+\end{problem}
+\begin{proof}
+    $\Leftarrow$:假定$\mat{A}$与$\mat{B}$有相同的特征值$\lambda$,那么$\mat{B}^\t$也有特征值$\lambda$.设$\mat{A}$与$\mat{B}^\t$对应的特征向量分别为$\bs\alpha\in\K^m$和$\bs\beta\in\K^n$,则有
+    \[\mat{A}\bs\alpha=\lambda\bs\alpha,\quad\mat{B}^\t\bs\beta=\lambda\bs\beta\]
+    从而
+    \[\mat{A}\bs\alpha\bs\beta^\t-\bs\alpha\bs\beta^\t\mat{B}=\mat{A}\bs\alpha\bs\beta^\t-\bs\alpha\mat{B}^\t\bs\beta=\lambda\bs\alpha\bs\beta^\t-\lambda\bs\alpha\bs\beta^\t=\mbf0\]
+    从而$\bs\alpha\bs\beta^\t$是该矩阵方程的解.\\
+    $\Rightarrow$:假定矩阵方程$\mat{A}\mat{X}-\mat{X}\mat{B}=\mbf0$有非零解$\mat{X}$.设$\mat{A}$与$\mat{B}$没有公共的特征值.考虑$\mat{A}$的特征多项式,将其分解为$\C$中的一次多项式的乘积:
+    \[f_\mat{A}(\lambda)=\prod_{j=1}^{m}(\lambda-\lambda_j)\]
+    于是$f_\mat{A}(\mat{B})=\displaystyle\prod_{j=1}^{m}(\mat{B}-\lambda_j\mat{I}_n)$.由于$\mat{B}$与$\mat{A}$没有共同的特征值,从而$\det(\mat{B}-\lambda_j\mat{I}_n)\neq0$,从而$\det f_\mat{A}(\mat{B})\neq0$,因而$f_\mat{A}(\mat{B})$可逆.由$\mat{A}\mat{X}=\mat{X}\mat{B}$可得
+    \[f_\mat{A}(\mat{A})\mat{X}=\mat{X}f_\mat{A}(\mat{B})\]
+    由于$f_\mat{A}(\mat{A})=\mbf0$,而$f_\mat{A}(\mat{B})\neq\mbf0$,于是只能$\mat{X}=\mbf0$,与假设矛盾.从而$\mat{A}$与$\mat{B}$有相同的特征值.
+\end{proof}
+\begin{problem}
+    证明:幂等矩阵的秩和迹相等.
+\end{problem}
+\begin{proof}
+    设$\mat{A}$是$\K$上的$n$级幂等矩阵.如果$\lambda$是$\mat{A}$的特征值,则存在非零的$\vec{x}\in\K^n$使得$\mat{A}\vec{x}=\lambda\vec{x}$.两边左乘$\mat{A}$可得
+    \[\mat{A}^2\vec{x}=\lambda\mat{A}\vec{x}=\lambda^2\vec{x}\]
+    又$\mat{A}^2=\mat{A}$,于是
+    \[\mat{A}^2\vec{x}=\mat{A}\vec{x}=\lambda\vec{x}\]
+    从而$(\lambda^2-\lambda)\vec{x}=\mbf0$.由于$\vec{x}\neq\mbf0$,于是$\lambda^2-\lambda=0$,即$\lambda=0$或$1$.\\
+    设$\rank\mat{A}=r$.当$r=0$时$\mat{A}=\mbf0$,当$r=n$时$\mat{A}=\mat{I}$,命题都成立.现在设$0<r<n$.\\
+    对于特征值$0$,齐次线性方程组$(0\mat{I}-\mat{A})\vec{x}=\mbf0$的解空间$W_0$满足
+    \[\dim W_0=n-\rank(-\mat{A})=n-r\]
+    由于$\mat{A}$是幂等矩阵,因此$\dim\mat{A}+\dim(\mat{I}-\mat{A})=n$.\\
+    对于特征值$1$,齐次线性方程组$(1\mat{I}-\mat{A})\vec{x}=\mbf0$的解空间$W_1$满足
+    \[\dim W_1=n-\rank(\mat{I}-\mat{A})=n-(n-r)=r\]
+    从而
+    \[\dim W_0+\dim W_1=n\]
+    从而$\mat{A}$可对角化.于是
+    \[\mat{A}\sim\diag\{1,\cdots,1,0,\cdots,0\}\]
+    右边的对角矩阵的迹和秩都等于$r$.由于相似的矩阵具有相同的迹和秩,因此$\mat{A}$的迹和秩相等,得证.
+\end{proof}
+\end{document}

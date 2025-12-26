@@ -1,0 +1,130 @@
+\documentclass{ctexart}
+\usepackage{Note}
+\begin{document}
+\section{矩阵}
+\begin{problem}
+    设$\mat{A}$和$\mat{B}$分别是$m\times n$和$n\times s$矩阵,证明:
+    \[\rank\mat{A}\mat{B}\geq\rank\mat{A}+\rank\mat{B}-n\]
+\end{problem}
+\begin{proof}
+    对$\mat{A}$做相抵标准形分解
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\mat{Q}\]
+    其中$r=\rank\mat{A}$.于是
+    \[\mat{A}\mat{B}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\mat{Q}\mat{B}\]
+    记$\mat{Q}\mat{B}=\mat{H}$,其前$r$行构成的子矩阵为$\mat{H}_1$,后$n-r$行构成的子矩阵为$\mat{H}_2$,则有
+    \[\mat{A}\mat{B}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}=\mat{P}\begin{bmatrix}
+        \mat{H}_1\\\mbf0
+    \end{bmatrix}\]
+    由于$\mat{P}$是可逆矩阵,于是
+    \[\rank\mat{A}\mat{B}=\rank\mat{H}_1\]
+    由于$\mat{Q}$是可逆矩阵,于是
+    \[\rank\mat{B}=\rank\mat{Q}\mat{B}=\rank\mat{H}=\rank\begin{bmatrix}
+        \mat{H}_1\\\mat{H}_2
+    \end{bmatrix}\]
+    由于$\mat{H}_1$是$\mat{H}$的$r$行的子矩阵,因此将$\mat{H}_1$的极大线性无关组$\mathcal{H}_1$扩充为$\mat{H}$的极大线性无关组$\mathcal{H}$时所增加的行向量全部来源于$\mat{H}_2$,因此
+    \[\rank\mat{H}-\rank\mat{H}_1\leq n-r\]
+    即
+    \[\rank\mat{B}-\rank\mat{A}\mat{B}\leq n-\rank\mat{A}\]
+    移项即可证得命题.
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是$n\times m$矩阵,且秩为$r$.证明:存在秩为$r$的$n\times r$矩阵$\mat{B}$和秩为$r$的$r\times m$矩阵$\mat{C}$使得$\mat{A}=\mat{B}\mat{C}$.
+\end{problem}
+\begin{proof}
+    对$\mat{A}$做相抵标准形分解
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}_{n\times m}\mat{Q}\]
+    注意到
+    \[\begin{bmatrix}
+        \mat{I}_r\\\mbf0
+    \end{bmatrix}_{n\times r}\begin{bmatrix}
+        \mat{I}_r&\mbf0
+    \end{bmatrix}_{r\times m}=\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}_{n\times m}\]
+    于是令
+    \[\mat{B}=\mat{P}\begin{bmatrix}
+        \mat{I}_r\\\mbf0
+    \end{bmatrix}_{n\times r},\quad\mat{C}=\begin{bmatrix}
+        \mat{I}_r&\mbf0
+    \end{bmatrix}_{r\times m}\mat{Q}\]
+    即有$\mat{A}=\mat{B}\mat{C}$.另外,由于$\mat{P},\mat{Q}$均为可逆矩阵,因此
+    \[\rank\mat{B}=\rank\begin{bmatrix}
+        \mat{I}_r\\\mbf0
+    \end{bmatrix}_{n\times r}=r,\quad\rank\mat{C}=\begin{bmatrix}
+        \mat{I}_r&\mbf0
+    \end{bmatrix}_{r\times m}=r\]
+    于是命题得证.
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是秩为$r$的$n\times m$矩阵.证明:
+    \begin{enumerate}
+        \item 如果$n=r$,那么存在$m\times r$矩阵$\mat{B}$使得$\mat{A}\mat{B}=\mat{I}_r$.
+        \item 如果$m=r$,那么存在$r\times n$矩阵$\mat{C}$使得$\mat{C}\mat{A}=\mat{I}_r$.
+    \end{enumerate}
+\end{problem}
+\begin{proof}
+\begin{enumerate}
+    \item 考虑$\mat{A}$的相抵标准形分解
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0
+    \end{bmatrix}_{r\times m}\mat{Q}\]
+    令$\mat{B}=\mat{Q}^{-1}\begin{bmatrix}
+        \mat{I}_r\\\mbf0
+    \end{bmatrix}_{m\times r}\mat{P}^{-1}$,则有
+    \[\mat{A}\mat{B}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0
+    \end{bmatrix}_{r\times m}\mat{Q}\mat{Q}^{-1}\begin{bmatrix}
+        \mat{I}_r\\\mbf0
+    \end{bmatrix}_{m\times r}\mat{P}^{-1}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0
+    \end{bmatrix}_{r\times m}\begin{bmatrix}
+        \mat{I}_r\\\mbf0
+    \end{bmatrix}_{m\times r}\mat{P}^{-1}=\mat{P}\mat{P}^{-1}=\mat{I}_r\]
+    于是命题得证.
+    \item 类似.
+\end{enumerate}
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B}$分别是$3\times2,2\times3$矩阵,且
+    \[\mat{A}\mat{B}=\begin{bmatrix}
+        8&2&-2\\
+        2&5&4\\
+        -2&4&5
+    \end{bmatrix}\]
+    求$\rank\mat{A},\rank\mat{B},\mat{B}\mat{A}$.
+\end{problem}
+\begin{solution}
+    \[\det\mat{A}\mat{B}=\begin{vmatrix}
+        8&2&-2\\
+        2&5&4\\
+        -2&4&5
+    \end{vmatrix}=\begin{vmatrix}
+        8&-18&-18\\
+        2&5&4\\
+        0&9&9
+    \end{vmatrix}=2\begin{bmatrix}
+        18&18\\9&9
+    \end{bmatrix}=0\]
+    \[\begin{vmatrix}
+        8&2\\2&5
+    \end{vmatrix}=36\neq0\]
+    于是$\rank\mat{A}\mat{B}=2$.由于$\rank\mat{A}\mat{B}\leq\rank\mat{A}$且$\rank\mat{A}\mat{B}\leq\rank\mat{B}$,又$\rank\mat{A}\mat{B}\geq\rank\mat{A}+\rank\mat{B}-2$,于是
+    \[\rank\mat{A}=\rank\mat{B}=2\]
+    注意到$\mat{A}\mat{B}=(\mat{A}\mat{B})^\t=\mat{B}^\t\mat{A}^\t$
+\end{solution}
+\end{document}
