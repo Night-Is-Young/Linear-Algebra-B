@@ -68,16 +68,215 @@
     求$a$的值和相应的非退化线性变换.
 \end{problem}
 \begin{solution}
-    二次型$f,g$的矩阵分别为
+    二次型$g=(y_1+y_2)^2+4y_3^2$,其秩和正惯性指数均为$2$.考虑二次型$f$对应的矩阵:
     \[\mat{A}=\begin{bmatrix}
         1&a&a\\
         a&1&a\\
         a&a&1
-    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
-        1&1&0\\
-        1&1&0\\
-        0&0&4
     \end{bmatrix}\]
-    
+    于是
+    \[\det\mat{A}=(1-a^2)-a(a-a^2)+a(a^2-a)=(a-1)^2(2a+1)\]
+    当$a=1$时, $\rank\mat{A}=1$,不存在相应的变换,于是只能有$a=-\dfrac12$.现在求相应的非退化线性变换:
+    \[\begin{bmatrix}
+        1&-\frac12&-\frac12\\
+        -\frac12&1&-\frac12\\
+        -\frac12&-\frac12&1\\
+        1&0&0\\
+        0&1&0\\
+        0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&-\frac12\\
+        0&\frac34&-\frac34\\
+        -\frac12&-\frac34&1\\
+        1&\frac12&0\\
+        0&1&0\\
+        0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0\\
+        0&\frac34&-\frac34\\
+        0&-\frac34&\frac34\\
+        1&\frac12&\frac12\\
+        0&1&0\\
+        0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0\\
+        0&\frac34&0\\
+        0&0&0\\
+        1&\frac12&1\\
+        0&1&1\\
+        0&0&1
+    \end{bmatrix}\]
+    于是令
+    \[\mat{C}=\begin{bmatrix}
+        1&\frac12&1\\
+        0&1&1\\
+        0&0&1
+    \end{bmatrix}\]
+    然后令$\vec{x}=\mat{C}\vec{z}$,就有$f(x_1,x_2,x_3)=z_1^2+\dfrac34z_2^2$,再令
+    \[\vec{z}=\begin{bmatrix}
+        z_1\\z_2\\z_3
+    \end{bmatrix}=\begin{bmatrix}
+        y_1+y_2\\
+        \frac{16}{\sqrt3}y_3\\
+        0
+    \end{bmatrix}\]
+    即可.
 \end{solution}
+\begin{problem}
+    设$\mat{A}$是正定矩阵, $\mat{B}$是与$\mat{A}$阶数相同的实对称矩阵.证明:存在可逆矩阵$\mat{C}$使得$\mat{C}^\t\mat{A}\mat{C}$与$\mat{C}^\t\mat{B}\mat{C}$都是对角矩阵.
+\end{problem}
+\begin{proof}
+    由于$\mat{A}$是正定矩阵,因此它合同于$\mat{I}_n$,即存在可逆矩阵$\mat{P}$使得
+    \[\mat{P}^\t\mat{A}\mat{P}=\mat{I}\]
+    由于$\mat{P}^\t\mat{B}\mat{P}$也是实对称矩阵,因此存在可逆矩阵$\mat{Q}$使得
+    \[\mat{Q}^\t(\mat{P}^\t\mat{B}\mat{P})\mat{Q}\]
+    也为对角矩阵.令$\mat{C}=\mat{Q}^\t\mat{P}^\t$为可逆矩阵,则有
+    \[\mat{C}^\t\mat{A}\mat{C}=\mat{Q}^\t\mat{P}^\t\mat{A}\mat{P}\mat{Q}=\mat{Q}^\t\mat{I}\mat{Q}=\mat{I}\]
+    于是存在可逆的$\mat{C}$使得$\mat{C}^\t\mat{A}\mat{C}$和$\mat{C}^\t\mat{B}\mat{C}$均为对角矩阵.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B}$是两个半正定矩阵.证明: $\mat{A}\mat{B}=\mbf0$当且仅当$\tr(\mat{A}\mat{B})=0$.
+\end{problem}
+\begin{proof}
+    $\Rightarrow$:显然.\\
+    $\Leftarrow$:现在假设$\tr(\mat{A}\mat{B})=0$.由于$\mat{A}$是半正定的,因此存在可逆矩阵$\mat{P}$使得
+    \[\mat{A}=\mat{P}^\t\diag\{\li\lambda,s,0,\cdots,0\}\mat{P}\]
+    令
+    \[\mat{S}=\mat{P}^\t\diag\{\sqrt{\lambda_1},\cdots,\sqrt{\lambda_s},0,\cdots,0\}\mat{P}\]
+    则
+    \[\mat{S}^2=\mat{A}\]
+    同理构造$\mat{T}$使得$\mat{T}^2=\mat{B}$.并且$\mat{S},\mat{T}$都是半正定矩阵.于是
+    \[\tr(\mat{A}\mat{B})=\tr(\mat{S}\mat{S}\mat{B})=\tr(\mat{S}\mat{B}\mat{S})=\tr(\mat{S}^\t\mat{B}\mat{S})\]
+    $\mat{S}^\t\mat{B}\mat{S}$是一个半正定矩阵,它的迹为$0$说明它的特征值全部为$0$;它又可以对角化,于是$\mat{S}\mat{B}\mat{S}=\mat{S}\mat{T}\mat{T}\mat{S}=\mbf0$.而$\mat{S}\mat{T}(\mat{S}\mat{T})^\t=\mat{S}\mat{T}\mat{T}\mat{S}=\mbf0$,于是$\mat{S}\mat{T}=\mbf0$,于是$\mat{A}\mat{B}=\mat{S}\mat{S}\mat{T}\mat{T}=\mbf0$.
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是正定实矩阵.证明:存在对角元均为正数的上三角矩阵$\mat{L}$使得$\mat{A}=\mat{L}^\t\mat{L}$.
+\end{problem}
+\begin{proof}
+    对$\mat{A}$的阶数$n$做归纳.\\
+    当$n=1$时,命题显然成立.\\
+    当$n>1$时,根据归纳假设,命题对所有阶数小于$n$的矩阵均成立.将$\mat{A}$做如下分块:
+    \[\mat{A}=\begin{bmatrix}
+        \mat{A}_1&\bs\alpha\\
+        \bs\alpha^\t&a_{nn}
+    \end{bmatrix}\]
+    由于$\mat{A}_1$的顺序主子式也是$\mat{A}$的顺序主子式,因此$\mat{A}_1$也是正定矩阵,于是存在对角元均为正数的上三角矩阵$\mat{L}_1$使得$\mat{L}_1^\t\mat{L}_1=\mat{A}_1$.由于$\mat{L}_1$的对角元为正数,于是$\det\mat{L}_1>0$,因此$\mat{L}_1$可逆.\\
+    考虑行列变换
+    \[\begin{bmatrix}
+        \mat{I}_{n-1}&\mbf0\\
+        -\bs\alpha^t\mat{A}_1^{-1}&1
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}_1&\bs\alpha\\
+        \bs\alpha^\t&a_{nn}
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_{n-1}&-\mat{A}_1^{-1}\bs\alpha\\
+        \mbf0&1
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}_1&\mbf0\\
+        \mbf0&a_{nn}-\bs\alpha^t\mat{A}_1^{-1}\bs\alpha
+    \end{bmatrix}\]
+    两边取行列式可得
+    \[\det\mat{A}=\det\mat{A}_1(a_{nn}-\bs\alpha^\t\mat{A}_1^{-1}\bs\alpha)\]
+    由于$\det\mat{A}>0,\det\mat{A}_1>0$,于是
+    \[a_{nn}-\bs\alpha^\t\mat{A}_1^{-1}\bs\alpha>0\]
+    记上式为$b$.而
+    \[\begin{bmatrix}
+        \mat{A}_1&\mbf0\\
+        \mbf0&b
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{L}_1^\t&\mbf0\\
+        \mbf0&\sqrt{b}
+    \end{bmatrix}\begin{bmatrix}
+        \mat{L}_1&\mbf0\\
+        \mbf0&\sqrt{b}
+    \end{bmatrix}\]
+    于是令
+    \[\mat{L}=\begin{bmatrix}
+        \mat{L}_1&\mbf0\\
+        \mbf0&\sqrt{b}
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_{n-1}&-\mat{A}_1^{-1}\bs\alpha\\
+        \mbf0&1
+    \end{bmatrix}^{-1}\]
+    即有$\mat{A}=\mat{L}^\t\mat{L}$,归纳可知命题对所有正定矩阵$\mat{A}$都成立.
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是$n$阶正定矩阵,证明:二次型
+    \[f(x_1,x_2,\cdots,x_n)=\det\begin{bmatrix}
+        \mat{A}&\vec{x}\\
+        \vec{x}^\t&\mbf0
+    \end{bmatrix}\]
+    是负定的.
+\end{problem}
+\begin{proof}
+    只需证明对任意$\vec{x}$有$f(\vec{x})<0$即可.根据前一题的变换方式,注意到
+    \[\begin{bmatrix}
+        \mat{I}_{n}&\mbf0\\
+        -\vec{x}^\t\mat{A}^{-1}&1
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}&\vec{x}\\
+        \vec{x}^\t&0
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_{n}&-\mat{A}^{-1}\vec{x}\\
+        \mbf0&1
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}&\mbf0\\
+        \mbf0&-\vec{x}^t\mat{A}^{-1}\vec{x}
+    \end{bmatrix}\]
+    两边取行列式可得
+    \[f(\vec{x})=-\det\mat{A}(\vec{x}^\t\mat{A}^{-1}\vec{x})\]
+    由于$\mat{A}$正定,因此$\det\mat{A}>0,\vec{x}^\t\mat{A}^{-1}\vec{x}>0$,因此$f(\vec{x})<0$,于是题设二次型负定.
+\end{proof}
+\begin{problem}
+    设$\mat{A}=(a_{ij})$是$n$级正定矩阵.证明:
+    \[\det\mat{A}\leq\prod_{i=1}^{n}a_{ii}\]
+\end{problem}
+\begin{proof}
+    对$\mat{A}$的阶数$n$采用数学归纳法.\\
+    当$n=1$时命题显然成立.\\
+    当$n>1$时对$\mat{A}$分块如下:
+    \[\mat{A}=\begin{bmatrix}
+        \mat{A}_1&\bs\alpha\\
+        \bs\alpha^\t&a_{nn}
+    \end{bmatrix}\]
+    考虑行列变换
+    \[\begin{bmatrix}
+        \mat{I}_{n-1}&\mbf0\\
+        -\bs\alpha^t\mat{A}_1^{-1}&1
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}_1&\bs\alpha\\
+        \bs\alpha^\t&a_{nn}
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_{n-1}&-\mat{A}_1^{-1}\bs\alpha\\
+        \mbf0&1
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}_1&\mbf0\\
+        \mbf0&a_{nn}-\bs\alpha^t\mat{A}_1^{-1}\bs\alpha
+    \end{bmatrix}\]
+    两边取行列式可得
+    \[\det\mat{A}=\det\mat{A}_1(a_{nn}-\bs\alpha^\t\mat{A}_1^{-1}\bs\alpha)\leq a_{nn}\det\mat{A}_1\leq a_{nn}\prod_{i=1}^{n-1}a_{ii}=\prod_{i=1}^{n}a_{ii}\]
+\end{proof}
+\begin{problem}
+    设$\mat{C}=(c_{ij})$是$n$级实可逆矩阵.证明:
+    \[(\det\mat{C})^2\leq\prod_{i=1}^{n}\left(\sum_{j=1}^{n}c_{ji}^2\right)\]
+\end{problem}
+\begin{proof}
+    首先注意到$\mat{C}^\t\mat{C}$是正定矩阵,于是利用上一问的结论即可得证.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B}$是阶数相同的半正定矩阵.证明:
+    \[\det(\mat{A}+\mat{B})\geq\max\{\det\mat{A},\det\mat{B}\}\]
+\end{problem}
+\begin{proof}
+    如果$\mat{A},\mat{B}$都不是正定矩阵,那么$\det\mat{A}=\det\mat{B}=0$,而$\mat{A}+\mat{B}$也是半正定矩阵,因此其行列式非负,于是命题得证.\\
+    现在不妨假设$\mat{A}$是正定矩阵.由前面题目的结论可知存在可逆矩阵$\mat{C}$使得$\mat{C}^\t\mat{A}\mat{C}$和$\mat{C}^\t\mat{B}\mat{C}$都是对角矩阵,不妨分别设为$\mat{S},\mat{T}$,并且对角元都非负.于是
+    \[\det\mat{S}=\prod_{i=1}^{n}s_{ii}=(\det\mat{C})^2\det\mat{A}\]
+    \[\det\mat{T}=\prod_{i=1}^{n}t_{ii}=(\det\mat{C})^2\det\mat{B}\]
+    \[\det(\mat{S}+\mat{T})=\prod_{i=1}^{n}(s_{ii}+t_{ii})=(\det\mat{C})^2\det(\mat{A}+\det\mat{B})\]
+    而
+    \[\prod_{i=1}^{n}(s_{ii}+t_{ii})^2\geq\max\left\{\prod_{i=1}^{n}s_{ii},\prod_{i=1}^{n}t_{ii}\right\}\]
+    并且$(\det\mat{C})^2>0$.于是
+    \[\det(\mat{A}+\mat{B})\geq\max\{\det\mat{A},\det\mat{B}\}\]
+    命题得证.
+\end{proof}
 \end{document}
