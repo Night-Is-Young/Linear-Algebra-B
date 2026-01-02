@@ -1,0 +1,73 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2024-25学年第一学期线性代数B期末试题}
+\end{center}
+\begin{homework}[1(10')]
+    设$V$是一个$n$维线性空间, $\mathcal{A}$和$\mathcal{B}$是$V$到$V$的线性映射,判断下列结论是否正确.
+    \begin{enumerate}
+        \item $\mathcal{A}$是可逆线性映射当且仅当$\mathcal{A}$的行列式不为$0$.
+        \item $(\mathcal{A}+\mathcal{B})^2=\mathcal{A}^2+2\mathcal{A}\mathcal{B}+\mathcal{B}^2$.
+        \item 如果$\rank(\mathcal{A})=\rank(\mathcal{B})$,那么$\rank(\mathcal{A}^2)=\rank(\mathcal{B}^2)$.
+        \item $\rank(\mathcal{A})+\rank(\mathcal{B})\geq\rank(\mathcal{A}+\mathcal{B})$.
+        \item $\mathcal{A},\mathcal{B}$在基$\li{\bs\alpha},n$下的矩阵分别为$\mat{A},\mat{B}$,则$\mathcal{A}\mathcal{B}$在上述基下的矩阵为$\mat{A}\mat{B}$.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[2(10')]
+    用非退化线性替换将下面的六元二次型化为标准形:
+    \[f(\li x,6)=x_1x_6+x_2x_5+x_3x_4\]
+\end{homework}
+\begin{homework}[3(12')]
+    设$\li{\bs\ep},5$为$\R^5$的标准正交基.令
+    \[\bs\alpha_1=\bs\ep_1+\bs\ep_5,\quad\bs\alpha_2=\bs\ep_1-\bs\ep_2+\bs\ep_4,\quad\bs\alpha_3=2\bs\ep_1+\bs\ep_2+\bs\ep_3\]
+    求与$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$等价的正交单位向量组.
+\end{homework}
+\begin{homework}[4(16')]
+    设
+    \[\mat{A}=\begin{bmatrix}
+        0&0&0\\
+        1&0&-a\\
+        0&1&a+1
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$a$的取值范围使得$\mat{A}$可对角化.
+        \item 当$\mat{A}$可对角化时,求可逆矩阵$\mat{P}$使得$\mat{P}^{-1}\mat{A}\mat{P}$为对角矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[5(18')]
+    令矩阵
+    \[\mat{A}(x,a,n)=\begin{bmatrix}
+        x&a&\cdots&a\\
+        a&x&\cdots&a\\
+        \vdots&\vdots&\ddots&\vdots\\
+        a&a&\cdots&x
+    \end{bmatrix}_{n\times n}\]
+    于是有如下等式成立:
+    \[\mat{A}(x,a,n)\mat{A}(y,b,n)=\mat{A}(z,c,n)\]
+    \begin{enumerate}
+        \item 试用$x,y,a,b$表示出$z,c$.
+        \item 判断矩阵$\mat{A}(0,1,4)$是否可逆,若可逆则求出其逆矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[6(24')]
+    令$V=\{\mat{A}\in M_2(\R):\tr(\mat{A})=0\}$是迹为$0$的$2\times2$实矩阵构成的线性空间.取可逆矩阵$\mat{P}=\begin{bmatrix}
+        0&1\\1&0
+    \end{bmatrix}$,定义映射$\Phi_\mat{P}:V\to V$为$\Phi_{\mat{P}}(\mat{A})=\mat{P}^{-1}\mat{A}\mat{P}$.
+    \begin{enumerate}
+        \item 证明:$\mat{E}_{11}-\mat{E}_{22}=\begin{bmatrix}
+            1&0\\0&-1
+        \end{bmatrix},\mat{E}_{12}=\begin{bmatrix}
+            0&1\\0&0
+        \end{bmatrix},\mat{E}_{21}=\begin{bmatrix}
+            0&0\\1&0
+        \end{bmatrix}$构成$V$的一组基.
+        \item 求$\Phi_{\mat{P}}$在基$\{\mat{E}_{11}-\mat{E}_{22},\mat{E}_{12},\mat{E}_{21}\}$下的矩阵.
+        \item 求线性映射$\Phi_{\mat{P}}$的特征值及其在$V$中的一个特征向量.
+        \item 对于一个可逆的$2\times2$矩阵$\mat{U}$,类似地定义线性映射$\Phi_{\mat{U}}:V\to V$为$\Phi_\mat{U}(\mat{A})=\mat{U}^{-1}\mat{A}\mat{U}$.如果$\mat{U}$有特征值$2$和$4$,求映射$\Phi_\mat{U}$的特征值并说明理由.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[7(10')]
+    证明:如果$\mat{A}$是$n$级正定矩阵, $\mat{B}$是$n$级实对称矩阵,则存在一个$n$级实可逆矩阵$\mat{C}$使得$\mat{C}^\t\mat{A}\mat{C}$和$\mat{C}^\t\mat{B}\mat{C}$均为对角矩阵.
+\end{homework}
+\end{document}

@@ -1,4 +1,4 @@
-\documentclass{ctexart}
+ \documentclass{ctexart}
 \usepackage{Note}
 \begin{document}
 \section{二次型}
@@ -278,5 +278,43 @@
     并且$(\det\mat{C})^2>0$.于是
     \[\det(\mat{A}+\mat{B})\geq\max\{\det\mat{A},\det\mat{B}\}\]
     命题得证.
+\end{proof}
+\begin{problem}
+    设$\mat{A},\mat{B}$是半正定矩阵,满足存在唯一的矩阵$\mat{M}$使得$\mat{A}\mat{M}+\mat{M}\mat{A}=\mat{B}$.证明: $\mat{M}$是半正定矩阵.
+\end{problem}
+\begin{proof}
+    对题设等式两边取转置,并由$\mat{A},\mat{B}$是半正定矩阵可得
+    \[\mat{M}^\t\mat{A}+\mat{A}\mat{M}^\t=\mat{B}\]
+    由于这样的$\mat{M}$是唯一的,因此$\mat{M}^\t=\mat{M}$,于是$\mat{M}$是对称矩阵.\\
+    首先证明$\mat{A}$是正定矩阵.否则考虑其对应特征值$0$的特征向量$\bs\alpha$,有
+    \[\mat{A}\bs\alpha\bs\alpha^\t+\bs\alpha\bs\alpha^\t\mat{A}=\bs\alpha\bs\alpha^\t\mat{A}=\bs\alpha\bs\alpha^\t\mat{A}^\t=\mbf0\]
+    并且$\bs\alpha\bs\alpha^\t\neq\mbf0$.于是如果$\mat{M}$是上述矩阵方程的解,那么$\mat{M}+\bs\alpha\bs\alpha^\t$也是上述方程的解,从而不满足唯一性,因此$\mat{A}$是正定的.\\
+    取$\mat{M}$的特征值$\lambda$和它对应的特征向量$\bs\beta$,则有
+    \[\bs\beta^\t\mat{B}\bs\beta=\bs\beta^\t\mat{A}\mat{M}\bs\beta+\bs\beta^\t\mat{M}\mat{A}\bs\beta=2\lambda\bs\beta^\t\mat{A}\bs\beta\]
+    由于$\mat{A}$正定,因此$\bs\beta^\t\mat{A}\bs\beta>0$;又由于$\mat{B}$半正定,于是$\bs\beta^\t\mat{B}\bs\beta\geq0$,于是
+    \[\lambda=\dfrac{\bs\beta^\t\mat{B}\bs\beta}{2\bs\beta^\t\mat{A}\bs\beta}\geq0\]
+    从而$\mat{M}$是半正定矩阵.
+\end{proof}
+\begin{problem}
+    设$\mat{A}$是$n$阶实矩阵,证明:如果$\mat{A}$有$r$个线性无关的特征向量,则存在正惯性指数为$r$的半正定矩阵$\mat{B}$使得$\mat{A}\mat{B}=\mat{B}\mat{A}^\t$.
+\end{problem}
+\begin{proof}
+    考虑$\mat{A}$的特征向量$\li{\bs\alpha},r$,将它扩充为$\K^n$的一组基$\li{\bs\alpha},n$,然后令
+    \[\mat{B}=\begin{bmatrix}
+        \bs\alpha_1&\cdots&\bs\alpha_n
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \bs\alpha_1^\t&\vdots&\bs\alpha_n^\t
+    \end{bmatrix}\]
+    于是$\mat{B}$是秩为$r$的半正定矩阵.此时有
+    \[\mat{A}\mat{B}=\mat{A}\begin{bmatrix}
+        \bs\alpha_1&\cdots\bs\alpha_r&\mbf0\cdots&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \bs\alpha_1^\t&\vdots&\bs\alpha_n^\t
+    \end{bmatrix}=\sum_{i=1}^{r}\lambda_i\bs\alpha_i\bs\alpha_i^\t\]
+    从而$\mat{A}\mat{B}$是对称矩阵.于是
+    \[\mat{A}\mat{B}=(\mat{A}\mat{B})^\t=\mat{B}^\t\mat{A}^\t=\mat{B}\mat{A}^\t\]
 \end{proof}
 \end{document}
