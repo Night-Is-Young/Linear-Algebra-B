@@ -1,0 +1,78 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2023-24学年第二学期线性代数B期末试题}
+\end{center}
+\begin{homework}[1(15')]
+    设矩阵$\mat{A}=\begin{bmatrix}
+        1&1&-1\\
+        x&-2&0\\
+        -1&-1&y
+    \end{bmatrix}$与矩阵$\mat{B}=\begin{bmatrix}
+        1&0&z\\
+        0&-1&0\\
+        z&0&0
+    \end{bmatrix}$相似.
+    \begin{enumerate}
+        \item 求$x,y,z$的值.
+        \item 求可逆矩阵$\mat{P}$使得$\mat{P}^{-1}\mat{A}\mat{P}=\mat{B}$.
+        \item 求$\mat{A}^m$,其中$m\in\N^+$.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[2(10')]
+    设$t\in\R$,求实二次型
+    \[q(x_1,x_2,x_3)=x_1^2+x_2^2+tx_1x_2+2tx_1x_3+4x_2x_3\]
+    的秩和正惯性指数.
+\end{homework}
+\begin{homework}[3(10')]
+    求$a$满足的条件使得实二次型
+    \[f(x_1,x_2,x_3)=a(x_1^2+x_2^2+x_3^2)+2(x_1x_2+x_1x_3+x_2x_3)\]
+    正定.
+\end{homework}
+\begin{homework}[4(10')]
+    设$V=\K^5$, $V_1=\text{span}(\bs\alpha_1,\bs\alpha_2,\bs\alpha_3)$, $V_2=\text{span}(\bs\beta_1,\bs\beta_2,\bs\beta_3)$,其中
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\0\\-1\\1\\2
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        0\\1\\1\\1\\0
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        2\\2\\1\\1\\-1
+    \end{bmatrix},\quad\bs\beta_1=\begin{bmatrix}
+        3\\1\\2\\4\\6
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        0\\3\\4\\6\\1
+    \end{bmatrix},\quad\bs\beta_3=\begin{bmatrix}
+        -1\\0\\-1\\-1\\2
+    \end{bmatrix}\]
+    分别求$V_1+V_2$, $V_1\cap V_2$的维数和一个基.
+\end{homework}
+\begin{homework}[5(15')]
+    设$\mat{A},\mat{B}\in M_n(\K)$是$n$级矩阵,其中$\mat{B}=(b_{ij})$是严格上三角矩阵,满足$i\geq j$时$b_{ij}=0$.令
+    \[f(\mat{X})=\mat{A}\mat{X}-\mat{X}\mat{B},\quad\forall\mat{X}\in M_n(\K)\]
+    \begin{enumerate}
+        \item 证明$f$是$M_n(\K)$上的一个线性变换.
+        \item 求$f$在基$\mat{E}_{11},\mat{E}_{21},\cdots,\mat{E}_{n1},\mat{E}_{12},\mat{E}_{22},\cdots,\mat{E}_{n2},\cdots,\mat{E}_{nn}$下的矩阵,这里$\mat{E}_{ij}$是只有$(i,j)$元为$1$,其余元素为$0$的基本矩阵.
+        \item 如果$\mat{A}$可逆,证明:对任意$\mat{C}\in M_n(\K)$,存在唯一的$\mat{X}$使得$f(\mat{X})=\mat{C}$.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[6(14')]
+    设$n$级矩阵$\mat{A}$和$\mat{B}$有相同的特征值.
+    \begin{enumerate}
+        \item 如果$\mat{A}$有$n$个互不相同的特征值,证明:存在$n$级可逆矩阵$\mat{P}$以及$n$级矩阵$\mat{Q}$使得$\mat{A}=\mat{P}\mat{Q}$, $\mat{B}=\mat{Q}\mat{P}$.
+        \item 如果把前提条件$\mat{A}$有$n$个互不相同的特征值去掉,上一小题的结论是否成立?如果成立,请给出证明;如果不成立,请给出反例.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[7(10')]
+    设矩阵$\mat{A},\mat{B},\mat{C},\mat{D}\in M_n(\K)$两两可交换,且满足$\mat{A}\mat{C}+\mat{B}\mat{D}=\mat{I}$.设齐次线性方程组$\mat{A}\mat{B}\vec{x}=\mbf0$的解空间为$V$, $\mat{B}\vec{x}=\mbf0$的解空间为$V_1$, $\mat{A}\vec{x}=\mbf0$的解空间为$V_2$.证明: $V=V_1\oplus V_2$.
+\end{homework}
+\begin{homework}[8(16')]
+    考虑欧几里得空间$\R[x]_3=\{a+bx+cx^2:a,b,c\in\R\}$,其上内积的定义为
+    \[\inprod{f}{g}=\int_{-1}^{1}f(x)g(x)\di x\]
+    \begin{enumerate}
+        \item 求$\alpha,\beta,\gamma$的值使得下述向量组是正交基:
+        \[p_1(x)=1,\quad p_2(x)=\alpha+x,\quad p_3(x)=\beta+\gamma x+x^2\]
+        \item 求二次首一多项式$r(x)=a+bx+x^2$的长度最小值.
+    \end{enumerate}
+\end{homework}
+\end{document}
