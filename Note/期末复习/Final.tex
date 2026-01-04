@@ -4,7 +4,53 @@
 \author{夜未央}
 \begin{document}
 \maketitle
-\section{矩阵运算}
+\section{矩阵的运算}
+\subsection{矩阵的乘法与矩阵的分块}
+矩阵的加法与数乘的定义是很自然的,这里不再列出.我们在本章主要着眼于矩阵的乘法.
+\begin{definition}[矩阵乘法]
+    设$\mat{A}=(a_{ij})_{s\times n}$, $\mat{B}=(b_{ij})_{n\times m}$,令
+    \[\mat{C}=(c_{ij})_{m\times n}\]
+    其中
+    \[c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}\]
+    称$\mat{C}$是$\mat{A}$与$\mat{B}$的积,记作$\mat{C}=\mat{A}\mat{B}$.
+\end{definition}
+实际上对于上述$\mat{A}$和$\mat{B}$, $\mat{A}\mat{B}$的$(i,j)$元是$\mat{A}$的第$i$行行向量$\bs\alpha_i$与$\mat{B}$的第$j$列列向量$\bs\beta_j$的积.\ {\color{blue}至少笔者认为如此记忆会带来计算上的好处.实际上需要根据定义计算的场景几乎只有简单矩阵的运算,这纯粹是笔头功夫,在考试时计算这类问题时一定要注意验算.}
+\begin{theorem}[基本矩阵的乘法]
+    设$\mat{E}_{ij}$是$n$级基本矩阵.用$\mat{E}_{ij}$左乘矩阵$\mat{A}$的乘积矩阵是将$\mat{A}$的第$j$行移到第$i$行,其余行均为$\mbf0$;用$\mat{E}_{ij}$右乘$\mat{A}$的乘积矩阵是将$\mat{A}$的第$i$列移到第$j$列,其余列均为$\mbf0$.
+\end{theorem}
+然后我们来考虑矩阵的分块.前面矩阵的乘法的操作单元是矩阵的元素,自然地可以想到把子矩阵作为最小的操作单元进行计算.于是把矩阵乘法定义中的元素换成对应规模的子矩阵,结果仍然成立.这就是\textit{矩阵分块}的想法.\\
+\indent 常用的分块操作有两种.
+\begin{enumerate}[label=\tbf{\arabic*.}]
+    \item 将矩阵运算拆分成矩阵与列向量的运算:考虑$s\times n$矩阵$\mat{A}$和$n\times m$矩阵$\mat{B}$,将$\mat{B}$分块写为列向量的形式:
+    \[\mat{B}=\begin{bmatrix}
+        \bs\beta_1&\cdots&\bs\beta_n
+    \end{bmatrix}\]
+    则有
+    \[\mat{A}\mat{B}=\mat{A}\begin{bmatrix}
+        \bs\beta_1&\cdots&\bs\beta_n
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}\bs\beta_1&\cdots&\mat{A}\bs\beta_n
+    \end{bmatrix}\]
+    在后面考虑特征向量的相关问题时经常用到这样的拆分方法.
+    \item 将矩阵分成四块.说起来简单,实际应用则充满技巧,我们将在之后进行介绍.
+\end{enumerate}
+\subsection{矩阵乘积的秩与行列式}
+\begin{theorem}[矩阵乘积的秩]
+    对于$s\times n$级矩阵$\mat{A}$和$n\times m$级矩阵$\mat{B}$,总有
+    \[\rank\mat{A}\mat{B}\leq\min\{\rank\mat{A},\rank\mat{B}\}\]
+\end{theorem}
+{\color{blue}
+\begin{theorem}[]
+
+\end{theorem}
+\begin{theorem}[Sylvester秩不等式]
+    对于$s\times n$级矩阵$\mat{A}$和$n\times m$级矩阵$\mat{B}$,总有
+    \[\rank\mat{A}\mat{B}\geq\rank\mat{A}+\rank\mat{B}-n\]
+\end{theorem}}
+\begin{theorem}[方阵乘积的行列式]
+    设$\mat{A}$, $\mat{B}$均为数域$\K$上的$n$级方阵,则
+    \[\det\mat{A}\mat{B}=\det\mat{A}\det\mat{B}\]
+\end{theorem}
 \section{矩阵的相似和相抵}
 \section{二次型和矩阵的合同}
 \begin{definition}[合同]
