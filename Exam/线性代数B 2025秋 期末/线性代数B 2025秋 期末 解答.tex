@@ -1,0 +1,353 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2025-26学年第一学期线性代数B期末试题}
+\end{center}
+\begin{homework}[1(13')]
+    将二次型
+    \[f(x_1,x_2,x_3)=x_1^2+2x_2^2+3x_3^2+2x_1x_2+2x_1x_3+4x_2x_3\]
+    化为规范型,写出其正惯性指数和负惯性指数.
+\end{homework}
+\begin{solution}
+    该二次型的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        1&1&1\\
+        1&2&2\\
+        1&2&3
+    \end{bmatrix}\]
+    对$\begin{bmatrix}
+        \mat{A}\\\mat{I}
+    \end{bmatrix}$的上半部分做成对行列变换,下半部分做对应的列变换可得
+    \[\begin{bmatrix}
+        1&1&1\\
+        1&2&2\\
+        1&2&3\\
+        1&0&0\\
+        0&1&0\\
+        0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&1\\
+        0&1&1\\
+        1&1&3\\
+        1&0&0\\
+        -1&1&0\\
+        0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0\\
+        0&1&1\\
+        0&1&2\\
+        1&0&0\\
+        -1&1&0\\
+        -1&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0\\
+        0&1&0\\
+        0&0&1\\
+        1&0&0\\
+        -1&1&0\\
+        0&-1&1
+    \end{bmatrix}\]
+    令
+    \[\mat{C}=\begin{bmatrix}
+        1&0&0\\
+        -1&1&0\\
+        0&-1&1
+    \end{bmatrix},\quad\begin{bmatrix}
+        x_1\\x_2\\x_3
+    \end{bmatrix}=\mat{C}\begin{bmatrix}
+        y_1\\y_2\\y_3
+    \end{bmatrix}\]
+    则有
+    \[f(x_1,x_2,x_3)=y_1^2+y_2^2+y_3^2\]
+    其正惯性指数为$3$,负惯性指数为$0$.\\
+    {\color{blue}直接配方应当也可以.}
+\end{solution}
+\begin{homework}[2(18')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&1&1&1\\
+        1&1&-1&-1\\
+        1&-1&1&-1\\
+        1&-1&-1&1
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$\mat{A}$的逆.
+        \item 求$\mat{A}$的特征值.
+        \item 判断$\mat{A}$是否可对角化.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item 对$\begin{bmatrix}
+        \mat{A}&\mat{I}
+    \end{bmatrix}$做初等行变换可得
+    \[\begin{bmatrix}
+        1&1&1&1&1&0&0&0\\
+        1&1&-1&-1&0&1&0&0\\
+        1&-1&1&-1&0&0&1&0\\
+        1&-1&-1&1&0&0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&0&\frac14&\frac14&\frac14&\frac14\\
+        0&1&0&0&\frac14&\frac14&-\frac14&-\frac14\\
+        0&0&1&0&\frac14&-\frac14&\frac14&-\frac14\\
+        0&0&0&1&\frac14&-\frac14&-\frac14&\frac14
+    \end{bmatrix}\]
+    于是
+    \[\mat{A}^{-1}=\begin{bmatrix}
+        \frac14&\frac14&\frac14&\frac14\\
+        \frac14&\frac14&-\frac14&-\frac14\\
+        \frac14&-\frac14&\frac14&-\frac14\\
+        \frac14&-\frac14&-\frac14&\frac14
+    \end{bmatrix}\]
+    \item 注意到$\mat{A}^{-1}=\dfrac14\mat{A}$,于是
+    \[\mat{A}^2=4\mat{I}\]
+    设$\mat{A}$的特征值为$\lambda$,对应的一个特征向量为$\vec{x}$,则有
+    \[\mbf0=(\mat{A}^2-4\mat{I})\vec{x}=\mat{A}(\mat{A}\vec{x})-4\mat{I}\vec{x}=\mat{A}(\lambda\vec{x})-4\vec{x}=(\lambda^2-4)\vec{x}\]
+    由于$\vec{x}\neq\mbf0$, 于是$\lambda^2-4=0$,于是$\lambda=\pm2$.于是$\mat{A}$的特征值为$2$和$-2$.
+    \item 注意到$\mat{A}$是实对称矩阵,而实对称矩阵都可以正交对角化,所以$\mat{A}$可对角化.
+\end{enumerate}
+\end{solution}
+\begin{homework}[3(20')]
+    设线性空间$V$是由所有形如
+    \[\begin{bmatrix}
+        a&-b&c&d\\
+        b&a&d&-c\\
+        -c&-d&a&-b\\
+        -d&c&b&a
+    \end{bmatrix}\]
+    的$4\times 4$矩阵和矩阵的加法和数量乘法构成的线性空间.设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        0&-1&0&0\\
+        1&0&0&0\\
+        0&0&0&-1\\
+        0&0&1&0
+    \end{bmatrix}\]
+    定义线性映射$f:V\to V$为$f(\mat{X})=\mat{A}\mat{X}$对所有$\mat{X}\in V$成立.
+    \begin{enumerate}
+        \item 写出$V$的一组基.
+        \item 求出$f$在上述基下的矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item $V$的一组基为
+    \[\mat{E}_1=\begin{bmatrix}
+        1&0&0&0\\
+        0&1&0&0\\
+        0&0&1&0\\
+        0&0&0&1
+    \end{bmatrix},\quad\mat{E}_2=\begin{bmatrix}
+        0&-1&0&0\\
+        1&0&0&0\\
+        0&0&0&-1\\
+        0&0&1&0
+    \end{bmatrix},\quad\mat{E}_3=\begin{bmatrix}
+        0&0&1&0\\
+        0&0&0&-1\\
+        -1&0&0&0\\
+        0&1&0&0
+    \end{bmatrix},\quad\mat{E}_4=\begin{bmatrix}
+        0&0&0&1\\
+        0&0&1&0\\
+        0&-1&0&0\\
+        -1&0&0&0
+    \end{bmatrix}\]
+    \item 经过计算有
+    \[\mat{A}\mat{E}_1=\begin{bmatrix}
+        0&-1&0&0\\
+        1&0&0&0\\
+        0&0&0&1\\
+        0&0&-1&0
+    \end{bmatrix}=\mat{E}_2,\quad\mat{A}\mat{E}_2=\begin{bmatrix}
+        -1&0&0&0\\
+        0&-1&0&0\\
+        0&0&-1&0\\
+        0&0&0&-1
+    \end{bmatrix}=-\mat{E}_1\]
+    \[\mat{A}\mat{E}_3=\begin{bmatrix}
+        0&0&0&1\\
+        0&0&1&0\\
+        0&-1&0&0\\
+        -1&0&0&0
+    \end{bmatrix}=\mat{E}_4,\quad\mat{A}\mat{E}_4=\begin{bmatrix}
+        0&0&-1&0\\
+        0&0&0&1\\
+        1&0&0&0\\
+        0&-1&0&0
+    \end{bmatrix}=-\mat{E}_3\]
+    于是$f$在上述基下的矩阵为
+    \[\begin{bmatrix}
+        0&-1&0&0\\
+        1&0&0&0\\
+        0&0&0&-1\\
+        0&0&1&0
+    \end{bmatrix}\]
+\end{enumerate}
+\end{solution}
+\begin{homework}[4(10')]
+    设$\mat{A}=(a_{ij})$和$\mat{B}$分别是$m$级方阵和$p$级方阵.定义$mp$级方阵
+    \[\mat{A}\otimes\mat{B}=\begin{bmatrix}
+        a_{11}\mat{B}&\cdots&a_{1m}\mat{B}\\
+        \vdots&\ddots&\vdots\\
+        a_{m1}\mat{B}&\cdots&a_{mm}\mat{B}
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 证明: 如果$\mat{A}$和$\mat{B}$可逆,那么$\mat{A}\otimes\mat{B}$也可逆.
+        \item 证明: 如果$\mat{A}$和$\mat{B}$是对称矩阵且正定,那么$\mat{A}\otimes\mat{B}$也是正定矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{proof}
+\begin{enumerate}
+    考虑$m$级方阵$\mat{C}=(c_{ij})$和$p$级方阵$\mat{D}$.于是
+    \[(\mat{A}\otimes\mat{B})(\mat{C}\otimes\mat{D})=\begin{bmatrix}
+        a_{11}\mat{B}&\cdots&a_{1m}\mat{B}\\
+        \vdots&\ddots&\vdots\\
+        a_{m1}\mat{B}&\cdots&a_{mm}\mat{B}
+    \end{bmatrix}\begin{bmatrix}
+        c_{11}\mat{D}&\cdots&c_{1m}\mat{D}\\
+        \vdots&\ddots&\vdots\\
+        c_{m1}\mat{D}&\cdots&c_{mm}\mat{D}
+    \end{bmatrix}\]
+    根据分块矩阵的乘法可知上述矩阵的第$(i,j)$个块为
+    \[\sum_{k=1}^{m}a_{ik}c_{kj}\mat{B}\mat{D}\]
+    于是
+    \[(\mat{A}\otimes\mat{B})(\mat{C}\otimes\mat{D})=(\mat{A}\mat{C})\otimes(\mat{B}\mat{D})\]
+    \item 注意到
+    \[(\mat{A}\otimes\mat{B})(\mat{A}^{-1}\otimes\mat{B}^{-1})=(\mat{A}\mat{A}^{-1})\otimes(\mat{B}\mat{B}^{-1})=\mat{I}_m\otimes\mat{I}_{p}=\mat{I}_{mp}\]
+    于是$\mat{A}\otimes\mat{B}$可逆,其逆为$\mat{A}^{-1}\otimes\mat{B}^{-1}$.
+    \item 由于$\mat{A}$, $\mat{B}$都是正定矩阵,于是存在$m$级可逆矩阵$\mat{P}$和$p$级可逆矩阵$\mat{Q}$使得
+    \[\mat{P}^\t\mat{A}\mat{P}=\mat{C}=\diag\{\li\lambda,m\},\quad\li\lambda,m>0\]
+    \[\mat{Q}^\t\mat{B}\mat{Q}=\mat{D}=\diag\{\li\mu,p\},\quad\li\mu,p>0\]
+    由于$\mat{P}$, $\mat{Q}$均可逆,于是根据上一问的结论, $\mat{P}\otimes\mat{Q}$也可逆.于是
+    \[(\mat{P}\otimes\mat{Q})^\t(\mat{A}\otimes\mat{B})(\mat{P}\otimes\mat{Q})=(\mat{P}^\t\mat{A}\mat{P})\otimes(\mat{Q}^\t\mat{B}\mat{Q})=\mat{C}\otimes\mat{D}\]
+    依照定义, $\mat{C}\otimes\mat{D}$是分块对角矩阵,每个对角块$\lambda_i\mat{D}$是对角元为$\lambda_i\mu_j$的对角矩阵.而$\lambda_i\mu_j>0$, 于是$\mat{C}\otimes\mat{D}$是对角元全为正数的对角矩阵.从而$\mat{A}\otimes\mat{B}$正定.
+\end{enumerate}
+\end{proof}
+\begin{homework}[5(10')]
+    设$n$级方阵$\mat{A}$满足
+    \[\begin{vmatrix}
+        a_{11}&\cdots&a_{1k}\\
+        \vdots&\ddots&\vdots\\
+        a_{k1}&\cdots&a_{kk}
+    \end{vmatrix}\neq0,\quad\forall k=1,\cdots,n\]
+    证明: 存在可逆的$n$级下三角矩阵$\mat{B}$使得$\mat{B}\mat{A}$为上三角矩阵.
+\end{homework}
+\begin{proof}
+    {\color{blue}这是矩阵的LU分解}.\\
+    对$\mat{A}$的阶数$n$做归纳.当$n=1$时,令$\mat{B}=\mat{I}$即可使命题成立.\\
+    当$n\geq2$时,对$\mat{A}$分块如下:
+    \[\mat{A}=\begin{bmatrix}
+        \mat{A}_1&\vec{u}\\
+        \vec{v}^\t&a_{nn}
+    \end{bmatrix}\]
+    其中$\mat{A}_1$是$\mat{A}$的前$n-1$行和$n-1$列构成的子矩阵,并且根据题设可知$\mat{A}_1$可逆.依归纳假设,存在可逆的$\mat{B}_1$使得$\mat{B}_1\mat{A}_1$为上三角矩阵.考虑
+    \[\begin{bmatrix}
+        \mat{B}_1&\mbf0\\
+        \mbf{0}&1
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}_1&\vec{u}\\
+        \vec{v}^\t&a_{nn}
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{B}_1\mat{A}_1&\mat{B}_1\vec{u}\\
+        \vec{v}^\t&a_{nn}
+    \end{bmatrix}\]
+    为了使右边的矩阵成为上三角矩阵,考虑分块行列变换
+    \[\begin{bmatrix}
+        \mat{I}&\mbf0\\
+        -\vec{v}^\t\mat{A}_1^{-1}\mat{B}_1^{-1}&1
+    \end{bmatrix}\begin{bmatrix}
+        \mat{B}_1\mat{A}_1&\mat{B}_1\vec{u}\\
+        \vec{v}^\t&a_{nn}
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{B}_1\mat{A}_1&\mat{B}_1\vec{u}\\
+        \mbf0&a_{nn}-\vec{v}^\t\mat{A}_1^{-1}\vec{u}
+    \end{bmatrix}\]
+    由于$\mat{B}_1\mat{A}_1$是上三角矩阵,因此上述等式右端的矩阵即为上三角矩阵.令
+    \[\mat{B}=\begin{bmatrix}
+        \mat{I}&\mbf0\\
+        -\vec{v}^\t\mat{A}_1^{-1}\mat{B}_1^{-1}&1
+    \end{bmatrix}\begin{bmatrix}
+        \mat{B}_1&\mbf0\\
+        \mbf{0}&1
+    \end{bmatrix}\]
+    $\mat{B}$是两个可逆下三角矩阵的乘积,因此也是可逆的下三角矩阵.根据前面的证明, $\mat{B}\mat{A}$为上三角矩阵.于是归纳可知命题成立.
+\end{proof}
+\begin{homework}[6(10')]
+    设$n$级实方阵$\mat{A}$的特征多项式可以写成一次多项式的乘积,证明: $\mat{A}$与某一下三角矩阵相似.
+\end{homework}
+\begin{proof}
+    对$\mat{A}$的阶数$n$进行归纳.当$n=1$时,命题显然成立.\\
+    当$n\geq 2$时,考虑$\mat{A}$的一个特征值$\lambda$和对应的特征向量$\bs\alpha$,将$\bs\alpha$扩充为$\K^n$的一组基,并据此构造可逆矩阵$\mat{P}$使得其第一列为$\bs\alpha$.于是有
+    \[\mat{A}\mat{P}=\mat{P}\begin{bmatrix}
+        \lambda&\mbf0\\
+        \vec{x}^\t&\mat{X}
+    \end{bmatrix}\]
+    这里$\mat{X}$是$n-1$级方阵.由于$\mat{A}$与$\begin{bmatrix}
+        \lambda&\mbf0\\
+        \vec{x}^\t&\mat{X}
+    \end{bmatrix}$相似,因此它们有相同的特征多项式,所以
+    \[\det(\mu\mat{I}-\mat{A})=\det\left(\mu\mat{I}-\begin{bmatrix}
+        \lambda&\mbf0\\
+        \vec{x}^\t&\mat{X}
+    \end{bmatrix}\right)=\det\begin{bmatrix}
+        \mu-\lambda&\mbf0\\
+        -\vec{x}^\t&\mu\mat{I}-\mat{X}
+    \end{bmatrix}=(\mu-\lambda)\det(\mu\mat{I}-\mat{X})\]
+    左边的式子是一次项的乘积,因而$\det(\mu\mat{I}-\mat{X})$也是一次项的乘积.根据归纳假设,存在$n-1$级可逆矩阵$\mat{Q}$和$n-1$级下三角矩阵$\mat{U}$使得
+    \[\mat{X}=\mat{Q}\mat{U}\mat{Q}^{-1}\]
+    于是
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        1&\mbf0\\
+        \mbf0&\mat{Q}
+    \end{bmatrix}\begin{bmatrix}
+        \lambda&\mbf0\\
+        \mat{Q}^{-1}\vec{x}^\t&\mat{U}
+    \end{bmatrix}\begin{bmatrix}
+        1&\mbf0\\
+        \mbf0&\mat{Q}^{-1}
+    \end{bmatrix}\mat{P}^{-1}\]
+    令
+    \[\mat{R}=\begin{bmatrix}
+        1&\mbf0\\
+        \mbf0&\mat{Q}^{-1}
+    \end{bmatrix}\mat{P}^{-1}\]
+    则$\mat{R}\mat{A}\mat{R}^{-1}$为下三角矩阵.
+\end{proof}
+\begin{homework}[7(10')]
+    设$n$级半正定对称矩阵$\mat{A}$的秩为$2$,证明: 存在线性无关的$n$维列向量$\bs\alpha$, $\bs\beta$使得
+    \[\mat{A}=\begin{bmatrix}
+        \bs\alpha&\bs\beta
+    \end{bmatrix}\begin{bmatrix}
+        \bs\alpha&\bs\beta
+    \end{bmatrix}^\t\]
+\end{homework}
+\begin{proof}
+    由于$\mat{A}$的秩为$2$且半正定,因此存在$n$级可逆矩阵$\mat{P}$使得
+    \[\mat{A}=\mat{P}\diag\{\lambda,\mu,0,\cdots,0\}\mat{P}^\t,\quad\lambda,\mu\geq0\]
+    设$\mat{P}$的前两列向量分别为$\vec{p}_1,\vec{p}_2$,则有
+    \[\mat{A}=\lambda\vec{p}_1\vec{p}_1^\t+\mu\vec{p}_2\vec{p}_2^\t\]
+    设$\bs\alpha=\sqrt{\lambda}\vec{p}_1$, $\bs\beta=\sqrt{\mu}\vec{p}_2$,则
+    \[\mat{A}=\bs\alpha^\t\bs\alpha+\bs\beta^\t\bs\beta=\begin{bmatrix}
+        \bs\alpha&\bs\beta
+    \end{bmatrix}\begin{bmatrix}
+        \bs\alpha&\bs\beta
+    \end{bmatrix}^\t\]
+\end{proof}
+\begin{homework}[8(9')]
+    设$\mathcal{A}$是线性空间$V$上的线性映射.设$\bs\alpha\in V$和$n\in \N^\ast$满足
+    \[\mathcal{A}^{n}(\bs\alpha)\neq\mbf0,\quad\mathcal{A}^{n+1}(\bs\alpha)=\mbf0\]
+    证明:向量组$\bs\alpha,\mathcal{A}(\bs\alpha),\mathcal{A}^2(\bs\alpha),\cdots,\mathcal{A}^n(\bs\alpha)$线性无关.
+\end{homework}
+\begin{proof}
+    考虑$k_0,\cdots,k_{n}$使得
+    \[k_0\bs\alpha+k_1\mathcal{A}(\bs\alpha)+\cdots+k_{n}\mathcal{A}^{n}(\bs\alpha)=\mbf0\]
+    在两边作用$n$次$\mathcal{A}$并将$\mathcal{A}^{n+1}(\bs\alpha)=\mbf0$代入可得
+    \[k_0\mathcal{A}^{n}(\bs\alpha)=\mbf0\]
+    而$\mathcal{A}^n(\bs\alpha)\neq0$,于是$k_0=0$.\\
+    在两边作用$n-1$次$\mathcal{A}$可得
+    \[k_0\mathcal{A}^{n-1}(\bs\alpha)+k_1\mathcal{A}^{n}(\bs\alpha)=\mbf0\]
+    由于$k_0=0$且$\mathcal{A}^{n-1}(\bs\alpha)\neq\mbf0$,于是$k_1=0$.\\
+    依次在两边作用$i$次$\mathcal{A}$可证得$k_{n-i}=0$.于是上式成立当且仅当$\li k=n=0$,从而题设向量组线性无关.
+\end{proof}
+\end{document}

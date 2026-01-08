@@ -1,0 +1,84 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2025-26学年第一学期线性代数B期末试题}
+\end{center}
+\begin{homework}[1(13')]
+    将二次型
+    \[f(x_1,x_2,x_3)=x_1^2+2x_2^2+3x_3^2+2x_1x_2+2x_1x_3+4x_2x_3\]
+    化为规范型,写出其正惯性指数和负惯性指数.
+\end{homework}
+\begin{homework}[2(18')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&1&1&1\\
+        1&1&-1&-1\\
+        1&-1&1&-1\\
+        1&-1&-1&1
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$\mat{A}$的逆.
+        \item 求$\mat{A}$的特征值.
+        \item 判断$\mat{A}$是否可对角化.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[3(20')]
+    设线性空间$V$是由所有形如
+    \[\begin{bmatrix}
+        a&-b&c&d\\
+        b&a&d&-c\\
+        -c&-d&a&-b\\
+        -d&c&b&a
+    \end{bmatrix}\]
+    的$4\times 4$矩阵和矩阵的加法和数量乘法构成的线性空间.设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        0&-1&0&0\\
+        1&0&0&0\\
+        0&0&0&-1\\
+        0&0&1&0
+    \end{bmatrix}\]
+    定义线性映射$f:V\to V$为$f(\mat{X})=\mat{A}\mat{X}$对所有$\mat{X}\in V$成立.
+    \begin{enumerate}
+        \item 写出$V$的一组基.
+        \item 求出$f$在上述基下的矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[4(10')]
+    设$\mat{A}=(a_{ij})$和$\mat{B}$分别是$m$级方阵和$p$级方阵.定义$mp$级方阵
+    \[\mat{A}\otimes\mat{B}=\begin{bmatrix}
+        a_{11}\mat{B}&\cdots&a_{1m}\mat{B}\\
+        \vdots&\ddots&\vdots\\
+        a_{m1}\mat{B}&\cdots&a_{mm}\mat{B}
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 证明: 如果$\mat{A}$和$\mat{B}$可逆,那么$\mat{A}\otimes\mat{B}$也可逆.
+        \item 证明: 如果$\mat{A}$和$\mat{B}$是对称矩阵且正定,那么$\mat{A}\otimes\mat{B}$也是正定矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[5(10')]
+    设$n$级方阵$\mat{A}$满足
+    \[\begin{vmatrix}
+        a_{11}&\cdots&a_{1k}\\
+        \vdots&\ddots&\vdots\\
+        a_{k1}&\cdots&a_{kk}
+    \end{vmatrix}\neq0,\quad\forall k=1,\cdots,n\]
+    证明: 存在可逆的$n$级下三角矩阵$\mat{B}$使得$\mat{B}\mat{A}$为上三角矩阵.
+\end{homework}
+\begin{homework}[6(10')]
+    设$n$级实方阵$\mat{A}$的特征多项式可以写成一次多项式的乘积,证明: $\mat{A}$与某一下三角矩阵相似.
+\end{homework}
+\begin{homework}[7(10')]
+    设$n$级半正定对称矩阵$\mat{A}$的秩为$2$,证明: 存在线性无关的$n$维列向量$\bs\alpha$, $\bs\beta$使得
+    \[\mat{A}=\begin{bmatrix}
+        \bs\alpha&\bs\beta
+    \end{bmatrix}\begin{bmatrix}
+        \bs\alpha&\bs\beta
+    \end{bmatrix}^\t\]
+\end{homework}
+\begin{homework}[8(9')]
+    设$\mathcal{A}$是线性空间$V$上的线性映射.设$\bs\alpha\in V$和$n\in \N^\ast$满足
+    \[\mathcal{A}^{n}(\bs\alpha)\neq\mbf0,\quad\mathcal{A}^{n+1}(\bs\alpha)=\mbf0\]
+    证明:向量组$\bs\alpha,\mathcal{A}(\bs\alpha),\mathcal{A}^2(\bs\alpha),\cdots,\mathcal{A}^n(\bs\alpha)$线性无关.
+\end{homework}
+\end{document}

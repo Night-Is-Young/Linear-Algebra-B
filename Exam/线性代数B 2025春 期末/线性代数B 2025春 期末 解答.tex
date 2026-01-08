@@ -1,0 +1,385 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2024-25学年第二学期线性代数B期末试题}
+\end{center}
+\begin{homework}[1(10')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&1&1\\
+        1&2&4\\
+        1&3&9
+    \end{bmatrix}\]
+    求$\mat{A}$的逆矩阵.
+\end{homework}
+\begin{solution}
+    对$\begin{bmatrix}
+        \mat{A}&\mat{I}
+    \end{bmatrix}$做初等行变换,得到
+    \[\begin{bmatrix}
+        1&1&1&1&0&0\\
+        1&2&4&0&1&0\\
+        1&3&9&0&0&1
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&3&-3&1\\
+        0&1&0&-\frac52&4&-\frac32\\
+        0&0&1&\frac12&-1&\frac12
+    \end{bmatrix}\]
+    因此
+    \[\mat{A}^{-1}=\begin{bmatrix}
+        3&-3&1\\
+        -\frac52&4&-\frac32\\
+        \frac12&-1&\frac12
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[2(10')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&2&2\\
+        2&1&-2\\
+        2&-2&1
+    \end{bmatrix}\]
+    求正交矩阵$\mat{U}$使得$\mat{U}^{-1}\mat{A}\mat{U}$为对角矩阵.
+\end{homework}
+\begin{solution}
+    $\mat{A}$的特征多项式为
+    \[\det(\lambda\mat{I}-\mat{A})=\begin{vmatrix}
+        \lambda-1&-2&-2\\
+        -2&\lambda-1&2\\
+        -2&2&\lambda-1
+    \end{vmatrix}=(\lambda-3)^2(\lambda+3)\]
+    对于特征值$-3$, $(-3\mat{I}-\mat{A})\vec{x}=\mbf0$的一个基础解系为
+    \[\bs\eta_1=\begin{bmatrix}
+        1\\-1\\-1
+    \end{bmatrix}\]
+    对于特征值$3$, $(3\mat{I}-\mat{A})\vec{x}=\mbf0$的一个基础解系为
+    \[\bs\eta_2=\begin{bmatrix}
+        1\\1\\0
+    \end{bmatrix},\quad\bs\eta_3=\begin{bmatrix}
+        1\\0\\1
+    \end{bmatrix}\]
+    分别对各个特征空间的基进行正交归一化,得到
+    \[\mat{U}=\begin{bmatrix}
+        \frac{\sqrt3}{3}&\frac{\sqrt2}{2}&\frac{\sqrt6}{6}\\
+        -\frac{\sqrt3}{3}&\frac{\sqrt2}{2}&-\frac{\sqrt6}{6}\\
+        -\frac{\sqrt3}{3}&0&\frac{\sqrt6}{3}
+    \end{bmatrix}\]
+    则有
+    \[\mat{U}^{-1}\mat{A}\mat{U}=\diag\{-3,3,3\}\]
+    于是$\mat{U}$即为所求正交矩阵.
+\end{solution}
+\begin{homework}[3(10')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        0&2&2\\
+        2&0&2\\
+        2&2&0
+    \end{bmatrix}\]
+    求二次型$\vec{x}^\t\mat{A}\vec{x}$的正,负惯性指数.
+\end{homework}
+\begin{solution}
+    该二次型的矩阵的特征多项式为
+    \[\det(\lambda\mat{I}-\mat{A})=\begin{vmatrix}
+        \lambda&-2&-2\\
+        -2&\lambda&-2\\
+        -2&-2&\lambda
+    \end{vmatrix}=(\lambda-4)(\lambda+2)^2\]
+    于是该二次型的正惯性指数为$1$,负惯性指数为$2$.
+\end{solution}
+\begin{homework}
+    设$V_1=\left\langle\bs\alpha_1,\bs\alpha_2,\bs\alpha_3\right\rangle$, $V_2=\left\langle\bs\beta_1,\bs\beta_2,\bs\beta_3\right\rangle$为$\K^4$的子空间,其中
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\-1\\2\\1
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        1\\0\\2\\2
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        0\\1\\1\\1
+    \end{bmatrix},\quad\bs\beta_1=\begin{bmatrix}
+        0\\1\\2\\1
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        1\\-1\\2\\2
+    \end{bmatrix},\quad\bs\beta_3=\begin{bmatrix}
+        1\\-1\\1\\0
+    \end{bmatrix}\]
+    求$V_1\cap V_2$的一组基和维数.
+\end{homework}
+\begin{solution}
+    考虑齐次线性方程组
+    \[k_1\bs\alpha_1+k_2\bs\alpha_2+k_3\bs\alpha_3+l_1\bs\beta_1+l_2\bs\beta_2+l_3\bs\beta_3=\mbf0\]
+    对方程组的系数矩阵做初等行变换可得
+    \[\begin{bmatrix}
+        1&1&0&0&1&1\\
+        -1&0&1&1&-1&-1\\
+        2&2&1&2&2&1\\
+        1&2&1&1&2&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&1&0&0&1&1\\
+        0&1&1&1&0&0\\
+        0&0&1&2&0&-1\\
+        0&1&1&1&1&0
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        1&0&0&1&0&0\\
+        0&1&0&-1&0&1\\
+        0&0&1&2&0&-1\\
+        0&0&0&0&1&0
+    \end{bmatrix}\]
+    其一个基础解系为
+    \[\bs\eta_1=\begin{bmatrix}
+        0&-1&1&0&0&1
+    \end{bmatrix}^\t,\quad\bs\eta_2=\begin{bmatrix}
+        -1&1&-2&1&0&0
+    \end{bmatrix}^\t\]
+    于是$V_1\cap V_2$的维数为$2$,其一组基为
+    \[\bs\gamma_1=\begin{bmatrix}
+        1\\-1\\1\\0
+    \end{bmatrix},\quad\bs\gamma_2=\begin{bmatrix}
+        0\\1\\2\\1
+    \end{bmatrix}\]
+\end{solution}
+\begin{homework}[5(15')]
+    设$\bs\ep_1,\bs\ep_2,\bs\ep_3$是线性空间$V$的一组基,而$\bs\eta_1,\bs\eta_2,\bs\eta_3$和$\bs\delta_1,\bs\delta_2,\bs\delta_3$是$V$的另外两组基,已知
+    \[\mat{P}=\begin{bmatrix}
+        1&2&0\\
+        2&1&-1\\
+        -3&-1&2
+    \end{bmatrix},\quad\mat{Q}=\begin{bmatrix}
+        2&-2&1\\
+        -1&2&-1\\
+        -1&-1&1
+    \end{bmatrix}\]
+    分别是基$\bs\ep_1,\bs\ep_2,\bs\ep_3$到基$\bs\delta_1,\bs\delta_2,\bs\delta_3$和到基$\bs\eta_1,\bs\eta_2,\bs\eta_3$的过渡矩阵.再设$\mathcal{A}$是$V$上的线性变换,其在基$\bs\ep_1,\bs\ep_2,\bs\ep_3$下的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        -5&-10&-4\\
+        7&12&4\\
+        -2&-3&1
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$\mathcal{A}$在基$\bs\eta_1,\bs\eta_2,\bs\eta_3$下的矩阵.
+        \item 求基$\bs\eta_1,\bs\eta_2,\bs\eta_3$到基$\bs\delta_1,\bs\delta_2,\bs\delta_3$的过渡矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item 依照线性变换的矩阵的定义,$\mathcal{A}$在基$\bs\eta_1,\bs\eta_2,\bs\eta_3$下的矩阵为
+    \[\mat{B}=\mat{Q}^{-1}\mat{A}\mat{Q}=\begin{bmatrix}
+        1&1&0\\
+        2&3&1\\
+        3&4&2
+    \end{bmatrix}\begin{bmatrix}
+        -5&-10&-4\\
+        7&12&4\\
+        -2&-3&1
+    \end{bmatrix}\begin{bmatrix}
+        2&-2&1\\
+        -1&2&-1\\
+        -1&-1&1
+    \end{bmatrix}=\begin{bmatrix}
+        2&0&0\\
+        0&3&1\\
+        0&0&3
+    \end{bmatrix}\]
+    \item 依题意有
+    \[\begin{bmatrix}
+        \bs\eta_1&\bs\eta_2&\bs\eta_3
+    \end{bmatrix}=\begin{bmatrix}
+        \bs\ep_1&\bs\ep_2&\bs\ep_3
+    \end{bmatrix}\mat{Q}\]
+    \[\begin{bmatrix}
+        \bs\delta_1&\bs\delta_2&\bs\delta_3
+    \end{bmatrix}=\begin{bmatrix}
+        \bs\ep_1&\bs\ep_2&\bs\ep_3
+    \end{bmatrix}\mat{P}=\begin{bmatrix}
+        \bs\eta_1&\bs\eta_2&\bs\eta_3
+    \end{bmatrix}\mat{Q}^{-1}\mat{P}\]
+    于是所求的过渡矩阵为
+    \[\mat{Q}^{-1}\mat{P}=\begin{bmatrix}
+        3&3&-1\\
+        5&6&-1\\
+        5&8&0
+    \end{bmatrix}\]
+\end{enumerate}
+\end{solution}
+\begin{homework}[6(10')]
+    设
+    \[\mat{X}=\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mbf0
+    \end{bmatrix}\]
+    为分块矩阵,其中$\mat{B},\mat{C}$为方阵.
+    \begin{enumerate}
+        \item 问当$\mat{B},\mat{C}$满足什么条件时$\mat{X}$可逆,并证明你的结论.
+        \item 设$\mat{X}$可逆,求其逆矩阵,假定$\mat{A},\mat{B},\mat{C}$是已知的矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item 不妨设$\mat{B},\mat{C}$的阶数分别为$n,m$.于是
+    \[m+n=\rank\mat{X}=\rank\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mbf0
+    \end{bmatrix}\leq\rank\begin{bmatrix}
+        \mat{A}\\\mat{C}
+    \end{bmatrix}+\rank\begin{bmatrix}
+        \mat{B}\\\mbf0
+    \end{bmatrix}\]
+    而$\rank\begin{bmatrix}
+        \mat{A}\\\mat{C}
+    \end{bmatrix}\leq n$,于是$\rank\mat{B}\geq m$,从而$\mat{B}$可逆.同理,对$\mat{X}$的行进行拆分可知$\mat{C}$可逆.于是$\det\mat{B}\neq0$且$\det\mat{C}\neq0$,从而
+    \[\det\mat{X}=\begin{vmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mbf0
+    \end{vmatrix}\neq0\]
+    于是此时$\mat{X}$可逆.
+    \item 不妨设
+    \[\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mbf0
+    \end{bmatrix}\begin{bmatrix}
+        \mat{P}&\mat{Q}\\
+        \mat{R}&\mat{S}
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{I}&\mbf0\\
+        \mbf0&\mat{I}
+    \end{bmatrix}\]
+    于是
+    \[\mat{A}\mat{P}+\mat{B}\mat{R}=\mat{I},\quad\mat{A}\mat{Q}+\mat{B}\mat{S}=\mbf0,\quad\mat{C}\mat{P}=\mbf0,\quad\mat{C}\mat{Q}=\mat{I}\]
+    由于$\mat{C}$可逆,于是$\mat{P}=\mbf0$, $\mat{Q}=\mat{C}^{-1}$,于是$\mat{R}=\mat{B}^{-1}$, $\mat{S}=-\mat{B}^{-1}\mat{A}\mat{C}^{-1}$.于是
+    \[\mat{X}^{-1}=\begin{bmatrix}
+        \mbf0&\mat{C}^{-1}\\
+        \mat{B}^{-1}&-\mat{B}^{-1}\mat{A}\mat{C}^{-1}
+    \end{bmatrix}\]
+\end{enumerate}
+\end{solution}
+\begin{homework}[7(15')]
+    设$\mathcal{A}$和$\mathcal{B}$是线性空间$V$上的线性变换,其在$V$的基$\bs\ep_1,\bs\ep_2,\bs\ep_3$下的矩阵分别为
+    \[\mat{A}=\begin{bmatrix}
+        0&0&1\\
+        -3&1&3\\
+        -2&0&3
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        2&1&-1\\
+        -1&4&-1\\
+        -1&1&2
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$V$上的线性变换$\mathcal{A}\mathcal{B}-\mathcal{B}\mathcal{A}$.
+        \item 求$\mathcal{A}$的所有特征值及其特征子空间,证明$V$可以表示成这些特征子空间的直和.
+        \item 试判断是否存在$V$的基$\bs\eta_1,\bs\eta_2,\bs\eta_3$使得$\mathcal{A}$和$\mathcal{B}$在此基下的矩阵均为对角矩阵,并说明理由.
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item $\mathcal{A}\mathcal{B}-\mathcal{B}\mathcal{A}$的矩阵为$\mat{A}\mat{B}-\mat{B}\mat{A}$.而
+    \[\mat{A}\mat{B}=\begin{bmatrix}
+        -1&1&2\\
+        -10&4&8\\
+        -7&1&8
+    \end{bmatrix},\quad\mat{B}\mat{A}=\begin{bmatrix}
+        -1&1&2\\
+        -10&4&8\\
+        -7&1&8
+    \end{bmatrix}\]
+    于是$\mat{B}\mat{A}-\mat{A}\mat{B}=\mbf0$,因而$\mathcal{A}\mathcal{B}-\mathcal{B}\mathcal{A}$是零映射,对任意$\vec{v}\in V$都有$(\mathcal{A}\mathcal{B}-\mathcal{B}\mathcal{A})\vec{v}=\mbf0$.
+    \item $\mat{A}$的特征多项式为
+    \[\det(\lambda\mat{I}-\mat{A})=\begin{bmatrix}
+        \lambda&0&-1\\
+        3&\lambda-1&-3\\
+        2&0&\lambda-3
+    \end{bmatrix}=(\lambda-1)^2(\lambda-2)\]
+    对于特征值$1$, $(1\mat{I}-\mat{A})\vec{x}=\mbf0$的一个基础解系为
+    \[\bs\eta_1=\begin{bmatrix}
+        1\\0\\1
+    \end{bmatrix},\quad\bs\eta_2=\begin{bmatrix}
+        0\\1\\0
+    \end{bmatrix}\]
+    于是$\mathcal{A}$的对应于特征值$1$的特征子空间$V_1=\{k_1(\bs\ep_1+\bs\ep_3)+k_2\bs\ep_2:k_1,k_2\in\K\}$.\\
+    对于特征值$2$, $(2\mat{I}-\mat{A})\vec{x}=\mbf0$的一个基础解系为
+    \[\bs\eta_3=\begin{bmatrix}
+        1\\3\\2
+    \end{bmatrix}\]
+    于是$\mathcal{A}$的对应于特征值$2$的特征子空间$V_2=\{k_3(\bs\ep_1+3\bs\ep_2+2\bs\ep_3):k_3\in\K\}$.\\
+    由于对应于不同特征值的特征向量无关,因此$V_1\cap V_2=\{\mbf0\}$.而$\dim V_1+\dim V_2=3=\dim V$,于是$V_1\oplus V_2=V$.
+    \item 存在.考虑$\mat{A}$的特征空间$V_i$和对应于此特征空间的特征值$\lambda_i$,任取$\vec{x}_i\in V_i$,总有
+    \[\mathcal{A}(\mathcal{B}\vec{x}_i)=\mathcal{B}\mathcal{A}\vec{x}_i=\lambda(\mathcal{B}\vec{x}_i)\]
+    于是$\mathcal{B}\vec{x}_i\in V_i$,因此$V_i$是$\mathcal{B}$的不变子空间.容易证明$\mat{B}$可对角化,于是$\mat{B}$在$V_i$上可对角化.考虑$\mat{B}$在$V_i$上的特征向量组成的基,这同时也是$\mat{A}$的线性无关的特征向量.于是$\mat{A},\mat{B}$可同时对角化.
+\end{enumerate}
+\end{solution}
+\begin{homework}[8(9')]
+    考虑实二次型
+    \[Q(x,y,z)=\lambda(x^2+y^2+z^2)-2xy-2xz+2yz\]
+    其中$\lambda$为参数.请回答下面的问题并证明你的结论:
+    \begin{enumerate}
+        \item 当$\lambda=1$时, $Q(x,y,z)$为何种二次型.
+        \item 当且仅当$\lambda$取何值时,存在不全为零的$a,b,c\in\R$使得
+        \[Q(x,y,z)=(ax+by+cz)^2\]
+    \end{enumerate}
+\end{homework}
+\begin{solution}
+\begin{enumerate}
+    \item 当$\lambda=1$时,该二次型的矩阵的特征多项式
+    \[\det(\mu\mat{I}-\mat{A})=\begin{vmatrix}
+        \mu-1&1&1\\
+        1&\mu-1&-1\\
+        1&-1&\mu-1
+    \end{vmatrix}=\mu^2(\mu-3)\]
+    所有特征值非负,因此该二次型是半正定二次型.
+    \item 此时二次型的秩为$1$,于是
+    \[\begin{vmatrix}
+        \lambda&-1&-1\\
+        -1&\lambda&1\\
+        -1&1&\lambda
+    \end{vmatrix}=(\lambda+2)(\lambda-1)^2=0\]
+    解得$\lambda=1$或$\lambda=-2$.当$\lambda=1$时$\rank\begin{bmatrix}
+        1&-1&-1\\
+        -1&1&1\\
+        -1&1&1
+    \end{bmatrix}=1$,当$\lambda=-2$时$\rank\begin{bmatrix}
+        -2&-1&-1\\
+        -1&-2&1\\
+        -1&1&-2
+    \end{bmatrix}=2$.\\
+    于是当且仅当$\lambda=1$时题设成立.
+\end{enumerate}
+\end{solution}
+\begin{homework}[9(6')]
+    设$\mathcal{A}$是$\R^3$上的线性变换,满足
+    \[\mathcal{A}\begin{bmatrix}
+        x\\y\\z
+    \end{bmatrix}=\begin{bmatrix}
+        2x\\3y+z\\y+3z
+    \end{bmatrix},\quad\forall\begin{bmatrix}
+        x\\y\\z
+    \end{bmatrix}\in\R^3\]
+    问是否存在$\R^3$的一组基$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$使得
+    \[\mathcal{A}\bs\alpha_1=2\bs\alpha_1,\quad\mathcal{A}\bs\alpha_2=\bs\alpha_1+2\bs\alpha_2+\bs\alpha_3,\quad\mathcal{A}\bs\alpha_3=4\bs\alpha_3\]
+    并证明你的结论.
+\end{homework}
+\begin{solution}
+    $\mathcal{A}$在标准基下的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        2&0&0\\
+        0&3&1\\
+        0&1&3
+    \end{bmatrix}\]
+    在题设的基$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$下的矩阵为
+    \[\mat{B}=\begin{bmatrix}
+        2&1&0\\
+        0&2&0\\
+        0&1&4
+    \end{bmatrix}\]
+    只需验证$\mat{A}$与$\mat{B}$是否相似即可. $\mat{A}$的特征多项式为
+    \[\det(\lambda\mat{I}-\mat{A})=\begin{vmatrix}
+        \lambda-2&0&0\\
+        0&\lambda-3&-1\\
+        0&-1&\lambda-3
+    \end{vmatrix}=(\lambda-2)^2(\lambda-4)\]
+    $\mat{B}$的特征多项式为
+    \[\det(\lambda\mat{I}-\mat{A})=\begin{vmatrix}
+        \lambda-2&-1&0\\
+        0&\lambda-2&0\\
+        0&-1&\lambda-4
+    \end{vmatrix}=(\lambda-2)^2(\lambda-4)\]
+    于是$\mat{A}$与$\mat{B}$相同的特征多项式,因而两者相似,于是存在一组基$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$使得题设成立.
+\end{solution}
+\end{document}

@@ -1,0 +1,126 @@
+\documentclass{ctexart}
+\usepackage{note}
+\begin{document}\pagestyle{empty}
+\begin{center}
+    \tbf{\Large 北京大学数学科学学院2024-25学年第二学期线性代数B期末试题}
+\end{center}
+\begin{homework}[1(10')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&1&1\\
+        1&2&4\\
+        1&3&9
+    \end{bmatrix}\]
+    求$\mat{A}$的逆矩阵.
+\end{homework}
+\begin{homework}[2(10')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        1&2&2\\
+        2&1&-2\\
+        2&-2&1
+    \end{bmatrix}\]
+    求正交矩阵$\mat{U}$使得$\mat{U}^{-1}\mat{A}\mat{U}$为对角矩阵.
+\end{homework}
+\begin{homework}[3(10')]
+    设矩阵
+    \[\mat{A}=\begin{bmatrix}
+        0&2&2\\
+        2&0&2\\
+        2&2&0
+    \end{bmatrix}\]
+    求二次型$\vec{x}^\t\mat{A}\vec{x}$的正,负惯性指数.
+\end{homework}
+\begin{homework}
+    设$V_1=\left\langle\bs\alpha_1,\bs\alpha_2,\bs\alpha_3\right\rangle$, $V_2=\left\langle\bs\beta_1,\bs\beta_2,\bs\beta_3\right\rangle$为$\K^4$的子空间,其中
+    \[\bs\alpha_1=\begin{bmatrix}
+        1\\-1\\2\\1
+    \end{bmatrix},\quad\bs\alpha_2=\begin{bmatrix}
+        1\\0\\2\\2
+    \end{bmatrix},\quad\bs\alpha_3=\begin{bmatrix}
+        0\\1\\1\\1
+    \end{bmatrix},\quad\bs\beta_1=\begin{bmatrix}
+        0\\1\\2\\1
+    \end{bmatrix},\quad\bs\beta_2=\begin{bmatrix}
+        1\\-1\\2\\2
+    \end{bmatrix},\quad\bs\beta_3=\begin{bmatrix}
+        1\\-1\\1\\0
+    \end{bmatrix}\]
+    求$V_1\cap V_2$的一组基和维数.
+\end{homework}
+\begin{homework}[5(15')]
+    设$\bs\ep_1,\bs\ep_2,\bs\ep_3$是线性空间$V$的一组基,而$\bs\eta_1,\bs\eta_2,\bs\eta_3$和$\bs\delta_1,\bs\delta_2,\bs\delta_3$是$V$的另外两组基,已知
+    \[\mat{P}=\begin{bmatrix}
+        1&2&0\\
+        2&1&-1\\
+        -3&-1&2
+    \end{bmatrix},\quad\mat{Q}=\begin{bmatrix}
+        2&-2&1\\
+        -1&2&-1\\
+        -1&-1&1
+    \end{bmatrix}\]
+    分别是基$\bs\ep_1,\bs\ep_2,\bs\ep_3$到基$\bs\delta_1,\bs\delta_2,\bs\delta_3$和到基$\bs\eta_1,\bs\eta_2,\bs\eta_3$的过渡矩阵.再设$\mathcal{A}$是$V$上的线性变换,其在基$\bs\ep_1,\bs\ep_2,\bs\ep_3$下的矩阵为
+    \[\mat{A}=\begin{bmatrix}
+        -5&-10&-4\\
+        7&12&4\\
+        -2&-3&1
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$\mathcal{A}$在基$\bs\eta_1,\bs\eta_2,\bs\eta_3$下的矩阵.
+        \item 求基$\bs\eta_1,\bs\eta_2,\bs\eta_3$到基$\bs\delta_1,\bs\delta_2,\bs\delta_3$的过渡矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[6(10')]
+    设
+    \[\mat{X}=\begin{bmatrix}
+        \mat{A}&\mat{B}\\
+        \mat{C}&\mbf0
+    \end{bmatrix}\]
+    为分块矩阵,其中$\mat{B},\mat{C}$为方阵.
+    \begin{enumerate}
+        \item 问当$\mat{B},\mat{C}$满足什么条件时$\mat{X}$可逆,并证明你的结论.
+        \item 设$\mat{X}$可逆,求其逆矩阵,假定$\mat{A},\mat{B},\mat{C}$是已知的矩阵.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[7(15')]
+    设$\mathcal{A}$和$\mathcal{B}$是线性空间$V$上的线性变换,其在$V$的基$\bs\ep_1,\bs\ep_2,\bs\ep_3$下的矩阵分别为
+    \[\mat{A}=\begin{bmatrix}
+        0&0&1\\
+        -3&1&3\\
+        -2&0&3
+    \end{bmatrix},\quad\mat{B}=\begin{bmatrix}
+        2&1&-1\\
+        -1&4&-1\\
+        -1&1&2
+    \end{bmatrix}\]
+    \begin{enumerate}
+        \item 求$V$上的线性变换$\mathcal{A}\mathcal{B}-\mathcal{B}\mathcal{A}$.
+        \item 求$\mathcal{A}$的所有特征值及其特征子空间,证明$V$可以表示成这些特征子空间的直和.
+        \item 试判断是否存在$V$的基$\bs\eta_1,\bs\eta_2,\bs\eta_3$使得$\mathcal{A}$和$\mathcal{B}$在此基下的矩阵均为对角矩阵,并说明理由.
+    \end{enumerate}
+\end{homework}
+\begin{homework}[8(9')]
+    考虑实二次型
+    \[Q(x,y,z)=\lambda(x^2+y^2+z^2)-2xy-2xz+2yz\]
+    其中$\lambda$为参数.请回答下面的问题并证明你的结论:
+    \begin{enumerate}
+        \item 当$\lambda=1$时, $Q(x,y,z)$为何种二次型.
+        \item 当且仅当$\lambda$取何值时,存在不全为零的$a,b,c\in\R$使得
+        \[Q(x,y,z)=(ax+by+cz)^2\]
+    \end{enumerate}
+\end{homework}
+\newpage
+\begin{homework}[9(6')]
+    设$\mathcal{A}$是$\R^3$上的线性变换,满足
+    \[\mathcal{A}\begin{bmatrix}
+        x\\y\\z
+    \end{bmatrix}=\begin{bmatrix}
+        2x\\3y+z\\y+3z
+    \end{bmatrix},\quad\forall\begin{bmatrix}
+        x\\y\\z
+    \end{bmatrix}\in\R^3\]
+    问是否存在$\R^3$的一组基$\bs\alpha_1,\bs\alpha_2,\bs\alpha_3$使得
+    \[\mathcal{A}\bs\alpha_1=2\bs\alpha_1,\quad\mathcal{A}\bs\alpha_2=\bs\alpha_1+2\bs\alpha_2+\bs\alpha_3,\quad\mathcal{A}\bs\alpha_3=4\bs\alpha_3\]
+    并证明你的结论.
+\end{homework}
+\end{document}

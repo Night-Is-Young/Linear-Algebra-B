@@ -19,7 +19,7 @@
     设$\mat{E}_{ij}$是$n$级基本矩阵.用$\mat{E}_{ij}$左乘矩阵$\mat{A}$的乘积矩阵是将$\mat{A}$的第$j$行移到第$i$行,其余行均为$\mbf0$;用$\mat{E}_{ij}$右乘$\mat{A}$的乘积矩阵是将$\mat{A}$的第$i$列移到第$j$列,其余列均为$\mbf0$.
 \end{theorem}
 然后我们来考虑矩阵的分块.前面矩阵的乘法的操作单元是矩阵的元素,自然地可以想到把子矩阵作为最小的操作单元进行计算.于是把矩阵乘法定义中的元素换成对应规模的子矩阵,结果仍然成立.这就是\textit{矩阵分块}的想法.\\
-\indent 常用的分块操作有两种.
+\indent 常用的分块操作以及相关的引理如下:
 \begin{enumerate}[label=\tbf{\arabic*.}]
     \item 将矩阵运算拆分成矩阵与列向量的运算:考虑$s\times n$矩阵$\mat{A}$和$n\times m$矩阵$\mat{B}$,将$\mat{B}$分块写为列向量的形式:
     \[\mat{B}=\begin{bmatrix}
@@ -29,10 +29,24 @@
     \[\mat{A}\mat{B}=\mat{A}\begin{bmatrix}
         \bs\beta_1&\cdots&\bs\beta_n
     \end{bmatrix}=\begin{bmatrix}
-        \mat{A}\bs\beta_1&\cdots&\mat{A}\bs\beta_n
+        \mat{A}\bs\beta_1&\cdots&\mat{A}\bs\beta_n 
     \end{bmatrix}\]
     在后面考虑特征向量的相关问题时经常用到这样的拆分方法.
-    \item 将矩阵分成四块.说起来简单,实际应用则充满技巧,我们将在之后进行介绍.
+    \item \tbf{Schur}公式:对于矩阵$\begin{bmatrix}
+        \mat{A}&\mat{B}\\\mat{C}&\mat{D}
+    \end{bmatrix}$,如果$\mat{A}$可逆且$\mat{D}$为方阵,则可以通过如下行列变换将其变为分块对角矩阵:
+    \[\begin{bmatrix}
+        \mat{I}&\mbf0\\
+        -\mat{C}\mat{A}^{-1}&\mat{I}
+    \end{bmatrix}\begin{bmatrix}
+        \mat{A}&\mat{B}\\\mat{C}&\mat{D}
+    \end{bmatrix}\begin{bmatrix}
+        \mat{I}&-\mat{A}^{-1}\mat{B}\\
+        \mbf0&\mat{I}
+    \end{bmatrix}=\begin{bmatrix}
+        \mat{A}&\mbf0\\
+        \mbf0&\mat{D}-\mat{C}\mat{A}^{-1}\mat{B}
+    \end{bmatrix}\]
 \end{enumerate}
 \subsection{矩阵乘积的秩与行列式}
 \begin{theorem}[矩阵乘积的秩]
@@ -40,18 +54,144 @@
     \[\rank\mat{A}\mat{B}\leq\min\{\rank\mat{A},\rank\mat{B}\}\]
 \end{theorem}
 {\color{blue}
-\begin{theorem}[]
-
-\end{theorem}
 \begin{theorem}[Sylvester秩不等式]
     对于$s\times n$级矩阵$\mat{A}$和$n\times m$级矩阵$\mat{B}$,总有
     \[\rank\mat{A}\mat{B}\geq\rank\mat{A}+\rank\mat{B}-n\]
-\end{theorem}}
+\end{theorem}
+\begin{proof}
+    实际上只需证
+    \[\rank\mat{A}\mat{B}+\rank\mat{I}\geq\rank\mat{A}+\rank\mat{B}\]
+    注意到$\rank\mat{X}+\rank\mat{Y}=\rank\begin{bmatrix}
+        \mat{X}&\mbf0\\
+        \mbf0&\mat{Y}
+    \end{bmatrix}$,所以只需证明
+    \[\rank\begin{bmatrix}
+        \mat{A}\mat{B}&\mbf0\\
+        \mbf0&\mat{I}
+    \end{bmatrix}\geq\rank\begin{bmatrix}
+        \mat{A}&\mbf0\\
+        \mbf0&\mat{B}
+    \end{bmatrix}\]
+    而
+    \[\rank\begin{bmatrix}
+        \mat{A}\mat{B}&\mbf0\\
+        \mbf0&\mat{I}
+    \end{bmatrix}=\rank\begin{bmatrix}
+        \mat{A}\mat{B}&\mat{A}\\
+        \mbf0&\mat{I}
+    \end{bmatrix}=\rank\begin{bmatrix}
+        \mbf0&\mat{A}\\
+        -\mat{B}&\mat{I}
+    \end{bmatrix}=\rank\begin{bmatrix}
+        \mat{B}&\mat{I}\\
+        \mbf0&\mat{A}
+    \end{bmatrix}\geq\rank\begin{bmatrix}
+        \mat{A}&\mbf0\\
+        \mbf0&\mat{B}
+    \end{bmatrix}\]
+    于是命题得证.
+\end{proof}}
 \begin{theorem}[方阵乘积的行列式]
     设$\mat{A}$, $\mat{B}$均为数域$\K$上的$n$级方阵,则
     \[\det\mat{A}\mat{B}=\det\mat{A}\det\mat{B}\]
 \end{theorem}
+\section{特殊矩阵}
+\begin{theorem}[可逆矩阵的求法]
+    考虑可逆的$n$级矩阵$\mat{A}$,其逆有两种主要的求法:
+    \begin{enumerate}
+        \item 求出$\mat{A}$的伴随方阵$\mat{A}^\ast$,然后根据
+        \[\mat{A}^{-1}=\dfrac{1}{\det\mat{A}}\mat{A}^\ast\]
+        求出$\mat{A}^{-1}$.其中$\mat{A}^\ast$的$(i,j)$元是$\mat{A}$的$(j,i)$元的代数余子式. {\color{red}注意这里元素的转置对应关系,以及是代数余子式而非余子式}.
+        \item 对矩阵$\begin{bmatrix}
+            \mat{A}&\mat{I}_n
+        \end{bmatrix}$做初等行变换使得左半部分为$\mat{I}_n$, 此时右半部分的矩阵即为$\mat{A}^{-1}$,即
+        \[\begin{bmatrix}
+            \mat{A}&\mat{I}_n
+        \end{bmatrix}\xrightarrow{\text{初等行变换}}\begin{bmatrix}
+            \mat{I}_n&\mat{A}^{-1}
+        \end{bmatrix}\]
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}[基本矩阵的可逆性]
+    初等矩阵和有限个初等矩阵的乘积都可逆.
+\end{theorem}
+可逆矩阵的主要用途是\textit{消去}和\textit{拆分}.
 \section{矩阵的相似和相抵}
+\begin{definition}[相抵标准形]
+    对于任意$n\times m$级矩阵$\mat{A}$,总存在$n$级可逆矩阵$\mat{P}$和$m$级可逆矩阵$\mat{Q}$使得
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        \mat{I}_r&\mbf0\\
+        \mbf0&\mbf0
+    \end{bmatrix}_{n\times m}\mat{Q}\]
+    其中$r=\rank\mat{A}$,中间的矩阵$\bs\Sigma$称作$\mat{A}$的相抵标准型.
+\end{definition}
+由于相抵标准型刻画了矩阵的秩,因此在与秩相关的问题中用处很大.
+\subsection{矩阵相似的特殊结论}
+\begin{theorem}
+    任何复方阵都相似于上三角矩阵.
+\end{theorem}
+\begin{proof}
+    考虑$n$级复方阵$\mat{A}$.对于其一个特征向量$\vec{x}$和对应的特征值$\lambda$,注意到特征方程$\mat{A}\vec{x}=\vec{x}\lambda$具有相似的形式.因此考虑对阶数$n$进行归纳.\\
+    当$n=1$时,命题显然成立.\\
+    当$n\geq 2$时,考虑$\mat{A}$的一个特征值$\lambda$和对应的特征向量$\bs\alpha$,将$\bs\alpha$扩充为$\K^n$的一组基,并据此构造可逆矩阵$\mat{P}$使得其第一列为$\bs\alpha$.于是有
+    \[\mat{A}\mat{P}=\mat{P}\begin{bmatrix}
+        \lambda&\vec{x}\\
+        \mbf0&\mat{X}
+    \end{bmatrix}\]
+    这里$\mat{X}$是$n-1$级复方阵.根据归纳假设,存在$n-1$级可逆矩阵$\mat{Q}$和$n-1$级上三角矩阵$\mat{U}$使得
+    \[\mat{X}=\mat{Q}\mat{U}\mat{Q}^{-1}\]
+    于是
+    \[\mat{A}=\mat{P}\begin{bmatrix}
+        1&\mbf0\\
+        \mbf0&\mat{Q}
+    \end{bmatrix}\begin{bmatrix}
+        \lambda&\vec{x}\mat{Q}\\
+        \mbf0&\mat{U}
+    \end{bmatrix}\begin{bmatrix}
+        1&\mbf0\\
+        \mbf0&\mat{Q}^{-1}
+    \end{bmatrix}\mat{P}^{-1}\]
+    令
+    \[\mat{R}=\begin{bmatrix}
+        1&\mbf0\\
+        \mbf0&\mat{Q}^{-1}
+    \end{bmatrix}\mat{P}^{-1}\]
+    则$\mat{R}\mat{A}\mat{R}^{-1}$为上三角矩阵.
+\end{proof}
+\begin{theorem}[Caylay-Hamilton定理]
+    设$n$级矩阵$\mat{A}$的特征多项式为$f$,证明: $f(\mat{A})=\mbf0$.
+\end{theorem}
+\begin{proof}
+    由于特征多项式不会因$\K$的改变而改变,因此不妨令$\K=\C$.我们已经证明$\mat{A}$相似于某一上三角矩阵$\mat{U}$,不妨设可逆矩阵$\mat{P}$使得$\mat{A}=\mat{P}^{-1}\mat{U}\mat{P}$.于是
+    \[f(\mat{A})=\mat{P}^{-1}f(\mat{U})\mat{P}\]
+    相似变换不改变特征多项式,因此$\mat{U}$的特征多项式也为$f$.由于$\mat{U}$是上三角矩阵,因此$f(\lambda)=\displaystyle\prod_{i=1}^{n}(\lambda-u_{ii})$.于是只需证明
+    \[\displaystyle\prod_{i=1}^{n}(\mat{U}-u_{ii}\mat{I})=\mbf0\]即可.\\
+    对$\mat{U}$的阶数$n$做归纳.当$n=1$时显然成立.当$n\geq 2$时有
+    
+\end{proof}
+\subsection{对角化}
+\begin{theorem}[一般矩阵的对角化]
+    对于可对角化的$n$级矩阵$\mat{A}$, 求出其$n$个线性无关的特征向量$\li{\bs\alpha},n$分别对应于特征值$\li\lambda,n$,然后令
+    \[\mat{P}=\begin{bmatrix}
+        \bs\alpha_1&\cdots&\bs\alpha_n
+    \end{bmatrix}\]
+    则有
+    \[\mat{P}^{-1}\mat{A}\mat{P}=\diag\{\li\lambda,n\}\]
+\end{theorem}
+\begin{theorem}[实对称矩阵的正交对角化]
+    $n$级实对称矩阵$\mat{A}$一定可对角化.考虑$\mat{A}$的所有特征值$\li\lambda,m$,对应于特征值$\lambda_i$的线性无关的特征向量$\bs\alpha_{i1},\cdots,\bs\alpha_{ir_i}$,将其做Schmidt正交化为向量$\bs\eta_{i1},\cdots,\bs\eta_{ir_i}$,然后令
+    \[\mat{T}=\begin{bmatrix}
+        \bs\eta_{11}&\cdots&\bs\eta_{1r_1}&\cdots&\bs\eta_{m1}&\cdots&\bs\eta_{mr_m}
+    \end{bmatrix}\]
+    则$\mat{T}$为正交矩阵,并且有
+    \[\mat{T}^{-1}\mat{A}\mat{T}=\diag\{\lambda_1\mat{I}_{r_1},\cdots,\lambda_m\mat{I}_{r_m}\}\]
+\end{theorem}
+\subsection{正交方阵}
+\begin{theorem}[Schmidt正交化]
+    对向量组$\li{\bs\alpha},r$,依次定义
+    \[\bs\beta_i=\bs\alpha_i-\sum_{j=1}^{i-1}\dfrac{\inprod{\bs\beta_j}{\bs\alpha_i}}{\inprod{\bs\beta_j}{\bs\beta_j}}\bs\beta_j,\quad \vec{f}_i=\dfrac{1}{\left|\left|\bs\beta_i\right|\right|}\bs\beta_i\]
+    则$\li{\vec{f}},i$是与$\li{\bs\alpha},r$等价的单位正交向量组.
+\end{theorem}
 \section{二次型和矩阵的合同}
 \begin{definition}[合同]
     对于$\K$上的$n$阶矩阵$\mat{A}$和$\mat{B}$,如果存在$\K$上的$n$阶可逆矩阵$\mat{C}$使得
@@ -59,6 +199,32 @@
     则称$\mat{A}$与$\mat{B}$合同.
 \end{definition}
 在大多数情况下,我们主要考虑对称矩阵的合同关系.
+\begin{theorem}[二次型的标准形的求法]
+    设二次型$f(\li x,n)$的矩阵为$\mat{A}$,对$\begin{bmatrix}
+        \mat{A}\\\mat{I}
+    \end{bmatrix}$的上半部分做成对行列变换,下半部分做对应的列变换,使得上半部分变为对角矩阵$\mat{D}$,即
+    \[\begin{bmatrix}
+        \mat{A}\\\mat{I}
+    \end{bmatrix}\longrightarrow\begin{bmatrix}
+        \mat{D}\\\mat{C}
+    \end{bmatrix}\]
+    则$\mat{C}^\t\mat{A}\mat{C}=\mat{D}$.令$\vec{x}=\mat{C}\vec{y}$即可得到$\vec{x}^\t\mat{A}\vec{x}$的一个标准形$\vec{y}^\t\mat{D}\vec{y}$.
+\end{theorem}
 \section{线性空间}
 \section{线性映射}
+\begin{definition}[过渡矩阵]
+    $n$维线性空间的一组基$\li{\bs\alpha},n$向另一组基$\li{\bs\beta},n$的过渡矩阵$\mat{P}$定义为
+    \[\begin{bmatrix}
+        \bs\beta_1&\cdots&\bs\beta_n
+    \end{bmatrix}=\begin{bmatrix}
+        \bs\alpha_1&\cdots&\bs\alpha_n
+    \end{bmatrix}\mat{P}\]
+    对$\begin{bmatrix}
+        \mat{A}&\mat{B}
+    \end{bmatrix}$做初等行变换即可得$\begin{bmatrix}
+        \mat{I}&\mat{P}
+    \end{bmatrix}$.\\
+    如果线性映射$\mathcal{A}$在$\li{\bs\alpha},n$和$\li{\bs\beta},n$下的矩阵分别为$\mat{S}$和$\mat{T}$,则有
+    \[\mat{T}=\mat{P}^{-1}\mat{S}\mat{P}\]
+\end{definition}
 \end{document}
